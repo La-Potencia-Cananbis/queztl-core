@@ -12,6 +12,10 @@ DATABASE_URL = os.getenv(
     "postgresql+asyncpg://postgres:postgres@db:5432/queztl_core"
 )
 
+# Render provides PostgreSQL URLs with 'postgresql://' but asyncpg needs 'postgresql+asyncpg://'
+if DATABASE_URL and DATABASE_URL.startswith("postgresql://"):
+    DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://", 1)
+
 engine = create_async_engine(DATABASE_URL, echo=True)
 async_session = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
