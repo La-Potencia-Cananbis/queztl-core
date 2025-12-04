@@ -1,0 +1,25 @@
+# Netlify Configuration for Queztl-Core Dashboard
+
+[build]
+  base = "dashboard"
+  command = "npm run build"
+  publish = "dashboard/out"
+
+[build.environment]
+  NEXT_PUBLIC_API_URL = "http://localhost:8000"
+  NODE_VERSION = "20"
+
+# Redirect all requests to Next.js
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/___netlify-handler"
+  status = 200
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
