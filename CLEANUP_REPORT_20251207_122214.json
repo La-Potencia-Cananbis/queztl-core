@@ -1,0 +1,173 @@
+{
+  "timestamp": "2025-12-07T12:22:14.870414",
+  "dry_run": true,
+  "actions_taken": [
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Loading audit report..."
+    },
+    {
+      "time": "12:22:14",
+      "level": "SUCCESS",
+      "message": "Found audit report: AUDIT_REPORT_20251207_115937.json"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "\ud83d\uddd1\ufe0f  Step 1: Deleting duplicate files..."
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: secrets-vault.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: email-landing.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: netlify/index.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: my-email.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/out/3dmark-benchmark.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/public/3dmark-benchmark.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/.netlify/plugins/node_modules/pino/index.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/.netlify/plugins/node_modules/tslib/tslib.es6.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/node_modules/tslib/tslib.es6.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/.netlify/plugins/node_modules/tslib/tslib.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/node_modules/tslib/tslib.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/.next/server/app/index.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/.next/server/app/_not-found.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/.next/server/pages/404.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/out/gpu-demo.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/out/3dmark-pro.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/out/test-api.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/out/web-gpu-explained.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/out/3dmark-immersive.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would delete: dashboard/out/gen3d.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Deleted 0 duplicate files"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "\ud83c\udfae Step 2: Fixing 3DMark (replacing with graphics version)..."
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would copy 3dmark-pro.html \u2192 3d-demo.html"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "\ud83d\ude80 Step 3: Deploying dashboard to Netlify..."
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would run: netlify deploy --prod"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "\ud83e\uddea Step 4: Testing deployed applications..."
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would test all deployed apps"
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "\ud83d\udcf8 Creating git backup..."
+    },
+    {
+      "time": "12:22:14",
+      "level": "INFO",
+      "message": "Would create git commit"
+    }
+  ],
+  "errors": [],
+  "success": true
+}

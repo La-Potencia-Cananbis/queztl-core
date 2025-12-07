@@ -33,6 +33,24 @@
             margin-bottom: 30px;
         }
 
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
         .header h1 {
             font-size: 3em;
             margin-bottom: 10px;
@@ -324,6 +342,7 @@
 </head>
 
 <body>
+    <a href="demos.html" class="back-link">← Back to Demos</a>
     <div class="container">
         <div class="header">
             <h1>🦅 Queztl-Core 3DMark</h1>
@@ -464,8 +483,8 @@
     </div>
 
     <script>
-        // API Configuration - Defaults to localhost for testing
-        let API_URL = localStorage.getItem('queztl_api_url') || 'http://localhost:8000';
+        // API Configuration - Defaults to Hive Backend (cloud)
+        let API_URL = localStorage.getItem('queztl_api_url') || 'https://hive-backend.onrender.com';
 
         const testResults = {};
         let isRunning = false;
@@ -923,6 +942,14 @@
             return html;
         }
 
+        // Check auth on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('queztl_auth');
+            if (!token) {
+                window.location.href = 'login.html';
+            }
+        });
+
         // Check API on load
         window.addEventListener('load', async () => {
             try {
@@ -930,7 +957,7 @@
                 if (!response.ok) throw new Error('API not responding');
                 console.log('✅ Queztl-Core API connected');
             } catch (error) {
-                alert('⚠️ Cannot connect to Queztl-Core API at ' + API_URL + '\n\nMake sure the backend is running: ./start.sh');
+                console.warn('⚠️ API not available at ' + API_URL);
             }
         });
     </script>

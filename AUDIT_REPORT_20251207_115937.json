@@ -1,0 +1,909 @@
+{
+  "timestamp": "2025-12-07T11:59:37.303228",
+  "total_files": 56,
+  "duplicate_groups": [
+    {
+      "similarity": 1.0,
+      "files": [
+        "secrets-vault.html",
+        "3d-showcase-deploy/secrets.html"
+      ],
+      "recommendation": "KEEP: 3d-showcase-deploy/secrets.html (deployed), DELETE: secrets-vault.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "email-landing.html",
+        "netlify/index.html",
+        "3d-showcase-deploy/index.html"
+      ],
+      "recommendation": "KEEP: 3d-showcase-deploy/index.html (deployed), DELETE: email-landing.html, netlify/index.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "my-email.html",
+        "3d-showcase-deploy/email.html"
+      ],
+      "recommendation": "KEEP: 3d-showcase-deploy/email.html (deployed), DELETE: my-email.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "3d-showcase-deploy/benchmark.html",
+        "dashboard/out/3dmark-benchmark.html",
+        "dashboard/public/3dmark-benchmark.html"
+      ],
+      "recommendation": "KEEP: 3d-showcase-deploy/benchmark.html (deployed), DELETE: dashboard/out/3dmark-benchmark.html, dashboard/public/3dmark-benchmark.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html",
+        "dashboard/.netlify/plugins/node_modules/pino/index.html"
+      ],
+      "recommendation": "KEEP: 3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html (deployed), DELETE: dashboard/.netlify/plugins/node_modules/pino/index.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+        "dashboard/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+        "dashboard/node_modules/tslib/tslib.es6.html"
+      ],
+      "recommendation": "KEEP: 3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html (deployed), DELETE: dashboard/.netlify/plugins/node_modules/tslib/tslib.es6.html, dashboard/node_modules/tslib/tslib.es6.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html",
+        "dashboard/.netlify/plugins/node_modules/tslib/tslib.html",
+        "dashboard/node_modules/tslib/tslib.html"
+      ],
+      "recommendation": "KEEP: 3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html (deployed), DELETE: dashboard/.netlify/plugins/node_modules/tslib/tslib.html, dashboard/node_modules/tslib/tslib.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+        "dashboard/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html"
+      ],
+      "recommendation": "KEEP: 3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html (deployed), DELETE: dashboard/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "dashboard/out/index.html",
+        "dashboard/.next/server/app/index.html"
+      ],
+      "recommendation": "KEEP: dashboard/out/index.html, DELETE: dashboard/.next/server/app/index.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "dashboard/out/404.html",
+        "dashboard/.next/server/app/_not-found.html",
+        "dashboard/.next/server/pages/404.html"
+      ],
+      "recommendation": "KEEP: dashboard/out/404.html, DELETE: dashboard/.next/server/app/_not-found.html, dashboard/.next/server/pages/404.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "dashboard/out/gpu-demo.html",
+        "dashboard/public/gpu-demo.html"
+      ],
+      "recommendation": "KEEP: dashboard/public/gpu-demo.html (source), DELETE: dashboard/out/gpu-demo.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "dashboard/out/3dmark-pro.html",
+        "dashboard/public/3dmark-pro.html"
+      ],
+      "recommendation": "KEEP: dashboard/public/3dmark-pro.html (source), DELETE: dashboard/out/3dmark-pro.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "dashboard/out/test-api.html",
+        "dashboard/public/test-api.html"
+      ],
+      "recommendation": "KEEP: dashboard/public/test-api.html (source), DELETE: dashboard/out/test-api.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "dashboard/out/web-gpu-explained.html",
+        "dashboard/public/web-gpu-explained.html"
+      ],
+      "recommendation": "KEEP: dashboard/public/web-gpu-explained.html (source), DELETE: dashboard/out/web-gpu-explained.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "dashboard/out/3dmark-immersive.html",
+        "dashboard/public/3dmark-immersive.html"
+      ],
+      "recommendation": "KEEP: dashboard/public/3dmark-immersive.html (source), DELETE: dashboard/out/3dmark-immersive.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "dashboard/out/gen3d.html",
+        "dashboard/public/gen3d.html"
+      ],
+      "recommendation": "KEEP: dashboard/public/gen3d.html (source), DELETE: dashboard/out/gen3d.html"
+    }
+  ],
+  "file_inventory": {
+    "secrets-vault.html": {
+      "path": "secrets-vault.html",
+      "size": 14940,
+      "hash": "7c476aff02ab16607fe26bdf55792e9a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83d\udd10 Queztl Secrets Vault",
+      "type": "utility"
+    },
+    "email-landing.html": {
+      "path": "email-landing.html",
+      "size": 9225,
+      "hash": "b0e36aa88721c857dd1ce9203018aff1",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl Email - 10x Faster than ProtonMail",
+      "type": "landing"
+    },
+    "queztl_os_demo.html": {
+      "path": "queztl_os_demo.html",
+      "size": 29845,
+      "hash": "a5d5c722e975e5943bfb7aca65ace0de",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl OS - Demo Dashboard",
+      "type": "demo"
+    },
+    "my-email.html": {
+      "path": "my-email.html",
+      "size": 17845,
+      "hash": "39b2f6dabcf20d6bc2d2725fbe819b5c",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Salvador's Email - Queztl",
+      "type": "utility"
+    },
+    "backend/outreach_dashboard.html": {
+      "path": "backend/outreach_dashboard.html",
+      "size": 14440,
+      "hash": "85e1a15a8dd8756209360f2bae0c0f4f",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QHP Outreach Engine - Dashboard",
+      "type": "dashboard"
+    },
+    "backend/qhp_demo.html": {
+      "path": "backend/qhp_demo.html",
+      "size": 11220,
+      "hash": "c874c4b0b22e070561b1e5324131efe2",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl Protocol Demo",
+      "type": "demo"
+    },
+    "backend/queztl_dashboard.html": {
+      "path": "backend/queztl_dashboard.html",
+      "size": 14103,
+      "hash": "2fc0e4d6e072ed248435dfeab639cf1c",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl Protocol - ML Dashboard",
+      "type": "dashboard"
+    },
+    "netlify/index.html": {
+      "path": "netlify/index.html",
+      "size": 9225,
+      "hash": "b0e36aa88721c857dd1ce9203018aff1",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl Email - 10x Faster than ProtonMail",
+      "type": "landing"
+    },
+    "3d-showcase-deploy/index.html": {
+      "path": "3d-showcase-deploy/index.html",
+      "size": 9225,
+      "hash": "b0e36aa88721c857dd1ce9203018aff1",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl Email - 10x Faster than ProtonMail",
+      "type": "landing"
+    },
+    "3d-showcase-deploy/home.html": {
+      "path": "3d-showcase-deploy/home.html",
+      "size": 14680,
+      "hash": "7c0068f4ac2c58a4009421f6a1c9ab55",
+      "has_canvas": false,
+      "has_webgl": true,
+      "has_auth": true,
+      "api_endpoints": [
+        "/api/generate/text-to-3d",
+        "/api/generate/image-to-3d",
+        "/api/blender/connect",
+        "/api/gis/process",
+        "/api/geophysics/analyze",
+        "/api/training/start",
+        "/api/health"
+      ],
+      "title": "\ud83e\udd85 Queztl - Application Portal",
+      "type": "dashboard"
+    },
+    "3d-showcase-deploy/email.html": {
+      "path": "3d-showcase-deploy/email.html",
+      "size": 17845,
+      "hash": "39b2f6dabcf20d6bc2d2725fbe819b5c",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Salvador's Email - Queztl",
+      "type": "utility"
+    },
+    "3d-showcase-deploy/login.html": {
+      "path": "3d-showcase-deploy/login.html",
+      "size": 6274,
+      "hash": "bd630bd1738ee304da6f60dcc860562d",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83d\udd10 Queztl Access Control",
+      "type": "auth"
+    },
+    "3d-showcase-deploy/demos.html": {
+      "path": "3d-showcase-deploy/demos.html",
+      "size": 5786,
+      "hash": "d1da63ef2ef000623128c8af69dc7182",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "Queztl 3D Showcase",
+      "type": "demo"
+    },
+    "3d-showcase-deploy/secrets.html": {
+      "path": "3d-showcase-deploy/secrets.html",
+      "size": 14940,
+      "hash": "7c476aff02ab16607fe26bdf55792e9a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83d\udd10 Queztl Secrets Vault",
+      "type": "utility"
+    },
+    "3d-showcase-deploy/benchmark.html": {
+      "path": "3d-showcase-deploy/benchmark.html",
+      "size": 33178,
+      "hash": "c1f2213b865ac1cee8f12584333480cb",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl-Core 3DMark - GPU Benchmark Suite",
+      "type": "benchmark"
+    },
+    "3d-showcase-deploy/3d-demo.html": {
+      "path": "3d-showcase-deploy/3d-demo.html",
+      "size": 33939,
+      "hash": "444d0686475b7bd9090af3d35b60ce9e",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl-Core 3DMark - GPU Benchmark Suite",
+      "type": "demo"
+    },
+    "gen3d-app/frontend/index.html": {
+      "path": "gen3d-app/frontend/index.html",
+      "size": 20287,
+      "hash": "38972c0920aac0d4b36dd757d347ef73",
+      "has_canvas": false,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Gen3D - AI 3D Model Generation",
+      "type": "landing"
+    },
+    "3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html": {
+      "path": "3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html",
+      "size": 1826,
+      "hash": "3c62db2ee38f5268b0ff264616ccae4a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Pino - Super fast, all natural JSON logger for Node.js",
+      "type": "landing"
+    },
+    "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html": {
+      "path": "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+      "size": 36,
+      "hash": "5b9030beaa547926ac803bc3e7626b63",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html": {
+      "path": "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html",
+      "size": 32,
+      "hash": "442aa09e10281318cdf6be9e026232b0",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html": {
+      "path": "3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+      "size": 9850,
+      "hash": "c511dcdbb9c495dc0f07e8d5705b5a0a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Invocation failed",
+      "type": "utility"
+    },
+    ".venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html": {
+      "path": ".venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html",
+      "size": 92,
+      "hash": "efaf4d8f81365b7dd8b41909bb863780",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    ".venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html": {
+      "path": ".venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html",
+      "size": 174,
+      "hash": "8f6c384492448086db776d20426e088b",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "landing"
+    },
+    ".venv/lib/python3.13/site-packages/numba/core/annotations/template.html": {
+      "path": ".venv/lib/python3.13/site-packages/numba/core/annotations/template.html",
+      "size": 3464,
+      "hash": "86d178f4c0c9c2adadff5a2a43bc856e",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    ".venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html": {
+      "path": ".venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html",
+      "size": 1753,
+      "hash": "8cea6a7c800fba6803837dd62aa1824d",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "MPL | WebAgg current figures",
+      "type": "utility"
+    },
+    ".venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html": {
+      "path": ".venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html",
+      "size": 1311,
+      "hash": "b7e79800afdcd237de9d11e3da9daead",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    ".venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html": {
+      "path": ".venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html",
+      "size": 1357,
+      "hash": "8ff1acf87a06e3c7d93b486ea1540459",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "matplotlib",
+      "type": "utility"
+    },
+    ".venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html": {
+      "path": ".venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html",
+      "size": 384,
+      "hash": "3c3e9f41de31ab419f8843503e6b805e",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "TorchScript Model",
+      "type": "utility"
+    },
+    "dashboard/out/index.html": {
+      "path": "dashboard/out/index.html",
+      "size": 17191,
+      "hash": "a2c11a3fb1440d6d7e472f3dd4cdcc7e",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl-Core Testing &amp; Monitoring Dashboard",
+      "type": "landing"
+    },
+    "dashboard/out/404.html": {
+      "path": "dashboard/out/404.html",
+      "size": 6739,
+      "hash": "8fa9179cd0f5b5aad9feff8c6530bdaa",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "404: This page could not be found.",
+      "type": "utility"
+    },
+    "dashboard/out/gpu-demo.html": {
+      "path": "dashboard/out/gpu-demo.html",
+      "size": 17574,
+      "hash": "40fbda4dbd3a61e004079bc080ae72ff",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/gpu"
+      ],
+      "title": "\ud83e\udd85 Queztl Web GPU Driver - Demo",
+      "type": "demo"
+    },
+    "dashboard/out/3dmark-pro.html": {
+      "path": "dashboard/out/3dmark-pro.html",
+      "size": 67198,
+      "hash": "ab1062729b23ebdd102c5a963c344461",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl 3DMark Professional - WebGL Benchmark",
+      "type": "benchmark"
+    },
+    "dashboard/out/test-api.html": {
+      "path": "dashboard/out/test-api.html",
+      "size": 4277,
+      "hash": "13eebb57b46b24687bf0247ed1534666",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/health",
+        "/api/gpu/info",
+        "/api/power/benchmark",
+        "/api/security/memory"
+      ],
+      "title": "API Test",
+      "type": "utility"
+    },
+    "dashboard/out/web-gpu-explained.html": {
+      "path": "dashboard/out/web-gpu-explained.html",
+      "size": 16420,
+      "hash": "bd4e20ac4a6440c2648379af83171904",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Web GPU - Simple Explanation",
+      "type": "utility"
+    },
+    "dashboard/out/3dmark-immersive.html": {
+      "path": "dashboard/out/3dmark-immersive.html",
+      "size": 23740,
+      "hash": "d8eba5df2c9cba4e470e2caae29c42f9",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl 3DMark - GPU Benchmark",
+      "type": "benchmark"
+    },
+    "dashboard/out/gen3d.html": {
+      "path": "dashboard/out/gen3d.html",
+      "size": 17294,
+      "hash": "72b08822a365999dc07dc9ef871dd2d6",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl Gen3D - AI 3D Model Generation",
+      "type": "demo"
+    },
+    "dashboard/out/3dmark-benchmark.html": {
+      "path": "dashboard/out/3dmark-benchmark.html",
+      "size": 33178,
+      "hash": "c1f2213b865ac1cee8f12584333480cb",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl-Core 3DMark - GPU Benchmark Suite",
+      "type": "benchmark"
+    },
+    "dashboard/public/gpu-demo.html": {
+      "path": "dashboard/public/gpu-demo.html",
+      "size": 17574,
+      "hash": "40fbda4dbd3a61e004079bc080ae72ff",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/gpu"
+      ],
+      "title": "\ud83e\udd85 Queztl Web GPU Driver - Demo",
+      "type": "demo"
+    },
+    "dashboard/public/3dmark-pro.html": {
+      "path": "dashboard/public/3dmark-pro.html",
+      "size": 67198,
+      "hash": "ab1062729b23ebdd102c5a963c344461",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl 3DMark Professional - WebGL Benchmark",
+      "type": "benchmark"
+    },
+    "dashboard/public/test-api.html": {
+      "path": "dashboard/public/test-api.html",
+      "size": 4277,
+      "hash": "13eebb57b46b24687bf0247ed1534666",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/health",
+        "/api/gpu/info",
+        "/api/power/benchmark",
+        "/api/security/memory"
+      ],
+      "title": "API Test",
+      "type": "utility"
+    },
+    "dashboard/public/web-gpu-explained.html": {
+      "path": "dashboard/public/web-gpu-explained.html",
+      "size": 16420,
+      "hash": "bd4e20ac4a6440c2648379af83171904",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Web GPU - Simple Explanation",
+      "type": "utility"
+    },
+    "dashboard/public/3dmark-immersive.html": {
+      "path": "dashboard/public/3dmark-immersive.html",
+      "size": 23740,
+      "hash": "d8eba5df2c9cba4e470e2caae29c42f9",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl 3DMark - GPU Benchmark",
+      "type": "benchmark"
+    },
+    "dashboard/public/gen3d.html": {
+      "path": "dashboard/public/gen3d.html",
+      "size": 17294,
+      "hash": "72b08822a365999dc07dc9ef871dd2d6",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl Gen3D - AI 3D Model Generation",
+      "type": "demo"
+    },
+    "dashboard/public/3dmark-benchmark.html": {
+      "path": "dashboard/public/3dmark-benchmark.html",
+      "size": 33178,
+      "hash": "c1f2213b865ac1cee8f12584333480cb",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl-Core 3DMark - GPU Benchmark Suite",
+      "type": "benchmark"
+    },
+    "dashboard/.netlify/plugins/node_modules/pino/index.html": {
+      "path": "dashboard/.netlify/plugins/node_modules/pino/index.html",
+      "size": 1826,
+      "hash": "3c62db2ee38f5268b0ff264616ccae4a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Pino - Super fast, all natural JSON logger for Node.js",
+      "type": "landing"
+    },
+    "dashboard/.netlify/plugins/node_modules/tslib/tslib.es6.html": {
+      "path": "dashboard/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+      "size": 36,
+      "hash": "5b9030beaa547926ac803bc3e7626b63",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "dashboard/.netlify/plugins/node_modules/tslib/tslib.html": {
+      "path": "dashboard/.netlify/plugins/node_modules/tslib/tslib.html",
+      "size": 32,
+      "hash": "442aa09e10281318cdf6be9e026232b0",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "dashboard/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html": {
+      "path": "dashboard/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+      "size": 9850,
+      "hash": "c511dcdbb9c495dc0f07e8d5705b5a0a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Invocation failed",
+      "type": "utility"
+    },
+    "dashboard/.next/server/app/index.html": {
+      "path": "dashboard/.next/server/app/index.html",
+      "size": 17191,
+      "hash": "a2c11a3fb1440d6d7e472f3dd4cdcc7e",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl-Core Testing &amp; Monitoring Dashboard",
+      "type": "landing"
+    },
+    "dashboard/.next/server/app/_not-found.html": {
+      "path": "dashboard/.next/server/app/_not-found.html",
+      "size": 6739,
+      "hash": "8fa9179cd0f5b5aad9feff8c6530bdaa",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "404: This page could not be found.",
+      "type": "utility"
+    },
+    "dashboard/.next/server/pages/500.html": {
+      "path": "dashboard/.next/server/pages/500.html",
+      "size": 2130,
+      "hash": "60582e8d4f02740b188e976b8a7130ed",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "500: Internal Server Error",
+      "type": "utility"
+    },
+    "dashboard/.next/server/pages/404.html": {
+      "path": "dashboard/.next/server/pages/404.html",
+      "size": 6739,
+      "hash": "8fa9179cd0f5b5aad9feff8c6530bdaa",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "404: This page could not be found.",
+      "type": "utility"
+    },
+    "dashboard/node_modules/tslib/tslib.es6.html": {
+      "path": "dashboard/node_modules/tslib/tslib.es6.html",
+      "size": 36,
+      "hash": "5b9030beaa547926ac803bc3e7626b63",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "dashboard/node_modules/tslib/tslib.html": {
+      "path": "dashboard/node_modules/tslib/tslib.html",
+      "size": 32,
+      "hash": "442aa09e10281318cdf6be9e026232b0",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "dashboard/node_modules/recharts/umd/report.html": {
+      "path": "dashboard/node_modules/recharts/umd/report.html",
+      "size": 348549,
+      "hash": "82f0623e8442526eee3d05d57c08cf76",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "recharts [20 Jun 2025 at 21:43]",
+      "type": "utility"
+    },
+    "dashboard/node_modules/decimal.js-light/doc/API.html": {
+      "path": "dashboard/node_modules/decimal.js-light/doc/API.html",
+      "size": 51905,
+      "hash": "b70fb1190b6b8a7743e28b256dcb204a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "decimal.js-light API",
+      "type": "utility"
+    }
+  },
+  "app_statuses": [
+    {
+      "name": "Login",
+      "url": "https://senasaitech.com/login.html",
+      "accessible": false,
+      "has_auth": false,
+      "buttons_working": false,
+      "errors": [
+        "HTTP 404"
+      ],
+      "response_time_ms": 464.2913340067025
+    },
+    {
+      "name": "Home Portal",
+      "url": "https://senasaitech.com/home.html",
+      "accessible": false,
+      "has_auth": true,
+      "buttons_working": false,
+      "errors": [
+        "HTTP 404"
+      ],
+      "response_time_ms": 483.82441700960044
+    },
+    {
+      "name": "3DMark Demo",
+      "url": "https://senasaitech.com/3d-demo.html",
+      "accessible": false,
+      "has_auth": true,
+      "buttons_working": false,
+      "errors": [
+        "HTTP 404"
+      ],
+      "response_time_ms": 422.43108300317544
+    },
+    {
+      "name": "Benchmark",
+      "url": "https://senasaitech.com/benchmark.html",
+      "accessible": false,
+      "has_auth": true,
+      "buttons_working": false,
+      "errors": [
+        "HTTP 404"
+      ],
+      "response_time_ms": 423.08308300562203
+    },
+    {
+      "name": "Email System",
+      "url": "https://senasaitech.com/email.html",
+      "accessible": false,
+      "has_auth": true,
+      "buttons_working": false,
+      "errors": [
+        "HTTP 404"
+      ],
+      "response_time_ms": 387.8263749938924
+    },
+    {
+      "name": "Secrets Vault",
+      "url": "https://senasaitech.com/secrets.html",
+      "accessible": false,
+      "has_auth": true,
+      "buttons_working": false,
+      "errors": [
+        "HTTP 404"
+      ],
+      "response_time_ms": 423.0483749997802
+    },
+    {
+      "name": "Demos Hub",
+      "url": "https://senasaitech.com/demos.html",
+      "accessible": false,
+      "has_auth": true,
+      "buttons_working": false,
+      "errors": [
+        "HTTP 404"
+      ],
+      "response_time_ms": 483.9207499899203
+    },
+    {
+      "name": "Backend API",
+      "url": "https://senasaitech.com/api/health",
+      "accessible": false,
+      "has_auth": false,
+      "buttons_working": false,
+      "errors": [
+        "HTTP 404"
+      ],
+      "response_time_ms": 312.1031250047963
+    }
+  ],
+  "public_apps": [
+    "netlify/index.html",
+    "3d-showcase-deploy/index.html",
+    "3d-showcase-deploy/email.html",
+    "3d-showcase-deploy/login.html",
+    "gen3d-app/frontend/index.html",
+    "3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html",
+    "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+    "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html",
+    "3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+    ".venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html",
+    "dashboard/out/index.html",
+    "dashboard/.netlify/plugins/node_modules/pino/index.html",
+    "dashboard/.next/server/app/index.html"
+  ],
+  "private_apps": [
+    "3d-showcase-deploy/home.html",
+    "3d-showcase-deploy/demos.html",
+    "3d-showcase-deploy/secrets.html",
+    "3d-showcase-deploy/benchmark.html",
+    "3d-showcase-deploy/3d-demo.html"
+  ],
+  "broken_files": [
+    "Login: HTTP 404",
+    "Home Portal: HTTP 404",
+    "3DMark Demo: HTTP 404",
+    "Benchmark: HTTP 404",
+    "Email System: HTTP 404",
+    "Secrets Vault: HTTP 404",
+    "Demos Hub: HTTP 404",
+    "Backend API: HTTP 404"
+  ],
+  "recommendations": [
+    "\ud83d\uddd1\ufe0f  DELETE 16 exact duplicate files to clean up workspace",
+    "\ud83d\udd27 FIX 8 broken/inaccessible apps",
+    "\ud83d\udd10 ADD authentication to 4 public files",
+    "\ud83c\udfd7\ufe0f  IMPLEMENT hypervisor structure for better app organization",
+    "\ud83d\udcca CREATE unified dashboard as main entry point",
+    "\ud83e\uddf9 ARCHIVE or DELETE non-deployed files in dashboard/public"
+  ]
+}

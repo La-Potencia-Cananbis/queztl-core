@@ -1,0 +1,61 @@
+{
+  "architecture": "Hypervisor-based Application Router",
+  "components": {
+    "public_zone": {
+      "description": "No authentication required",
+      "apps": [
+        "netlify/index.html",
+        "3d-showcase-deploy/index.html",
+        "3d-showcase-deploy/email.html",
+        "3d-showcase-deploy/login.html",
+        "gen3d-app/frontend/index.html",
+        "3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html",
+        "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+        "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html",
+        "3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+        ".venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html",
+        "dashboard/out/index.html",
+        "dashboard/.netlify/plugins/node_modules/pino/index.html",
+        "dashboard/.next/server/app/index.html"
+      ],
+      "route_pattern": "/public/*"
+    },
+    "private_zone": {
+      "description": "Requires authentication token",
+      "apps": [
+        "3d-showcase-deploy/home.html",
+        "3d-showcase-deploy/demos.html",
+        "3d-showcase-deploy/secrets.html",
+        "3d-showcase-deploy/benchmark.html",
+        "3d-showcase-deploy/3d-demo.html"
+      ],
+      "route_pattern": "/app/*",
+      "auth_check": "localStorage.getItem('queztl_auth')"
+    },
+    "hypervisor": {
+      "description": "Central routing and permission manager",
+      "features": [
+        "Request routing based on auth status",
+        "Resource allocation and monitoring",
+        "Session management",
+        "API gateway with rate limiting",
+        "Real-time metrics dashboard"
+      ]
+    }
+  },
+  "file_structure": {
+    "/hypervisor/": "Core routing logic",
+    "/hypervisor/public/": "Public accessible demos",
+    "/hypervisor/private/": "Auth-required applications",
+    "/hypervisor/dashboard/": "Admin dashboard",
+    "/hypervisor/api/": "API gateway"
+  },
+  "next_steps": [
+    "1. Create hypervisor directory structure",
+    "2. Implement auth middleware",
+    "3. Build routing engine",
+    "4. Migrate apps to hypervisor structure",
+    "5. Deploy unified dashboard",
+    "6. Test all routes and permissions"
+  ]
+}
