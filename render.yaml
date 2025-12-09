@@ -1,11 +1,12 @@
 services:
   # Backend API
   - type: web
-    name: queztl-core-backend
+    name: quetzalcore-core-backend
     runtime: python
     region: oregon
     plan: free
     branch: main
+    rootDir: backend
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
@@ -13,21 +14,21 @@ services:
         value: 3.11.0
       - key: DATABASE_URL
         fromDatabase:
-          name: queztl-db
+          name: quetzalcore-db
           property: connectionString
       - key: REDIS_URL
         fromDatabase:
-          name: queztl-redis
+          name: quetzalcore-redis
           property: connectionString
 
 databases:
   # PostgreSQL Database
-  - name: queztl-db
-    databaseName: queztl_core
+  - name: quetzalcore-db
+    databaseName: quetzalcore_core
     plan: free
     region: oregon
 
   # Redis Cache
-  - name: queztl-redis
+  - name: quetzalcore-redis
     plan: free
     region: oregon
