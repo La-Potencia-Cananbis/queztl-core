@@ -1,0 +1,197 @@
+[
+  {
+    "input": {
+      "resolution": "1920x1080",
+      "quality": "medium",
+      "codec": "h264"
+    },
+    "output": {
+      "enhanced_resolution": "3840x2160",
+      "quality": "high",
+      "upscale_factor": 2.0
+    },
+    "label": "4k_upscale"
+  },
+  {
+    "input": {
+      "resolution": "2560x1440",
+      "quality": "high",
+      "codec": "h265"
+    },
+    "output": {
+      "enhanced_resolution": "5120x2880",
+      "quality": "ultra",
+      "upscale_factor": 2.0
+    },
+    "label": "5k_upscale"
+  },
+  {
+    "input": {
+      "resolution": "1280x720",
+      "quality": "medium",
+      "codec": "vp9"
+    },
+    "output": {
+      "enhanced_resolution": "2560x1440",
+      "quality": "medium",
+      "upscale_factor": 2.0
+    },
+    "label": "2k_upscale"
+  },
+  {
+    "input": {
+      "data_type": "seismic",
+      "size_gb": 10.5,
+      "analysis": "fault_detection"
+    },
+    "output": {
+      "faults_detected": 15,
+      "confidence": 0.89,
+      "processing_time": 45.2
+    },
+    "label": "seismic_analysis"
+  },
+  {
+    "input": {
+      "data_type": "geological",
+      "size_gb": 25.0,
+      "analysis": "mineral_mapping"
+    },
+    "output": {
+      "minerals_found": 8,
+      "confidence": 0.92,
+      "processing_time": 120.5
+    },
+    "label": "geological_mapping"
+  },
+  {
+    "input": {
+      "resolution": "1280x720",
+      "quality": "medium",
+      "codec": "vp9"
+    },
+    "output": {
+      "enhanced_resolution": "2560x1440",
+      "quality": "medium",
+      "upscale_factor": 2.0
+    },
+    "label": "2k_upscale"
+  },
+  {
+    "input": {
+      "resolution": "1920x1080",
+      "quality": "medium",
+      "codec": "h264"
+    },
+    "output": {
+      "enhanced_resolution": "3840x2160",
+      "quality": "high",
+      "upscale_factor": 2.0
+    },
+    "label": "4k_upscale"
+  },
+  {
+    "input": {
+      "resolution": "1280x720",
+      "quality": "medium",
+      "codec": "vp9"
+    },
+    "output": {
+      "enhanced_resolution": "2560x1440",
+      "quality": "medium",
+      "upscale_factor": 2.0
+    },
+    "label": "2k_upscale"
+  },
+  {
+    "input": {
+      "resolution": "2560x1440",
+      "quality": "high",
+      "codec": "h265"
+    },
+    "output": {
+      "enhanced_resolution": "5120x2880",
+      "quality": "ultra",
+      "upscale_factor": 2.0
+    },
+    "label": "5k_upscale"
+  },
+  {
+    "input": {
+      "resolution": "1280x720",
+      "quality": "medium",
+      "codec": "vp9"
+    },
+    "output": {
+      "enhanced_resolution": "2560x1440",
+      "quality": "medium",
+      "upscale_factor": 2.0
+    },
+    "label": "2k_upscale"
+  },
+  {
+    "input": {
+      "resolution": "1920x1080",
+      "quality": "medium",
+      "codec": "h264"
+    },
+    "output": {
+      "enhanced_resolution": "3840x2160",
+      "quality": "high",
+      "upscale_factor": 2.0
+    },
+    "label": "4k_upscale"
+  },
+  {
+    "input": {
+      "resolution": "1280x720",
+      "quality": "medium",
+      "codec": "vp9"
+    },
+    "output": {
+      "enhanced_resolution": "2560x1440",
+      "quality": "medium",
+      "upscale_factor": 2.0
+    },
+    "label": "2k_upscale"
+  },
+  {
+    "input": {
+      "resolution": "1920x1080",
+      "quality": "medium",
+      "codec": "h264"
+    },
+    "output": {
+      "enhanced_resolution": "3840x2160",
+      "quality": "high",
+      "upscale_factor": 2.0
+    },
+    "label": "4k_upscale"
+  },
+  {
+    "input": {
+      "resolution": "2560x1440",
+      "quality": "high",
+      "codec": "h265"
+    },
+    "output": {
+      "enhanced_resolution": "5120x2880",
+      "quality": "ultra",
+      "upscale_factor": 2.0
+    },
+    "label": "5k_upscale"
+  },
+  {
+    "input": {
+      "resolution": "1920x1080",
+      "quality": "medium",
+      "codec": "h264"
+    },
+    "output": {
+      "enhanced_resolution": "3840x2160",
+      "quality": "high",
+      "upscale_factor": 2.0
+    },
+    "label": "4k_upscale"
+  }
+]

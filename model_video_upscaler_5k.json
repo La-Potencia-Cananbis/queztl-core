@@ -1,0 +1,15 @@
+{
+  "model_name": "video_upscaler_5k",
+  "version": "1.0.0",
+  "trained_date": "2025-12-10T12:15:10.436054",
+  "training_samples": 15,
+  "epochs": 5,
+  "final_accuracy": 0.95,
+  "final_loss": 0.1,
+  "task_types": [
+    "video_enhancement",
+    "5k_upscale"
+  ],
+  "status": "trained",
+  "owner": "xavasena"
+}
