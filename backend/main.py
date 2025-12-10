@@ -3697,3 +3697,131 @@ async def get_gen3d_capabilities():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+
+# ============= 5K RENDERER ENDPOINT =============
+from pydantic import BaseModel as PydanticBaseModel
+
+class RenderRequest(PydanticBaseModel):
+    scene_type: str = "photorealistic"
+    width: int = 5120
+    height: int = 2880
+    return_image: bool = False
+
+@app.post("/api/render/5k")
+async def render_5k(request: RenderRequest):
+    """Render 5K resolution using QI Card GPU"""
+    import torch
+    import time
+    
+    try:
+        # Detect QI Card
+        if torch.cuda.is_available():
+            device = torch.device("cuda")
+            qi_name = torch.cuda.get_device_name(0)
+            qi_memory = torch.cuda.get_device_properties(0).total_memory / 1e9
+            qi_type = "CUDA"
+        elif torch.backends.mps.is_available():
+            device = torch.device("mps")
+            qi_name = "Apple Silicon GPU"
+            qi_memory = "Unified"
+            qi_type = "Metal/MPS"
+        else:
+            device = torch.device("cpu")
+            qi_name = "Software Fallback"
+            qi_memory = 0
+            qi_type = "CPU"
+        
+        width, height = request.width, request.height
+        start = time.time()
+        
+        # Create coordinate grids
+        x = torch.linspace(0, 1, width, device=device)
+        y = torch.linspace(0, 1, height, device=device)
+        X, Y = torch.meshgrid(x, y, indexing='xy')
+        
+        if request.scene_type == "photorealistic":
+            # Ray-traced sphere
+            cx, cy, r = 0.5, 0.5, 0.3
+            dist = torch.sqrt((X - cx)**2 + (Y - cy)**2)
+            mask = (dist < r).float()
+            depth = torch.sqrt(torch.clamp(r**2 - dist**2, min=0))
+            
+            nx = (X - cx) / (r + 1e-6)
+            ny = (Y - cy) / (r + 1e-6)
+            nz = depth / (r + 1e-6)
+            
+            light = torch.tensor([0.3, 0.5, 1.0], device=device).view(3, 1, 1)
+            normal = torch.stack([nx, ny, nz])
+            diffuse = torch.sum(normal * light, dim=0).clamp(0, 1) * mask
+            
+            R = diffuse * 204 + (1 - mask) * X * 127
+            G = diffuse * 153 + (1 - mask) * Y * 127
+            B = diffuse * 255 + (1 - mask) * 128
+            
+        elif request.scene_type == "fractal":
+            # Mandelbrot
+            max_iter = 100
+            c_real = (X - 0.5) * 3
+            c_imag = (Y - 0.5) * 3
+            z_real = torch.zeros_like(X)
+            z_imag = torch.zeros_like(Y)
+            iterations = torch.zeros_like(X)
+            
+            for i in range(max_iter):
+                mask = (z_real**2 + z_imag**2) < 4
+                z_real_new = z_real**2 - z_imag**2 + c_real
+                z_imag = 2 * z_real * z_imag + c_imag
+                z_real = z_real_new
+                iterations += mask.float()
+            
+            R = (iterations / max_iter * 255).clamp(0, 255)
+            G = ((iterations / max_iter)**0.5 * 255).clamp(0, 255)
+            B = ((iterations / max_iter)**2 * 255).clamp(0, 255)
+        else:
+            # Benchmark
+            R = torch.sin(X * 50) * torch.cos(Y * 50) * 127 + 128
+            G = torch.sin(X * 30 + Y * 30) * 127 + 128
+            B = torch.cos(X * 40 - Y * 20) * 127 + 128
+        
+        duration = time.time() - start
+        pixels = width * height
+        mpixels = (pixels / duration) / 1e6
+        gflops = (pixels * 100 / duration) / 1e9
+        
+        result = {
+            "workload": "5K Rendering",
+            "emoji": "🎨",
+            "qi_card": {"name": qi_name, "type": qi_type, "memory_gb": qi_memory},
+            "resolution": f"{width}x{height}",
+            "pixels": pixels,
+            "duration": round(duration, 2),
+            "mpixels_per_sec": round(mpixels, 2),
+            "gflops": round(gflops, 2),
+            "scene_type": request.scene_type,
+            "grade": "S" if gflops > 100 else "A" if gflops > 50 else "B" if gflops > 10 else "C"
+        }
+        
+        if request.return_image:
+            try:
+                import numpy as np
+                from PIL import Image
+                from io import BytesIO
+                
+                # Downsample to 1080p
+                image_t = torch.stack([R, G, B], dim=-1)
+                step_h = max(1, height // 1080)
+                step_w = max(1, width // 1920)
+                small = image_t[::step_h, ::step_w, :].cpu().numpy().astype('uint8')
+                
+                pil = Image.fromarray(small)
+                buf = BytesIO()
+                pil.save(buf, format="PNG")
+                result["image_preview"] = f"data:image/png;base64,{base64.b64encode(buf.getvalue()).decode()}"
+            except:
+                pass
+        
+        return result
+    except Exception as e:
+        return {"error": str(e), "workload": "5K Rendering", "emoji": "❌"}
+
