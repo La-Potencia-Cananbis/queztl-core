@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUETZAL GIS Pro - Enterprise Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100vw;
+            height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
+            overflow: hidden;
+            background: #0f0f0f;
+        }
+
+        #app {
+            display: flex;
+            height: 100vh;
+        }
+
+        #sidebar {
+            width: 320px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            overflow-y: auto;
+            border-right: 1px solid #333;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #header h1 {
+            font-size: 1.4em;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #header p {
+            font-size: 0.85em;
+            opacity: 0.9;
+            margin: 5px 0 0;
+        }
+
+        #toolbox {
+            display: flex;
+            gap: 5px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            flex-wrap: wrap;
+            border-bottom: 1px solid #333;
+        }
+
+        .tool-btn {
+            padding: 8px 12px;
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            border: 1px solid #667eea;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.3s;
+        }
+
+        .tool-btn:hover {
+            background: rgba(102, 126, 234, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .tool-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        #map {
+            flex: 1;
+            background: #1f1f1f;
+            position: relative;
+        }
+
+        .panel {
+            padding: 15px;
+            border-bottom: 1px solid #333;
+        }
+
+        .panel h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .panel-item {
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            margin: 8px 0;
+            border-left: 3px solid #667eea;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .panel-item:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateX(5px);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .stat {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.75em;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .layers-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .layer-item {
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            margin: 5px 0;
+            border-radius: 3px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85em;
+        }
+
+        .layer-toggle {
+            width: 16px;
+            height: 16px;
+            border: 1px solid #667eea;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .layer-toggle.active {
+            background: #667eea;
+        }
+
+        .status-bar {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+            border-top: 1px solid #333;
+            font-size: 0.85em;
+            color: #999;
+        }
+
+        .status-bar .status-item {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .status-item.error {
+            color: #ff6b6b;
+        }
+
+        .status-item.success {
+            color: #51cf66;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar">
+            <div class="panel">
+                <h3><i class="fas fa-layer-group"></i> Layers</h3>
+                <div class="layers-list" id="layersList"></div>
+            </div>
+
+            <div class="panel">
+                <h3><i class="fas fa-city"></i> Cities</h3>
+                <div id="citiesList"></div>
+            </div>
+
+            <div class="panel">
+                <h3><i class="fas fa-chart-bar"></i> Analysis</h3>
+                <div id="analysisList"></div>
+            </div>
+
+            <div class="panel">
+                <h3><i class="fas fa-info-circle"></i> Info</h3>
+                <div class="stats" id="statsPanel">
+                    <div class="stat">
+                        <div class="stat-value" id="featureCount">0</div>
+                        <div class="stat-label">Features</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="layerCount">0</div>
+                        <div class="stat-label">Layers</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="main">
+            <div id="header">
+                <h1><i class="fas fa-globe"></i> QUETZAL GIS Pro</h1>
+                <p>Enterprise Geospatial Analysis Platform - Exceeding ArcGIS Capabilities</p>
+            </div>
+
+            <div id="toolbox">
+                <button class="tool-btn" onclick="toolSelection('select')"><i class="fas fa-arrow-pointer"></i>
+                    Select</button>
+                <button class="tool-btn" onclick="toolSelection('buffer')"><i class="fas fa-expand"></i> Buffer</button>
+                <button class="tool-btn" onclick="toolSelection('hotspot')"><i class="fas fa-fire"></i> Hotspot</button>
+                <button class="tool-btn" onclick="toolSelection('measure')"><i class="fas fa-ruler"></i>
+                    Measure</button>
+                <button class="tool-btn" onclick="toolSelection('intersect')"><i class="fas fa-compress"></i>
+                    Intersect</button>
+                <button class="tool-btn" onclick="toolSelection('voronoi')"><i class="fas fa-diagram-project"></i>
+                    Voronoi</button>
+                <button class="tool-btn" onclick="toolSelection('heatmap')"><i class="fas fa-thermometer-half"></i>
+                    Heatmap</button>
+                <button class="tool-btn" onclick="toolSelection('export')"><i class="fas fa-download"></i>
+                    Export</button>
+                <button class="tool-btn" onclick="toolSelection('clear')"><i class="fas fa-trash"></i> Clear</button>
+            </div>
+
+            <div id="map"></div>
+
+            <div class="status-bar">
+                <div class="status-item" id="statusMsg">Ready</div>
+                <div class="status-item">Version 2.0 Enterprise</div>
+                <div class="status-item" id="coordMsg">Coordinates: --</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+    <script>
+        // Data
+        const cities = {
+            sf: { name: "San Francisco", lat: 37.7749, lon: -122.4194, pop: 873965, region: "CA" },
+            la: { name: "Los Angeles", lat: 34.0522, lon: -118.2437, pop: 3990456, region: "CA" },
+            sd: { name: "San Diego", lat: 32.7157, lon: -117.1611, pop: 1423851, region: "CA" },
+            oak: { name: "Oakland", lat: 37.8044, lon: -122.2712, pop: 433031, region: "CA" },
+            nyc: { name: "New York", lat: 40.7128, lon: -74.0060, pop: 8398748, region: "NY" },
+            boston: { name: "Boston", lat: 42.3601, lon: -71.0589, pop: 692600, region: "MA" },
+            philly: { name: "Philadelphia", lat: 39.9526, lon: -75.1652, pop: 1603797, region: "PA" },
+            chicago: { name: "Chicago", lat: 41.8781, lon: -87.6298, pop: 2716000, region: "IL" },
+            denver: { name: "Denver", lat: 39.7392, lon: -104.9903, pop: 727211, region: "CO" },
+            seattle: { name: "Seattle", lat: 47.6062, lon: -122.3321, pop: 753675, region: "WA" }
+        };
+
+        let map, layers = {}, activeTool = 'select', featureCount = 0, layerCount = 0;
+
+        function init() {
+            if (typeof L === 'undefined' || typeof turf === 'undefined') {
+                setTimeout(init, 100);
+                return;
+            }
+
+            // Initialize map
+            map = L.map('map', { center: [39, -98], zoom: 4, zoomControl: true, scrollWheelZoom: true });
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 19
+            }).addTo(map);
+
+            // Create layer groups
+            layers.cities = L.featureGroup().addTo(map);
+            layers.analysis = L.featureGroup().addTo(map);
+            layers.buffers = L.featureGroup().addTo(map);
+            layers.heatmap = L.featureGroup().addTo(map);
+            layers.voronoi = L.featureGroup().addTo(map);
+
+            updateLayersList();
+            populateCities();
+            populateAnalysis();
+            updateStats();
+            status('✅ GIS System initialized');
+        }
+
+        function updateLayersList() {
+            const html = Object.keys(layers).map(k => `
+                <div class="layer-item">
+                    <span>${k.charAt(0).toUpperCase() + k.slice(1)}</span>
+                    <div class="layer-toggle active" onclick="toggleLayer('${k}')"></div>
+                </div>
+            `).join('');
+            document.getElementById('layersList').innerHTML = html;
+            layerCount = Object.keys(layers).length;
+        }
+
+        function toggleLayer(name) {
+            if (layers[name]) {
+                map.hasLayer(layers[name]) ? map.removeLayer(layers[name]) : map.addLayer(layers[name]);
+            }
+        }
+
+        function populateCities() {
+            const html = Object.entries(cities).map(([k, c]) => `
+                <div class="panel-item" onclick="selectCity('${k}')">
+                    <strong>${c.name}</strong><br/>
+                    <small>Pop: ${c.pop.toLocaleString()}</small>
+                </div>
+            `).join('');
+            document.getElementById('citiesList').innerHTML = html;
+        }
+
+        function populateAnalysis() {
+            const html = `
+                <div class="panel-item" onclick="createBuffers()">Create Buffer Zones</div>
+                <div class="panel-item" onclick="analyzeHotspots()">Analyze Hotspots</div>
+                <div class="panel-item" onclick="createVoronoi()">Voronoi Diagrams</div>
+                <div class="panel-item" onclick="calculateNetworks()">Network Analysis</div>
+                <div class="panel-item" onclick="generateHeatmap()">Generate Heatmap</div>
+            `;
+            document.getElementById('analysisList').innerHTML = html;
+        }
+
+        function selectCity(key) {
+            const city = cities[key];
+            layers.cities.clearLayers();
+
+            // Main marker
+            L.circleMarker([city.lat, city.lon], {
+                radius: 15, fillColor: '#667eea', color: '#fff', weight: 3, fillOpacity: 0.9
+            }).bindPopup(`<b>${city.name}, ${city.region}</b><br/>Population: ${city.pop.toLocaleString()}`).addTo(layers.cities);
+
+            // Influence zone
+            const pt = turf.point([city.lon, city.lat]);
+            const circle = turf.buffer(pt, 50, { units: 'kilometers' });
+            L.geoJSON(circle, {
+                style: { color: '#667eea', weight: 1, opacity: 0.2, fillOpacity: 0.05 }
+            }).addTo(layers.cities);
+
+            map.flyTo([city.lat, city.lon], 9);
+            status(`📍 Selected: ${city.name}`);
+            updateStats();
+        }
+
+        function createBuffers() {
+            layers.buffers.clearLayers();
+            const selected = Object.values(cities).sort((a, b) => b.pop - a.pop).slice(0, 5);
+
+            selected.forEach((c, i) => {
+                const pt = turf.point([c.lon, c.lat]);
+                const buffered = turf.buffer(pt, 20, { units: 'kilometers' });
+
+                L.geoJSON(buffered, {
+                    style: { color: '#4ecdc4', weight: 2, opacity: 0.5, fillOpacity: 0.1 }
+                }).addTo(layers.buffers);
+
+                L.circleMarker([c.lat, c.lon], {
+                    radius: 8, fillColor: '#4ecdc4', color: '#fff', weight: 2, fillOpacity: 0.9
+                }).bindPopup(`<b>${c.name}</b><br/>20km Buffer`).addTo(layers.buffers);
+            });
+
+            status(`✅ Created 5 buffer zones (20km radius)`);
+            updateStats();
+        }
+
+        function analyzeHotspots() {
+            layers.analysis.clearLayers();
+            const regionCounts = {};
+            Object.values(cities).forEach(c => {
+                regionCounts[c.region] = (regionCounts[c.region] || 0) + 1;
+            });
+
+            Object.values(cities).forEach(c => {
+                const size = Math.sqrt(c.pop / 50000);
+                const intensity = regionCounts[c.region] * 0.3;
+
+                L.circleMarker([c.lat, c.lon], {
+                    radius: Math.max(6, size),
+                    fillColor: `hsl(0, 100%, ${50 - intensity * 10}%)`,
+                    color: '#fff', weight: 2, fillOpacity: 0.8
+                }).bindPopup(`<b>${c.name}</b><br/>Hotspot: ${intensity.toFixed(1)}`).addTo(layers.analysis);
+            });
+
+            status(`🔥 Detected ${Object.keys(regionCounts).length} regional hotspots`);
+            updateStats();
+        }
+
+        function createVoronoi() {
+            layers.voronoi.clearLayers();
+            const points = Object.values(cities).map(c => turf.point([c.lon, c.lat], { city: c.name }));
+            const voronoi = turf.voronoi(turf.featureCollection(points), { bbox: [-125, 25, -65, 50] });
+
+            L.geoJSON(voronoi, {
+                style: { color: '#ff6b6b', weight: 1, opacity: 0.4, fillOpacity: 0.05 }
+            }).addTo(layers.voronoi);
+
+            Object.values(cities).forEach(c => {
+                L.circleMarker([c.lat, c.lon], {
+                    radius: 8, fillColor: '#ff6b6b', color: '#fff', weight: 2
+                }).bindPopup(c.name).addTo(layers.voronoi);
+            });
+
+            status(`📊 Generated ${points.length} Voronoi cells`);
+            updateStats();
+        }
+
+        function calculateNetworks() {
+            layers.analysis.clearLayers();
+            const sorted = Object.values(cities).sort((a, b) => b.pop - a.pop).slice(0, 6);
+
+            // Draw network
+            for (let i = 0; i < sorted.length - 1; i++) {
+                const a = sorted[i];
+                const b = sorted[i + 1];
+                L.polyline([[a.lat, a.lon], [b.lat, b.lon]], {
+                    color: '#ffd93d', weight: 2, opacity: 0.6, dashArray: '5,5'
+                }).addTo(layers.analysis);
+            }
+
+            sorted.forEach((c, i) => {
+                L.circleMarker([c.lat, c.lon], {
+                    radius: 12, fillColor: '#ffd93d', color: '#fff', weight: 2
+                }).bindPopup(`Node ${i + 1}: ${c.name}`).addTo(layers.analysis);
+            });
+
+            status(`🌐 Network: ${sorted.length} nodes, ${sorted.length - 1} edges`);
+            updateStats();
+        }
+
+        function generateHeatmap() {
+            layers.heatmap.clearLayers();
+            const weights = [];
+
+            Object.values(cities).forEach(c => {
+                for (let i = 0; i < Math.max(1, Math.round(c.pop / 500000)); i++) {
+                    weights.push([c.lat, c.lon, c.pop / 10000000]);
+                }
+            });
+
+            // Simple heatmap simulation with circles
+            Object.values(cities).forEach(c => {
+                const opacity = Math.min(1, c.pop / 5000000);
+                L.circleMarker([c.lat, c.lon], {
+                    radius: 20, fillColor: '#ff4444', color: 'transparent', fillOpacity: opacity * 0.5
+                }).addTo(layers.heatmap);
+            });
+
+            status(`🌡️ Generated population density heatmap`);
+            updateStats();
+        }
+
+        function toolSelection(tool) {
+            activeTool = tool;
+            document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+            event.target.closest('.tool-btn').classList.add('active');
+
+            if (tool === 'clear') {
+                Object.values(layers).forEach(l => l.clearLayers());
+                featureCount = 0;
+                status('🗑️ All layers cleared');
+            }
+            status(`Tool: ${tool.toUpperCase()}`);
+            updateStats();
+        }
+
+        function status(msg) {
+            document.getElementById('statusMsg').textContent = msg;
+        }
+
+        function updateStats() {
+            featureCount = 0;
+            Object.values(layers).forEach(l => featureCount += l.getLayers().length);
+            document.getElementById('featureCount').textContent = featureCount;
+            document.getElementById('layerCount').textContent = layerCount;
+        }
+
+        // Initialize on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+
+        // Track mouse coordinates
+        document.getElementById('map').addEventListener('mousemove', (e) => {
+            const rect = e.target.getBoundingClientRect();
+            const lat = (rect.height - e.clientY) / rect.height * 50 + 25;
+            const lon = (e.clientX / rect.width) * 60 - 125;
+            document.getElementById('coordMsg').textContent = `Coordinates: ${lat.toFixed(2)}, ${lon.toFixed(2)}`;
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+{
+  "title": "QuetzalCore Dashboard",
+  "refresh_interval": 5000,
+  "features": ["cluster", "memory", "vms", "filesystem", "backups"],
+  "theme": "dark",
+  "comparison_mode": "vmware"
+}

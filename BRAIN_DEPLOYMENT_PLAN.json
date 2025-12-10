@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-12-10T13:03:38.555929",
+  "strategy": "free_static_hosting",
+  "using_quetzalcore_brain": true,
+  "no_external_credits": true,
+  "deployments": {
+    "backend": {
+      "url": "https://queztl-core-backend.onrender.com",
+      "status": "LIVE",
+      "cost": "$0"
+    },
+    "dashboard": {
+      "method": "GitHub Pages",
+      "directory": "dashboard/",
+      "cost": "$0",
+      "status": "ready_to_deploy"
+    },
+    "email": {
+      "method": "GitHub Pages",
+      "directory": "email-app/",
+      "cost": "$0",
+      "status": "ready_to_deploy"
+    }
+  },
+  "total_cost": "$0",
+  "next_action": "Deploy to GitHub Pages"
+}

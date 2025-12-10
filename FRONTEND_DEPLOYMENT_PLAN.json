@@ -1,0 +1,152 @@
+{
+  "timestamp": "2025-12-10T12:54:00.311817",
+  "version": "1.0.0",
+  "frontends": [
+    {
+      "name": "QuetzalCore Dashboard",
+      "type": "Next.js 14",
+      "directory": "dashboard/",
+      "port": 3000,
+      "status": "ready_for_deployment",
+      "features": [
+        "Real-time system monitoring",
+        "QuetzalCore Brain controls",
+        "Training visualization",
+        "Performance metrics",
+        "3D rendering integration",
+        "GIS analysis display",
+        "Quantum intelligence stats"
+      ],
+      "deployment_options": [
+        {
+          "platform": "Vercel",
+          "cost": "FREE",
+          "speed": "instant",
+          "features": [
+            "Auto-deploy from Git",
+            "CDN",
+            "Analytics",
+            "Preview deployments"
+          ],
+          "recommended": true
+        },
+        {
+          "platform": "Netlify",
+          "cost": "FREE",
+          "speed": "fast",
+          "features": [
+            "Git integration",
+            "CDN",
+            "Form handling",
+            "Split testing"
+          ]
+        },
+        {
+          "platform": "Render",
+          "cost": "FREE",
+          "speed": "fast",
+          "features": [
+            "Static site hosting",
+            "Custom domains",
+            "Auto-deploy"
+          ]
+        }
+      ],
+      "build_command": "npm run build",
+      "start_command": "npm start",
+      "env_vars": [
+        "NEXT_PUBLIC_BACKEND_URL=https://queztl-core-backend.onrender.com",
+        "NEXT_PUBLIC_API_KEY=b8f3d9e7a6c5f1d2e4a9b7c6d8f3e1a2b4c7d9e6f8a1c3d5e7f9a2b4c6d8e1f3"
+      ]
+    },
+    {
+      "name": "Queztl Email",
+      "type": "Next.js 14",
+      "directory": "email-app/",
+      "port": 3001,
+      "status": "ready_for_deployment",
+      "features": [
+        "Faster than ProtonMail",
+        "Secure email interface",
+        "Quantum-encrypted communications",
+        "Real-time inbox",
+        "Attachment handling",
+        "Email composition"
+      ],
+      "deployment_options": [
+        {
+          "platform": "Vercel",
+          "cost": "FREE",
+          "speed": "instant",
+          "features": [
+            "Auto-deploy",
+            "CDN",
+            "Edge functions"
+          ],
+          "recommended": true
+        },
+        {
+          "platform": "Netlify",
+          "cost": "FREE",
+          "speed": "fast",
+          "features": [
+            "Git integration",
+            "Forms",
+            "Identity"
+          ]
+        }
+      ],
+      "build_command": "npm run build",
+      "start_command": "npm start",
+      "env_vars": [
+        "NEXT_PUBLIC_API_URL=https://queztl-core-backend.onrender.com"
+      ]
+    }
+  ],
+  "deployment_plan": {
+    "phase_1": {
+      "name": "Prepare for Deployment",
+      "tasks": [
+        "Install dependencies (npm install)",
+        "Build both apps (npm run build)",
+        "Test builds locally",
+        "Verify env variables"
+      ]
+    },
+    "phase_2": {
+      "name": "Deploy to Vercel",
+      "tasks": [
+        "Install Vercel CLI (npm i -g vercel)",
+        "Deploy dashboard (vercel --prod)",
+        "Deploy email app (vercel --prod)",
+        "Get production URLs"
+      ]
+    },
+    "phase_3": {
+      "name": "Connect to Backend",
+      "tasks": [
+        "Update CORS in backend",
+        "Configure API endpoints",
+        "Test API connections",
+        "Verify data flow"
+      ]
+    },
+    "phase_4": {
+      "name": "Performance Testing",
+      "tasks": [
+        "Run Lighthouse tests",
+        "Check load times",
+        "Verify mobile responsiveness",
+        "Test all features"
+      ]
+    }
+  },
+  "expected_urls": {
+    "dashboard": "https://queztl-core-dashboard.vercel.app",
+    "email": "https://queztl-email.vercel.app",
+    "backend": "https://queztl-core-backend.onrender.com"
+  },
+  "total_cost": "$0 USD (ALL FREE)",
+  "deployment_time": "5-10 minutes",
+  "status": "READY TO DEPLOY"
+}

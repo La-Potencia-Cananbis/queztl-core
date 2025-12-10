@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUETZAL GIS Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/MarkerCluster.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .controls {
+            background: white;
+            padding: 15px 30px;
+            border-bottom: 2px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
+        }
+
+        .main {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        #map {
+            flex: 1;
+            background: #e0e0e0;
+        }
+
+        .sidebar {
+            width: 300px;
+            background: white;
+            border-left: 2px solid #e0e0e0;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .stat-label {
+            color: #666;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            color: #667eea;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🌍 QUETZAL GIS Pro</h1>
+            <p>Enterprise Spatial Analysis Platform</p>
+        </header>
+        <div class="controls">
+            <button onclick="showCity('sf')">🌉 San Francisco</button>
+            <button onclick="showCity('la')">🌴 Los Angeles</button>
+            <button onclick="showCity('nyc')">🗽 New York</button>
+            <button onclick="showCity('chicago')">🏙️ Chicago</button>
+            <button onclick="doBUFFER()">📍 Buffer 20km</button>
+            <button onclick="doHOTSPOT()">🔥 Hotspot</button>
+            <button onclick="doROUTE()">🛣️ Route</button>
+            <button onclick="doCLEAR()">🗑️ Clear</button>
+        </div>
+        <div class="main">
+            <div id="map"></div>
+            <div class="sidebar">
+                <div><strong>Status:</strong> <span id="status">Ready</span></div>
+                <div style="margin-top: 20px;">
+                    <strong>Features:</strong>
+                    <div id="results">
+                        <div class="stat">
+                            <div class="stat-label">Count</div>
+                            <div class="stat-value" id="count">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/leaflet.markercluster.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+
+    <script>
+        console.log('Script loaded, waiting for libraries...');
+
+        const cities = {
+            sf: { name: "San Francisco", lat: 37.7749, lon: -122.4194, pop: 873965 },
+            la: { name: "Los Angeles", lat: 34.0522, lon: -118.2437, pop: 3990456 },
+            nyc: { name: "New York", lat: 40.7128, lon: -74.0060, pop: 8398748 },
+            chicago: { name: "Chicago", lat: 41.8781, lon: -87.6298, pop: 2716000 }
+        };
+
+        let map, layer, cluster;
+
+        function initApp() {
+            if (typeof L === 'undefined' || typeof turf === 'undefined') {
+                console.log('Waiting for libraries... L:', typeof L, 'turf:', typeof turf);
+                setTimeout(initApp, 50);
+                return;
+            }
+
+            console.log('✅ Libraries loaded! Initializing map...');
+
+            try {
+                map = L.map('map').setView([39, -98], 4);
+                layer = L.featureGroup().addTo(map);
+                cluster = L.markerClusterGroup().addTo(map);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap',
+                    maxZoom: 19
+                }).addTo(map);
+
+                console.log('✅ Map initialized successfully');
+                document.getElementById('status').textContent = '✅ Ready';
+            } catch (e) {
+                console.error('Map init error:', e);
+                document.getElementById('status').textContent = '❌ Error: ' + e.message;
+            }
+        }
+
+        window.showCity = function (key) {
+            try {
+                console.log('showCity called with:', key);
+                layer.clearLayers();
+                const city = cities[key];
+                if (!city) {
+                    console.error('City not found:', key);
+                    return;
+                }
+                L.circleMarker([city.lat, city.lon], {
+                    radius: 15,
+                    fillColor: '#667eea',
+                    color: '#fff',
+                    weight: 3,
+                    fillOpacity: 0.9
+                }).bindPopup(`<b>${city.name}</b><br/>Pop: ${city.pop.toLocaleString()}`).addTo(layer);
+
+                map.setView([city.lat, city.lon], 10);
+                document.getElementById('status').textContent = `📍 ${city.name}`;
+                document.getElementById('count').textContent = '1';
+            } catch (e) {
+                console.error('showCity error:', e);
+                document.getElementById('status').textContent = '❌ Error: ' + e.message;
+            }
+        };
+
+        window.doBUFFER = function () {
+            try {
+                console.log('doBUFFER called');
+                layer.clearLayers();
+                const top = Object.values(cities).slice(0, 2);
+                top.forEach(c => {
+                    const pt = turf.point([c.lon, c.lat]);
+                    const buffered = turf.buffer(pt, 20, { units: 'kilometers' });
+                    L.geoJSON(buffered, {
+                        style: { color: '#4ecdc4', weight: 2, opacity: 0.5, fillOpacity: 0.2 }
+                    }).addTo(layer);
+                    L.circleMarker([c.lat, c.lon], {
+                        radius: 8, fillColor: '#4ecdc4', color: '#fff', weight: 2, fillOpacity: 0.9
+                    }).addTo(layer);
+                });
+                document.getElementById('status').textContent = '✅ Buffer zones created';
+                document.getElementById('count').textContent = layer.getLayers().length;
+            } catch (e) {
+                console.error('doBUFFER error:', e);
+                document.getElementById('status').textContent = '❌ Error: ' + e.message;
+            }
+        };
+
+        window.doHOTSPOT = function () {
+            try {
+                console.log('doHOTSPOT called');
+                layer.clearLayers();
+                Object.values(cities).forEach(c => {
+                    L.circleMarker([c.lat, c.lon], {
+                        radius: 12,
+                        fillColor: '#ff6b6b',
+                        color: '#fff',
+                        weight: 2,
+                        fillOpacity: 0.9
+                    }).bindPopup(`<b>${c.name}</b>`).addTo(layer);
+                });
+                document.getElementById('status').textContent = '🔥 Hotspots detected';
+                document.getElementById('count').textContent = layer.getLayers().length;
+            } catch (e) {
+                console.error('doHOTSPOT error:', e);
+                document.getElementById('status').textContent = '❌ Error: ' + e.message;
+            }
+        };
+
+        window.doROUTE = function () {
+            try {
+                console.log('doROUTE called');
+                layer.clearLayers();
+                const top = Object.values(cities).sort((a, b) => b.pop - a.pop).slice(0, 3);
+                top.forEach(c => {
+                    L.circleMarker([c.lat, c.lon], {
+                        radius: 10, fillColor: '#4ecdc4', color: '#fff', weight: 3, fillOpacity: 0.9
+                    }).addTo(layer);
+                });
+                document.getElementById('status').textContent = '🛣️ Route calculated';
+                document.getElementById('count').textContent = layer.getLayers().length;
+            } catch (e) {
+                console.error('doROUTE error:', e);
+                document.getElementById('status').textContent = '❌ Error: ' + e.message;
+            }
+        };
+
+        window.doCLEAR = function () {
+            try {
+                console.log('doCLEAR called');
+                layer.clearLayers();
+                document.getElementById('status').textContent = '🗑️ Cleared';
+                document.getElementById('count').textContent = '0';
+            } catch (e) {
+                console.error('doCLEAR error:', e);
+                document.getElementById('status').textContent = '❌ Error: ' + e.message;
+            }
+        };
+
+        // Start the app
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initApp);
+        } else {
+            initApp();
+        }
+    </script>
+</body>
+
+</html>
