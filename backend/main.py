@@ -3602,7 +3602,7 @@ async def get_gis_studio_status():
             "modules": {
                 "validator": {"status": "ready", "capabilities": ["lidar", "dem", "imagery", "footprints"]},
                 "integrator": {"status": "ready", "capabilities": ["terrain", "magnetic", "resistivity", "seismic"]},
-                "trainer": {"status": "ready", "models": list(gis_trainer.models.keys())},
+                "trainer": {"status": "ready", "models": list(gis_trainer.models.keys()) if hasattr(gis_trainer, "models") and hasattr(gis_trainer.models, "keys") else []},
                 "improvement": {"status": "ready", "feedback_count": len(gis_improvement.feedback_history)}
             },
             "endpoints": {"validation": 2, "integration": 2, "training": 3, "improvement": 1, "total": 8}
