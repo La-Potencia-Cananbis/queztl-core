@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦅 QuetzalCore - Distributed AIOS Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-in;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .status-bar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4ade80;
+            animation: pulse 2s infinite;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #667eea;
+        }
+
+        .service-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .service-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-link:hover {
+            opacity: 0.9;
+        }
+
+        .quick-links {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-top: 2rem;
+        }
+
+        .quick-links h2 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .quick-link {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .quick-link:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            opacity: 0.8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🦅 QuetzalCore</h1>
+            <p class="subtitle">Distributed AI Operating System - Cloud Edition</p>
+        </header>
+
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="status-dot"></span>
+                <span>Backend: LIVE</span>
+            </div>
+            <div class="status-item">
+                <span class="status-dot"></span>
+                <span>Frontend: LIVE</span>
+            </div>
+            <div class="status-item">
+                <span class="status-dot"></span>
+                <span>5K Renderer: ACTIVE</span>
+            </div>
+            <div class="status-item">
+                <span class="status-dot"></span>
+                <span>Autonomous: ✅</span>
+            </div>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3 class="service-title">5K Renderer</h3>
+                <p class="service-description">
+                    GPU-accelerated 5K rendering (5120×2880) with photorealistic, fractal, and benchmark scenes.
+                </p>
+                <a href="https://lapotenciacann.com/render" class="service-link">Launch Renderer →</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎮</div>
+                <h3 class="service-title">3D Workload</h3>
+                <p class="service-description">
+                    Real-time 3D graphics benchmarking with ray tracing, matrix operations, and GFLOPS testing.
+                </p>
+                <a href="https://lapotenciacann.com/3dmark" class="service-link">Run Benchmark →</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🌍</div>
+                <h3 class="service-title">GIS Studio</h3>
+                <p class="service-description">
+                    Professional GIS processing with LiDAR, radar analysis, and geophysics integration.
+                </p>
+                <a href="https://lapotenciacann.com/gis" class="service-link">Open GIS Studio →</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">⛏️</div>
+                <h3 class="service-title">Crypto Mining</h3>
+                <p class="service-description">
+                    Distributed cryptocurrency mining with real-time performance metrics and auto-scaling.
+                </p>
+                <a href="https://lapotenciacann.com/mining" class="service-link">Start Mining →</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🖥️</div>
+                <h3 class="service-title">VM Console</h3>
+                <p class="service-description">
+                    Web-based virtual machine management and monitoring for QuetzalCore hypervisor.
+                </p>
+                <a href="/vms/test-vm/console.html" class="service-link">Open Console →</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3 class="service-title">Dashboard</h3>
+                <p class="service-description">
+                    Main QuetzalCore dashboard with real-time metrics, system status, and performance graphs.
+                </p>
+                <a href="https://lapotenciacann.com" class="service-link">View Dashboard →</a>
+            </div>
+        </div>
+
+        <div class="quick-links">
+            <h2>🔗 Quick Links</h2>
+            <div class="links-grid">
+                <a href="https://queztl-core-backend.onrender.com/" class="quick-link">
+                    🔌 Backend API
+                </a>
+                <a href="https://queztl-core-backend.onrender.com/api/health" class="quick-link">
+                    💓 Health Check
+                </a>
+                <a href="https://github.com/La-Potencia-Cananbis/queztl-core" class="quick-link">
+                    📦 GitHub Repo
+                </a>
+                <a href="https://dashboard.render.com/web/srv-d4sbha3e5dus73ahjkd0" class="quick-link">
+                    ☁️ Render Console
+                </a>
+                <a href="https://app.netlify.com" class="quick-link">
+                    🌐 Netlify Deploy
+                </a>
+                <a href="https://senasaitech.com" class="quick-link">
+                    🏢 SenasAI Tech
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            <p>🦅 QuetzalCore - Autonomous Cloud Infrastructure</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                Running 24/7 on Render.com & Netlify - No laptop required
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Auto-refresh status every 30 seconds
+        setInterval(() => {
+            fetch('https://queztl-core-backend.onrender.com/')
+                .then(r => r.json())
+                .then(data => console.log('Backend status:', data.status))
+                .catch(e => console.log('Backend check:', e));
+        }, 30000);
+
+        // Add animation delays to cards
+        document.querySelectorAll('.service-card').forEach((card, i) => {
+            card.style.animationDelay = `${i * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
