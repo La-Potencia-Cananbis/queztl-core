@@ -1,0 +1,59 @@
+{
+  "name": "QuetzalCore Unified Brain",
+  "version": "2.0.0",
+  "mode": "autonomous_central_control",
+  "components": {
+    "core_brain": {
+      "file": "backend/quetzalcore_brain.py",
+      "role": "Central Intelligence Controller",
+      "responsibilities": [
+        "Process all AI requests",
+        "Manage training pipeline",
+        "Coordinate all subsystems",
+        "Handle hybrid intelligence",
+        "Control quantum processing"
+      ]
+    },
+    "training_engine": {
+      "file": "backend/training_engine.py",
+      "role": "Continuous Learning System",
+      "controlled_by": "core_brain"
+    },
+    "backend_api": {
+      "file": "backend/main.py",
+      "role": "API Gateway",
+      "controlled_by": "core_brain",
+      "note": "Routes all requests through Brain"
+    },
+    "dashboard": {
+      "directory": "dashboard/",
+      "role": "Visual Interface",
+      "connects_to": "core_brain",
+      "port": 3000
+    },
+    "email_app": {
+      "directory": "email-app/",
+      "role": "Communication Interface",
+      "connects_to": "core_brain",
+      "port": 3001
+    }
+  },
+  "architecture": {
+    "pattern": "Brain-Centric Architecture",
+    "flow": [
+      "1. User Request \u2192 Dashboard/Email",
+      "2. Dashboard \u2192 Backend API",
+      "3. Backend API \u2192 QuetzalCore Brain",
+      "4. Brain \u2192 Process/Train/Execute",
+      "5. Brain \u2192 Response back to user"
+    ],
+    "principle": "Everything flows through the Brain"
+  },
+  "deployment": {
+    "brain_location": "Runs on YOUR machine",
+    "backend_mirror": "Render.com (routes to local brain)",
+    "frontends": "Local dev servers (connect to brain)",
+    "autonomous": true,
+    "external_services": "NONE (all self-contained)"
+  }
+}
