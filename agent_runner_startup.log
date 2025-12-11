@@ -52539,3 +52539,1139 @@
 2025-12-10 19:23:30,652 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
 2025-12-10 19:23:30,652 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
 2025-12-10 19:23:30,652 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:24:00,653 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:24:00,654 - AgentRunner - INFO - 🔄 Agent Cycle #1613 - 2025-12-10 19:24:00
+2025-12-10 19:24:00,654 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:24:00,654 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:24:00,654 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:24:00,654 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1613)
+2025-12-10 19:24:00,654 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1613)
+2025-12-10 19:24:00,654 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:24:00,654 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:24:00,654 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:24:00,743 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:24:07,752 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:24:07,753 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:24:07,838 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:24:14,845 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:24:14,845 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:24:14,846 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:24:14,846 - AgentRunner - INFO - 🤖 Agent Uptime: 50.04 hours
+2025-12-10 19:24:14,846 - AgentRunner - INFO - 🔍 Total Health Checks: 3226
+2025-12-10 19:24:14,846 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:24:14,846 - AgentRunner - INFO - ⚡ Total Optimizations: 322
+2025-12-10 19:24:14,846 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:24:14,846 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:24:14,846 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:24:14,846 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:24:44,849 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:24:44,851 - AgentRunner - INFO - 🔄 Agent Cycle #1614 - 2025-12-10 19:24:44
+2025-12-10 19:24:44,851 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:24:44,852 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:24:44,852 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:24:44,852 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1614)
+2025-12-10 19:24:44,852 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1614)
+2025-12-10 19:24:44,853 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:24:44,853 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:24:44,853 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:24:44,937 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:24:51,947 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:24:51,948 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:24:52,035 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:24:59,044 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:24:59,046 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:24:59,046 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:24:59,046 - AgentRunner - INFO - 🤖 Agent Uptime: 50.05 hours
+2025-12-10 19:24:59,046 - AgentRunner - INFO - 🔍 Total Health Checks: 3228
+2025-12-10 19:24:59,046 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:24:59,046 - AgentRunner - INFO - ⚡ Total Optimizations: 322
+2025-12-10 19:24:59,047 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:24:59,047 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:24:59,047 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:24:59,047 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:25:29,048 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:25:29,050 - AgentRunner - INFO - 🔄 Agent Cycle #1615 - 2025-12-10 19:25:29
+2025-12-10 19:25:29,050 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:25:29,050 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:25:29,050 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:25:29,050 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1615)
+2025-12-10 19:25:29,050 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1615)
+2025-12-10 19:25:29,050 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:25:29,051 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:25:29,051 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:25:29,140 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:25:36,149 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:25:36,149 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:25:36,237 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:25:43,245 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:25:43,247 - AgentRunner - INFO - 
+⚡ Phase 3: Performance Optimization
+2025-12-10 19:25:43,247 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:25:44,249 - AgentRunner - INFO - 💻 CPU Usage: 11.0%
+2025-12-10 19:25:44,249 - AgentRunner - INFO - 💾 Memory Usage: 77.7% (6.0GB / 17.2GB)
+2025-12-10 19:25:44,249 - AgentRunner - INFO - 💿 Disk Usage: 11.8% (12.2GB / 245.1GB)
+2025-12-10 19:25:44,249 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:25:44,249 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:25:44,250 - AgentRunner - INFO - 🤖 Agent Uptime: 50.06 hours
+2025-12-10 19:25:44,250 - AgentRunner - INFO - 🔍 Total Health Checks: 3230
+2025-12-10 19:25:44,250 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:25:44,250 - AgentRunner - INFO - ⚡ Total Optimizations: 323
+2025-12-10 19:25:44,250 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:25:44,250 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:25:44,250 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:25:44,250 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:26:14,251 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:26:14,253 - AgentRunner - INFO - 🔄 Agent Cycle #1616 - 2025-12-10 19:26:14
+2025-12-10 19:26:14,253 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:26:14,253 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:26:14,253 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:26:14,253 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1616)
+2025-12-10 19:26:14,253 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1616)
+2025-12-10 19:26:14,254 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:26:14,254 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:26:14,254 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:26:14,342 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:26:21,352 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:26:21,354 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:26:21,440 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:26:28,450 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:26:28,452 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:26:28,452 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:26:28,452 - AgentRunner - INFO - 🤖 Agent Uptime: 50.07 hours
+2025-12-10 19:26:28,452 - AgentRunner - INFO - 🔍 Total Health Checks: 3232
+2025-12-10 19:26:28,452 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:26:28,453 - AgentRunner - INFO - ⚡ Total Optimizations: 323
+2025-12-10 19:26:28,453 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:26:28,453 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:26:28,453 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:26:28,453 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:26:58,453 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:26:58,455 - AgentRunner - INFO - 🔄 Agent Cycle #1617 - 2025-12-10 19:26:58
+2025-12-10 19:26:58,455 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:26:58,455 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:26:58,455 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:26:58,455 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1617)
+2025-12-10 19:26:58,455 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1617)
+2025-12-10 19:26:58,455 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:26:58,455 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:26:58,456 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:26:58,543 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:27:05,553 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:27:05,554 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:27:05,636 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:27:12,644 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:27:12,645 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:27:12,645 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:27:12,645 - AgentRunner - INFO - 🤖 Agent Uptime: 50.09 hours
+2025-12-10 19:27:12,645 - AgentRunner - INFO - 🔍 Total Health Checks: 3234
+2025-12-10 19:27:12,645 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:27:12,645 - AgentRunner - INFO - ⚡ Total Optimizations: 323
+2025-12-10 19:27:12,645 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:27:12,645 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:27:12,645 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:27:12,646 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:27:42,647 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:27:42,649 - AgentRunner - INFO - 🔄 Agent Cycle #1618 - 2025-12-10 19:27:42
+2025-12-10 19:27:42,649 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:27:42,649 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:27:42,649 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:27:42,649 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1618)
+2025-12-10 19:27:42,649 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1618)
+2025-12-10 19:27:42,649 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:27:42,649 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:27:42,649 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:27:42,742 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:27:49,751 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:27:49,752 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:27:49,830 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:27:56,838 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:27:56,839 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:27:56,839 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:27:56,839 - AgentRunner - INFO - 🤖 Agent Uptime: 50.10 hours
+2025-12-10 19:27:56,839 - AgentRunner - INFO - 🔍 Total Health Checks: 3236
+2025-12-10 19:27:56,839 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:27:56,840 - AgentRunner - INFO - ⚡ Total Optimizations: 323
+2025-12-10 19:27:56,840 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:27:56,840 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:27:56,840 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:27:56,840 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:28:26,842 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:28:26,844 - AgentRunner - INFO - 🔄 Agent Cycle #1619 - 2025-12-10 19:28:26
+2025-12-10 19:28:26,844 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:28:26,844 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:28:26,844 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:28:26,844 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1619)
+2025-12-10 19:28:26,844 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1619)
+2025-12-10 19:28:26,844 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:28:26,844 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:28:26,844 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:28:26,930 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:28:33,938 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:28:33,938 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:28:34,028 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:28:41,037 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:28:41,038 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:28:41,039 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:28:41,039 - AgentRunner - INFO - 🤖 Agent Uptime: 50.11 hours
+2025-12-10 19:28:41,039 - AgentRunner - INFO - 🔍 Total Health Checks: 3238
+2025-12-10 19:28:41,039 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:28:41,039 - AgentRunner - INFO - ⚡ Total Optimizations: 323
+2025-12-10 19:28:41,039 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:28:41,039 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:28:41,039 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:28:41,039 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:29:11,041 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:29:11,041 - AgentRunner - INFO - 🔄 Agent Cycle #1620 - 2025-12-10 19:29:11
+2025-12-10 19:29:11,042 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:29:11,042 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:29:11,042 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:29:11,042 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1620)
+2025-12-10 19:29:11,042 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1620)
+2025-12-10 19:29:11,042 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:29:11,042 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:29:11,042 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:29:11,126 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:29:18,135 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:29:18,135 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:29:18,218 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:29:25,227 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:29:25,228 - AgentRunner - INFO - 
+⚡ Phase 3: Performance Optimization
+2025-12-10 19:29:25,228 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:29:26,232 - AgentRunner - INFO - 💻 CPU Usage: 24.0%
+2025-12-10 19:29:26,232 - AgentRunner - INFO - 💾 Memory Usage: 78.8% (6.1GB / 17.2GB)
+2025-12-10 19:29:26,232 - AgentRunner - INFO - 💿 Disk Usage: 11.8% (12.2GB / 245.1GB)
+2025-12-10 19:29:26,233 - AgentRunner - INFO - 
+🔍 Phase 4: Code Quality Checks
+2025-12-10 19:29:26,233 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:29:26,233 - AgentRunner - INFO - Checking Python syntax...
+2025-12-10 19:29:26,396 - AgentRunner - INFO - ✅ All checked files have valid syntax
+2025-12-10 19:29:26,396 - AgentRunner - INFO - 
+📚 Phase 5: Documentation Updates
+2025-12-10 19:29:26,396 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:29:26,396 - AgentRunner - INFO - ✅ Status report updated: /Users/xavasena/hive/SYSTEM_STATUS_LIVE.md
+2025-12-10 19:29:26,396 - AgentRunner - INFO - 
+🔒 Phase 6: Security Scanning
+2025-12-10 19:29:26,396 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:29:26,396 - AgentRunner - INFO - Checking for security issues...
+2025-12-10 19:29:26,396 - AgentRunner - INFO - ✅ DEBUG mode properly configured
+2025-12-10 19:29:26,397 - AgentRunner - WARNING - ⚠️  .env has overly permissive permissions
+2025-12-10 19:29:26,397 - AgentRunner - WARNING - ⚠️  backend/main.py has overly permissive permissions
+2025-12-10 19:29:26,397 - AgentRunner - WARNING - ⚠️  backend/qp_protocol.py has overly permissive permissions
+2025-12-10 19:29:26,397 - AgentRunner - INFO - ✅ Security scan complete
+2025-12-10 19:29:26,397 - AgentRunner - INFO - 
+🏋️ Phase 7: Load Testing
+2025-12-10 19:29:26,397 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:29:26,397 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:29:26,397 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:29:26,397 - AgentRunner - INFO - 🤖 Agent Uptime: 50.12 hours
+2025-12-10 19:29:26,397 - AgentRunner - INFO - 🔍 Total Health Checks: 3240
+2025-12-10 19:29:26,397 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:29:26,397 - AgentRunner - INFO - ⚡ Total Optimizations: 324
+2025-12-10 19:29:26,397 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:29:26,397 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:29:26,397 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:29:26,397 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:29:56,398 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:29:56,400 - AgentRunner - INFO - 🔄 Agent Cycle #1621 - 2025-12-10 19:29:56
+2025-12-10 19:29:56,400 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:29:56,400 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:29:56,400 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:29:56,400 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1621)
+2025-12-10 19:29:56,400 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1621)
+2025-12-10 19:29:56,400 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:29:56,400 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:29:56,400 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:29:56,484 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:30:03,492 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:30:03,493 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:30:03,577 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:30:10,585 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:30:10,586 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:30:10,587 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:30:10,587 - AgentRunner - INFO - 🤖 Agent Uptime: 50.13 hours
+2025-12-10 19:30:10,587 - AgentRunner - INFO - 🔍 Total Health Checks: 3242
+2025-12-10 19:30:10,587 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:30:10,587 - AgentRunner - INFO - ⚡ Total Optimizations: 324
+2025-12-10 19:30:10,587 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:30:10,587 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:30:10,587 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:30:10,587 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:30:40,588 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:30:40,590 - AgentRunner - INFO - 🔄 Agent Cycle #1622 - 2025-12-10 19:30:40
+2025-12-10 19:30:40,590 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:30:40,590 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:30:40,590 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:30:40,590 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1622)
+2025-12-10 19:30:40,590 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1622)
+2025-12-10 19:30:40,590 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:30:40,590 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:30:40,590 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:30:40,670 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:30:47,678 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:30:47,679 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:30:47,765 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:30:54,769 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:30:54,771 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:30:54,771 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:30:54,771 - AgentRunner - INFO - 🤖 Agent Uptime: 50.15 hours
+2025-12-10 19:30:54,771 - AgentRunner - INFO - 🔍 Total Health Checks: 3244
+2025-12-10 19:30:54,771 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:30:54,771 - AgentRunner - INFO - ⚡ Total Optimizations: 324
+2025-12-10 19:30:54,771 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:30:54,771 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:30:54,771 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:30:54,771 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:31:24,772 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:31:24,773 - AgentRunner - INFO - 🔄 Agent Cycle #1623 - 2025-12-10 19:31:24
+2025-12-10 19:31:24,773 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:31:24,774 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:31:24,774 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:31:24,774 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1623)
+2025-12-10 19:31:24,774 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1623)
+2025-12-10 19:31:24,774 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:31:24,774 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:31:24,774 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:31:24,859 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:31:31,868 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:31:31,869 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:31:31,953 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:31:38,962 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:31:38,963 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:31:38,963 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:31:38,963 - AgentRunner - INFO - 🤖 Agent Uptime: 50.16 hours
+2025-12-10 19:31:38,963 - AgentRunner - INFO - 🔍 Total Health Checks: 3246
+2025-12-10 19:31:38,963 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:31:38,963 - AgentRunner - INFO - ⚡ Total Optimizations: 324
+2025-12-10 19:31:38,963 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:31:38,963 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:31:38,963 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:31:38,964 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:32:08,965 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:32:08,966 - AgentRunner - INFO - 🔄 Agent Cycle #1624 - 2025-12-10 19:32:08
+2025-12-10 19:32:08,966 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:32:08,966 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:32:08,966 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:32:08,966 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1624)
+2025-12-10 19:32:08,967 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1624)
+2025-12-10 19:32:08,967 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:32:08,967 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:32:08,967 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:32:09,054 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:32:16,064 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:32:16,065 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:32:16,156 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:32:23,162 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:32:23,162 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:32:23,163 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:32:23,163 - AgentRunner - INFO - 🤖 Agent Uptime: 50.17 hours
+2025-12-10 19:32:23,163 - AgentRunner - INFO - 🔍 Total Health Checks: 3248
+2025-12-10 19:32:23,163 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:32:23,163 - AgentRunner - INFO - ⚡ Total Optimizations: 324
+2025-12-10 19:32:23,163 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:32:23,163 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:32:23,163 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:32:23,163 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:32:53,164 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:32:53,166 - AgentRunner - INFO - 🔄 Agent Cycle #1625 - 2025-12-10 19:32:53
+2025-12-10 19:32:53,166 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:32:53,166 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:32:53,166 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:32:53,166 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1625)
+2025-12-10 19:32:53,166 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1625)
+2025-12-10 19:32:53,166 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:32:53,166 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:32:53,166 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:32:53,257 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:33:00,266 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:33:00,268 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:33:00,366 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:33:07,370 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:33:07,371 - AgentRunner - INFO - 
+⚡ Phase 3: Performance Optimization
+2025-12-10 19:33:07,372 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:33:08,378 - AgentRunner - INFO - 💻 CPU Usage: 20.9%
+2025-12-10 19:33:08,378 - AgentRunner - INFO - 💾 Memory Usage: 77.0% (6.0GB / 17.2GB)
+2025-12-10 19:33:08,378 - AgentRunner - INFO - 💿 Disk Usage: 11.8% (12.2GB / 245.1GB)
+2025-12-10 19:33:08,378 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:33:08,378 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:33:08,378 - AgentRunner - INFO - 🤖 Agent Uptime: 50.18 hours
+2025-12-10 19:33:08,379 - AgentRunner - INFO - 🔍 Total Health Checks: 3250
+2025-12-10 19:33:08,379 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:33:08,379 - AgentRunner - INFO - ⚡ Total Optimizations: 325
+2025-12-10 19:33:08,379 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:33:08,379 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:33:08,379 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:33:08,379 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:33:38,382 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:33:38,384 - AgentRunner - INFO - 🔄 Agent Cycle #1626 - 2025-12-10 19:33:38
+2025-12-10 19:33:38,385 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:33:38,385 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:33:38,385 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:33:38,385 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1626)
+2025-12-10 19:33:38,385 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1626)
+2025-12-10 19:33:38,385 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:33:38,385 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:33:38,385 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:33:38,473 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:33:45,482 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:33:45,482 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:33:45,564 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:33:52,573 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:33:52,573 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:33:52,574 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:33:52,574 - AgentRunner - INFO - 🤖 Agent Uptime: 50.20 hours
+2025-12-10 19:33:52,574 - AgentRunner - INFO - 🔍 Total Health Checks: 3252
+2025-12-10 19:33:52,574 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:33:52,574 - AgentRunner - INFO - ⚡ Total Optimizations: 325
+2025-12-10 19:33:52,574 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:33:52,574 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:33:52,574 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:33:52,574 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:34:22,576 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:34:22,577 - AgentRunner - INFO - 🔄 Agent Cycle #1627 - 2025-12-10 19:34:22
+2025-12-10 19:34:22,578 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:34:22,578 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:34:22,578 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:34:22,578 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1627)
+2025-12-10 19:34:22,578 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1627)
+2025-12-10 19:34:22,578 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:34:22,578 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:34:22,578 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:34:22,660 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:34:29,669 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:34:29,670 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:34:29,758 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:34:36,767 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:34:36,770 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:34:36,770 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:34:36,770 - AgentRunner - INFO - 🤖 Agent Uptime: 50.21 hours
+2025-12-10 19:34:36,770 - AgentRunner - INFO - 🔍 Total Health Checks: 3254
+2025-12-10 19:34:36,770 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:34:36,770 - AgentRunner - INFO - ⚡ Total Optimizations: 325
+2025-12-10 19:34:36,770 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:34:36,770 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:34:36,770 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:34:36,770 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:35:06,773 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:35:06,774 - AgentRunner - INFO - 🔄 Agent Cycle #1628 - 2025-12-10 19:35:06
+2025-12-10 19:35:06,774 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:35:06,774 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:35:06,774 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:35:06,775 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1628)
+2025-12-10 19:35:06,775 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1628)
+2025-12-10 19:35:06,775 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:35:06,775 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:35:06,775 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:35:06,856 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:35:13,864 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:35:13,865 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:35:13,944 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:35:20,949 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:35:20,950 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:35:20,950 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:35:20,950 - AgentRunner - INFO - 🤖 Agent Uptime: 50.22 hours
+2025-12-10 19:35:20,950 - AgentRunner - INFO - 🔍 Total Health Checks: 3256
+2025-12-10 19:35:20,950 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:35:20,950 - AgentRunner - INFO - ⚡ Total Optimizations: 325
+2025-12-10 19:35:20,950 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:35:20,950 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:35:20,950 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:35:20,950 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:35:50,952 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:35:50,954 - AgentRunner - INFO - 🔄 Agent Cycle #1629 - 2025-12-10 19:35:50
+2025-12-10 19:35:50,954 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:35:50,955 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:35:50,955 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:35:50,955 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1629)
+2025-12-10 19:35:50,955 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1629)
+2025-12-10 19:35:50,955 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:35:50,955 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:35:50,955 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:35:51,041 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:35:58,051 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:35:58,051 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:35:58,135 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:36:05,139 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:36:05,140 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:36:05,140 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:36:05,140 - AgentRunner - INFO - 🤖 Agent Uptime: 50.23 hours
+2025-12-10 19:36:05,140 - AgentRunner - INFO - 🔍 Total Health Checks: 3258
+2025-12-10 19:36:05,141 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:36:05,141 - AgentRunner - INFO - ⚡ Total Optimizations: 325
+2025-12-10 19:36:05,141 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:36:05,141 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:36:05,141 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:36:05,141 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:36:35,142 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:36:35,144 - AgentRunner - INFO - 🔄 Agent Cycle #1630 - 2025-12-10 19:36:35
+2025-12-10 19:36:35,144 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:36:35,144 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:36:35,144 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:36:35,144 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1630)
+2025-12-10 19:36:35,144 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1630)
+2025-12-10 19:36:35,144 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:36:35,144 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:36:35,144 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:36:35,235 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:36:42,241 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:36:42,243 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:36:42,329 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:36:49,338 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:36:49,339 - AgentRunner - INFO - 
+⚡ Phase 3: Performance Optimization
+2025-12-10 19:36:49,339 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:36:50,341 - AgentRunner - INFO - 💻 CPU Usage: 13.3%
+2025-12-10 19:36:50,341 - AgentRunner - INFO - 💾 Memory Usage: 78.8% (6.1GB / 17.2GB)
+2025-12-10 19:36:50,341 - AgentRunner - INFO - 💿 Disk Usage: 11.8% (12.2GB / 245.1GB)
+2025-12-10 19:36:50,341 - AgentRunner - INFO - 
+🔍 Phase 4: Code Quality Checks
+2025-12-10 19:36:50,341 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:36:50,341 - AgentRunner - INFO - Checking Python syntax...
+2025-12-10 19:36:50,501 - AgentRunner - INFO - ✅ All checked files have valid syntax
+2025-12-10 19:36:50,501 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:36:50,501 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:36:50,501 - AgentRunner - INFO - 🤖 Agent Uptime: 50.25 hours
+2025-12-10 19:36:50,501 - AgentRunner - INFO - 🔍 Total Health Checks: 3260
+2025-12-10 19:36:50,501 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:36:50,501 - AgentRunner - INFO - ⚡ Total Optimizations: 326
+2025-12-10 19:36:50,501 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:36:50,501 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:36:50,501 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:36:50,501 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:37:20,503 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:37:20,504 - AgentRunner - INFO - 🔄 Agent Cycle #1631 - 2025-12-10 19:37:20
+2025-12-10 19:37:20,505 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:37:20,505 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:37:20,505 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:37:20,505 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1631)
+2025-12-10 19:37:20,505 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1631)
+2025-12-10 19:37:20,505 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:37:20,505 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:37:20,505 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:37:20,600 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:37:27,608 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:37:27,609 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:37:27,694 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:37:34,704 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:37:34,705 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:37:34,705 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:37:34,705 - AgentRunner - INFO - 🤖 Agent Uptime: 50.26 hours
+2025-12-10 19:37:34,705 - AgentRunner - INFO - 🔍 Total Health Checks: 3262
+2025-12-10 19:37:34,705 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:37:34,705 - AgentRunner - INFO - ⚡ Total Optimizations: 326
+2025-12-10 19:37:34,705 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:37:34,705 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:37:34,706 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:37:34,706 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:38:04,707 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:38:04,709 - AgentRunner - INFO - 🔄 Agent Cycle #1632 - 2025-12-10 19:38:04
+2025-12-10 19:38:04,709 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:38:04,709 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:38:04,709 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:38:04,709 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1632)
+2025-12-10 19:38:04,709 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1632)
+2025-12-10 19:38:04,709 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:38:04,709 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:38:04,709 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:38:04,800 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:38:11,810 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:38:11,810 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:38:11,889 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:38:18,897 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:38:18,897 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:38:18,897 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:38:18,898 - AgentRunner - INFO - 🤖 Agent Uptime: 50.27 hours
+2025-12-10 19:38:18,898 - AgentRunner - INFO - 🔍 Total Health Checks: 3264
+2025-12-10 19:38:18,898 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:38:18,898 - AgentRunner - INFO - ⚡ Total Optimizations: 326
+2025-12-10 19:38:18,898 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:38:18,898 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:38:18,898 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:38:18,898 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:38:48,900 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:38:48,903 - AgentRunner - INFO - 🔄 Agent Cycle #1633 - 2025-12-10 19:38:48
+2025-12-10 19:38:48,903 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:38:48,903 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:38:48,903 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:38:48,903 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1633)
+2025-12-10 19:38:48,903 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1633)
+2025-12-10 19:38:48,903 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:38:48,903 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:38:48,903 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:38:48,995 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:38:56,004 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:38:56,005 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:38:56,094 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:39:03,104 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:39:03,105 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:39:03,105 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:39:03,105 - AgentRunner - INFO - 🤖 Agent Uptime: 50.28 hours
+2025-12-10 19:39:03,105 - AgentRunner - INFO - 🔍 Total Health Checks: 3266
+2025-12-10 19:39:03,105 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:39:03,105 - AgentRunner - INFO - ⚡ Total Optimizations: 326
+2025-12-10 19:39:03,105 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:39:03,106 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:39:03,106 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:39:03,106 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:39:33,106 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:39:33,108 - AgentRunner - INFO - 🔄 Agent Cycle #1634 - 2025-12-10 19:39:33
+2025-12-10 19:39:33,108 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:39:33,108 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:39:33,108 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:39:33,108 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1634)
+2025-12-10 19:39:33,108 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1634)
+2025-12-10 19:39:33,108 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:39:33,108 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:39:33,108 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:39:33,194 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:39:40,202 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:39:40,203 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:39:40,273 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:39:47,281 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:39:47,283 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:39:47,283 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:39:47,283 - AgentRunner - INFO - 🤖 Agent Uptime: 50.29 hours
+2025-12-10 19:39:47,283 - AgentRunner - INFO - 🔍 Total Health Checks: 3268
+2025-12-10 19:39:47,283 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:39:47,283 - AgentRunner - INFO - ⚡ Total Optimizations: 326
+2025-12-10 19:39:47,283 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:39:47,283 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:39:47,283 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:39:47,283 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:40:17,288 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:40:17,289 - AgentRunner - INFO - 🔄 Agent Cycle #1635 - 2025-12-10 19:40:17
+2025-12-10 19:40:17,289 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:40:17,289 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:40:17,289 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:40:17,289 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1635)
+2025-12-10 19:40:17,289 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1635)
+2025-12-10 19:40:17,289 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:40:17,289 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:40:17,290 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:40:17,372 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:40:24,380 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:40:24,381 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:40:24,470 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:40:31,476 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:40:31,477 - AgentRunner - INFO - 
+⚡ Phase 3: Performance Optimization
+2025-12-10 19:40:31,477 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:40:32,484 - AgentRunner - INFO - 💻 CPU Usage: 11.9%
+2025-12-10 19:40:32,484 - AgentRunner - INFO - 💾 Memory Usage: 79.7% (5.9GB / 17.2GB)
+2025-12-10 19:40:32,484 - AgentRunner - INFO - 💿 Disk Usage: 11.8% (12.2GB / 245.1GB)
+2025-12-10 19:40:32,484 - AgentRunner - INFO - 
+🔒 Phase 6: Security Scanning
+2025-12-10 19:40:32,484 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:40:32,484 - AgentRunner - INFO - Checking for security issues...
+2025-12-10 19:40:32,485 - AgentRunner - INFO - ✅ DEBUG mode properly configured
+2025-12-10 19:40:32,485 - AgentRunner - WARNING - ⚠️  .env has overly permissive permissions
+2025-12-10 19:40:32,485 - AgentRunner - WARNING - ⚠️  backend/main.py has overly permissive permissions
+2025-12-10 19:40:32,486 - AgentRunner - WARNING - ⚠️  backend/qp_protocol.py has overly permissive permissions
+2025-12-10 19:40:32,486 - AgentRunner - INFO - ✅ Security scan complete
+2025-12-10 19:40:32,486 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:40:32,486 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:40:32,486 - AgentRunner - INFO - 🤖 Agent Uptime: 50.31 hours
+2025-12-10 19:40:32,486 - AgentRunner - INFO - 🔍 Total Health Checks: 3270
+2025-12-10 19:40:32,486 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:40:32,486 - AgentRunner - INFO - ⚡ Total Optimizations: 327
+2025-12-10 19:40:32,486 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:40:32,486 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:40:32,486 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:40:32,487 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:41:02,488 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:41:02,490 - AgentRunner - INFO - 🔄 Agent Cycle #1636 - 2025-12-10 19:41:02
+2025-12-10 19:41:02,490 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:41:02,490 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:41:02,490 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:41:02,490 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1636)
+2025-12-10 19:41:02,490 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1636)
+2025-12-10 19:41:02,490 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:41:02,490 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:41:02,491 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:41:02,576 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:41:09,585 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:41:09,586 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:41:09,675 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:41:16,681 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:41:16,683 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:41:16,684 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:41:16,684 - AgentRunner - INFO - 🤖 Agent Uptime: 50.32 hours
+2025-12-10 19:41:16,684 - AgentRunner - INFO - 🔍 Total Health Checks: 3272
+2025-12-10 19:41:16,684 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:41:16,684 - AgentRunner - INFO - ⚡ Total Optimizations: 327
+2025-12-10 19:41:16,684 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:41:16,684 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:41:16,684 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:41:16,684 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:41:46,687 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:41:46,690 - AgentRunner - INFO - 🔄 Agent Cycle #1637 - 2025-12-10 19:41:46
+2025-12-10 19:41:46,690 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:41:46,690 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:41:46,690 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:41:46,690 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1637)
+2025-12-10 19:41:46,690 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1637)
+2025-12-10 19:41:46,691 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:41:46,691 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:41:46,691 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:41:46,779 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:41:53,788 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:41:53,789 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:41:53,877 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:42:00,882 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:42:00,884 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:42:00,884 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:42:00,884 - AgentRunner - INFO - 🤖 Agent Uptime: 50.33 hours
+2025-12-10 19:42:00,884 - AgentRunner - INFO - 🔍 Total Health Checks: 3274
+2025-12-10 19:42:00,884 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:42:00,884 - AgentRunner - INFO - ⚡ Total Optimizations: 327
+2025-12-10 19:42:00,884 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:42:00,884 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:42:00,884 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:42:00,884 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:42:30,886 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:42:30,886 - AgentRunner - INFO - 🔄 Agent Cycle #1638 - 2025-12-10 19:42:30
+2025-12-10 19:42:30,886 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:42:30,887 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:42:30,887 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:42:30,887 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1638)
+2025-12-10 19:42:30,887 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1638)
+2025-12-10 19:42:30,887 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:42:30,887 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:42:30,887 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:42:30,977 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:42:37,985 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:42:37,986 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:42:38,075 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:42:45,081 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:42:45,082 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:42:45,082 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:42:45,082 - AgentRunner - INFO - 🤖 Agent Uptime: 50.34 hours
+2025-12-10 19:42:45,082 - AgentRunner - INFO - 🔍 Total Health Checks: 3276
+2025-12-10 19:42:45,082 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:42:45,082 - AgentRunner - INFO - ⚡ Total Optimizations: 327
+2025-12-10 19:42:45,082 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:42:45,083 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:42:45,083 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:42:45,083 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:43:15,084 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:43:15,086 - AgentRunner - INFO - 🔄 Agent Cycle #1639 - 2025-12-10 19:43:15
+2025-12-10 19:43:15,086 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:43:15,086 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:43:15,086 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:43:15,086 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1639)
+2025-12-10 19:43:15,087 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1639)
+2025-12-10 19:43:15,087 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:43:15,087 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:43:15,087 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:43:15,176 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:43:22,186 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:43:22,186 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:43:22,272 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:43:29,278 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:43:29,280 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:43:29,280 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:43:29,280 - AgentRunner - INFO - 🤖 Agent Uptime: 50.36 hours
+2025-12-10 19:43:29,281 - AgentRunner - INFO - 🔍 Total Health Checks: 3278
+2025-12-10 19:43:29,281 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:43:29,281 - AgentRunner - INFO - ⚡ Total Optimizations: 327
+2025-12-10 19:43:29,281 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:43:29,281 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:43:29,281 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:43:29,281 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:43:59,282 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:43:59,284 - AgentRunner - INFO - 🔄 Agent Cycle #1640 - 2025-12-10 19:43:59
+2025-12-10 19:43:59,284 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:43:59,284 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:43:59,284 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:43:59,284 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1640)
+2025-12-10 19:43:59,284 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1640)
+2025-12-10 19:43:59,285 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:43:59,285 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:43:59,285 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:43:59,375 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:44:06,384 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:44:06,385 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:44:06,476 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:44:13,484 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:44:13,485 - AgentRunner - INFO - 
+⚡ Phase 3: Performance Optimization
+2025-12-10 19:44:13,485 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:44:14,487 - AgentRunner - INFO - 💻 CPU Usage: 19.0%
+2025-12-10 19:44:14,487 - AgentRunner - INFO - 💾 Memory Usage: 80.6% (5.8GB / 17.2GB)
+2025-12-10 19:44:14,487 - AgentRunner - INFO - 💿 Disk Usage: 11.8% (12.2GB / 245.1GB)
+2025-12-10 19:44:14,488 - AgentRunner - INFO - 
+🔍 Phase 4: Code Quality Checks
+2025-12-10 19:44:14,488 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:44:14,488 - AgentRunner - INFO - Checking Python syntax...
+2025-12-10 19:44:14,653 - AgentRunner - INFO - ✅ All checked files have valid syntax
+2025-12-10 19:44:14,653 - AgentRunner - INFO - 
+📚 Phase 5: Documentation Updates
+2025-12-10 19:44:14,653 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:44:14,654 - AgentRunner - INFO - ✅ Status report updated: /Users/xavasena/hive/SYSTEM_STATUS_LIVE.md
+2025-12-10 19:44:14,654 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:44:14,654 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:44:14,654 - AgentRunner - INFO - 🤖 Agent Uptime: 50.37 hours
+2025-12-10 19:44:14,654 - AgentRunner - INFO - 🔍 Total Health Checks: 3280
+2025-12-10 19:44:14,654 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:44:14,654 - AgentRunner - INFO - ⚡ Total Optimizations: 328
+2025-12-10 19:44:14,654 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:44:14,654 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:44:14,654 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:44:14,654 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:44:44,655 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:44:44,657 - AgentRunner - INFO - 🔄 Agent Cycle #1641 - 2025-12-10 19:44:44
+2025-12-10 19:44:44,658 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:44:44,658 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:44:44,658 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:44:44,658 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1641)
+2025-12-10 19:44:44,658 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1641)
+2025-12-10 19:44:44,658 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:44:44,658 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:44:44,658 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:44:44,751 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:44:51,761 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:44:51,762 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:44:51,841 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:44:58,849 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:44:58,849 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:44:58,849 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:44:58,849 - AgentRunner - INFO - 🤖 Agent Uptime: 50.38 hours
+2025-12-10 19:44:58,849 - AgentRunner - INFO - 🔍 Total Health Checks: 3282
+2025-12-10 19:44:58,849 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:44:58,849 - AgentRunner - INFO - ⚡ Total Optimizations: 328
+2025-12-10 19:44:58,850 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:44:58,850 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:44:58,850 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:44:58,850 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:45:28,852 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:45:28,855 - AgentRunner - INFO - 🔄 Agent Cycle #1642 - 2025-12-10 19:45:28
+2025-12-10 19:45:28,855 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:45:28,855 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:45:28,855 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:45:28,855 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1642)
+2025-12-10 19:45:28,856 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1642)
+2025-12-10 19:45:28,856 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:45:28,856 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:45:28,856 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:45:28,940 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:45:35,948 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:45:35,948 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:45:36,034 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:45:43,042 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:45:43,043 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:45:43,043 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:45:43,043 - AgentRunner - INFO - 🤖 Agent Uptime: 50.39 hours
+2025-12-10 19:45:43,043 - AgentRunner - INFO - 🔍 Total Health Checks: 3284
+2025-12-10 19:45:43,043 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:45:43,043 - AgentRunner - INFO - ⚡ Total Optimizations: 328
+2025-12-10 19:45:43,043 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:45:43,043 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:45:43,043 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:45:43,043 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:46:13,044 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:46:13,046 - AgentRunner - INFO - 🔄 Agent Cycle #1643 - 2025-12-10 19:46:13
+2025-12-10 19:46:13,046 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:46:13,046 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:46:13,046 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:46:13,046 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1643)
+2025-12-10 19:46:13,047 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1643)
+2025-12-10 19:46:13,047 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:46:13,047 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:46:13,047 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:46:13,135 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:46:20,144 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:46:20,144 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:46:20,231 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:46:27,235 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:46:27,237 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:46:27,237 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:46:27,237 - AgentRunner - INFO - 🤖 Agent Uptime: 50.41 hours
+2025-12-10 19:46:27,237 - AgentRunner - INFO - 🔍 Total Health Checks: 3286
+2025-12-10 19:46:27,237 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:46:27,237 - AgentRunner - INFO - ⚡ Total Optimizations: 328
+2025-12-10 19:46:27,237 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:46:27,237 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:46:27,237 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:46:27,237 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:46:57,240 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:46:57,241 - AgentRunner - INFO - 🔄 Agent Cycle #1644 - 2025-12-10 19:46:57
+2025-12-10 19:46:57,241 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:46:57,241 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:46:57,241 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:46:57,241 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1644)
+2025-12-10 19:46:57,242 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1644)
+2025-12-10 19:46:57,242 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:46:57,242 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:46:57,242 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:46:57,320 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:47:04,327 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:47:04,328 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:47:04,413 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:47:11,418 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:47:11,420 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:47:11,420 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:47:11,421 - AgentRunner - INFO - 🤖 Agent Uptime: 50.42 hours
+2025-12-10 19:47:11,421 - AgentRunner - INFO - 🔍 Total Health Checks: 3288
+2025-12-10 19:47:11,421 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:47:11,421 - AgentRunner - INFO - ⚡ Total Optimizations: 328
+2025-12-10 19:47:11,421 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:47:11,421 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:47:11,421 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:47:11,421 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:47:41,422 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:47:41,423 - AgentRunner - INFO - 🔄 Agent Cycle #1645 - 2025-12-10 19:47:41
+2025-12-10 19:47:41,423 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:47:41,423 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:47:41,424 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:47:41,424 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1645)
+2025-12-10 19:47:41,424 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1645)
+2025-12-10 19:47:41,424 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:47:41,424 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:47:41,424 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:47:41,513 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:47:48,522 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:47:48,523 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:47:48,608 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:47:55,613 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:47:55,613 - AgentRunner - INFO - 
+⚡ Phase 3: Performance Optimization
+2025-12-10 19:47:55,613 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:47:56,616 - AgentRunner - INFO - 💻 CPU Usage: 4.6%
+2025-12-10 19:47:56,617 - AgentRunner - INFO - 💾 Memory Usage: 76.8% (5.6GB / 17.2GB)
+2025-12-10 19:47:56,617 - AgentRunner - INFO - 💿 Disk Usage: 11.8% (12.2GB / 245.1GB)
+2025-12-10 19:47:56,617 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:47:56,617 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:47:56,617 - AgentRunner - INFO - 🤖 Agent Uptime: 50.43 hours
+2025-12-10 19:47:56,617 - AgentRunner - INFO - 🔍 Total Health Checks: 3290
+2025-12-10 19:47:56,617 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:47:56,618 - AgentRunner - INFO - ⚡ Total Optimizations: 329
+2025-12-10 19:47:56,618 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:47:56,618 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:47:56,618 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:47:56,618 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:48:26,619 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:48:26,620 - AgentRunner - INFO - 🔄 Agent Cycle #1646 - 2025-12-10 19:48:26
+2025-12-10 19:48:26,620 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:48:26,620 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:48:26,620 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:48:26,620 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1646)
+2025-12-10 19:48:26,621 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1646)
+2025-12-10 19:48:26,621 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:48:26,621 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:48:26,621 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:48:26,709 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:48:33,717 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:48:33,718 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:48:33,806 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:48:40,814 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:48:40,816 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:48:40,816 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:48:40,816 - AgentRunner - INFO - 🤖 Agent Uptime: 50.44 hours
+2025-12-10 19:48:40,816 - AgentRunner - INFO - 🔍 Total Health Checks: 3292
+2025-12-10 19:48:40,816 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:48:40,816 - AgentRunner - INFO - ⚡ Total Optimizations: 329
+2025-12-10 19:48:40,816 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:48:40,816 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:48:40,816 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:48:40,816 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
+2025-12-10 19:49:10,818 - AgentRunner - INFO - 
+======================================================================
+2025-12-10 19:49:10,819 - AgentRunner - INFO - 🔄 Agent Cycle #1647 - 2025-12-10 19:49:10
+2025-12-10 19:49:10,819 - AgentRunner - INFO - ======================================================================
+2025-12-10 19:49:10,819 - AgentRunner - INFO - 
+🔍 Phase 1: Service Health Monitoring
+2025-12-10 19:49:10,819 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:49:10,819 - AgentRunner - WARNING - ⚠️  backend: UNHEALTHY (port 8000, failures: 1647)
+2025-12-10 19:49:10,820 - AgentRunner - WARNING - ⚠️  frontend: UNHEALTHY (port 8080, failures: 1647)
+2025-12-10 19:49:10,820 - AgentRunner - INFO - 
+🏥 Phase 2: Auto-Healing Services
+2025-12-10 19:49:10,820 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:49:10,820 - AgentRunner - INFO - 🔧 Attempting to heal backend...
+2025-12-10 19:49:10,902 - AgentRunner - INFO - 🔪 Killed process on port 8000
+2025-12-10 19:49:17,912 - AgentRunner - ERROR - ❌ Failed to restart backend
+2025-12-10 19:49:17,912 - AgentRunner - INFO - 🔧 Attempting to heal frontend...
+2025-12-10 19:49:17,996 - AgentRunner - INFO - 🔪 Killed process on port 8080
+2025-12-10 19:49:25,005 - AgentRunner - ERROR - ❌ Failed to restart frontend
+2025-12-10 19:49:25,007 - AgentRunner - INFO - 
+📊 Phase 8: Metrics & Reporting
+2025-12-10 19:49:25,007 - AgentRunner - INFO - ----------------------------------------------------------------------
+2025-12-10 19:49:25,007 - AgentRunner - INFO - 🤖 Agent Uptime: 50.46 hours
+2025-12-10 19:49:25,007 - AgentRunner - INFO - 🔍 Total Health Checks: 3294
+2025-12-10 19:49:25,008 - AgentRunner - INFO - 🔧 Total Fixes Applied: 0
+2025-12-10 19:49:25,008 - AgentRunner - INFO - ⚡ Total Optimizations: 329
+2025-12-10 19:49:25,008 - AgentRunner - INFO - 
+📋 Service Status Summary:
+2025-12-10 19:49:25,008 - AgentRunner - INFO -   • backend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:49:25,008 - AgentRunner - INFO -   • frontend: UNHEALTHY (uptime: N/A, restarts: 0)
+2025-12-10 19:49:25,008 - AgentRunner - INFO - 💤 Sleeping for 30 seconds...
