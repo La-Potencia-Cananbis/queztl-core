@@ -13704,3 +13704,42 @@ KeyError: 'total_resources'
 2025-12-11 04:42:50,857 - SECURITY - INFO - QP Protocol handler created with GPU and GIS operations
 2025-12-11 04:42:50,857 - SECURITY - INFO - 🚀 Auto-scaler started
 2025-12-11 04:42:50,857 - SECURITY - INFO - Gen3D task processor started
+2025-12-11 04:43:34,181 - SECURITY - INFO - NumExpr defaulting to 10 threads.
+2025-12-11 04:43:35,037 - SECURITY - INFO - Gen3D Workload Manager initialized
+2025-12-11 04:43:35,068 - SECURITY - INFO - Registered QP handler for type 0x20
+2025-12-11 04:43:35,068 - SECURITY - INFO - Registered QP handler for type 0x22
+2025-12-11 04:43:35,068 - SECURITY - INFO - Registered QP handler for type 0x23
+2025-12-11 04:43:35,068 - SECURITY - INFO - Registered QP handler for type 0x30
+2025-12-11 04:43:35,068 - SECURITY - INFO - Registered QP handler for type 0x31
+2025-12-11 04:43:35,068 - SECURITY - INFO - Registered QP handler for type 0x34
+2025-12-11 04:43:35,068 - SECURITY - INFO - Registered QP handler for type 0x35
+2025-12-11 04:43:35,068 - SECURITY - INFO - Registered QP handler for type 0x37
+2025-12-11 04:43:35,068 - SECURITY - INFO - QP Protocol handler created with GPU and GIS operations
+2025-12-11 04:43:35,068 - SECURITY - INFO - 🚀 Auto-scaler started
+2025-12-11 04:43:35,068 - SECURITY - INFO - Gen3D task processor started
+2025-12-11 04:44:18,418 - SECURITY - INFO - NumExpr defaulting to 10 threads.
+2025-12-11 04:44:19,360 - SECURITY - INFO - Gen3D Workload Manager initialized
+2025-12-11 04:44:19,387 - SECURITY - INFO - Registered QP handler for type 0x20
+2025-12-11 04:44:19,387 - SECURITY - INFO - Registered QP handler for type 0x22
+2025-12-11 04:44:19,387 - SECURITY - INFO - Registered QP handler for type 0x23
+2025-12-11 04:44:19,387 - SECURITY - INFO - Registered QP handler for type 0x30
+2025-12-11 04:44:19,387 - SECURITY - INFO - Registered QP handler for type 0x31
+2025-12-11 04:44:19,387 - SECURITY - INFO - Registered QP handler for type 0x34
+2025-12-11 04:44:19,387 - SECURITY - INFO - Registered QP handler for type 0x35
+2025-12-11 04:44:19,387 - SECURITY - INFO - Registered QP handler for type 0x37
+2025-12-11 04:44:19,387 - SECURITY - INFO - QP Protocol handler created with GPU and GIS operations
+2025-12-11 04:44:19,387 - SECURITY - INFO - 🚀 Auto-scaler started
+2025-12-11 04:44:19,387 - SECURITY - INFO - Gen3D task processor started
+2025-12-11 04:45:02,567 - SECURITY - INFO - NumExpr defaulting to 10 threads.
+2025-12-11 04:45:03,445 - SECURITY - INFO - Gen3D Workload Manager initialized
+2025-12-11 04:45:03,476 - SECURITY - INFO - Registered QP handler for type 0x20
+2025-12-11 04:45:03,476 - SECURITY - INFO - Registered QP handler for type 0x22
+2025-12-11 04:45:03,476 - SECURITY - INFO - Registered QP handler for type 0x23
+2025-12-11 04:45:03,476 - SECURITY - INFO - Registered QP handler for type 0x30
+2025-12-11 04:45:03,476 - SECURITY - INFO - Registered QP handler for type 0x31
+2025-12-11 04:45:03,476 - SECURITY - INFO - Registered QP handler for type 0x34
+2025-12-11 04:45:03,476 - SECURITY - INFO - Registered QP handler for type 0x35
+2025-12-11 04:45:03,476 - SECURITY - INFO - Registered QP handler for type 0x37
+2025-12-11 04:45:03,476 - SECURITY - INFO - QP Protocol handler created with GPU and GIS operations
+2025-12-11 04:45:03,476 - SECURITY - INFO - 🚀 Auto-scaler started
+2025-12-11 04:45:03,476 - SECURITY - INFO - Gen3D task processor started
