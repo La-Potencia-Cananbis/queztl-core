@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦅 Queztl Web GPU Driver - Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .result {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .grade {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .grade-S {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .grade-A {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+
+        .grade-B {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        .stat-label {
+            opacity: 0.8;
+        }
+
+        .stat-value {
+            font-weight: bold;
+        }
+
+        canvas {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🦅 Queztl Web GPU Driver</h1>
+            <p class="subtitle">Software GPU for Web Applications - No Hardware Required!</p>
+        </header>
+
+        <div class="grid">
+            <!-- System Info -->
+            <div class="card">
+                <h2>🖥️ System Info</h2>
+                <button onclick="initGPU()">Initialize GPU Driver</button>
+                <div id="system-info" class="result"></div>
+            </div>
+
+            <!-- Capabilities -->
+            <div class="card">
+                <h2>🔍 GPU Capabilities</h2>
+                <button onclick="getCapabilities()">Check Capabilities</button>
+                <div id="capabilities" class="result"></div>
+            </div>
+
+            <!-- WebGL Benchmark -->
+            <div class="card">
+                <h2>🎮 WebGL Benchmark</h2>
+                <button onclick="runWebGLBenchmark()">Run Benchmark</button>
+                <div id="webgl-result" class="result"></div>
+            </div>
+
+            <!-- Compute Shader -->
+            <div class="card">
+                <h2>⚡ Compute Shader</h2>
+                <button onclick="runComputeBenchmark()">Run Compute Test</button>
+                <div id="compute-result" class="result"></div>
+            </div>
+
+            <!-- Rotating Cube Demo -->
+            <div class="card">
+                <h2>🎲 Rotating Cube Demo</h2>
+                <button onclick="runCubeDemo()">Render Cube</button>
+                <div id="cube-result" class="result"></div>
+            </div>
+
+            <!-- Performance Stats -->
+            <div class="card">
+                <h2>📊 Performance Stats</h2>
+                <button onclick="getStats()">Get Statistics</button>
+                <div id="stats" class="result"></div>
+            </div>
+        </div>
+
+        <!-- Live Canvas -->
+        <div class="card">
+            <h2>🎨 Live Rendering Canvas</h2>
+            <canvas id="gpu-canvas"></canvas>
+            <button onclick="renderToCanvas()">Render Scene</button>
+        </div>
+    </div>
+
+    <script type="module">
+        const API_URL = 'http://localhost:8000/api/gpu';
+        const SESSION_ID = 'demo_session_' + Date.now();
+
+        window.initGPU = async function () {
+            const div = document.getElementById('system-info');
+            div.innerHTML = '<div class="loader"></div> Initializing...';
+
+            try {
+                const response = await fetch(`${API_URL}/session/create?session_id=${SESSION_ID}`, {
+                    method: 'POST'
+                });
+
+                const data = await response.json();
+
+                div.innerHTML = `
+                    <div class="stat">
+                        <span class="stat-label">Vendor:</span>
+                        <span class="stat-value">${data.driver_info.vendor}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Version:</span>
+                        <span class="stat-value">${data.driver_info.version}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">GPU Threads:</span>
+                        <span class="stat-value">${data.driver_info.gpu_threads.toLocaleString()}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Thread Blocks:</span>
+                        <span class="stat-value">${data.driver_info.gpu_blocks}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Threads/Block:</span>
+                        <span class="stat-value">${data.driver_info.threads_per_block}</span>
+                    </div>
+                `;
+            } catch (error) {
+                div.innerHTML = `<span style="color: #ff6b6b;">❌ Error: ${error.message}</span>`;
+            }
+        };
+
+        window.getCapabilities = async function () {
+            const div = document.getElementById('capabilities');
+            div.innerHTML = '<div class="loader"></div> Loading...';
+
+            try {
+                const response = await fetch(`${API_URL}/capabilities`);
+                const data = await response.json();
+
+                div.innerHTML = `
+                    <div class="stat">
+                        <span class="stat-label">Max Texture Size:</span>
+                        <span class="stat-value">${data.max_texture_size}x${data.max_texture_size}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Compute Shaders:</span>
+                        <span class="stat-value">${data.compute_shader_support ? '✅ Yes' : '❌ No'}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Parallel Threads:</span>
+                        <span class="stat-value">${data.parallel_threads.toLocaleString()}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Extensions:</span>
+                        <span class="stat-value">${data.extensions.length} available</span>
+                    </div>
+                    <div style="margin-top: 15px; font-size: 0.85em; opacity: 0.8;">
+                        ${data.notes}
+                    </div>
+                `;
+            } catch (error) {
+                div.innerHTML = `<span style="color: #ff6b6b;">❌ Error: ${error.message}</span>`;
+            }
+        };
+
+        window.runWebGLBenchmark = async function () {
+            const div = document.getElementById('webgl-result');
+            div.innerHTML = '<div class="loader"></div> Running benchmark...';
+
+            try {
+                const response = await fetch(`${API_URL}/benchmark/webgl`, {
+                    method: 'POST'
+                });
+                const data = await response.json();
+
+                const grade = data.grade;
+                const gradeClass = `grade-${grade}`;
+
+                div.innerHTML = `
+                    <div style="text-align: center; margin-bottom: 15px;">
+                        <span style="font-size: 2em;">🎮</span>
+                        <span class="grade ${gradeClass}">${grade} GRADE</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Duration:</span>
+                        <span class="stat-value">${data.duration_ms.toFixed(2)} ms</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Commands:</span>
+                        <span class="stat-value">${data.commands_executed}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Triangles:</span>
+                        <span class="stat-value">${data.result.stats.triangles_rendered}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Draw Calls:</span>
+                        <span class="stat-value">${data.result.stats.draw_calls}</span>
+                    </div>
+                `;
+            } catch (error) {
+                div.innerHTML = `<span style="color: #ff6b6b;">❌ Error: ${error.message}</span>`;
+            }
+        };
+
+        window.runComputeBenchmark = async function () {
+            const div = document.getElementById('compute-result');
+            div.innerHTML = '<div class="loader"></div> Running compute shader...';
+
+            try {
+                const response = await fetch(`${API_URL}/benchmark/compute`, {
+                    method: 'POST'
+                });
+                const data = await response.json();
+
+                const grade = data.grade;
+                const gradeClass = `grade-${grade}`;
+                const ratio = (data.comparison.nvidia_rtx_3080.ratio * 100).toFixed(2);
+
+                div.innerHTML = `
+                    <div style="text-align: center; margin-bottom: 15px;">
+                        <span style="font-size: 2em;">⚡</span>
+                        <span class="grade ${gradeClass}">${grade} GRADE</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Total Threads:</span>
+                        <span class="stat-value">${data.total_threads.toLocaleString()}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Duration:</span>
+                        <span class="stat-value">${data.duration_ms.toFixed(3)} ms</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Throughput:</span>
+                        <span class="stat-value">${(data.threads_per_second / 1e9).toFixed(2)} B threads/s</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">vs RTX 3080:</span>
+                        <span class="stat-value">${ratio}% 🔥</span>
+                    </div>
+                `;
+            } catch (error) {
+                div.innerHTML = `<span style="color: #ff6b6b;">❌ Error: ${error.message}</span>`;
+            }
+        };
+
+        window.runCubeDemo = async function () {
+            const div = document.getElementById('cube-result');
+            div.innerHTML = '<div class="loader"></div> Rendering cube...';
+
+            try {
+                const response = await fetch(`${API_URL}/demo/rotating-cube`, {
+                    method: 'POST'
+                });
+                const data = await response.json();
+
+                div.innerHTML = `
+                    <div style="text-align: center; margin-bottom: 15px;">
+                        <span style="font-size: 2em;">🎲</span>
+                        <div style="margin-top: 10px;">${data.message}</div>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Triangles:</span>
+                        <span class="stat-value">${data.triangles_rendered}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Draw Calls:</span>
+                        <span class="stat-value">${data.draw_calls}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Integration:</span>
+                        <span class="stat-value">${data.web_integration}</span>
+                    </div>
+                `;
+            } catch (error) {
+                div.innerHTML = `<span style="color: #ff6b6b;">❌ Error: ${error.message}</span>`;
+            }
+        };
+
+        window.getStats = async function () {
+            const div = document.getElementById('stats');
+            div.innerHTML = '<div class="loader"></div> Loading stats...';
+
+            try {
+                const response = await fetch(`${API_URL}/stats`);
+                const data = await response.json();
+
+                const grade = data.performance.grade;
+                const gradeClass = `grade-${grade}`;
+
+                div.innerHTML = `
+                    <div style="text-align: center; margin-bottom: 15px;">
+                        <span class="grade ${gradeClass}">${grade} GRADE</span>
+                        <div style="margin-top: 10px;">${data.performance.description}</div>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Buffers:</span>
+                        <span class="stat-value">${data.driver_stats.buffers}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Shaders:</span>
+                        <span class="stat-value">${data.driver_stats.shaders}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Triangles Rendered:</span>
+                        <span class="stat-value">${data.driver_stats.triangles_rendered.toLocaleString()}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Draw Calls:</span>
+                        <span class="stat-value">${data.driver_stats.draw_calls}</span>
+                    </div>
+                `;
+            } catch (error) {
+                div.innerHTML = `<span style="color: #ff6b6b;">❌ Error: ${error.message}</span>`;
+            }
+        };
+
+        window.renderToCanvas = function () {
+            const canvas = document.getElementById('gpu-canvas');
+            const ctx = canvas.getContext('2d');
+
+            // Simple visualization
+            ctx.fillStyle = '#1a1a2e';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#667eea';
+            ctx.font = '24px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('🦅 Queztl GPU Rendering', canvas.width / 2, canvas.height / 2);
+            ctx.font = '16px Arial';
+            ctx.fillText('Software GPU - No Hardware Required!', canvas.width / 2, canvas.height / 2 + 40);
+        };
+
+        // Auto-initialize on load
+        window.addEventListener('load', () => {
+            initGPU();
+        });
+    </script>
+</body>
+
+</html>

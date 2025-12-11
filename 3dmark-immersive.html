@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦅 Queztl 3DMark - GPU Benchmark</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+            cursor: none;
+        }
+
+        #benchmark-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        #hud {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 14px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-family: 'Courier New', monospace;
+        }
+
+        #fps-counter {
+            color: #0f0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #test-name {
+            color: #0ff;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        #progress-bar {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #0ff;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        #progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0f0, #0ff);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        #start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #0f0f23);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        #start-screen h1 {
+            font-size: 4em;
+            background: linear-gradient(45deg, #00f260, #0575e6, #f0f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #start-screen p {
+            font-size: 1.5em;
+            color: #aaa;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        #start-button {
+            padding: 20px 60px;
+            font-size: 1.5em;
+            background: linear-gradient(45deg, #00f260, #0575e6);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 30px rgba(5, 117, 230, 0.5);
+        }
+
+        #start-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(5, 117, 230, 0.8);
+        }
+
+        #api-config {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        #api-config input {
+            padding: 10px 20px;
+            font-size: 1em;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #0575e6;
+            border-radius: 5px;
+            color: white;
+            width: 400px;
+            text-align: center;
+        }
+
+        #results-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #0f0f23);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            overflow-y: auto;
+            padding: 40px;
+        }
+
+        #results-screen h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .grade-display {
+            font-size: 6em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 30px 0;
+        }
+
+        .result-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid #0575e6;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .result-card h3 {
+            color: #0ff;
+            margin-bottom: 15px;
+        }
+
+        .result-metric {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .metric-label {
+            color: #aaa;
+        }
+
+        .metric-value {
+            color: #0f0;
+            font-weight: bold;
+        }
+
+        #restart-button {
+            padding: 15px 50px;
+            font-size: 1.2em;
+            background: linear-gradient(45deg, #f00, #f0f);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s;
+        }
+
+        #restart-button:hover {
+            transform: scale(1.1);
+        }
+
+        .loading-text {
+            font-size: 1.2em;
+            color: #0ff;
+            margin-top: 20px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Start Screen -->
+    <div id="start-screen">
+        <h1>🦅 QUEZTL 3DMARK</h1>
+        <p>GPU Benchmark Suite - Immersive Edition</p>
+        <div id="api-config">
+            <input type="text" id="api-url" value="http://localhost:8000" placeholder="API URL">
+        </div>
+        <button id="start-button">▶ START BENCHMARK</button>
+        <p class="loading-text" id="loading-text" style="display:none;">Initializing GPU...</p>
+    </div>
+
+    <!-- Canvas for rendering -->
+    <canvas id="benchmark-canvas"></canvas>
+
+    <!-- HUD Overlay -->
+    <div id="overlay">
+        <div id="hud">
+            <div id="fps-counter">FPS: 0</div>
+            <div id="test-name">Ready</div>
+            <div style="margin-top: 10px; color: #fff;">Objects: <span id="object-count">0</span></div>
+            <div style="color: #fff;">Particles: <span id="particle-count">0</span></div>
+            <div style="color: #0f0;">Score: <span id="current-score">0</span></div>
+        </div>
+        <div id="progress-bar">
+            <div id="progress-fill"></div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen">
+        <h1>🏆 BENCHMARK COMPLETE</h1>
+        <div class="grade-display" id="final-grade">A</div>
+        <div class="results-grid" id="results-grid"></div>
+        <button id="restart-button">🔄 RUN AGAIN</button>
+    </div>
+
+    <script>
+        // Configuration
+        let API_URL = 'http://localhost:8000';
+        const canvas = document.getElementById('benchmark-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Canvas setup
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Benchmark state
+        let isRunning = false;
+        let currentTest = 0;
+        let frameCount = 0;
+        let fps = 0;
+        let lastTime = performance.now();
+        let testResults = {};
+
+        // Particle system
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 5;
+                this.vy = (Math.random() - 0.5) * 5;
+                this.size = Math.random() * 3 + 1;
+                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                this.life = 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.life -= 0.01;
+
+                if (this.x < 0 || this.x > canvas.width ||
+                    this.y < 0 || this.y > canvas.height ||
+                    this.life <= 0) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.globalAlpha = this.life;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        // Rotating cube vertices
+        class Cube {
+            constructor(x, y, size) {
+                this.x = x;
+                this.y = y;
+                this.size = size;
+                this.rotation = { x: 0, y: 0, z: 0 };
+                this.vertices = [
+                    [-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1],
+                    [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]
+                ];
+                this.edges = [
+                    [0, 1], [1, 2], [2, 3], [3, 0],
+                    [4, 5], [5, 6], [6, 7], [7, 4],
+                    [0, 4], [1, 5], [2, 6], [3, 7]
+                ];
+                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            }
+
+            rotate(dx, dy, dz) {
+                this.rotation.x += dx;
+                this.rotation.y += dy;
+                this.rotation.z += dz;
+            }
+
+            project(vertex) {
+                // Apply rotation
+                let x = vertex[0] * this.size;
+                let y = vertex[1] * this.size;
+                let z = vertex[2] * this.size;
+
+                // Rotate around Y
+                let tempX = x * Math.cos(this.rotation.y) - z * Math.sin(this.rotation.y);
+                let tempZ = x * Math.sin(this.rotation.y) + z * Math.cos(this.rotation.y);
+                x = tempX;
+                z = tempZ;
+
+                // Rotate around X
+                let tempY = y * Math.cos(this.rotation.x) - z * Math.sin(this.rotation.x);
+                tempZ = y * Math.sin(this.rotation.x) + z * Math.cos(this.rotation.x);
+                y = tempY;
+                z = tempZ;
+
+                // Perspective projection
+                const perspective = 500;
+                const scale = perspective / (perspective + z);
+
+                return {
+                    x: this.x + x * scale,
+                    y: this.y + y * scale,
+                    scale: scale
+                };
+            }
+
+            draw() {
+                const projected = this.vertices.map(v => this.project(v));
+
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = 2;
+
+                for (const edge of this.edges) {
+                    const p1 = projected[edge[0]];
+                    const p2 = projected[edge[1]];
+
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Test scenarios
+        const tests = [
+            {
+                name: '🔷 Particle Stress Test',
+                duration: 5000,
+                particleCount: 5000,
+                cubeCount: 0,
+                apiTest: null
+            },
+            {
+                name: '📦 Geometry Processing',
+                duration: 5000,
+                particleCount: 1000,
+                cubeCount: 50,
+                apiTest: 'geometry'
+            },
+            {
+                name: '⚡ Throughput Stress',
+                duration: 5000,
+                particleCount: 2000,
+                cubeCount: 20,
+                apiTest: 'throughput'
+            },
+            {
+                name: '🌀 Physics Simulation',
+                duration: 5000,
+                particleCount: 3000,
+                cubeCount: 30,
+                apiTest: null
+            },
+            {
+                name: '🎨 Shader Complexity',
+                duration: 5000,
+                particleCount: 4000,
+                cubeCount: 40,
+                apiTest: 'scene'
+            },
+            {
+                name: '💾 Memory Stress',
+                duration: 5000,
+                particleCount: 1500,
+                cubeCount: 25,
+                apiTest: 'memory'
+            }
+        ];
+
+        let particles = [];
+        let cubes = [];
+
+        // Initialize test objects
+        function initTest(test) {
+            particles = [];
+            cubes = [];
+
+            for (let i = 0; i < test.particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            for (let i = 0; i < test.cubeCount; i++) {
+                cubes.push(new Cube(
+                    Math.random() * canvas.width,
+                    Math.random() * canvas.height,
+                    Math.random() * 30 + 20
+                ));
+            }
+
+            document.getElementById('particle-count').textContent = test.particleCount;
+            document.getElementById('object-count').textContent = test.cubeCount;
+        }
+
+        // Render loop
+        function render() {
+            if (!isRunning) return;
+
+            // Clear with trail effect
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Update and draw particles
+            for (const particle of particles) {
+                particle.update();
+                particle.draw();
+            }
+
+            // Update and draw cubes
+            for (const cube of cubes) {
+                cube.rotate(0.02, 0.03, 0.01);
+                cube.draw();
+            }
+
+            // Calculate FPS
+            frameCount++;
+            const now = performance.now();
+            if (now - lastTime >= 1000) {
+                fps = frameCount;
+                frameCount = 0;
+                lastTime = now;
+                document.getElementById('fps-counter').textContent = `FPS: ${fps}`;
+            }
+
+            requestAnimationFrame(render);
+        }
+
+        // API Tests
+        async function runAPITest(testName) {
+            if (!testName) return { score: 100, time: '0', details: {} };
+
+            try {
+                const startTime = performance.now();
+                let result;
+
+                switch (testName) {
+                    case 'geometry':
+                        result = await testGeometry();
+                        break;
+                    case 'throughput':
+                        result = await testThroughput();
+                        break;
+                    case 'scene':
+                        result = await testScene();
+                        break;
+                    case 'memory':
+                        result = await testMemory();
+                        break;
+                }
+
+                const endTime = performance.now();
+                return {
+                    score: result.score || 100,
+                    time: ((endTime - startTime) / 1000).toFixed(2),
+                    details: result.details || {}
+                };
+            } catch (error) {
+                console.error('API test error:', error);
+                return { score: 0, time: '0', details: { error: error.message } };
+            }
+        }
+
+        async function testGeometry() {
+            const vertices = Array(1000 * 3).fill(0).map(() => Math.random() * 10);
+            const indices = Array(2000 * 3).fill(0).map((_, i) => i % 1000);
+
+            const response = await fetch(`${API_URL}/api/gpu/render`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ vertices, indices, width: 512, height: 512 })
+            });
+
+            const data = await response.json();
+            return { score: 100, details: data };
+        }
+
+        async function testThroughput() {
+            const iterations = 100;
+            const startTime = performance.now();
+
+            for (let i = 0; i < iterations; i++) {
+                await fetch(`${API_URL}/api/health`);
+            }
+
+            const endTime = performance.now();
+            const opsPerSec = (iterations / ((endTime - startTime) / 1000)).toFixed(0);
+
+            return {
+                score: Math.min(100, (opsPerSec / 10)),
+                details: { operations_per_second: opsPerSec, iterations }
+            };
+        }
+
+        async function testScene() {
+            const response = await fetch(`${API_URL}/api/gpu/render`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    vertices: Array(5000 * 3).fill(0).map(() => Math.random() * 10),
+                    indices: Array(10000 * 3).fill(0).map((_, i) => i % 5000),
+                    width: 1024,
+                    height: 1024
+                })
+            });
+
+            const data = await response.json();
+            return { score: 100, details: data };
+        }
+
+        async function testMemory() {
+            const response = await fetch(`${API_URL}/api/security/memory`);
+            const data = await response.json();
+
+            return {
+                score: data.leak_detection.has_leaks ? 50 : 100,
+                details: data
+            };
+        }
+
+        // Run benchmark
+        async function runBenchmark() {
+            isRunning = true;
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('overlay').style.display = 'block';
+
+            for (let i = 0; i < tests.length; i++) {
+                currentTest = i;
+                const test = tests[i];
+
+                document.getElementById('test-name').textContent = test.name;
+                document.getElementById('progress-fill').style.width = `${((i + 1) / tests.length * 100)}%`;
+
+                initTest(test);
+
+                // Run visual test
+                const testStartTime = performance.now();
+                const avgFps = [];
+
+                await new Promise(resolve => {
+                    const interval = setInterval(() => {
+                        avgFps.push(fps);
+                    }, 100);
+
+                    setTimeout(() => {
+                        clearInterval(interval);
+                        resolve();
+                    }, test.duration);
+                });
+
+                const testEndTime = performance.now();
+                const averageFps = avgFps.reduce((a, b) => a + b, 0) / avgFps.length;
+
+                // Run API test if specified
+                const apiResult = await runAPITest(test.apiTest);
+
+                // Calculate combined score
+                const fpsScore = Math.min(100, (averageFps / 60) * 100);
+                const combinedScore = test.apiTest
+                    ? Math.round((fpsScore * 0.5) + (apiResult.score * 0.5))
+                    : Math.round(fpsScore);
+
+                testResults[test.name] = {
+                    fps: Math.round(averageFps),
+                    score: combinedScore,
+                    time: ((testEndTime - testStartTime) / 1000).toFixed(2),
+                    apiResult
+                };
+
+                document.getElementById('current-score').textContent = combinedScore;
+            }
+
+            isRunning = false;
+            showResults();
+        }
+
+        // Show results
+        function showResults() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('results-screen').style.display = 'flex';
+
+            // Calculate overall score
+            const scores = Object.values(testResults).map(r => r.score);
+            const totalScore = Math.round(scores.reduce((a, b) => a + b) / scores.length);
+
+            // Determine grade
+            let grade, gradeColor;
+            if (totalScore >= 90) {
+                grade = 'S';
+                gradeColor = '#FFD700';
+            } else if (totalScore >= 80) {
+                grade = 'A';
+                gradeColor = '#00f260';
+            } else if (totalScore >= 70) {
+                grade = 'B';
+                gradeColor = '#0575e6';
+            } else if (totalScore >= 60) {
+                grade = 'C';
+                gradeColor = '#FFA500';
+            } else {
+                grade = 'D';
+                gradeColor = '#FF4444';
+            }
+
+            const gradeEl = document.getElementById('final-grade');
+            gradeEl.textContent = `${grade} - ${totalScore}/100`;
+            gradeEl.style.color = gradeColor;
+
+            // Display results
+            const resultsGrid = document.getElementById('results-grid');
+            resultsGrid.innerHTML = '';
+
+            for (const [testName, result] of Object.entries(testResults)) {
+                const card = document.createElement('div');
+                card.className = 'result-card';
+                card.innerHTML = `
+                    <h3>${testName}</h3>
+                    <div class="result-metric">
+                        <span class="metric-label">Score:</span>
+                        <span class="metric-value">${result.score}/100</span>
+                    </div>
+                    <div class="result-metric">
+                        <span class="metric-label">Avg FPS:</span>
+                        <span class="metric-value">${result.fps}</span>
+                    </div>
+                    <div class="result-metric">
+                        <span class="metric-label">Duration:</span>
+                        <span class="metric-value">${result.time}s</span>
+                    </div>
+                `;
+                resultsGrid.appendChild(card);
+            }
+        }
+
+        // Event listeners
+        document.getElementById('start-button').addEventListener('click', async () => {
+            API_URL = document.getElementById('api-url').value;
+
+            // Test API connection
+            document.getElementById('loading-text').style.display = 'block';
+            document.getElementById('start-button').disabled = true;
+
+            try {
+                const response = await fetch(`${API_URL}/api/health`);
+                if (!response.ok) throw new Error('API not responding');
+
+                render();
+                runBenchmark();
+            } catch (error) {
+                alert('⚠️ Cannot connect to API: ' + error.message);
+                document.getElementById('loading-text').style.display = 'none';
+                document.getElementById('start-button').disabled = false;
+            }
+        });
+
+        document.getElementById('restart-button').addEventListener('click', () => {
+            location.reload();
+        });
+    </script>
+</body>
+
+</html>
