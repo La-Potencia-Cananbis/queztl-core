@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦅 Queztl Graphics Demo - 3D Visualizations</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'SF Mono', monospace;
+            background: #000;
+            color: #0f0;
+            overflow: hidden;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            height: 100vh;
+            gap: 2px;
+        }
+        
+        .panel {
+            background: #0a0a0a;
+            border: 2px solid #00ff00;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .panel-title {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 10;
+            background: rgba(0, 255, 0, 0.2);
+            padding: 5px 10px;
+            border: 1px solid #0f0;
+        }
+        
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .stats {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border: 1px solid #0f0;
+        }
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #000;
+            border-bottom: 2px solid #0f0;
+            padding: 15px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .fps {
+            font-size: 20px;
+            color: #0f0;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .live-indicator {
+            animation: pulse 2s infinite;
+            color: #ff0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <span style="font-size: 24px;">🦅 QUEZTL GRAPHICS ENGINE</span>
+            <span class="live-indicator"> ● LIVE</span>
+        </div>
+        <div class="fps" id="fps">FPS: 60</div>
+    </div>
+    
+    <div class="container" style="margin-top: 60px;">
+        <!-- Panel 1: Rotating Cube -->
+        <div class="panel">
+            <div class="panel-title">3D ROTATING CUBE</div>
+            <canvas id="cube"></canvas>
+            <div class="stats">
+                Vertices: 8<br>
+                Faces: 6<br>
+                Rotation: <span id="cubeRot">0°</span>
+            </div>
+        </div>
+        
+        <!-- Panel 2: Neural Network -->
+        <div class="panel">
+            <div class="panel-title">NEURAL NETWORK VISUALIZATION</div>
+            <canvas id="neural"></canvas>
+            <div class="stats">
+                Nodes: <span id="nodes">128</span><br>
+                Connections: <span id="connections">512</span><br>
+                Activity: <span id="activity">87%</span>
+            </div>
+        </div>
+        
+        <!-- Panel 3: Particle System -->
+        <div class="panel">
+            <div class="panel-title">PARTICLE SYSTEM</div>
+            <canvas id="particles"></canvas>
+            <div class="stats">
+                Particles: <span id="particleCount">1000</span><br>
+                Speed: <span id="speed">2.5</span><br>
+                Forces: Gravity + Wind
+            </div>
+        </div>
+        
+        <!-- Panel 4: Real-time Graph -->
+        <div class="panel">
+            <div class="panel-title">PERFORMANCE GRAPH</div>
+            <canvas id="graph"></canvas>
+            <div class="stats">
+                Packets/s: <span id="packets">185,307</span><br>
+                Latency: <span id="latency">0.8ms</span><br>
+                Throughput: <span id="throughput">99.9%</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // ========== 3D ROTATING CUBE ==========
+        const cubeCanvas = document.getElementById('cube');
+        const cubeCtx = cubeCanvas.getContext('2d');
+        cubeCanvas.width = cubeCanvas.offsetWidth;
+        cubeCanvas.height = cubeCanvas.offsetHeight;
+        
+        let cubeAngle = 0;
+        
+        function drawCube() {
+            const w = cubeCanvas.width;
+            const h = cubeCanvas.height;
+            const centerX = w / 2;
+            const centerY = h / 2;
+            const size = 100;
+            
+            cubeCtx.clearRect(0, 0, w, h);
+            
+            // 3D vertices
+            const vertices = [
+                [-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1],
+                [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]
+            ];
+            
+            // Rotate vertices
+            const rotated = vertices.map(v => {
+                const [x, y, z] = v;
+                const cosA = Math.cos(cubeAngle);
+                const sinA = Math.sin(cubeAngle);
+                const cosB = Math.cos(cubeAngle * 0.7);
+                const sinB = Math.sin(cubeAngle * 0.7);
+                
+                // Rotate around Y axis
+                const x1 = x * cosA - z * sinA;
+                const z1 = x * sinA + z * cosA;
+                
+                // Rotate around X axis
+                const y1 = y * cosB - z1 * sinB;
+                const z2 = y * sinB + z1 * cosB;
+                
+                return [x1, y1, z2];
+            });
+            
+            // Project to 2D
+            const projected = rotated.map(v => {
+                const scale = 200 / (200 + v[2] * 50);
+                return [
+                    centerX + v[0] * size * scale,
+                    centerY + v[1] * size * scale
+                ];
+            });
+            
+            // Draw faces
+            const faces = [
+                [0, 1, 2, 3], [4, 5, 6, 7], [0, 1, 5, 4],
+                [2, 3, 7, 6], [0, 3, 7, 4], [1, 2, 6, 5]
+            ];
+            
+            cubeCtx.strokeStyle = '#0f0';
+            cubeCtx.lineWidth = 2;
+            
+            faces.forEach(face => {
+                cubeCtx.beginPath();
+                cubeCtx.moveTo(projected[face[0]][0], projected[face[0]][1]);
+                for (let i = 1; i < face.length; i++) {
+                    cubeCtx.lineTo(projected[face[i]][0], projected[face[i]][1]);
+                }
+                cubeCtx.closePath();
+                cubeCtx.stroke();
+            });
+            
+            cubeAngle += 0.01;
+            document.getElementById('cubeRot').textContent = Math.floor(cubeAngle * 180 / Math.PI) + '°';
+        }
+        
+        // ========== NEURAL NETWORK ==========
+        const neuralCanvas = document.getElementById('neural');
+        const neuralCtx = neuralCanvas.getContext('2d');
+        neuralCanvas.width = neuralCanvas.offsetWidth;
+        neuralCanvas.height = neuralCanvas.offsetHeight;
+        
+        const layers = [8, 16, 16, 8];
+        const nodes = [];
+        
+        // Initialize nodes
+        layers.forEach((count, layerIdx) => {
+            const layerNodes = [];
+            const x = (neuralCanvas.width / (layers.length + 1)) * (layerIdx + 1);
+            for (let i = 0; i < count; i++) {
+                const y = (neuralCanvas.height / (count + 1)) * (i + 1);
+                layerNodes.push({ x, y, activity: Math.random() });
+            }
+            nodes.push(layerNodes);
+        });
+        
+        function drawNeural() {
+            const w = neuralCanvas.width;
+            const h = neuralCanvas.height;
+            
+            neuralCtx.clearRect(0, 0, w, h);
+            
+            // Draw connections
+            for (let i = 0; i < nodes.length - 1; i++) {
+                nodes[i].forEach(from => {
+                    nodes[i + 1].forEach(to => {
+                        const strength = Math.random();
+                        neuralCtx.strokeStyle = `rgba(0, 255, 0, ${strength * 0.3})`;
+                        neuralCtx.lineWidth = 1;
+                        neuralCtx.beginPath();
+                        neuralCtx.moveTo(from.x, from.y);
+                        neuralCtx.lineTo(to.x, to.y);
+                        neuralCtx.stroke();
+                    });
+                });
+            }
+            
+            // Draw nodes
+            nodes.forEach(layer => {
+                layer.forEach(node => {
+                    node.activity = Math.max(0.2, node.activity + (Math.random() - 0.5) * 0.1);
+                    neuralCtx.fillStyle = `rgba(0, 255, 0, ${node.activity})`;
+                    neuralCtx.beginPath();
+                    neuralCtx.arc(node.x, node.y, 5, 0, Math.PI * 2);
+                    neuralCtx.fill();
+                });
+            });
+            
+            document.getElementById('activity').textContent = Math.floor(Math.random() * 20 + 80) + '%';
+        }
+        
+        // ========== PARTICLE SYSTEM ==========
+        const particleCanvas = document.getElementById('particles');
+        const particleCtx = particleCanvas.getContext('2d');
+        particleCanvas.width = particleCanvas.offsetWidth;
+        particleCanvas.height = particleCanvas.offsetHeight;
+        
+        const particles = [];
+        for (let i = 0; i < 1000; i++) {
+            particles.push({
+                x: Math.random() * particleCanvas.width,
+                y: Math.random() * particleCanvas.height,
+                vx: (Math.random() - 0.5) * 2,
+                vy: (Math.random() - 0.5) * 2,
+                life: Math.random()
+            });
+        }
+        
+        function drawParticles() {
+            const w = particleCanvas.width;
+            const h = particleCanvas.height;
+            
+            particleCtx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            particleCtx.fillRect(0, 0, w, h);
+            
+            particles.forEach(p => {
+                // Update position
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.1; // Gravity
+                
+                // Bounce off walls
+                if (p.x < 0 || p.x > w) p.vx *= -0.9;
+                if (p.y < 0 || p.y > h) p.vy *= -0.9;
+                
+                // Keep in bounds
+                p.x = Math.max(0, Math.min(w, p.x));
+                p.y = Math.max(0, Math.min(h, p.y));
+                
+                // Update life
+                p.life -= 0.001;
+                if (p.life <= 0) {
+                    p.x = Math.random() * w;
+                    p.y = 0;
+                    p.vx = (Math.random() - 0.5) * 2;
+                    p.vy = Math.random() * 2;
+                    p.life = 1;
+                }
+                
+                // Draw particle
+                particleCtx.fillStyle = `rgba(0, 255, 0, ${p.life})`;
+                particleCtx.fillRect(p.x, p.y, 2, 2);
+            });
+        }
+        
+        // ========== PERFORMANCE GRAPH ==========
+        const graphCanvas = document.getElementById('graph');
+        const graphCtx = graphCanvas.getContext('2d');
+        graphCanvas.width = graphCanvas.offsetWidth;
+        graphCanvas.height = graphCanvas.offsetHeight;
+        
+        const dataPoints = [];
+        const maxPoints = 100;
+        
+        function drawGraph() {
+            const w = graphCanvas.width;
+            const h = graphCanvas.height;
+            
+            graphCtx.clearRect(0, 0, w, h);
+            
+            // Add new data point
+            dataPoints.push(Math.random() * 0.3 + 0.7);
+            if (dataPoints.length > maxPoints) dataPoints.shift();
+            
+            // Draw grid
+            graphCtx.strokeStyle = 'rgba(0, 255, 0, 0.2)';
+            graphCtx.lineWidth = 1;
+            for (let i = 0; i < 5; i++) {
+                const y = (h / 5) * i;
+                graphCtx.beginPath();
+                graphCtx.moveTo(0, y);
+                graphCtx.lineTo(w, y);
+                graphCtx.stroke();
+            }
+            
+            // Draw graph line
+            graphCtx.strokeStyle = '#0f0';
+            graphCtx.lineWidth = 2;
+            graphCtx.beginPath();
+            
+            dataPoints.forEach((value, index) => {
+                const x = (w / maxPoints) * index;
+                const y = h - (value * h);
+                
+                if (index === 0) {
+                    graphCtx.moveTo(x, y);
+                } else {
+                    graphCtx.lineTo(x, y);
+                }
+            });
+            
+            graphCtx.stroke();
+            
+            // Fill area under line
+            graphCtx.lineTo(w, h);
+            graphCtx.lineTo(0, h);
+            graphCtx.closePath();
+            graphCtx.fillStyle = 'rgba(0, 255, 0, 0.1)';
+            graphCtx.fill();
+            
+            // Update stats
+            document.getElementById('packets').textContent = (185000 + Math.floor(Math.random() * 1000)).toLocaleString();
+            document.getElementById('latency').textContent = (Math.random() * 0.5 + 0.5).toFixed(1) + 'ms';
+            document.getElementById('throughput').textContent = (99 + Math.random()).toFixed(1) + '%';
+        }
+        
+        // ========== ANIMATION LOOP ==========
+        let lastTime = Date.now();
+        let frameCount = 0;
+        
+        function animate() {
+            drawCube();
+            drawNeural();
+            drawParticles();
+            drawGraph();
+            
+            // Calculate FPS
+            frameCount++;
+            const now = Date.now();
+            if (now - lastTime > 1000) {
+                document.getElementById('fps').textContent = 'FPS: ' + frameCount;
+                frameCount = 0;
+                lastTime = now;
+            }
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // Handle resize
+        window.addEventListener('resize', () => {
+            cubeCanvas.width = cubeCanvas.offsetWidth;
+            cubeCanvas.height = cubeCanvas.offsetHeight;
+            neuralCanvas.width = neuralCanvas.offsetWidth;
+            neuralCanvas.height = neuralCanvas.offsetHeight;
+            particleCanvas.width = particleCanvas.offsetWidth;
+            particleCanvas.height = particleCanvas.offsetHeight;
+            graphCanvas.width = graphCanvas.offsetWidth;
+            graphCanvas.height = graphCanvas.offsetHeight;
+        });
+    </script>
+</body>
+</html>
