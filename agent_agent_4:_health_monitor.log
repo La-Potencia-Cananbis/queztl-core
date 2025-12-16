@@ -1,6 +1,0 @@
-[2025-12-10 07:44:48] [95m🤖 Agent 4: Health Monitor[0m: Setting up 24/7 health monitoring and auto-recovery...
-[2025-12-10 07:44:48] [95m🤖 Agent 4: Health Monitor[0m: 💓 Created 24/7 health monitor: /Users/xavasena/hive/health_monitor_24_7.py
-[2025-12-10 07:44:48] [95m🤖 Agent 4: Health Monitor[0m: 🔧 Created systemd service: /Users/xavasena/hive/quetzalcore-monitor.service
-[2025-12-10 07:44:48] [95m🤖 Agent 4: Health Monitor[0m:    To install on cloud VM: sudo cp quetzalcore-monitor.service /etc/systemd/system/
-[2025-12-10 07:44:48] [95m🤖 Agent 4: Health Monitor[0m:    Then: sudo systemctl enable quetzalcore-monitor && sudo systemctl start quetzalcore-monitor
-[2025-12-10 07:44:48] [95m🤖 Agent 4: Health Monitor[0m: ✅ Agent 4 complete - 24/7 monitoring configured
