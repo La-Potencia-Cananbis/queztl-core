@@ -1,15 +1,43 @@
-# Python
+# Dependencies
+node_modules/
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
+*.pyc
+*.pyo
+
+# Build outputs
+.next/
+out/
+dist/
+build/
+
+# Logs
+*.log
+agent_runner.log
+agent_runner_startup.log
+security_audit.log
+
+# Temp files
+FETCH_HEAD
+*.tmp
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Env files
+.env
+.env.local
+
+# Python
 .Python
 env/
 venv/
 ENV/
-build/
-develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
@@ -24,25 +52,11 @@ wheels/
 *.egg
 
 # Node
-node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.next/
-out/
-.DS_Store
-*.pem
-
-# IDEs
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
 
 # Environment
-.env
-.env.local
 .env.development.local
 .env.test.local
 .env.production.local
@@ -54,10 +68,6 @@ out/
 
 # Docker
 .dockerignore
-
-# OS
-.DS_Store
-Thumbs.db
 
 # Local Netlify folder
 .netlify
