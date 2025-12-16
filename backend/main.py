@@ -80,7 +80,35 @@ from .security_layer import (
 from .gis_engine import (
     LiDARProcessor, RadarProcessor, MultiSensorFusion,
     PointCloud, CoordinateSystem
-)
+)# ...existing code...
+from pydantic import BaseModel
+
+class VMRTransferRequest(BaseModel):
+    bytes_to_transfer: int
+    priority: float = 1.0
+    use_parallel: bool = False
+
+@app.post("/api/vmr/transfer")
+async def vmr_transfer_data(request: VMRTransferRequest):
+    """🔌 Transfer data through Virtual Memory Resistor"""
+    try:
+        if request.use_parallel:
+            result = vmr_array.parallel_transfer(request.bytes_to_transfer, request.priority)
+            return {
+                "vmr_type": "parallel_array",
+                "num_vmrs": 8,
+                "result": result,
+                "emoji": "🔌⚡🔌⚡🔌⚡🔌⚡"
+            }
+        else:
+            result = vmr.transfer_data(request.bytes_to_transfer, request.priority)
+            return {
+                "vmr_type": "single",
+                "result": result,
+                "emoji": "🔌"
+            }
+    except Exception as e:
+        return {"error": str(e), "emoji": "💥"}
 from .gis_validator import (
     GISDataValidator, GISDataType, ValidationStatus, LiDARValidator,
     RasterValidator, VectorValidator
