@@ -1754,7 +1754,7 @@ async def advanced_parallel_matmul(
 ):
     """🚀 Advanced Parallel MatMul with Optimization Control
     
-    Fine-grained control over parallel matrix multiplication:
+    Fine-grained control over matrix multiplication:
     - Choose tiling strategy
     - Enable/disable SIMD acceleration
     - Control memory prefetching
@@ -2750,6 +2750,7 @@ async def photo_to_3d_endpoint(
                     "format": "obj",
                     "vertices": len(vertices_np),
                     "faces": len(faces) // 3,
+                    "generation_time_ms": duration * 1000,
                     "source": "photo-to-3d-trained-model"
                 })
             else:
@@ -3507,7 +3508,6 @@ async def analyze_survey_cost(
                 "confidence": "high" if roi > 200 else "medium" if roi > 100 else "low"
             }
         }
-    
     except Exception as e:
         return JSONResponse(
             status_code=500,
@@ -3972,3 +3972,150 @@ async def auto_implement_endpoint(strategy: Dict[str, Any]):
         }
     except Exception as e:
         return {"success": False, "error": str(e)}
+
+
+# ============================================================================
+# VIRTUAL MEMORY RESISTOR ENDPOINTS
+# ============================================================================
+
+from backend.virtual_memory_resistor import (
+    VirtualMemoryResistor, 
+    ParallelVMRArray, 
+    ResistorMode
+)
+
+# Initialize VMR instances
+vmr = VirtualMemoryResistor(base_resistance=10.0, mode=ResistorMode.ADAPTIVE)
+vmr_array = ParallelVMRArray(num_resistors=8)  # 8 VMRs en paralelo
+
+
+@app.post("/api/vmr/transfer")
+async def vmr_transfer_data(
+    bytes_to_transfer: int,
+    priority: float = 1.0,
+    use_parallel: bool = False
+):
+    """🔌 Transfer data through Virtual Memory Resistor"""
+    try:
+        if use_parallel:
+            result = vmr_array.parallel_transfer(bytes_to_transfer, priority)
+            return {
+                "vmr_type": "parallel_array",
+                "num_vmrs": 8,
+                "result": result,
+                "emoji": "🔌⚡🔌⚡🔌⚡🔌⚡"
+            }
+        else:
+            result = vmr.transfer_data(bytes_to_transfer, priority)
+            return {
+                "vmr_type": "single",
+                "result": result,
+                "emoji": "🔌"
+            }
+    except Exception as e:
+        return {"error": str(e), "emoji": "💥"}
+
+
+@app.get("/api/vmr/stats")
+async def get_vmr_stats():
+    """📊 Get VMR statistics"""
+    return {
+        "single_vmr": vmr.get_stats(),
+        "parallel_array": vmr_array.get_array_stats(),
+        "emoji": "📊🔌"
+    }
+
+
+@app.post("/api/vmr/set-resistance")
+async def set_vmr_resistance(resistance: float):
+    """🎛️ Manually set VMR resistance"""
+    vmr.set_resistance(resistance)
+    for vmr_unit in vmr_array.vmrs:
+        vmr_unit.set_resistance(resistance)
+    
+    return {
+        "new_resistance": resistance,
+        "single_vmr": vmr.current_resistance,
+        "array_resistance": vmr_array.vmrs[0].current_resistance,
+        "message": f"🔌 All VMRs set to {resistance} Ohms",
+        "emoji": "⚡"
+    }
+
+
+@app.post("/api/vmr/benchmark")
+async def benchmark_vmr():
+    """🏎️💨 Benchmark VMR performance"""
+    test_sizes = [
+        1024 * 1024,           # 1 MB
+        10 * 1024 * 1024,      # 10 MB
+        100 * 1024 * 1024,     # 100 MB
+        500 * 1024 * 1024,     # 500 MB
+        1024 * 1024 * 1024     # 1 GB
+    ]
+    
+    # Single VMR benchmark
+    single_result = vmr.benchmark(test_sizes)
+    
+    # Parallel VMR benchmark
+    parallel_results = []
+    for size in test_sizes:
+        result = vmr_array.parallel_transfer(size, priority=1.0)
+        parallel_results.append({
+            "size_mb": size / (1024 * 1024),
+            "throughput_mbps": result["total_throughput_mbps"],
+            "speedup": result["speedup"],
+            "efficiency": result["efficiency"],
+            "power_watts": result["total_power_watts"]
+        })
+    
+    return {
+        "single_vmr": single_result,
+        "parallel_vmr": {
+            "benchmark_results": parallel_results,
+            "array_stats": vmr_array.get_array_stats()
+        },
+        "speedup_analysis": {
+            "theoretical_max": 8.0,  # 8 VMRs
+            "actual_avg": sum(r["speedup"] for r in parallel_results) / len(parallel_results),
+            "efficiency_percent": (sum(r["speedup"] for r in parallel_results) / len(parallel_results) / 8.0) * 100
+        },
+        "emoji": "🏎️💨🔥"
+    }
+
+
+@app.get("/api/vmr/live-monitor")
+async def vmr_live_monitor():
+    """📡 Real-time VMR monitoring"""
+    single_stats = vmr.get_stats()
+    array_stats = vmr_array.get_array_stats()
+    
+    # Calculate system-wide metrics
+    total_throughput = array_stats["total_throughput_mbps"]
+    total_power = array_stats["total_power_watts"]
+    
+    return {
+        "timestamp": time.time(),
+        "single_vmr": {
+            "resistance": single_stats["current_resistance_ohms"],
+            "throughput_mbps": single_stats["current_flow_mbps"],
+            "power_watts": single_stats["current_power_watts"],
+            "utilization": single_stats["utilization_percent"]
+        },
+        "parallel_array": {
+            "total_throughput_mbps": total_throughput,
+            "total_power_watts": total_power,
+            "parallel_resistance": array_stats["parallel_resistance_ohms"],
+            "num_vmrs": 8
+        },
+        "system_health": {
+            "status": "optimal" if total_throughput < 7000 else "high_load",
+            "efficiency": (total_throughput / 8000) * 100,  # 8 VMRs * 1000 MB/s
+            "overload_events": single_stats["overload_events"]
+        },
+        "emoji": "📡⚡" if total_throughput < 7000 else "📡🔥"
+    }
+
+
+# ============================================================================
+# END OF FILE
+# ============================================================================
