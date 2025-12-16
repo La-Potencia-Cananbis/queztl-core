@@ -84,7 +84,63 @@ from .gis_engine import (
 from pydantic import BaseModel
 
 class VMRTransferRequest(BaseModel):
-    bytes_to_transfer: int
+    bytes_to_transfer: int    from pydantic import BaseModel
+    
+    class VMRTransferRequest(BaseModel):
+        bytes_to_transfer: int
+        priority: float = 1.0
+        use_parallel: bool = False
+    
+    @app.post("/api/vmr/transfer")
+    async def vmr_transfer_data(request: VMRTransferRequest):
+        """🔌 Transfer data through Virtual Memory Resistor"""
+        try:
+            if request.use_parallel:
+                result = vmr_array.parallel_transfer(request.bytes_to_transfer, request.priority)
+                return {
+                    "vmr_type": "parallel_array",
+                    "num_vmrs": 8,
+                    "result": result,
+                    "emoji": "🔌⚡🔌⚡🔌⚡🔌⚡"
+                }
+            else:
+                result = vmr.transfer_data(request.bytes_to_transfer, request.priority)
+                return {
+                    "vmr_type": "single",
+                    "result": result,
+                    "emoji": "🔌"
+                }
+        except Exception as e:
+            return {"error": str(e), "emoji": "💥"}            # 1. Abre backend/main.py y reemplaza el endpoint /api/vmr/transfer por esto:
+            ````python
+            from pydantic import BaseModel
+            
+            class VMRTransferRequest(BaseModel):
+                bytes_to_transfer: int
+                priority: float = 1.0
+                use_parallel: bool = False
+            
+            @app.post("/api/vmr/transfer")
+            async def vmr_transfer_data(request: VMRTransferRequest):
+                """🔌 Transfer data through Virtual Memory Resistor"""
+                try:
+                    if request.use_parallel:
+                        result = vmr_array.parallel_transfer(request.bytes_to_transfer, request.priority)
+                        return {
+                            "vmr_type": "parallel_array",
+                            "num_vmrs": 8,
+                            "result": result,
+                            "emoji": "🔌⚡🔌⚡🔌⚡🔌⚡"
+                        }
+                    else:
+                        result = vmr.transfer_data(request.bytes_to_transfer, request.priority)
+                        return {
+                            "vmr_type": "single",
+                            "result": result,
+                            "emoji": "🔌"
+                        }
+                except Exception as e:
+                    return {"error": str(e), "emoji": "💥"}
     priority: float = 1.0
     use_parallel: bool = False
 
@@ -2437,9 +2493,16 @@ async def generate_3d_from_trained_model(
                 "prompt": prompt
             }
         else:
-            # Return JSON
-            result['generation_time_ms'] = duration * 1000
-            return result
+            mesh_data = mesh_to_json(result.mesh)
+            return {
+                "model": mesh_data,
+                "format": "json",
+                "prompt": result.prompt,
+                "style": result.style,
+                "generation_time": result.generation_time,
+                "vertices": result.vertices_count,
+                "faces": result.faces_count
+            }
     
     except Exception as e:
         return {
