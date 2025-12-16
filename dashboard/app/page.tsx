@@ -95,4 +95,4 @@ function StatCard({ title, value, icon, gradient }: any) {
             </div>
         </div>
     )
-} 
+}
