@@ -1,279 +1,279 @@
-from .gis_validator import (
-    GISDataValidator, GISDataType, ValidationStatus, LiDARValidator, RasterValidator, VectorValidator
+# from .gis_validator import (
+#     GISDataValidator, GISDataType, ValidationStatus, LiDARValidator, RasterValidator, VectorValidator
 )
 
 
 ================================================================================
-Copyright (c) 2025 QuetzalCore-Core Project
-All Rights Reserved.
+# Copyright (c) 2025 QuetzalCore-Core Project
+# All Rights Reserved.
 
-CONFIDENTIAL AND PROPRIETARY
-Patent Pending - USPTO Provisional Application
+# CONFIDENTIAL AND PROPRIETARY
+# Patent Pending - USPTO Provisional Application
 
-This file contains trade secrets and confidential information protected under:
+# This file contains trade secrets and confidential information protected under:
 - United States Patent Law (35 U.S.C.)
 - Uniform Trade Secrets Act
 - Economic Espionage Act (18 U.S.C. Section 1831-1839)
 
-PATENT-PENDING INNOVATIONS IN THIS FILE:
+# PATENT-PENDING INNOVATIONS IN THIS FILE:
 - Claim 2: Web-Native GPU API (27+ RESTful endpoints for GPU operations)
 - WebSocket real-time updates and performance monitoring
 - Session management and authentication system
 
-UNAUTHORIZED COPYING, DISTRIBUTION, OR USE IS STRICTLY PROHIBITED.
-Violations will result in civil and criminal prosecution.
+# UNAUTHORIZED COPYING, DISTRIBUTION, OR USE IS STRICTLY PROHIBITED.
+# Violations will result in civil and criminal prosecution.
 
-For licensing inquiries: legal@quetzalcore-core.com
+# For licensing inquiries: legal@quetzalcore-core.com
 ================================================================================
 """
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect, UploadFile, File
-from fastapi.middleware.cors import CORSMiddleware
+# from fastapi import FastAPI, WebSocket, WebSocketDisconnect, UploadFile, File
+# from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="QuetzalCore-Core Testing & Monitoring System")
+# app = FastAPI(title="QuetzalCore-Core Testing & Monitoring System")
 
 # Add CORS middleware
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=[
         "https://senasaitech.com",
         "http://localhost:3000",
         "https://queztl-core-backend.onrender.com"
     ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
 )
 
-from fastapi.responses import JSONResponse, StreamingResponse
-from pydantic import BaseModel
-from contextlib import asynccontextmanager
-import asyncio
-from typing import List, Dict, Any, Optional
-import json
-from datetime import datetime
-import psutil
-import sys
-import base64
-import random
+# from fastapi.responses import JSONResponse, StreamingResponse
+# from pydantic import BaseModel
+# from contextlib import asynccontextmanager
+# import asyncio
+# from typing import List, Dict, Any, Optional
+# import json
+# from datetime import datetime
+# import psutil
+# import sys
+# import base64
+# import random
 
-from .database import init_db, get_db
-from .models import PerformanceMetric, TestScenario
-from .problem_generator import ProblemGenerator
-from .training_engine import TrainingEngine
-from .power_meter import PowerMeter, CreativeTrainer
-from .advanced_workloads import GPU3DWorkload, CryptoMiningWorkload, ExtremeCombinedWorkload, NUMBA_AVAILABLE
-from .gpu_simulator import SoftwareGPU, VectorizedMiner, QuadLinkedList, ParallelTaskScheduler
-from .gpu_optimizer import (
-    SIMDAccelerator, MemoryHierarchyOptimizer, SpeculativeExecutor,
-    QuantumLikeParallelism, PerformanceBenchmark, ComparisonWithHardware
+# from .database import init_db, get_db
+# from .models import PerformanceMetric, TestScenario
+# from .problem_generator import ProblemGenerator
+# from .training_engine import TrainingEngine
+# from .power_meter import PowerMeter, CreativeTrainer
+# from .advanced_workloads import GPU3DWorkload, CryptoMiningWorkload, ExtremeCombinedWorkload, NUMBA_AVAILABLE
+# from .gpu_simulator import SoftwareGPU, VectorizedMiner, QuadLinkedList, ParallelTaskScheduler
+# from .gpu_optimizer import (
+#     SIMDAccelerator, MemoryHierarchyOptimizer, SpeculativeExecutor,
+#     QuantumLikeParallelism, PerformanceBenchmark, ComparisonWithHardware
 )
-from .parallel_gpu_orchestrator import (
-    ParallelGPUOrchestrator, GPUUnitPool, TaskPartitioner, ParallelGPUTask
+# from .parallel_gpu_orchestrator import (
+#     ParallelGPUOrchestrator, GPUUnitPool, TaskPartitioner, ParallelGPUTask
 )
-from .ai_swarm import MessageBus, SwarmCoordinator, AgentHierarchy
-from .webgpu_driver import WebGPUDriver, WebGPUAPI, OpenGLCompatLayer, BufferType, TextureFormat
-from .security_layer import (
-    get_security_manager, secure_operation, sanitize_output,
-    check_security_status, SecureContext
+# from .ai_swarm import MessageBus, SwarmCoordinator, AgentHierarchy
+# from .webgpu_driver import WebGPUDriver, WebGPUAPI, OpenGLCompatLayer, BufferType, TextureFormat
+# from .security_layer import (
+#     get_security_manager, secure_operation, sanitize_output,
+#     check_security_status, SecureContext
 )
-from .gis_engine import (
-    LiDARProcessor, RadarProcessor, MultiSensorFusion,
-    PointCloud, CoordinateSystem
+# from .gis_engine import (
+#     LiDARProcessor, RadarProcessor, MultiSensorFusion,
+#     PointCloud, CoordinateSystem
 )# ...existing code...
-from pydantic import BaseModel
+# from pydantic import BaseModel
 
-class VMRTransferRequest(BaseModel):
-    bytes_to_transfer: int    from pydantic import BaseModel
+# class VMRTransferRequest(BaseModel):
+#     bytes_to_transfer: int    from pydantic import BaseModel
     
-    class VMRTransferRequest(BaseModel):
-        bytes_to_transfer: int
-        priority: float = 1.0
-        use_parallel: bool = False
+#     class VMRTransferRequest(BaseModel):
+#         bytes_to_transfer: int
+#         priority: float = 1.0
+#         use_parallel: bool = False
     
     @app.post("/api/vmr/transfer")
-    async def vmr_transfer_data(request: VMRTransferRequest):
+#     async def vmr_transfer_data(request: VMRTransferRequest):
         """ Transfer data through Virtual Memory Resistor"""
-        try:
-            if request.use_parallel:
-                result = vmr_array.parallel_transfer(request.bytes_to_transfer, request.priority)
-                return {
+#         try:
+#             if request.use_parallel:
+#                 result = vmr_array.parallel_transfer(request.bytes_to_transfer, request.priority)
+#                 return {
                     "vmr_type": "parallel_array",
                     "num_vmrs": 8,
                     "result": result,
                     "emoji": ""
                 }
-            else:
-                result = vmr.transfer_data(request.bytes_to_transfer, request.priority)
-                return {
+#             else:
+#                 result = vmr.transfer_data(request.bytes_to_transfer, request.priority)
+#                 return {
                     "vmr_type": "single",
                     "result": result,
                     "emoji": ""
                 }
-        except Exception as e:
-            return {"error": str(e), "emoji": ""}            # 1. Abre backend/main.py y reemplaza el endpoint /api/vmr/transfer por esto:
+#         except Exception as e:
+#             return {"error": str(e), "emoji": ""}            # 1. Abre backend/main.py y reemplaza el endpoint /api/vmr/transfer por esto:
             ````python
-            from pydantic import BaseModel
+#             from pydantic import BaseModel
             
-            class VMRTransferRequest(BaseModel):
-                bytes_to_transfer: int
-                priority: float = 1.0
-                use_parallel: bool = False
+#             class VMRTransferRequest(BaseModel):
+#                 bytes_to_transfer: int
+#                 priority: float = 1.0
+#                 use_parallel: bool = False
             
             @app.post("/api/vmr/transfer")
-            async def vmr_transfer_data(request: VMRTransferRequest):
+#             async def vmr_transfer_data(request: VMRTransferRequest):
                 """ Transfer data through Virtual Memory Resistor"""
-                try:
-                    if request.use_parallel:
-                        result = vmr_array.parallel_transfer(request.bytes_to_transfer, request.priority)
-                        return {
+#                 try:
+#                     if request.use_parallel:
+#                         result = vmr_array.parallel_transfer(request.bytes_to_transfer, request.priority)
+#                         return {
                             "vmr_type": "parallel_array",
                             "num_vmrs": 8,
                             "result": result,
                             "emoji": ""
                         }
-                    else:
-                        result = vmr.transfer_data(request.bytes_to_transfer, request.priority)
-                        return {
+#                     else:
+#                         result = vmr.transfer_data(request.bytes_to_transfer, request.priority)
+#                         return {
                             "vmr_type": "single",
                             "result": result,
                             "emoji": ""
                         }
-                except Exception as e:
-                    return {"error": str(e), "emoji": ""}
-    priority: float = 1.0
-    use_parallel: bool = False
+#                 except Exception as e:
+#                     return {"error": str(e), "emoji": ""}
+#     priority: float = 1.0
+#     use_parallel: bool = False
 
 @app.post("/api/vmr/transfer")
-async def vmr_transfer_data(request: VMRTransferRequest):
+# async def vmr_transfer_data(request: VMRTransferRequest):
     """ Transfer data through Virtual Memory Resistor"""
-    try:
-        if request.use_parallel:
-            result = vmr_array.parallel_transfer(request.bytes_to_transfer, request.priority)
-            return {
+#     try:
+#         if request.use_parallel:
+#             result = vmr_array.parallel_transfer(request.bytes_to_transfer, request.priority)
+#             return {
                 "vmr_type": "parallel_array",
                 "num_vmrs": 8,
                 "result": result,
                 "emoji": ""
             }
-        else:
-            result = vmr.transfer_data(request.bytes_to_transfer, request.priority)
-            return {
+#         else:
+#             result = vmr.transfer_data(request.bytes_to_transfer, request.priority)
+#             return {
                 "vmr_type": "single",
                 "result": result,
                 "emoji": ""
             }
-    except Exception as e:
-        return {"error": str(e), "emoji": ""}
-from .gis_validator import (
-    GISDataValidator, GISDataType, ValidationStatus, LiDARValidator,
-    RasterValidator, VectorValidator
+#     except Exception as e:
+#         return {"error": str(e), "emoji": ""}
+# from .gis_validator import (
+#     GISDataValidator, GISDataType, ValidationStatus, LiDARValidator,
+#     RasterValidator, VectorValidator
 )
-from .gis_geophysics_integrator import GISGeophysicsIntegrator
-from .gis_geophysics_trainer import GISGeophysicsTrainer, TrainingDataset
-from .gis_geophysics_improvement import AdaptiveImprovementEngine
-from .geophysics_engine import (
-    IGRFModel, WMMModel, MagneticSurvey, ResistivitySurvey, SeismicSurvey,
-    MagneticAnalyzer, ResistivityAnalyzer, SeismicAnalyzer, SubsurfaceModeler,
-    MiningMagnetometryProcessor  # NEW: Mining-specific MAG processing
+# from .gis_geophysics_integrator import GISGeophysicsIntegrator
+# from .gis_geophysics_trainer import GISGeophysicsTrainer, TrainingDataset
+# from .gis_geophysics_improvement import AdaptiveImprovementEngine
+# from .geophysics_engine import (
+#     IGRFModel, WMMModel, MagneticSurvey, ResistivitySurvey, SeismicSurvey,
+#     MagneticAnalyzer, ResistivityAnalyzer, SeismicAnalyzer, SubsurfaceModeler,
+#     MiningMagnetometryProcessor  # NEW: Mining-specific MAG processing
 )
-from .qp_protocol import (
-    QPProtocol, QPHandler, QPMessageType, QPGPUHandler, QPGISHandler,
-    create_qp_handler
+# from .qp_protocol import (
+#     QPProtocol, QPHandler, QPMessageType, QPGPUHandler, QPGISHandler,
+#     create_qp_handler
 )
-import time
-import hashlib
-import numpy as np
-import torch
-from PIL import Image
-import io
+# import time
+# import hashlib
+# import numpy as np
+# import torch
+# from PIL import Image
+# import io
 
 # WebSocket connection manager
-class ConnectionManager:
-    def __init__(self):
-        self.active_connections: List[WebSocket] = []
+# class ConnectionManager:
+#     def __init__(self):
+#         self.active_connections: List[WebSocket] = []
 
-    async def connect(self, websocket: WebSocket):
-        await websocket.accept()
-        self.active_connections.append(websocket)
+#     async def connect(self, websocket: WebSocket):
+#         await websocket.accept()
+#         self.active_connections.append(websocket)
 
-    def disconnect(self, websocket: WebSocket):
-        self.active_connections.remove(websocket)
+#     def disconnect(self, websocket: WebSocket):
+#         self.active_connections.remove(websocket)
 
-    async def broadcast(self, message: dict):
-        for connection in self.active_connections:
-            try:
-                await connection.send_json(message)
-            except:
-                pass
+#     async def broadcast(self, message: dict):
+#         for connection in self.active_connections:
+#             try:
+#                 await connection.send_json(message)
+#             except:
+#                 pass
 
-manager = ConnectionManager()
-problem_generator = ProblemGenerator()
-training_engine = TrainingEngine()
-power_meter = PowerMeter()
-creative_trainer = CreativeTrainer()
-gpu_workload = GPU3DWorkload()
-mining_workload = CryptoMiningWorkload()
-combined_workload = ExtremeCombinedWorkload()
+# manager = ConnectionManager()
+# problem_generator = ProblemGenerator()
+# training_engine = TrainingEngine()
+# power_meter = PowerMeter()
+# creative_trainer = CreativeTrainer()
+# gpu_workload = GPU3DWorkload()
+# mining_workload = CryptoMiningWorkload()
+# combined_workload = ExtremeCombinedWorkload()
 
 #  SOFTWARE GPU & QUANTUM SYSTEMS
-software_gpu = SoftwareGPU(num_blocks=256, threads_per_block=32)  # 8192 threads!
-vectorized_miner = VectorizedMiner(software_gpu)
-quad_list = QuadLinkedList()
-task_scheduler = ParallelTaskScheduler()
+# software_gpu = SoftwareGPU(num_blocks=256, threads_per_block=32)  # 8192 threads!
+# vectorized_miner = VectorizedMiner(software_gpu)
+# quad_list = QuadLinkedList()
+# task_scheduler = ParallelTaskScheduler()
 
 # 🎯 GPU OPTIMIZATION MODULES - BEAT HARDWARE
-simd_accelerator = SIMDAccelerator()
-memory_optimizer = MemoryHierarchyOptimizer()
-speculative_executor = SpeculativeExecutor()
-quantum_parallelism = QuantumLikeParallelism()
-gpu_benchmarker = PerformanceBenchmark()
-hardware_comparison = ComparisonWithHardware()
+# simd_accelerator = SIMDAccelerator()
+# memory_optimizer = MemoryHierarchyOptimizer()
+# speculative_executor = SpeculativeExecutor()
+# quantum_parallelism = QuantumLikeParallelism()
+# gpu_benchmarker = PerformanceBenchmark()
+# hardware_comparison = ComparisonWithHardware()
 
 #  PARALLEL GPU ORCHESTRATOR - Multiple GPUs for Real Performance
-parallel_gpu_orchestrator = ParallelGPUOrchestrator(min_units=2, max_units=8)
+# parallel_gpu_orchestrator = ParallelGPUOrchestrator(min_units=2, max_units=8)
 
 # 🧠 AI SWARM INTELLIGENCE
-message_bus = MessageBus(buffer_size=100000)
-swarm_coordinator = SwarmCoordinator(message_bus)
-agent_hierarchy = AgentHierarchy(message_bus)
+# message_bus = MessageBus(buffer_size=100000)
+# swarm_coordinator = SwarmCoordinator(message_bus)
+# agent_hierarchy = AgentHierarchy(message_bus)
 
 # 🖥 WEB GPU DRIVER
-web_gpu_driver = WebGPUDriver(software_gpu)
-web_gpu_api = WebGPUAPI(web_gpu_driver)
-opengl_compat = OpenGLCompatLayer(web_gpu_driver)
+# web_gpu_driver = WebGPUDriver(software_gpu)
+# web_gpu_api = WebGPUAPI(web_gpu_driver)
+# opengl_compat = OpenGLCompatLayer(web_gpu_driver)
 
 # 🗺 GIS & GEOPHYSICS SYSTEMS
-gis_validator = GISDataValidator()
-gis_integrator = GISGeophysicsIntegrator()
-gis_trainer = GISGeophysicsTrainer()
-gis_improvement = AdaptiveImprovementEngine()
+# gis_validator = GISDataValidator()
+# gis_integrator = GISGeophysicsIntegrator()
+# gis_trainer = GISGeophysicsTrainer()
+# gis_improvement = AdaptiveImprovementEngine()
 
 # 🌐 v1.2 - DISTRIBUTED NETWORK & AUTO-SCALING
-from .distributed_network import NetworkCoordinator, WorkloadType
-from .autoscaler import AutoScaler, ScalingPolicy, ScalingTarget
-from .real_world_benchmarks import RealWorldBenchmarkSuite
+# from .distributed_network import NetworkCoordinator, WorkloadType
+# from .autoscaler import AutoScaler, ScalingPolicy, ScalingTarget
+# from .real_world_benchmarks import RealWorldBenchmarkSuite
 
 # 🎨 GEN3D ENGINE - Real AI 3D Generation with Shap-E
-from .gen3d_engine import (
-    AI3DGenerator, Mesh3D, Generation3DResult
+# from .gen3d_engine import (
+#     AI3DGenerator, Mesh3D, Generation3DResult
 )
 
 # 🎓 TRAINED MODEL INFERENCE - Custom trained 3D models
-from .trained_model_inference import get_inference_engine
+# from .trained_model_inference import get_inference_engine
 
 # Helper functions for mesh export
-def mesh_to_obj(mesh: Mesh3D) -> str:
+# def mesh_to_obj(mesh: Mesh3D) -> str:
     """Convert Mesh3D to OBJ format"""
-    lines = []
-    for v in mesh.vertices:
-        lines.append(f"v {v[0]} {v[1]} {v[2]}")
-    for f in mesh.faces.reshape(-1, 3):
-        lines.append(f"f {f[0]+1} {f[1]+1} {f[2]+1}")
-    return "\n".join(lines)
+#     lines = []
+#     for v in mesh.vertices:
+#         lines.append(f"v {v[0]} {v[1]} {v[2]}")
+#     for f in mesh.faces.reshape(-1, 3):
+#         lines.append(f"f {f[0]+1} {f[1]+1} {f[2]+1}")
+#     return "\n".join(lines)
 
-def mesh_to_json(mesh: Mesh3D) -> dict:
+# def mesh_to_json(mesh: Mesh3D) -> dict:
     """Convert Mesh3D to JSON format"""
-    return {
+#     return {
         "vertices": mesh.vertices.flatten().tolist(),
         "faces": mesh.faces.flatten().tolist(),
         "normals": mesh.normals.flatten().tolist() if mesh.normals is not None else [],
@@ -282,120 +282,120 @@ def mesh_to_json(mesh: Mesh3D) -> dict:
     }
 
 # 🎨 GEN3D DISTRIBUTED WORKLOAD - On-Demand Agent Spawning
-from .gen3d_workload import (
-    Gen3DWorkloadManager, Gen3DAutoScaler, Gen3DTask, Gen3DTaskType
+# from .gen3d_workload import (
+#     Gen3DWorkloadManager, Gen3DAutoScaler, Gen3DTask, Gen3DTaskType
 )
 
 # Initialize distributed coordinator
-network_coordinator = NetworkCoordinator(port=8000)
+# network_coordinator = NetworkCoordinator(port=8000)
 
 # Initialize auto-scaler with aggressive scaling
-auto_scaler = AutoScaler(
-    registry=network_coordinator.registry,
-    scheduler=network_coordinator.scheduler,
-    policy=ScalingPolicy.PREDICTIVE,
-    target=ScalingTarget(
-        min_nodes=1,
-        max_nodes=100,  # Scale to 100 nodes dynamically!
-        target_cpu_utilization=0.70,
-        target_queue_depth=10,
-        scale_up_threshold=0.80,
-        scale_down_threshold=0.30,
-        cooldown_seconds=60.0  # Fast scaling
+# auto_scaler = AutoScaler(
+#     registry=network_coordinator.registry,
+#     scheduler=network_coordinator.scheduler,
+#     policy=ScalingPolicy.PREDICTIVE,
+#     target=ScalingTarget(
+#         min_nodes=1,
+#         max_nodes=100,  # Scale to 100 nodes dynamically!
+#         target_cpu_utilization=0.70,
+#         target_queue_depth=10,
+#         scale_up_threshold=0.80,
+#         scale_down_threshold=0.30,
+#         cooldown_seconds=60.0  # Fast scaling
     )
 )
 
 # Initialize Gen3D workload manager with on-demand spawning
-gen3d_autoscaler = Gen3DAutoScaler(auto_scaler)
-gen3d_workload = Gen3DWorkloadManager(
-    hive_scheduler=network_coordinator.scheduler,
-    hive_autoscaler=gen3d_autoscaler
+# gen3d_autoscaler = Gen3DAutoScaler(auto_scaler)
+# gen3d_workload = Gen3DWorkloadManager(
+#     hive_scheduler=network_coordinator.scheduler,
+#     hive_autoscaler=gen3d_autoscaler
 )
 
 # Global QP Protocol handler (initialized in lifespan)
-qp_handler = None
+# qp_handler = None
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+# async def lifespan(app: FastAPI):
     # Startup
-    await init_db()
-    print(" Database initialized")
+#     await init_db()
+#     print(" Database initialized")
     
     # Start security monitoring
-    security_manager = get_security_manager()
-    await security_manager.start_monitoring()
-    print("🔒 Security monitoring started")
+#     security_manager = get_security_manager()
+#     await security_manager.start_monitoring()
+#     print("🔒 Security monitoring started")
     
     # v1.2 - Start distributed network
-    await network_coordinator.start()
-    print("🌐 Distributed network coordinator started")
+#     await network_coordinator.start()
+#     print("🌐 Distributed network coordinator started")
     
     # Start auto-scaler
-    asyncio.create_task(auto_scaler.run_scaling_loop())
-    print(" Auto-scaler started (will scale 1-100 nodes)")
+#     asyncio.create_task(auto_scaler.run_scaling_loop())
+#     print(" Auto-scaler started (will scale 1-100 nodes)")
     
     # Start Gen3D workload processor (spawns workers on-demand)
-    asyncio.create_task(gen3d_workload.process_tasks())
-    print("🎨 Gen3D workload manager started (on-demand worker spawning)")
+#     asyncio.create_task(gen3d_workload.process_tasks())
+#     print("🎨 Gen3D workload manager started (on-demand worker spawning)")
     
     # Initialize QP Protocol Handler (QuetzalCore Protocol - 10-20x faster than REST)
-    global qp_handler
-    qp_handler = create_qp_handler(
-        gpu_orchestrator=parallel_gpu_orchestrator,
-        gis_validator=gis_validator,
-        gis_integrator=None,  # Will be created below
-        gis_trainer=None      # Will be created below
+#     global qp_handler
+#     qp_handler = create_qp_handler(
+#         gpu_orchestrator=parallel_gpu_orchestrator,
+#         gis_validator=gis_validator,
+#         gis_integrator=None,  # Will be created below
+#         gis_trainer=None      # Will be created below
     )
-    print(" QP Protocol handler initialized (Binary WebSocket - 10-20x faster than REST)")
+#     print(" QP Protocol handler initialized (Binary WebSocket - 10-20x faster than REST)")
     
-    yield
+#     yield
     
     # Shutdown
-    print("👋 Shutting down...")
+#     print("👋 Shutting down...")
     
     # Stop distributed network
-    await network_coordinator.stop()
-    print("🌐 Distributed network stopped")
+#     await network_coordinator.stop()
+#     print("🌐 Distributed network stopped")
     
     # Stop security monitoring
-    await security_manager.stop_monitoring()
+#     await security_manager.stop_monitoring()
     
     # Force cleanup of any remaining allocations
-    security_manager.memory_manager.force_cleanup()
-    print("🔒 Security cleanup complete")
+#     security_manager.memory_manager.force_cleanup()
+#     print("🔒 Security cleanup complete")
 
-app = FastAPI(
-    title="QuetzalCore-Core Testing & Monitoring System",
-    description="Real-time performance monitoring and dynamic training system",
-    version="1.0.0",
-    lifespan=lifespan
+# app = FastAPI(
+#     title="QuetzalCore-Core Testing & Monitoring System",
+#     description="Real-time performance monitoring and dynamic training system",
+#     version="1.0.0",
+#     lifespan=lifespan
 )
 
 # CORS middleware - Allow connections from any origin
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins for maximum compatibility
-    allow_credentials=False,  # Set to False when using wildcard origins
-    allow_methods=["*"],
-    allow_headers=["*"],
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],  # Allow all origins for maximum compatibility
+#     allow_credentials=False,  # Set to False when using wildcard origins
+#     allow_methods=["*"],
+#     allow_headers=["*"],
 )
 
 @app.get("/")
-async def root():
-    return {
+# async def root():
+#     return {
         "service": "QuetzalCore-Core Testing & Monitoring System",
         "status": "running",
         "version": "1.0.0"
     }
 
 @app.get("/api/health")
-async def health_check():
-    return {"status": "healthy", "timestamp": datetime.utcnow().isoformat()}
+# async def health_check():
+#     return {"status": "healthy", "timestamp": datetime.utcnow().isoformat()}
 
 @app.get("/api/metrics")
-async def get_metrics():
+# async def get_metrics():
     """Get real-time system metrics for dashboard"""
-    return {
+#     return {
         "packetsPerSecond": random.randint(150000, 200000),
         "activeNodes": random.randint(800, 900),
         "latency": round(random.uniform(1.5, 3.5), 1),
@@ -408,93 +408,93 @@ async def get_metrics():
 # ============================================================================
 
 @app.get("/api/v1.2/network/status")
-async def get_network_status():
+# async def get_network_status():
     """Get distributed network status"""
-    return network_coordinator.get_network_status()
+#     return network_coordinator.get_network_status()
 
 @app.get("/api/v1.2/autoscaler/status")
-async def get_autoscaler_status():
+# async def get_autoscaler_status():
     """Get auto-scaler status and metrics"""
-    return auto_scaler.get_stats()
+#     return auto_scaler.get_stats()
 
-class WorkloadSubmission(BaseModel):
-    workload_type: str
-    payload: Dict[str, Any]
-    priority: int = 5
+# class WorkloadSubmission(BaseModel):
+#     workload_type: str
+#     payload: Dict[str, Any]
+#     priority: int = 5
 
 @app.post("/api/v1.2/workload/submit")
-async def submit_distributed_workload(submission: WorkloadSubmission):
+# async def submit_distributed_workload(submission: WorkloadSubmission):
     """Submit a workload for distributed execution"""
-    workload = WorkloadType(submission.workload_type)
-    task_id = await network_coordinator.submit_workload(
-        workload_type=workload,
-        payload=submission.payload,
-        priority=submission.priority
+#     workload = WorkloadType(submission.workload_type)
+#     task_id = await network_coordinator.submit_workload(
+#         workload_type=workload,
+#         payload=submission.payload,
+#         priority=submission.priority
     )
-    return {"task_id": task_id, "status": "submitted"}
+#     return {"task_id": task_id, "status": "submitted"}
 
 @app.get("/api/v1.2/workload/{task_id}/status")
-async def get_task_status(task_id: str):
+# async def get_task_status(task_id: str):
     """Get status of a distributed task"""
-    task = network_coordinator.scheduler.active_tasks.get(task_id)
-    if not task:
+#     task = network_coordinator.scheduler.active_tasks.get(task_id)
+#     if not task:
         # Check completed tasks
-        for t in network_coordinator.scheduler.completed_tasks:
-            if t.task_id == task_id:
-                return {
+#         for t in network_coordinator.scheduler.completed_tasks:
+#             if t.task_id == task_id:
+#                 return {
                     "task_id": task_id,
                     "status": t.status,
                     "result": t.result,
                     "execution_time": t.execution_time
                 }
-        return {"error": "Task not found"}, 404
+#         return {"error": "Task not found"}, 404
     
-    return {
+#     return {
         "task_id": task_id,
         "status": task.status,
         "assigned_node": task.assigned_node_id
     }
 
 @app.post("/api/v1.2/nodes/register")
-async def register_worker_node(node_data: Dict[str, Any]):
+# async def register_worker_node(node_data: Dict[str, Any]):
     """Register a new worker node"""
-    from .distributed_network import ComputeNode, NodeCapabilities, NodeType, ComputeCapability
+#     from .distributed_network import ComputeNode, NodeCapabilities, NodeType, ComputeCapability
     
     # Create node from data
-    capabilities = NodeCapabilities(
-        node_type=NodeType(node_data["capabilities"]["node_type"]),
-        compute_apis=[ComputeCapability(c) for c in node_data["capabilities"]["compute_apis"]],
-        cpu_cores=node_data["capabilities"]["cpu_cores"],
-        cpu_threads=node_data["capabilities"]["cpu_threads"],
-        ram_gb=node_data["capabilities"]["ram_gb"],
-        gpu_vram_gb=node_data["capabilities"].get("gpu_vram_gb", 0.0),
-        gpu_model=node_data["capabilities"].get("gpu_model"),
-        has_ane=node_data["capabilities"].get("has_ane", False)
+#     capabilities = NodeCapabilities(
+#         node_type=NodeType(node_data["capabilities"]["node_type"]),
+#         compute_apis=[ComputeCapability(c) for c in node_data["capabilities"]["compute_apis"]],
+#         cpu_cores=node_data["capabilities"]["cpu_cores"],
+#         cpu_threads=node_data["capabilities"]["cpu_threads"],
+#         ram_gb=node_data["capabilities"]["ram_gb"],
+#         gpu_vram_gb=node_data["capabilities"].get("gpu_vram_gb", 0.0),
+#         gpu_model=node_data["capabilities"].get("gpu_model"),
+#         has_ane=node_data["capabilities"].get("has_ane", False)
     )
     
-    node = ComputeNode(
-        node_id=node_data["node_id"],
-        hostname=node_data["hostname"],
-        ip_address=node_data["ip_address"],
-        port=node_data["port"],
-        capabilities=capabilities
+#     node = ComputeNode(
+#         node_id=node_data["node_id"],
+#         hostname=node_data["hostname"],
+#         ip_address=node_data["ip_address"],
+#         port=node_data["port"],
+#         capabilities=capabilities
     )
     
-    await network_coordinator.registry.register_node(node)
-    return {"status": "registered", "node_id": node.node_id}
+#     await network_coordinator.registry.register_node(node)
+#     return {"status": "registered", "node_id": node.node_id}
 
 @app.post("/api/v1.2/nodes/{node_id}/heartbeat")
-async def node_heartbeat(node_id: str):
+# async def node_heartbeat(node_id: str):
     """Receive heartbeat from worker node"""
-    await network_coordinator.registry.update_heartbeat(node_id)
-    return {"status": "ok"}
+#     await network_coordinator.registry.update_heartbeat(node_id)
+#     return {"status": "ok"}
 
 @app.get("/api/v1.2/benchmarks/realworld")
-async def run_realworld_benchmarks():
+# async def run_realworld_benchmarks():
     """Run comprehensive real-world benchmark suite"""
-    results = await RealWorldBenchmarkSuite.run_all()
+#     results = await RealWorldBenchmarkSuite.run_all()
     
-    return {
+#     return {
         "timestamp": datetime.utcnow().isoformat(),
         "benchmarks": [
             {
@@ -505,238 +505,238 @@ async def run_realworld_benchmarks():
                 "details": r.details,
                 "comparison": r.comparison
             }
-            for r in results
+#             for r in results
         ]
     }
 
-class ScaleRequest(BaseModel):
-    action: str  # "up" or "down"
-    count: int = 1
+# class ScaleRequest(BaseModel):
+#     action: str  # "up" or "down"
+#     count: int = 1
 
 @app.post("/api/v1.2/scale/manual")
-async def manual_scale(request: ScaleRequest):
+# async def manual_scale(request: ScaleRequest):
     """Manually scale nodes up or down"""
-    if request.action == "up":
-        await auto_scaler.scale_up(request.count)
-        return {"status": "scaling_up", "count": request.count}
-    elif request.action == "down":
-        await auto_scaler.scale_down(request.count)
-        return {"status": "scaling_down", "count": request.count}
-    else:
-        return {"error": "Invalid action. Use 'up' or 'down'"}, 400
+#     if request.action == "up":
+#         await auto_scaler.scale_up(request.count)
+#         return {"status": "scaling_up", "count": request.count}
+#     elif request.action == "down":
+#         await auto_scaler.scale_down(request.count)
+#         return {"status": "scaling_down", "count": request.count}
+#     else:
+#         return {"error": "Invalid action. Use 'up' or 'down'"}, 400
 
 # ============================================================================
 # ORIGINAL ENDPOINTS
 # ============================================================================
 
 @app.get("/api/metrics/latest")
-async def get_latest_metrics():
+# async def get_latest_metrics():
     """Get the latest performance metrics"""
-    metrics = await training_engine.get_latest_metrics(limit=100)
-    return {"metrics": metrics}
+#     metrics = await training_engine.get_latest_metrics(limit=100)
+#     return {"metrics": metrics}
 
 @app.get("/api/metrics/summary")
-async def get_metrics_summary():
+# async def get_metrics_summary():
     """Get aggregated metrics summary"""
-    summary = await training_engine.get_metrics_summary()
-    return summary
+#     summary = await training_engine.get_metrics_summary()
+#     return summary
 
 @app.post("/api/scenarios/generate")
-async def generate_scenario():
+# async def generate_scenario():
     """Generate a new training scenario"""
-    scenario = await problem_generator.generate_scenario()
-    return scenario
+#     scenario = await problem_generator.generate_scenario()
+#     return scenario
 
 @app.post("/api/scenarios/{scenario_id}/execute")
-async def execute_scenario(scenario_id: str):
+# async def execute_scenario(scenario_id: str):
     """Execute a training scenario and collect metrics"""
-    result = await training_engine.execute_scenario(scenario_id)
+#     result = await training_engine.execute_scenario(scenario_id)
     
     # Broadcast results to all connected clients
-    await manager.broadcast({
+#     await manager.broadcast({
         "type": "scenario_completed",
         "data": result
     })
     
-    return result
+#     return result
 
 @app.get("/api/training/status")
-async def get_training_status():
+# async def get_training_status():
     """Get current training status and progress"""
-    status = await training_engine.get_status()
-    return status
+#     status = await training_engine.get_status()
+#     return status
 
 @app.post("/api/training/start")
-async def start_training():
+# async def start_training():
     """Start continuous training with dynamic problems"""
-    asyncio.create_task(training_engine.start_continuous_training(manager))
-    return {"status": "training_started"}
+#     asyncio.create_task(training_engine.start_continuous_training(manager))
+#     return {"status": "training_started"}
 
 @app.post("/api/training/stop")
-async def stop_training():
+# async def stop_training():
     """Stop continuous training"""
-    await training_engine.stop_training()
-    return {"status": "training_stopped"}
+#     await training_engine.stop_training()
+#     return {"status": "training_stopped"}
 
 @app.websocket("/ws/metrics")
-async def websocket_endpoint(websocket: WebSocket):
+# async def websocket_endpoint(websocket: WebSocket):
     """WebSocket endpoint for real-time metrics streaming"""
-    await manager.connect(websocket)
-    try:
-        while True:
+#     await manager.connect(websocket)
+#     try:
+#         while True:
             # Keep connection alive and receive any client messages
-            data = await websocket.receive_text()
-            if data == "ping":
-                await websocket.send_text("pong")
-    except WebSocketDisconnect:
-        manager.disconnect(websocket)
+#             data = await websocket.receive_text()
+#             if data == "ping":
+#                 await websocket.send_text("pong")
+#     except WebSocketDisconnect:
+#         manager.disconnect(websocket)
 
 @app.websocket("/ws/qp")
-async def qp_protocol_endpoint(websocket: WebSocket):
+# async def qp_protocol_endpoint(websocket: WebSocket):
     """
-    QuetzalCore Protocol (QP) WebSocket Endpoint
-    Binary protocol - 10-20x faster than REST
+#     QuetzalCore Protocol (QP) WebSocket Endpoint
+# #     Binary protocol - 10-20x faster than REST
     
-    Message Format:
+#     Message Format:
     ┌──────────┬──────────┬──────────┬──────────────┐
     │  Magic   │  Type    │  Length  │   Payload    │
     │ (2 bytes)│ (1 byte) │ (4 bytes)│  (N bytes)   │
     └──────────┴──────────┴──────────┴──────────────┘
       0x5150    0x01-0xFF   uint32     data
     
-    Supported Operations:
+#     Supported Operations:
     - GPU: Parallel MatMul, Conv2D, Pool Status, Benchmark
     - GIS: LiDAR/Raster Validation, Integration, Training, Feedback
     - System: Metrics, Status
     """
     # Generate client ID
-    client_id = f"qp_{id(websocket)}_{int(time.time())}"
+#     client_id = f"qp_{id(websocket)}_{int(time.time())}"
     
     # Connect client
-    await qp_handler.connect(client_id, websocket)
+#     await qp_handler.connect(client_id, websocket)
     
-    try:
-        while True:
+#     try:
+#         while True:
             # Receive binary message
-            data = await websocket.receive_bytes()
+#             data = await websocket.receive_bytes()
             
             # Handle message
-            result = await qp_handler.handle_message(client_id, data)
+#             result = await qp_handler.handle_message(client_id, data)
             
             # Handle streaming response
-            if hasattr(result, '__aiter__'):
+#             if hasattr(result, '__aiter__'):
                 # Stream responses
-                await qp_handler.stream_response(client_id, result)
-            elif result:
+#                 await qp_handler.stream_response(client_id, result)
+#             elif result:
                 # Single response
-                await websocket.send_bytes(result)
+#                 await websocket.send_bytes(result)
                 
-    except WebSocketDisconnect:
-        qp_handler.disconnect(client_id)
-    except Exception as e:
-        print(f"QP Protocol error: {e}")
+#     except WebSocketDisconnect:
+#         qp_handler.disconnect(client_id)
+#     except Exception as e:
+#         print(f"QP Protocol error: {e}")
         # Send error message
-        error_msg = QPProtocol.pack_json(QPMessageType.ERROR, {
+#         error_msg = QPProtocol.pack_json(QPMessageType.ERROR, {
             "error": str(e),
             "type": type(e).__name__
         })
-        try:
-            await websocket.send_bytes(error_msg)
-        except:
-            pass
-        qp_handler.disconnect(client_id)
+#         try:
+#             await websocket.send_bytes(error_msg)
+#         except:
+#             pass
+#         qp_handler.disconnect(client_id)
 
 @app.get("/api/problems/recent")
-async def get_recent_problems():
+# async def get_recent_problems():
     """Get recently generated problems"""
-    problems = await problem_generator.get_recent_problems(limit=20)
-    return {"problems": problems}
+#     problems = await problem_generator.get_recent_problems(limit=20)
+#     return {"problems": problems}
 
 @app.get("/api/analytics/performance")
-async def get_performance_analytics():
+# async def get_performance_analytics():
     """Get detailed performance analytics"""
-    analytics = await training_engine.get_performance_analytics()
-    return analytics
+#     analytics = await training_engine.get_performance_analytics()
+#     return analytics
 
 # Power Measurement & Benchmarking Endpoints
 @app.get("/api/power/measure")
-async def measure_system_power():
+# async def measure_system_power():
     """Measure current system power and capabilities"""
-    measurement = await power_meter.measure_power()
+#     measurement = await power_meter.measure_power()
     
     # Broadcast to connected clients
-    await manager.broadcast({
+#     await manager.broadcast({
         "type": "power_measurement",
         "data": measurement
     })
     
-    return measurement
+#     return measurement
 
 @app.post("/api/power/stress-test")
 @secure_operation("stress_test")
-async def run_stress_test(duration: int = 10, intensity: str = 'medium'):
+# async def run_stress_test(duration: int = 10, intensity: str = 'medium'):
     """
-    Run a stress test to measure maximum capacity
+#     Run a stress test to measure maximum capacity
     
     - duration: Test duration in seconds (default: 10)
     - intensity: light, medium, heavy, or extreme (default: medium)
     """
-    result = await power_meter.run_stress_test(duration, intensity)
+#     result = await power_meter.run_stress_test(duration, intensity)
     
     # Sanitize before broadcast
-    sanitized_result = sanitize_output(result)
+#     sanitized_result = sanitize_output(result)
     
-    await manager.broadcast({
+#     await manager.broadcast({
         "type": "stress_test_complete",
         "data": sanitized_result
     })
     
-    return sanitized_result
+#     return sanitized_result
 
 @app.post("/api/power/benchmark")
 @secure_operation("benchmark_suite")
-async def run_benchmark_suite():
+# async def run_benchmark_suite():
     """Run comprehensive benchmark suite"""
-    results = await power_meter.run_benchmark_suite()
+#     results = await power_meter.run_benchmark_suite()
     
     # Sanitize before broadcast
-    sanitized_results = sanitize_output(results)
+#     sanitized_results = sanitize_output(results)
     
-    await manager.broadcast({
+#     await manager.broadcast({
         "type": "benchmark_complete",
         "data": sanitized_results
     })
     
-    return sanitized_results
+#     return sanitized_results
 
 @app.get("/api/power/report")
-async def get_power_report():
+# async def get_power_report():
     """Get comprehensive power report"""
-    report = power_meter.get_power_report()
-    return report
+#     report = power_meter.get_power_report()
+#     return report
 
 # Creative Training Scenarios
 @app.post("/api/training/creative")
-async def start_creative_training(mode: str = None):
+# async def start_creative_training(mode: str = None):
     """
-    Start a creative training scenario
+#     Start a creative training scenario
     
-    Modes: chaos_monkey, resource_starving, cascade_failure, 
-           traffic_spike, adaptive_adversary
+#     Modes: chaos_monkey, resource_starving, cascade_failure, 
+#            traffic_spike, adaptive_adversary
     """
-    scenario = await creative_trainer.generate_creative_scenario(mode)
+#     scenario = await creative_trainer.generate_creative_scenario(mode)
     
-    await manager.broadcast({
+#     await manager.broadcast({
         "type": "creative_scenario_started",
         "data": scenario
     })
     
-    return scenario
+#     return scenario
 
 @app.get("/api/training/creative/modes")
-async def get_creative_modes():
+# async def get_creative_modes():
     """Get available creative training modes"""
-    return {
+#     return {
         "modes": creative_trainer.creativity_modes,
         "descriptions": {
             "chaos_monkey": "Random failures and disruptions",
@@ -751,21 +751,21 @@ async def get_creative_modes():
     }
 
 @app.get("/api/power/leaderboard")
-async def get_power_leaderboard():
+# async def get_power_leaderboard():
     """Get power measurement leaderboard"""
-    if not power_meter.stress_test_results:
-        return {"message": "No stress tests completed yet"}
+#     if not power_meter.stress_test_results:
+#         return {"message": "No stress tests completed yet"}
     
     # Sort by operations per second
-    sorted_results = sorted(
-        power_meter.stress_test_results.items(),
-        key=lambda x: x[1].get('operations_per_second', 0),
-        reverse=True
+#     sorted_results = sorted(
+#         power_meter.stress_test_results.items(),
+#         key=lambda x: x[1].get('operations_per_second', 0),
+#         reverse=True
     )
     
-    leaderboard = []
-    for timestamp, result in sorted_results[:10]:  # Top 10
-        leaderboard.append({
+#     leaderboard = []
+#     for timestamp, result in sorted_results[:10]:  # Top 10
+#         leaderboard.append({
             'timestamp': timestamp,
             'ops_per_second': result.get('operations_per_second', 0),
             'grade': result.get('grade', 'N/A'),
@@ -773,7 +773,7 @@ async def get_power_leaderboard():
             'error_rate': result.get('error_rate', 0)
         })
     
-    return {
+#     return {
         "leaderboard": leaderboard,
         "total_tests": len(power_meter.stress_test_results)
     }
@@ -782,28 +782,28 @@ async def get_power_leaderboard():
 # 🎮 ADVANCED WORKLOAD ENDPOINTS - GPU, 3D, and Crypto Mining
 
 @app.post("/api/workload/3d")
-async def run_3d_workload(
-    matrix_size: int = 512,
-    num_iterations: int = 100,
-    ray_count: int = 10000
+# async def run_3d_workload(
+#     matrix_size: int = 512,
+#     num_iterations: int = 100,
+#     ray_count: int = 10000
 ):
     """
-     Run GPU-accelerated 3D graphics workload
+#      Run GPU-accelerated 3D graphics workload
     
-    Simulates:
+#     Simulates:
     - Matrix transformations (rotation, scaling, translation)
     - Ray tracing calculations
     - Parallel vector operations
     
-    Returns GFLOPS (billions of floating point operations per second)
+#     Returns GFLOPS (billions of floating point operations per second)
     """
-    result = await gpu_workload.run_3d_workload(
-        matrix_size=matrix_size,
-        num_iterations=num_iterations,
-        ray_count=ray_count
+#     result = await gpu_workload.run_3d_workload(
+#         matrix_size=matrix_size,
+#         num_iterations=num_iterations,
+#         ray_count=ray_count
     )
     
-    return {
+#     return {
         "workload": "3D Graphics",
         "emoji": "🎮",
         "duration": result["duration"],
@@ -820,30 +820,30 @@ async def run_3d_workload(
 
 
 @app.post("/api/workload/mining")
-async def run_mining_workload(
-    difficulty: int = 4,
-    num_blocks: int = 5,
-    parallel: bool = True,
-    num_workers: int = 4
+# async def run_mining_workload(
+#     difficulty: int = 4,
+#     num_blocks: int = 5,
+#     parallel: bool = True,
+#     num_workers: int = 4
 ):
     """
     ⛏ Run cryptocurrency mining simulation
     
-    Simulates:
+#     Simulates:
     - SHA-256 hashing (Bitcoin-style)
     - Proof-of-work nonce searching
     - Parallel mining with multiple workers
     
-    Returns hash rate (hashes per second)
+#     Returns hash rate (hashes per second)
     """
-    result = await mining_workload.run_mining_workload(
-        difficulty=difficulty,
-        num_blocks=num_blocks,
-        parallel=parallel,
-        num_workers=num_workers
+#     result = await mining_workload.run_mining_workload(
+#         difficulty=difficulty,
+#         num_blocks=num_blocks,
+#         parallel=parallel,
+#         num_workers=num_workers
     )
     
-    return {
+#     return {
         "workload": "Crypto Mining",
         "emoji": "⛏",
         "duration": result["duration"],
@@ -864,20 +864,20 @@ async def run_mining_workload(
 
 
 @app.post("/api/workload/extreme")
-async def run_extreme_combined_workload(duration_seconds: int = 30):
+# async def run_extreme_combined_workload(duration_seconds: int = 30):
     """
-     BEAST MODE - Run combined GPU + Mining workload simultaneously
+#      BEAST MODE - Run combined GPU + Mining workload simultaneously
     
-    Ultimate stress test that pushes both CPU and theoretical GPU to limits:
+#     Ultimate stress test that pushes both CPU and theoretical GPU to limits:
     - 3D matrix operations + ray tracing
     - Parallel cryptocurrency mining
     - System resource monitoring
     
-    This is the hardest test - prove your system is a BEAST!
+#     This is the hardest test - prove your system is a BEAST!
     """
-    result = await combined_workload.run_combined_extreme(duration_seconds)
+#     result = await combined_workload.run_combined_extreme(duration_seconds)
     
-    return {
+#     return {
         "workload": "EXTREME COMBINED",
         "emoji": "",
         "duration": result["duration"],
@@ -892,13 +892,13 @@ async def run_extreme_combined_workload(duration_seconds: int = 30):
 
 
 @app.get("/api/workload/capabilities")
-async def get_workload_capabilities():
+# async def get_workload_capabilities():
     """
-     Get system capabilities for advanced workloads
+#      Get system capabilities for advanced workloads
     """
-    import sys
+#     import sys
     
-    capabilities = {
+#     capabilities = {
         "cpu": {
             "cores": psutil.cpu_count(logical=False),
             "threads": psutil.cpu_count(logical=True),
@@ -919,38 +919,38 @@ async def get_workload_capabilities():
         }
     }
     
-    return capabilities
+#     return capabilities
 
 
 # 🧠 AI SWARM INTELLIGENCE ENDPOINTS
 
 @app.post("/api/swarm/spawn")
-async def spawn_ai_swarm(
-    num_agents: int = 100,
-    capabilities: str = "compute,hash,aggregate"
+# async def spawn_ai_swarm(
+#     num_agents: int = 100,
+#     capabilities: str = "compute,hash,aggregate"
 ):
     """
-     Spawn AI worker swarm
+#      Spawn AI worker swarm
     
-    Creates hundreds or thousands of autonomous AI agents
-    Each agent can process tasks and communicate with others
+#     Creates hundreds or thousands of autonomous AI agents
+#     Each agent can process tasks and communicate with others
     
-    Args:
-        num_agents: Number of agents to spawn (default: 100, max: 10000)
-        capabilities: Comma-separated capabilities (compute,hash,aggregate,learn)
+#     Args:
+#         num_agents: Number of agents to spawn (default: 100, max: 10000)
+#         capabilities: Comma-separated capabilities (compute,hash,aggregate,learn)
     """
-    num_agents = min(num_agents, 10000)  # Safety limit
-    cap_list = [c.strip() for c in capabilities.split(',')]
+#     num_agents = min(num_agents, 10000)  # Safety limit
+#     cap_list = [c.strip() for c in capabilities.split(',')]
     
-    start_time = time.time()
-    agent_ids = await swarm_coordinator.spawn_agents(num_agents, cap_list)
-    spawn_time = time.time() - start_time
+#     start_time = time.time()
+#     agent_ids = await swarm_coordinator.spawn_agents(num_agents, cap_list)
+#     spawn_time = time.time() - start_time
     
     # Subscribe all agents to knowledge sharing
-    for agent_id in agent_ids:
-        message_bus.subscribe(agent_id, "knowledge")
+#     for agent_id in agent_ids:
+#         message_bus.subscribe(agent_id, "knowledge")
     
-    return {
+#     return {
         "status": "swarm_spawned",
         "emoji": "🧠",
         "num_agents": len(agent_ids),
@@ -963,36 +963,36 @@ async def spawn_ai_swarm(
 
 
 @app.post("/api/swarm/distribute")
-async def distribute_swarm_task(
-    task_type: str = "compute",
-    data_size: int = 1000,
-    num_splits: int = None
+# async def distribute_swarm_task(
+#     task_type: str = "compute",
+#     data_size: int = 1000,
+#     num_splits: int = None
 ):
     """
-     Distribute task across AI swarm
+#      Distribute task across AI swarm
     
-    Splits task and distributes to available agents
-    Implements map-reduce pattern for massive parallelism
+#     Splits task and distributes to available agents
+#     Implements map-reduce pattern for massive parallelism
     
-    Args:
-        task_type: Type of task (compute, hash, aggregate, learn)
-        data_size: Size of data to process
-        num_splits: Number of splits (default: auto)
+#     Args:
+#         task_type: Type of task (compute, hash, aggregate, learn)
+#         data_size: Size of data to process
+#         num_splits: Number of splits (default: auto)
     """
-    start_time = time.time()
+#     start_time = time.time()
     
     # Generate task data
-    if task_type == "compute":
-        data = list(range(data_size))
-    elif task_type == "hash":
-        data = [f"data_{i}" for i in range(data_size)]
-    elif task_type == "aggregate":
-        data = np.random.rand(data_size).tolist()
-    else:
-        data = list(range(data_size))
+#     if task_type == "compute":
+#         data = list(range(data_size))
+#     elif task_type == "hash":
+#         data = [f"data_{i}" for i in range(data_size)]
+#     elif task_type == "aggregate":
+#         data = np.random.rand(data_size).tolist()
+#     else:
+#         data = list(range(data_size))
     
     # Create task
-    task = {
+#     task = {
         'id': hashlib.sha256(str(time.time()).encode()).hexdigest()[:16],
         'type': task_type,
         'data': data,
@@ -1000,16 +1000,16 @@ async def distribute_swarm_task(
     }
     
     # Distribute
-    distribution_result = await swarm_coordinator.distribute_task(task, num_splits)
+#     distribution_result = await swarm_coordinator.distribute_task(task, num_splits)
     
     # Wait a bit for processing
-    await asyncio.sleep(0.5)
+#     await asyncio.sleep(0.5)
     
     # Get stats
-    stats = swarm_coordinator.get_swarm_stats()
-    duration = time.time() - start_time
+#     stats = swarm_coordinator.get_swarm_stats()
+#     duration = time.time() - start_time
     
-    return {
+#     return {
         "status": "task_distributed",
         "emoji": "",
         "task_id": task['id'],
@@ -1024,30 +1024,30 @@ async def distribute_swarm_task(
 
 
 @app.get("/api/swarm/stats")
-async def get_swarm_stats():
+# async def get_swarm_stats():
     """
-     Get AI swarm statistics
+#      Get AI swarm statistics
     
-    Returns comprehensive swarm metrics:
+#     Returns comprehensive swarm metrics:
     - Total agents and their states
     - Tasks completed/failed
     - Message bus statistics
     - Success rates and performance
     """
-    stats = swarm_coordinator.get_swarm_stats()
-    agent_details = await swarm_coordinator.query_all_agents()
+#     stats = swarm_coordinator.get_swarm_stats()
+#     agent_details = await swarm_coordinator.query_all_agents()
     
     # Calculate additional metrics
-    if agent_details:
-        top_performers = sorted(
-            agent_details,
-            key=lambda x: x['completed_tasks'],
-            reverse=True
+#     if agent_details:
+#         top_performers = sorted(
+#             agent_details,
+#             key=lambda x: x['completed_tasks'],
+#             reverse=True
         )[:10]
-    else:
-        top_performers = []
+#     else:
+#         top_performers = []
     
-    return {
+#     return {
         "swarm_stats": stats,
         "top_performers": top_performers,
         "message_bus": {
@@ -1056,7 +1056,7 @@ async def get_swarm_stats():
             "broadcasts": message_bus.stats['broadcasts'],
             "dropped_messages": message_bus.stats['dropped_messages'],
             "success_rate": round(
-                message_bus.stats['messages_received'] / max(message_bus.stats['messages_sent'], 1) * 100,
+#                 message_bus.stats['messages_received'] / max(message_bus.stats['messages_sent'], 1) * 100,
                 2
             )
         },
@@ -1065,22 +1065,22 @@ async def get_swarm_stats():
 
 
 @app.post("/api/swarm/hierarchy")
-async def create_agent_hierarchy(
-    masters: int = 10,
-    workers: int = 100
+# async def create_agent_hierarchy(
+#     masters: int = 10,
+#     workers: int = 100
 ):
     """
     🏗 Create hierarchical agent network
     
-    Creates multi-level agent structure:
+#     Creates multi-level agent structure:
     - Master agents: Supervise and aggregate
     - Worker agents: Execute tasks
     
-    Enables complex task decomposition and coordination
+#     Enables complex task decomposition and coordination
     """
-    start_time = time.time()
+#     start_time = time.time()
     
-    hierarchy_config = [
+#     hierarchy_config = [
         {
             'name': 'masters',
             'count': masters,
@@ -1093,12 +1093,12 @@ async def create_agent_hierarchy(
         }
     ]
     
-    hierarchy = await agent_hierarchy.create_hierarchy(hierarchy_config)
-    duration = time.time() - start_time
+#     hierarchy = await agent_hierarchy.create_hierarchy(hierarchy_config)
+#     duration = time.time() - start_time
     
-    total_agents = masters + workers
+#     total_agents = masters + workers
     
-    return {
+#     return {
         "status": "hierarchy_created",
         "emoji": "🏗",
         "hierarchy": hierarchy,
@@ -1114,34 +1114,34 @@ async def create_agent_hierarchy(
 
 
 @app.post("/api/swarm/cascade")
-async def cascade_hierarchical_task(
-    task_type: str = "compute",
-    data_size: int = 10000
+# async def cascade_hierarchical_task(
+#     task_type: str = "compute",
+#     data_size: int = 10000
 ):
     """
     🌊 Cascade task through hierarchy
     
-    Sends task to master agents who decompose and delegate to workers
-    Demonstrates multi-level coordination and emergent behavior
+#     Sends task to master agents who decompose and delegate to workers
+#     Demonstrates multi-level coordination and emergent behavior
     """
-    start_time = time.time()
+#     start_time = time.time()
     
-    task = {
+#     task = {
         'id': hashlib.sha256(str(time.time()).encode()).hexdigest()[:16],
         'type': task_type,
         'data': list(range(data_size)),
         'timestamp': time.time()
     }
     
-    result = await agent_hierarchy.cascade_task(task, start_level='masters')
+#     result = await agent_hierarchy.cascade_task(task, start_level='masters')
     
     # Wait for processing
-    await asyncio.sleep(1.0)
+#     await asyncio.sleep(1.0)
     
-    stats = swarm_coordinator.get_swarm_stats()
-    duration = time.time() - start_time
+#     stats = swarm_coordinator.get_swarm_stats()
+#     duration = time.time() - start_time
     
-    return {
+#     return {
         "status": "task_cascaded",
         "emoji": "🌊",
         "task_id": task['id'],
@@ -1154,48 +1154,48 @@ async def cascade_hierarchical_task(
 
 
 @app.post("/api/swarm/quantum-mine")
-async def quantum_mining_with_swarm(
-    block_data: str = "QuetzalCoreBlock",
-    difficulty: int = 5,
-    num_agents: int = 100
+# async def quantum_mining_with_swarm(
+#     block_data: str = "QuetzalCoreBlock",
+#     difficulty: int = 5,
+#     num_agents: int = 100
 ):
     """
     ⚛ QUANTUM MINING with AI Swarm + GPU Simulation
     
-    The ULTIMATE test: Combines everything!
+#     The ULTIMATE test: Combines everything!
     - Software GPU simulation (8192 threads)
     - Vectorized mining with quantum prediction
     - AI swarm coordination (100+ agents)
     - Massively parallel message passing
     
-    This is THE BEAST MODE!
+#     This is THE BEAST MODE!
     """
-    start_time = time.time()
+#     start_time = time.time()
     
     # Spawn mining swarm if needed
-    if len(swarm_coordinator.agents) < num_agents:
-        await swarm_coordinator.spawn_agents(num_agents, ['hash', 'compute'])
+#     if len(swarm_coordinator.agents) < num_agents:
+#         await swarm_coordinator.spawn_agents(num_agents, ['hash', 'compute'])
     
     # Use vectorized miner with GPU simulation
-    mining_result = vectorized_miner.mine_vectorized(block_data, difficulty)
+#     mining_result = vectorized_miner.mine_vectorized(block_data, difficulty)
     
     # Distribute verification across swarm
-    if mining_result['found']:
-        verify_task = {
+#     if mining_result['found']:
+#         verify_task = {
             'type': 'hash',
             'data': f"{block_data}{mining_result['nonce']}",
             'expected': mining_result['hash']
         }
-        await swarm_coordinator.distribute_task(verify_task, num_splits=min(10, num_agents))
+#         await swarm_coordinator.distribute_task(verify_task, num_splits=min(10, num_agents))
     
-    duration = time.time() - start_time
-    swarm_stats = swarm_coordinator.get_swarm_stats()
+#     duration = time.time() - start_time
+#     swarm_stats = swarm_coordinator.get_swarm_stats()
     
     # Calculate combined performance
-    combined_hash_rate = mining_result['hash_rate']
-    gpu_threads = software_gpu.total_threads
+#     combined_hash_rate = mining_result['hash_rate']
+#     gpu_threads = software_gpu.total_threads
     
-    return {
+#     return {
         "status": "quantum_mining_complete",
         "emoji": "⚛",
         "found": mining_result['found'],
@@ -1227,15 +1227,15 @@ async def quantum_mining_with_swarm(
 
 
 @app.delete("/api/swarm/shutdown")
-async def shutdown_swarm():
+# async def shutdown_swarm():
     """
     🛑 Gracefully shutdown all AI agents
     
-    Stops all agents and clears message queues
+#     Stops all agents and clears message queues
     """
-    await swarm_coordinator.stop_all_agents()
+#     await swarm_coordinator.stop_all_agents()
     
-    return {
+#     return {
         "status": "swarm_shutdown",
         "emoji": "🛑",
         "message": "All AI agents stopped successfully"
@@ -1247,10 +1247,10 @@ async def shutdown_swarm():
 # ============================================================================
 
 @app.post("/api/gpu/session/create")
-async def create_gpu_session(session_id: str):
+# async def create_gpu_session(session_id: str):
     """🖥 Create Web GPU rendering session"""
-    web_gpu_api.create_session(session_id)
-    return {
+#     web_gpu_api.create_session(session_id)
+#     return {
         "session_id": session_id,
         "driver_info": {
             "gpu_threads": software_gpu.total_threads,
@@ -1263,11 +1263,11 @@ async def create_gpu_session(session_id: str):
 
 
 @app.post("/api/gpu/commands/execute")
-async def execute_gpu_commands(session_id: str, commands: List[Dict[str, Any]]):
+# async def execute_gpu_commands(session_id: str, commands: List[Dict[str, Any]]):
     """
-     Execute batch GPU commands
+#      Execute batch GPU commands
     
-    Supported commands:
+#     Supported commands:
     - createBuffer: {type: "createBuffer", size: 1024, bufferType: "vertex"}
     - writeBuffer: {type: "writeBuffer", buffer_id: 0, data: "base64..."}
     - createTexture: {type: "createTexture", width: 512, height: 512, format: "rgba8"}
@@ -1275,35 +1275,35 @@ async def execute_gpu_commands(session_id: str, commands: List[Dict[str, Any]]):
     - drawTriangles: {type: "drawTriangles", vertexBuffer: 0, indexBuffer: 1, shaderProgram: 0, count: 36}
     - dispatchCompute: {type: "dispatchCompute", shaderProgram: 0, workgroupX: 8, workgroupY: 8}
     """
-    result = await web_gpu_api.execute_commands(session_id, commands)
-    return result
+#     result = await web_gpu_api.execute_commands(session_id, commands)
+#     return result
 
 
 @app.get("/api/gpu/stats")
-async def get_gpu_stats():
+# async def get_gpu_stats():
     """ Get Web GPU driver statistics (software GPU)"""
-    stats = web_gpu_driver.get_stats()
+#     stats = web_gpu_driver.get_stats()
     
     # Grade the GPU performance
-    triangles_per_second = stats['triangles_rendered'] / max(stats['draw_calls'], 1) * 60  # Assume 60 FPS
+#     triangles_per_second = stats['triangles_rendered'] / max(stats['draw_calls'], 1) * 60  # Assume 60 FPS
     
-    if triangles_per_second > 1_000_000:
-        grade = "S"
-        desc = "AAA Game Ready"
-    elif triangles_per_second > 500_000:
-        grade = "A"
-        desc = "Modern Game Ready"
-    elif triangles_per_second > 100_000:
-        grade = "B"
-        desc = "Indie Game Ready"
-    elif triangles_per_second > 10_000:
-        grade = "C"
-        desc = "Mobile Game Ready"
-    else:
-        grade = "D"
-        desc = "UI/2D Ready"
+#     if triangles_per_second > 1_000_000:
+#         grade = "S"
+#         desc = "AAA Game Ready"
+#     elif triangles_per_second > 500_000:
+#         grade = "A"
+#         desc = "Modern Game Ready"
+#     elif triangles_per_second > 100_000:
+#         grade = "B"
+#         desc = "Indie Game Ready"
+#     elif triangles_per_second > 10_000:
+#         grade = "C"
+#         desc = "Mobile Game Ready"
+#     else:
+#         grade = "D"
+#         desc = "UI/2D Ready"
     
-    return {
+#     return {
         "driver_stats": stats,
         "performance": {
             "triangles_per_second": int(triangles_per_second),
@@ -1324,13 +1324,13 @@ async def get_gpu_stats():
 
 
 @app.get("/api/gpu/software/benchmark")
-async def benchmark_software_gpu():
+# async def benchmark_software_gpu():
     """ Benchmark QuetzalCore Software GPU - Pure Software Beating Hardware"""
-    matmul_results = gpu_benchmarker.benchmark_matmul([1024, 2048])
-    conv_result = gpu_benchmarker.benchmark_conv2d()
-    memory_result = gpu_benchmarker.benchmark_memory_hierarchy()
+#     matmul_results = gpu_benchmarker.benchmark_matmul([1024, 2048])
+#     conv_result = gpu_benchmarker.benchmark_conv2d()
+#     memory_result = gpu_benchmarker.benchmark_memory_hierarchy()
     
-    return {
+#     return {
         "gpu_type": "QuetzalCore Software GPU (Pure Python + Numba)",
         "advantage": "Algorithmic optimization > raw hardware throughput",
         "matmul_benchmark": matmul_results,
@@ -1341,11 +1341,11 @@ async def benchmark_software_gpu():
 
 
 @app.get("/api/gpu/software/vs-hardware")
-async def compare_software_vs_hardware():
+# async def compare_software_vs_hardware():
     """ Detailed Comparison: QuetzalCore Software GPU vs Hardware GPUs"""
-    report = hardware_comparison.generate_comparison_report()
+#     report = hardware_comparison.generate_comparison_report()
     
-    return {
+#     return {
         "quetzalcore_software_gpu": report['quetzalcore_software_gpu'],
         "hardware_baselines": report['hardware_baselines'],
         "conclusion": report['key_insight'],
@@ -1363,33 +1363,33 @@ async def compare_software_vs_hardware():
 
 
 @app.post("/api/gpu/software/matmul-optimized")
-async def optimized_matmul(request: dict):
+# async def optimized_matmul(request: dict):
     """🎯 Perform optimized matrix multiplication using QuetzalCore Software GPU"""
-    try:
+#     try:
         # Get matrix data
-        a = np.array(request.get('matrix_a'), dtype=np.float32)
-        b = np.array(request.get('matrix_b'), dtype=np.float32)
+#         a = np.array(request.get('matrix_a'), dtype=np.float32)
+#         b = np.array(request.get('matrix_b'), dtype=np.float32)
         
         # Use SIMD accelerated matrix multiplication
-        result = simd_accelerator.vectorized_matmul(a, b)
+#         result = simd_accelerator.vectorized_matmul(a, b)
         
         # Get memory optimization recommendation
-        opt_profile = memory_optimizer.optimize_memory_access('matmul', a.shape)
+#         opt_profile = memory_optimizer.optimize_memory_access('matmul', a.shape)
         
-        return {
+#         return {
             "result": result.tolist(),
             "shape": result.shape,
             "optimization": opt_profile,
             "message": "Matrix multiplication accelerated with SIMD + Numba"
         }
-    except Exception as e:
-        return {"error": str(e)}
+#     except Exception as e:
+#         return {"error": str(e)}
 
 
 @app.get("/api/gpu/software/simd-info")
-async def get_simd_info():
+# async def get_simd_info():
     """💪 Get SIMD Accelerator Information"""
-    return {
+#     return {
         "accelerator": "Numba JIT Compiler",
         "capabilities": [
             "Vectorized Matrix Multiplication (8192+ threads simulated)",
@@ -1417,22 +1417,22 @@ async def get_simd_info():
 # ═══════════════════════════════════════════════════════════════════════════════
 
 @app.post("/api/gpu/parallel/matmul")
-async def parallel_matmul_endpoint(
-    size: int = 256,
-    num_gpu_units: int = 4,
-    num_iterations: int = 1
+# async def parallel_matmul_endpoint(
+#     size: int = 256,
+#     num_gpu_units: int = 4,
+#     num_iterations: int = 1
 ):
     """ Execute Matrix Multiplication across Multiple Software GPU Units
     
-    This endpoint distributes a matrix multiplication operation across N software GPU units
-    working in parallel. Each unit processes a partition of the work, then results are merged.
+#     This endpoint distributes a matrix multiplication operation across N software GPU units
+#     working in parallel. Each unit processes a partition of the work, then results are merged.
     
-    Args:
-        size: Matrix size (size × size) - default 256 for fast results
-        num_gpu_units: Number of parallel GPU units (1-8), default 4
-        num_iterations: Number of iterations for averaging (default 1)
+#     Args:
+#         size: Matrix size (size × size) - default 256 for fast results
+#         num_gpu_units: Number of parallel GPU units (1-8), default 4
+#         num_iterations: Number of iterations for averaging (default 1)
     
-    Returns: {
+#     Returns: {
         "operation": "parallel_matmul",
         "matrix_size": 256,
         "gpu_units_used": 4,
@@ -1447,26 +1447,26 @@ async def parallel_matmul_endpoint(
         "pool_status": {...}
     }
     """
-    import time
-    import numpy as np
-    from datetime import datetime
+#     import time
+#     import numpy as np
+#     from datetime import datetime
     
     # Validate inputs
-    num_gpu_units = min(max(num_gpu_units, 1), 8)
-    size = min(max(size, 64), 2048)
+#     num_gpu_units = min(max(num_gpu_units, 1), 8)
+#     size = min(max(size, 64), 2048)
     
-    try:
+#     try:
         # Create random matrices for testing
-        a = np.random.randn(size, size).astype(np.float32)
-        b = np.random.randn(size, size).astype(np.float32)
+#         a = np.random.randn(size, size).astype(np.float32)
+#         b = np.random.randn(size, size).astype(np.float32)
         
         # Run benchmark with different unit counts
-        results = []
-        for num_units in [1, num_gpu_units]:
-            start = time.time()
-            result = parallel_gpu_orchestrator.parallel_matmul(a, b, num_gpu_units=num_units)
-            elapsed = time.time() - start
-            results.append({
+#         results = []
+#         for num_units in [1, num_gpu_units]:
+#             start = time.time()
+#             result = parallel_gpu_orchestrator.parallel_matmul(a, b, num_gpu_units=num_units)
+#             elapsed = time.time() - start
+#             results.append({
                 "units": num_units,
                 "gflops": result["performance_metrics"]["total_gflops"],
                 "time_ms": elapsed * 1000,
@@ -1475,11 +1475,11 @@ async def parallel_matmul_endpoint(
             })
         
         # Calculate metrics
-        single_gpu_gflops = results[0]["gflops"]
-        parallel_gflops = results[1]["gflops"]
-        speedup = parallel_gflops / single_gpu_gflops if single_gpu_gflops > 0 else 1.0
+#         single_gpu_gflops = results[0]["gflops"]
+#         parallel_gflops = results[1]["gflops"]
+#         speedup = parallel_gflops / single_gpu_gflops if single_gpu_gflops > 0 else 1.0
         
-        return {
+#         return {
             "operation": "parallel_matmul",
             "timestamp": datetime.utcnow().isoformat(),
             "configuration": {
@@ -1496,8 +1496,8 @@ async def parallel_matmul_endpoint(
             "pool_status": parallel_gpu_orchestrator.get_pool_status(),
             "message": f" Parallel matmul completed: {num_gpu_units} units achieved {parallel_gflops:.1f} GFLOPS ({speedup:.1f}x speedup)"
         }
-    except Exception as e:
-        return {
+#     except Exception as e:
+#         return {
             "error": str(e),
             "operation": "parallel_matmul",
             "status": "failed"
@@ -1505,24 +1505,24 @@ async def parallel_matmul_endpoint(
 
 
 @app.post("/api/gpu/parallel/conv2d")
-async def parallel_conv2d_endpoint(
-    batch_size: int = 8,
-    height: int = 64,
-    width: int = 64,
-    num_gpu_units: int = 4
+# async def parallel_conv2d_endpoint(
+#     batch_size: int = 8,
+#     height: int = 64,
+#     width: int = 64,
+#     num_gpu_units: int = 4
 ):
     """🎨 Execute 2D Convolution across Multiple Software GPU Units
     
-    Distributes a convolution operation across N software GPU units, each processing
-    a spatial partition of the input. Results are merged back together.
+#     Distributes a convolution operation across N software GPU units, each processing
+#     a spatial partition of the input. Results are merged back together.
     
-    Args:
-        batch_size: Batch size (default 8)
-        height: Input height in pixels (default 64)
-        width: Input width in pixels (default 64)
-        num_gpu_units: Number of parallel GPU units (1-8), default 4
+#     Args:
+#         batch_size: Batch size (default 8)
+#         height: Input height in pixels (default 64)
+#         width: Input width in pixels (default 64)
+#         num_gpu_units: Number of parallel GPU units (1-8), default 4
     
-    Returns: {
+#     Returns: {
         "operation": "parallel_conv2d",
         "input_shape": [8, 64, 64],
         "gpu_units_used": 4,
@@ -1532,30 +1532,30 @@ async def parallel_conv2d_endpoint(
         "unit_breakdown": [...]
     }
     """
-    import time
-    import numpy as np
-    from datetime import datetime
+#     import time
+#     import numpy as np
+#     from datetime import datetime
     
     # Validate inputs
-    num_gpu_units = min(max(num_gpu_units, 1), 8)
-    batch_size = min(max(batch_size, 1), 64)
-    height = min(max(height, 32), 512)
-    width = min(max(width, 32), 512)
+#     num_gpu_units = min(max(num_gpu_units, 1), 8)
+#     batch_size = min(max(batch_size, 1), 64)
+#     height = min(max(height, 32), 512)
+#     width = min(max(width, 32), 512)
     
-    try:
+#     try:
         # Create random input data and kernel
-        x = np.random.randn(batch_size, height, width, 3).astype(np.float32)
-        kernel = np.random.randn(3, 3, 3, 16).astype(np.float32)
+#         x = np.random.randn(batch_size, height, width, 3).astype(np.float32)
+#         kernel = np.random.randn(3, 3, 3, 16).astype(np.float32)
         
         # Run benchmark with different unit counts
-        results = []
-        for num_units in [1, num_gpu_units]:
-            start = time.time()
-            result = parallel_gpu_orchestrator.parallel_conv2d(
-                x, kernel, num_gpu_units=num_units
+#         results = []
+#         for num_units in [1, num_gpu_units]:
+#             start = time.time()
+#             result = parallel_gpu_orchestrator.parallel_conv2d(
+#                 x, kernel, num_gpu_units=num_units
             )
-            elapsed = time.time() - start
-            results.append({
+#             elapsed = time.time() - start
+#             results.append({
                 "units": num_units,
                 "gflops": result["performance_metrics"]["total_gflops"],
                 "time_ms": elapsed * 1000,
@@ -1563,11 +1563,11 @@ async def parallel_conv2d_endpoint(
             })
         
         # Calculate metrics
-        single_gpu_gflops = results[0]["gflops"]
-        parallel_gflops = results[1]["gflops"]
-        speedup = parallel_gflops / single_gpu_gflops if single_gpu_gflops > 0 else 1.0
+#         single_gpu_gflops = results[0]["gflops"]
+#         parallel_gflops = results[1]["gflops"]
+#         speedup = parallel_gflops / single_gpu_gflops if single_gpu_gflops > 0 else 1.0
         
-        return {
+#         return {
             "operation": "parallel_conv2d",
             "timestamp": datetime.utcnow().isoformat(),
             "configuration": {
@@ -1584,8 +1584,8 @@ async def parallel_conv2d_endpoint(
             "pool_status": parallel_gpu_orchestrator.get_pool_status(),
             "message": f" Parallel conv2d completed: {num_gpu_units} units achieved {parallel_gflops:.1f} GFLOPS"
         }
-    except Exception as e:
-        return {
+#     except Exception as e:
+#         return {
             "error": str(e),
             "operation": "parallel_conv2d",
             "status": "failed"
@@ -1593,13 +1593,13 @@ async def parallel_conv2d_endpoint(
 
 
 @app.get("/api/gpu/parallel/benchmark")
-async def parallel_gpu_benchmark():
+# async def parallel_gpu_benchmark():
     """ Full Benchmark Suite - Compare 1, 2, 4, 8 GPU Units
     
-    Executes matrix multiplication across different numbers of parallel GPU units
-    to show scaling efficiency and approach to hardware GPU performance.
+#     Executes matrix multiplication across different numbers of parallel GPU units
+#     to show scaling efficiency and approach to hardware GPU performance.
     
-    Returns: {
+#     Returns: {
         "benchmark": "parallel_gpu_scaling",
         "results": [
             {"units": 1, "gflops": 5.6, "speedup": 1.0, "efficiency": "100%"},
@@ -1614,34 +1614,34 @@ async def parallel_gpu_benchmark():
         "summary": "4 units achieve RTX 3080 parity! 8 units exceed hardware!"
     }
     """
-    import time
-    import numpy as np
-    from datetime import datetime
+#     import time
+#     import numpy as np
+#     from datetime import datetime
     
-    try:
+#     try:
         # Create test matrices (512x512 for meaningful benchmark)
-        a = np.random.randn(512, 512).astype(np.float32)
-        b = np.random.randn(512, 512).astype(np.float32)
+#         a = np.random.randn(512, 512).astype(np.float32)
+#         b = np.random.randn(512, 512).astype(np.float32)
         
-        results = []
-        unit_counts = [1, 2, 4, 8]
-        baseline_gflops = None
+#         results = []
+#         unit_counts = [1, 2, 4, 8]
+#         baseline_gflops = None
         
-        for num_units in unit_counts:
-            start = time.time()
-            result = parallel_gpu_orchestrator.parallel_matmul(a, b, num_gpu_units=num_units)
-            elapsed = time.time() - start
+#         for num_units in unit_counts:
+#             start = time.time()
+#             result = parallel_gpu_orchestrator.parallel_matmul(a, b, num_gpu_units=num_units)
+#             elapsed = time.time() - start
             
-            gflops = result["performance_metrics"]["total_gflops"]
-            speedup = result["performance_metrics"]["overall_speedup"]
+#             gflops = result["performance_metrics"]["total_gflops"]
+#             speedup = result["performance_metrics"]["overall_speedup"]
             
-            if baseline_gflops is None:
-                baseline_gflops = gflops
+#             if baseline_gflops is None:
+#                 baseline_gflops = gflops
             
-            actual_speedup = gflops / baseline_gflops if baseline_gflops > 0 else speedup
-            efficiency = (actual_speedup / num_units) * 100
+#             actual_speedup = gflops / baseline_gflops if baseline_gflops > 0 else speedup
+#             efficiency = (actual_speedup / num_units) * 100
             
-            results.append({
+#             results.append({
                 "gpu_units": num_units,
                 "total_gflops": gflops,
                 "speedup": actual_speedup,
@@ -1651,14 +1651,14 @@ async def parallel_gpu_benchmark():
             })
         
         # Hardware baseline comparison
-        hardware_rtx_3080 = 22.4  # GFLOPS
-        matching_units = None
-        for r in results:
-            if r["total_gflops"] >= hardware_rtx_3080:
-                matching_units = r["gpu_units"]
-                break
+#         hardware_rtx_3080 = 22.4  # GFLOPS
+#         matching_units = None
+#         for r in results:
+#             if r["total_gflops"] >= hardware_rtx_3080:
+#                 matching_units = r["gpu_units"]
+#                 break
         
-        return {
+#         return {
             "benchmark": "parallel_gpu_scaling_efficiency",
             "timestamp": datetime.utcnow().isoformat(),
             "test_configuration": {
@@ -1676,14 +1676,14 @@ async def parallel_gpu_benchmark():
             },
             "pool_status": parallel_gpu_orchestrator.get_pool_status(),
             "insights": [
-                f"Single GPU achieves {results[0]['total_gflops']:.1f} GFLOPS",
-                f"{matching_units} GPU units match RTX 3080 (22.4 GFLOPS)",
-                f"Linear scaling efficiency maintained across all unit counts",
-                f"System ready for 8-unit deployment for 44.8 GFLOPS throughput"
+#                 f"Single GPU achieves {results[0]['total_gflops']:.1f} GFLOPS",
+#                 f"{matching_units} GPU units match RTX 3080 (22.4 GFLOPS)",
+#                 f"Linear scaling efficiency maintained across all unit counts",
+#                 f"System ready for 8-unit deployment for 44.8 GFLOPS throughput"
             ]
         }
-    except Exception as e:
-        return {
+#     except Exception as e:
+#         return {
             "error": str(e),
             "benchmark": "parallel_gpu_scaling_efficiency",
             "status": "failed"
@@ -1691,16 +1691,16 @@ async def parallel_gpu_benchmark():
 
 
 @app.get("/api/gpu/parallel/pool-status")
-async def get_parallel_gpu_pool_status():
+# async def get_parallel_gpu_pool_status():
     """ Check Current Parallel GPU Pool Status & Utilization
     
-    Returns real-time information about GPU unit pool:
+#     Returns real-time information about GPU unit pool:
     - How many units are active vs on standby
     - Current utilization metrics
     - Performance statistics
     - Queue depth
     
-    Returns: {
+#     Returns: {
         "active_units": 4,
         "total_units": 8,
         "idle_units": 4,
@@ -1711,11 +1711,11 @@ async def get_parallel_gpu_pool_status():
         "average_task_time_ms": 245.3
     }
     """
-    try:
-        status = parallel_gpu_orchestrator.get_pool_status()
-        performance = parallel_gpu_orchestrator.get_performance_summary()
+#     try:
+#         status = parallel_gpu_orchestrator.get_pool_status()
+#         performance = parallel_gpu_orchestrator.get_performance_summary()
         
-        return {
+#         return {
             "timestamp": __import__("datetime").datetime.utcnow().isoformat(),
             "pool_configuration": {
                 "min_units": 2,
@@ -1727,8 +1727,8 @@ async def get_parallel_gpu_pool_status():
             "utilization_percent": (status.get("active_units", 0) / 8) * 100,
             "message": f" GPU Pool Status: {status.get('active_units', 0)}/8 units active, {status.get('idle_units', 0)} idle"
         }
-    except Exception as e:
-        return {
+#     except Exception as e:
+#         return {
             "error": str(e),
             "operation": "pool_status",
             "status": "failed"
@@ -1736,24 +1736,24 @@ async def get_parallel_gpu_pool_status():
 
 
 @app.post("/api/gpu/parallel/benchmark/vs-hardware")
-async def benchmark_vs_hardware():
+# async def benchmark_vs_hardware():
     """⚖ Detailed Comparison: Our Parallel GPU vs Hardware (RTX 3080)
     
-    Side-by-side performance comparison showing:
+#     Side-by-side performance comparison showing:
     - QuetzalCore 1 GPU vs Hardware
     - QuetzalCore 4 GPUs vs Hardware (parity check)
     - QuetzalCore 8 GPUs vs Hardware (beating)
     - Efficiency analysis
     
-    Returns comprehensive comparison metrics
+#     Returns comprehensive comparison metrics
     """
-    import numpy as np
-    import time
-    from datetime import datetime
+#     import numpy as np
+#     import time
+#     from datetime import datetime
     
-    try:
+#     try:
         # Hardware specs (RTX 3080)
-        hardware_specs = {
+#         hardware_specs = {
             "name": "NVIDIA RTX 3080",
             "cuda_cores": 8704,
             "peak_gflops": 29.8,  # FP32
@@ -1763,33 +1763,33 @@ async def benchmark_vs_hardware():
         }
         
         # Our software GPU specs
-        our_single_gpu_gflops = 5.6
-        our_hardware_cpu = "Apple Silicon M-series"
+#         our_single_gpu_gflops = 5.6
+#         our_hardware_cpu = "Apple Silicon M-series"
         
         # Run matmul benchmarks
-        test_size = 512
-        a = np.random.randn(test_size, test_size).astype(np.float32)
-        b = np.random.randn(test_size, test_size).astype(np.float32)
+#         test_size = 512
+#         a = np.random.randn(test_size, test_size).astype(np.float32)
+#         b = np.random.randn(test_size, test_size).astype(np.float32)
         
         # Single GPU (our system)
-        start = time.time()
-        result_1gpu = parallel_gpu_orchestrator.parallel_matmul(a, b, num_gpu_units=1)
-        time_1gpu = time.time() - start
-        gflops_1gpu = result_1gpu["performance_metrics"]["total_gflops"]
+#         start = time.time()
+#         result_1gpu = parallel_gpu_orchestrator.parallel_matmul(a, b, num_gpu_units=1)
+#         time_1gpu = time.time() - start
+#         gflops_1gpu = result_1gpu["performance_metrics"]["total_gflops"]
         
         # 4 GPUs (our system - should match RTX 3080)
-        start = time.time()
-        result_4gpu = parallel_gpu_orchestrator.parallel_matmul(a, b, num_gpu_units=4)
-        time_4gpu = time.time() - start
-        gflops_4gpu = result_4gpu["performance_metrics"]["total_gflops"]
+#         start = time.time()
+#         result_4gpu = parallel_gpu_orchestrator.parallel_matmul(a, b, num_gpu_units=4)
+#         time_4gpu = time.time() - start
+#         gflops_4gpu = result_4gpu["performance_metrics"]["total_gflops"]
         
         # 8 GPUs (our system - should exceed RTX 3080)
-        start = time.time()
-        result_8gpu = parallel_gpu_orchestrator.parallel_matmul(a, b, num_gpu_units=8)
-        time_8gpu = time.time() - start
-        gflops_8gpu = result_8gpu["performance_metrics"]["total_gflops"]
+#         start = time.time()
+#         result_8gpu = parallel_gpu_orchestrator.parallel_matmul(a, b, num_gpu_units=8)
+#         time_8gpu = time.time() - start
+#         gflops_8gpu = result_8gpu["performance_metrics"]["total_gflops"]
         
-        return {
+#         return {
             "timestamp": datetime.utcnow().isoformat(),
             "benchmark_type": "parallel_gpu_vs_hardware",
             "test_matrix_size": test_size,
@@ -1822,8 +1822,8 @@ async def benchmark_vs_hardware():
             },
             "pool_status": parallel_gpu_orchestrator.get_pool_status()
         }
-    except Exception as e:
-        return {
+#     except Exception as e:
+#         return {
             "error": str(e),
             "operation": "benchmark_vs_hardware",
             "status": "failed"
@@ -1831,34 +1831,34 @@ async def benchmark_vs_hardware():
 
 
 @app.post("/api/gpu/parallel/matmul/advanced")
-async def advanced_parallel_matmul(
-    size: int = 256,
-    num_gpu_units: int = 4,
-    tile_strategy: str = "auto",
-    enable_simd: bool = True,
-    enable_prefetch: bool = True
+# async def advanced_parallel_matmul(
+#     size: int = 256,
+#     num_gpu_units: int = 4,
+#     tile_strategy: str = "auto",
+#     enable_simd: bool = True,
+#     enable_prefetch: bool = True
 ):
     """ Advanced Parallel MatMul with Optimization Control
     
-    Fine-grained control over matrix multiplication:
+#     Fine-grained control over matrix multiplication:
     - Choose tiling strategy
     - Enable/disable SIMD acceleration
     - Control memory prefetching
     - Get detailed performance breakdown
     """
-    import time
-    import numpy as np
-    from datetime import datetime
+#     import time
+#     import numpy as np
+#     from datetime import datetime
     
-    try:
-        a = np.random.randn(size, size).astype(np.float32)
-        b = np.random.randn(size, size).astype(np.float32)
+#     try:
+#         a = np.random.randn(size, size).astype(np.float32)
+#         b = np.random.randn(size, size).astype(np.float32)
         
-        start = time.time()
-        result = parallel_gpu_orchestrator.parallel_matmul(a, b, num_gpu_units=num_gpu_units)
-        elapsed = time.time() - start
+#         start = time.time()
+#         result = parallel_gpu_orchestrator.parallel_matmul(a, b, num_gpu_units=num_gpu_units)
+#         elapsed = time.time() - start
         
-        return {
+#         return {
             "operation": "advanced_parallel_matmul",
             "timestamp": datetime.utcnow().isoformat(),
             "configuration": {
@@ -1877,8 +1877,8 @@ async def advanced_parallel_matmul(
             "unit_breakdown": result.get("unit_metrics", {}),
             "pool_status": parallel_gpu_orchestrator.get_pool_status()
         }
-    except Exception as e:
-        return {
+#     except Exception as e:
+#         return {
             "error": str(e),
             "operation": "advanced_parallel_matmul",
             "status": "failed"
@@ -1886,50 +1886,50 @@ async def advanced_parallel_matmul(
 
 
 @app.post("/api/gpu/parallel/benchmark/scaling-efficiency")
-async def benchmark_scaling_efficiency():
+# async def benchmark_scaling_efficiency():
     """📈 Scaling Efficiency Analysis - Measure Speedup vs Unit Count
     
-    Analyzes how well the parallel GPU system scales:
+#     Analyzes how well the parallel GPU system scales:
     - Linear scaling (ideal) = N units = N× speedup, 100% efficiency
     - Sublinear scaling = diminishing returns
     - Superlinear scaling = unexpected gains (rare)
     
-    Returns detailed efficiency curves and bottleneck analysis
+#     Returns detailed efficiency curves and bottleneck analysis
     """
-    import numpy as np
-    import time
-    from datetime import datetime
+#     import numpy as np
+#     import time
+#     from datetime import datetime
     
-    try:
+#     try:
         # Test different matrix sizes to see scaling behavior
-        matrix_sizes = [128, 256, 512, 1024]
-        results_by_size = []
+#         matrix_sizes = [128, 256, 512, 1024]
+#         results_by_size = []
         
-        for size in matrix_sizes:
-            a = np.random.randn(size, size).astype(np.float32)
-            b = np.random.randn(size, size).astype(np.float32)
+#         for size in matrix_sizes:
+#             a = np.random.randn(size, size).astype(np.float32)
+#             b = np.random.randn(size, size).astype(np.float32)
             
-            size_results = {
+#             size_results = {
                 "matrix_size": size,
                 "scaling_by_units": []
             }
             
-            baseline_gflops = None
+#             baseline_gflops = None
             
-            for num_units in [1, 2, 4, 8]:
-                start = time.time()
-                result = parallel_gpu_orchestrator.parallel_matmul(a, b, num_gpu_units=num_units)
-                elapsed = time.time() - start
+#             for num_units in [1, 2, 4, 8]:
+#                 start = time.time()
+#                 result = parallel_gpu_orchestrator.parallel_matmul(a, b, num_gpu_units=num_units)
+#                 elapsed = time.time() - start
                 
-                gflops = result["performance_metrics"]["total_gflops"]
+#                 gflops = result["performance_metrics"]["total_gflops"]
                 
-                if baseline_gflops is None:
-                    baseline_gflops = gflops
+#                 if baseline_gflops is None:
+#                     baseline_gflops = gflops
                 
-                speedup = gflops / baseline_gflops if baseline_gflops > 0 else 1.0
-                efficiency = (speedup / num_units) * 100
+#                 speedup = gflops / baseline_gflops if baseline_gflops > 0 else 1.0
+#                 efficiency = (speedup / num_units) * 100
                 
-                size_results["scaling_by_units"].append({
+#                 size_results["scaling_by_units"].append({
                     "units": num_units,
                     "gflops": gflops,
                     "speedup": speedup,
@@ -1937,18 +1937,18 @@ async def benchmark_scaling_efficiency():
                     "is_linear": abs(efficiency - 100) < 5  # Within 5% of ideal
                 })
             
-            results_by_size.append(size_results)
+#             results_by_size.append(size_results)
         
-        return {
+#         return {
             "benchmark": "scaling_efficiency_analysis",
             "timestamp": datetime.utcnow().isoformat(),
             "scaling_analysis": results_by_size,
             "overall_assessment": {
                 "scaling_model": "Linear (ideal)",
                 "efficiency_average_percent": np.mean([
-                    item for size_result in results_by_size 
-                    for item in [unit["efficiency_percent"] 
-                                 for unit in size_result["scaling_by_units"]]
+#                     item for size_result in results_by_size 
+#                     for item in [unit["efficiency_percent"] 
+#                                  for unit in size_result["scaling_by_units"]]
                 ]),
                 "bottlenecks": "None detected - system scales linearly",
                 "scalability": "Excellent - ready for up to 8 units"
@@ -1960,8 +1960,8 @@ async def benchmark_scaling_efficiency():
             ],
             "pool_status": parallel_gpu_orchestrator.get_pool_status()
         }
-    except Exception as e:
-        return {
+#     except Exception as e:
+#         return {
             "error": str(e),
             "benchmark": "scaling_efficiency_analysis",
             "status": "failed"
@@ -1969,17 +1969,17 @@ async def benchmark_scaling_efficiency():
 
 
 @app.post("/api/gpu/benchmark/webgl")
-async def benchmark_webgl():
+# async def benchmark_webgl():
     """🎮 Run WebGL compatibility benchmark"""
-    import time
-    start = time.time()
+#     import time
+#     start = time.time()
     
     # Create test resources
-    session_id = "benchmark_session"
-    web_gpu_api.create_session(session_id)
+#     session_id = "benchmark_session"
+#     web_gpu_api.create_session(session_id)
     
     # Create cube geometry (24 vertices, 36 indices)
-    vertex_data = np.array([
+#     vertex_data = np.array([
         # Positions (x, y, z) + Colors (r, g, b, a)
         -1, -1, -1,  1, 0, 0, 1,  # Front face
          1, -1, -1,  0, 1, 0, 1,
@@ -1987,12 +1987,12 @@ async def benchmark_webgl():
         -1,  1, -1,  1, 1, 0, 1,
     ], dtype=np.float32)
     
-    index_data = np.array([
+#     index_data = np.array([
         0, 1, 2,  0, 2, 3,  # Front
     ], dtype=np.uint16)
     
     # Execute commands
-    commands = [
+#     commands = [
         {
             "type": "createBuffer",
             "size": vertex_data.nbytes,
@@ -2017,11 +2017,11 @@ async def benchmark_webgl():
         }
     ]
     
-    result = await web_gpu_api.execute_commands(session_id, commands)
+#     result = await web_gpu_api.execute_commands(session_id, commands)
     
-    duration = time.time() - start
+#     duration = time.time() - start
     
-    return {
+#     return {
         "benchmark": "WebGL Cube Rendering",
         "duration_ms": duration * 1000,
         "commands_executed": len(commands),
@@ -2031,23 +2031,23 @@ async def benchmark_webgl():
 
 
 @app.post("/api/gpu/benchmark/compute")
-async def benchmark_compute():
+# async def benchmark_compute():
     """ Benchmark compute shader performance"""
-    import time
-    start = time.time()
+#     import time
+#     start = time.time()
     
-    session_id = "compute_benchmark"
-    web_gpu_api.create_session(session_id)
+#     session_id = "compute_benchmark"
+#     web_gpu_api.create_session(session_id)
     
     # Create compute shader for matrix multiplication
-    commands = [
+#     commands = [
         {
             "type": "createShader",
             "computeShader": """
             @compute @workgroup_size(8, 8)
-            fn main(@builtin(global_invocation_id) global_id: vec3<u32>) {
+#             fn main(@builtin(global_invocation_id) global_id: vec3<u32>) {
                 // Matrix multiply
-                let index = global_id.x + global_id.y * 64;
+#                 let index = global_id.x + global_id.y * 64;
             }
             """
         },
@@ -2060,23 +2060,23 @@ async def benchmark_compute():
         }
     ]
     
-    result = await web_gpu_api.execute_commands(session_id, commands)
-    duration = time.time() - start
+#     result = await web_gpu_api.execute_commands(session_id, commands)
+#     duration = time.time() - start
     
     # Calculate compute throughput
-    total_threads = 64 * 64 * 64  # workgroups * threads per workgroup
-    threads_per_second = total_threads / duration
+#     total_threads = 64 * 64 * 64  # workgroups * threads per workgroup
+#     threads_per_second = total_threads / duration
     
-    if threads_per_second > 10_000_000:
-        grade = "S"
-    elif threads_per_second > 1_000_000:
-        grade = "A"
-    elif threads_per_second > 100_000:
-        grade = "B"
-    else:
-        grade = "C"
+#     if threads_per_second > 10_000_000:
+#         grade = "S"
+#     elif threads_per_second > 1_000_000:
+#         grade = "A"
+#     elif threads_per_second > 100_000:
+#         grade = "B"
+#     else:
+#         grade = "C"
     
-    return {
+#     return {
         "benchmark": "Compute Shader",
         "total_threads": total_threads,
         "duration_ms": duration * 1000,
@@ -2092,13 +2092,13 @@ async def benchmark_compute():
 
 
 @app.post("/api/gpu/demo/rotating-cube")
-async def demo_rotating_cube():
+# async def demo_rotating_cube():
     """🎲 Render a rotating cube (WebGL demo)"""
-    session_id = "cube_demo"
-    web_gpu_api.create_session(session_id)
+#     session_id = "cube_demo"
+#     web_gpu_api.create_session(session_id)
     
     # Full cube with 8 vertices, 12 triangles
-    commands = [
+#     commands = [
         {
             "type": "createBuffer",
             "size": 8 * 7 * 4,  # 8 vertices * 7 floats * 4 bytes
@@ -2112,23 +2112,23 @@ async def demo_rotating_cube():
         {
             "type": "createShader",
             "vertexShader": """
-            attribute vec3 aPosition;
-            attribute vec4 aColor;
-            varying vec4 vColor;
-            uniform mat4 uModelView;
-            uniform mat4 uProjection;
+#             attribute vec3 aPosition;
+#             attribute vec4 aColor;
+#             varying vec4 vColor;
+#             uniform mat4 uModelView;
+#             uniform mat4 uProjection;
             
-            void main() {
-                gl_Position = uProjection * uModelView * vec4(aPosition, 1.0);
-                vColor = aColor;
+#             void main() {
+#                 gl_Position = uProjection * uModelView * vec4(aPosition, 1.0);
+#                 vColor = aColor;
             }
             """,
             "fragmentShader": """
-            precision mediump float;
-            varying vec4 vColor;
+#             precision mediump float;
+#             varying vec4 vColor;
             
-            void main() {
-                gl_FragColor = vColor;
+#             void main() {
+#                 gl_FragColor = vColor;
             }
             """
         },
@@ -2141,10 +2141,10 @@ async def demo_rotating_cube():
         }
     ]
     
-    result = await web_gpu_api.execute_commands(session_id, commands)
-    stats = web_gpu_driver.get_stats()
+#     result = await web_gpu_api.execute_commands(session_id, commands)
+#     stats = web_gpu_driver.get_stats()
     
-    return {
+#     return {
         "demo": "Rotating Cube",
         "triangles_rendered": stats['triangles_rendered'],
         "draw_calls": stats['draw_calls'],
@@ -2155,9 +2155,9 @@ async def demo_rotating_cube():
 
 
 @app.get("/api/gpu/capabilities")
-async def get_gpu_capabilities():
+# async def get_gpu_capabilities():
     """🔍 Get GPU capabilities (like WebGL getParameter)"""
-    return {
+#     return {
         "vendor": "QuetzalCore Software GPU",
         "renderer": "QuetzalCore-Core BEAST Mode Renderer",
         "version": "WebGPU 1.0 / OpenGL ES 3.0",
@@ -2192,9 +2192,9 @@ async def get_gpu_capabilities():
 # ============================================================================
 
 @app.get("/api/gpu/info")
-async def get_gpu_info():
+# async def get_gpu_info():
     """ Get GPU info for Blender addon"""
-    return {
+#     return {
         "vendor": "QuetzalCore-Core",
         "device": "Software GPU (BEAST Mode)",
         "num_cores": software_gpu.num_blocks,
@@ -2211,108 +2211,108 @@ async def get_gpu_info():
 
 
 @app.post("/api/gpu/buffer/create")
-async def create_gpu_buffer(request: dict):
+# async def create_gpu_buffer(request: dict):
     """ Create GPU buffer (for Blender mesh data)"""
-    size = request.get("size", 0)
-    buffer_type_str = request.get("buffer_type", "vertex")
-    usage = request.get("usage", "static")
+#     size = request.get("size", 0)
+#     buffer_type_str = request.get("buffer_type", "vertex")
+#     usage = request.get("usage", "static")
     
     # Map string to enum
-    buffer_type_map = {
+#     buffer_type_map = {
         "vertex": BufferType.VERTEX,
         "index": BufferType.INDEX,
         "uniform": BufferType.UNIFORM,
         "storage": BufferType.STORAGE
     }
-    buffer_type = buffer_type_map.get(buffer_type_str, BufferType.VERTEX)
+#     buffer_type = buffer_type_map.get(buffer_type_str, BufferType.VERTEX)
     
-    try:
-        buffer_id = web_gpu_driver.create_buffer(size, buffer_type, usage)
-        return {
+#     try:
+#         buffer_id = web_gpu_driver.create_buffer(size, buffer_type, usage)
+#         return {
             "status": "success",
             "buffer_id": buffer_id,
             "size": size,
             "buffer_type": buffer_type_str
         }
-    except Exception as e:
-        return {"status": "error", "error": str(e)}
+#     except Exception as e:
+#         return {"status": "error", "error": str(e)}
 
 
 @app.post("/api/gpu/buffer/write")
-async def write_gpu_buffer(request: dict):
+# async def write_gpu_buffer(request: dict):
     """ Write data to GPU buffer"""
-    buffer_id = request.get("buffer_id")
-    data = request.get("data", [])
-    offset = request.get("offset", 0)
+#     buffer_id = request.get("buffer_id")
+#     data = request.get("data", [])
+#     offset = request.get("offset", 0)
     
-    try:
+#     try:
         # Convert list to bytes
-        data_array = np.array(data, dtype=np.float32)
-        data_bytes = data_array.tobytes()
+#         data_array = np.array(data, dtype=np.float32)
+#         data_bytes = data_array.tobytes()
         
-        web_gpu_driver.write_buffer(buffer_id, data_bytes, offset)
-        return {
+#         web_gpu_driver.write_buffer(buffer_id, data_bytes, offset)
+#         return {
             "status": "success",
             "buffer_id": buffer_id,
             "bytes_written": len(data_bytes)
         }
-    except Exception as e:
-        return {"status": "error", "error": str(e)}
+#     except Exception as e:
+#         return {"status": "error", "error": str(e)}
 
 
 @app.post("/api/gpu/render")
-async def submit_render_job(request: dict):
+# async def submit_render_job(request: dict):
     """ Submit render job from Blender"""
-    vertices = request.get("vertices", [])
-    indices = request.get("indices", [])
-    width = request.get("width", 512)
-    height = request.get("height", 512)
+#     vertices = request.get("vertices", [])
+#     indices = request.get("indices", [])
+#     width = request.get("width", 512)
+#     height = request.get("height", 512)
     
-    try:
+#     try:
         # Convert to numpy
-        vertices_array = np.array(vertices, dtype=np.float32)
-        indices_array = np.array(indices, dtype=np.int32)
+#         vertices_array = np.array(vertices, dtype=np.float32)
+#         indices_array = np.array(indices, dtype=np.int32)
         
         # Create job ID
-        job_id = f"render_{hashlib.md5(str(time.time()).encode()).hexdigest()[:8]}"
+#         job_id = f"render_{hashlib.md5(str(time.time()).encode()).hexdigest()[:8]}"
         
         # Create buffers
-        vertex_buffer_id = web_gpu_driver.create_buffer(
-            vertices_array.nbytes, 
-            BufferType.VERTEX, 
+#         vertex_buffer_id = web_gpu_driver.create_buffer(
+#             vertices_array.nbytes, 
+#             BufferType.VERTEX, 
             "static"
         )
-        index_buffer_id = web_gpu_driver.create_buffer(
-            indices_array.nbytes, 
-            BufferType.INDEX, 
+#         index_buffer_id = web_gpu_driver.create_buffer(
+#             indices_array.nbytes, 
+#             BufferType.INDEX, 
             "static"
         )
         
         # Upload data
-        web_gpu_driver.write_buffer(vertex_buffer_id, vertices_array.tobytes())
-        web_gpu_driver.write_buffer(index_buffer_id, indices_array.tobytes())
+#         web_gpu_driver.write_buffer(vertex_buffer_id, vertices_array.tobytes())
+#         web_gpu_driver.write_buffer(index_buffer_id, indices_array.tobytes())
         
         # Create framebuffer (render target)
-        framebuffer_id = web_gpu_driver.create_framebuffer(width, height)
+#         framebuffer_id = web_gpu_driver.create_framebuffer(width, height)
         
         # Simulate render (in real implementation, this would do actual rendering)
-        start_time = time.time()
+#         start_time = time.time()
         
         # Bind buffers and render
-        web_gpu_driver.bind_vertex_buffer(vertex_buffer_id)
-        web_gpu_driver.bind_index_buffer(index_buffer_id)
-        web_gpu_driver.bind_framebuffer(framebuffer_id)
+#         web_gpu_driver.bind_vertex_buffer(vertex_buffer_id)
+#         web_gpu_driver.bind_index_buffer(index_buffer_id)
+#         web_gpu_driver.bind_framebuffer(framebuffer_id)
         
         # Draw call
-        num_triangles = len(indices) // 3
-        web_gpu_driver.draw_indexed(num_triangles)
+#         num_triangles = len(indices) // 3
+#         web_gpu_driver.draw_indexed(num_triangles)
         
-        render_time_ms = (time.time() - start_time) * 1000
+#         render_time_ms = (time.time() - start_time) * 1000
         
         # Get stats
-        stats = web_gpu_driver.get_stats()
+#         stats = web_gpu_driver.get_stats()
         
-        return {
+#         return {
             "status": "success",
             "job_id": job_id,
             "vertices_count": len(vertices),
@@ -2324,8 +2324,8 @@ async def submit_render_job(request: dict):
             "gpu_stats": stats
         }
         
-    except Exception as e:
-        return {"status": "error", "error": str(e)}
+#     except Exception as e:
+#         return {"status": "error", "error": str(e)}
 
 
 # ============================================================================
@@ -2333,21 +2333,21 @@ async def submit_render_job(request: dict):
 # ============================================================================
 
 @app.get("/api/security/status")
-async def get_security_status():
+# async def get_security_status():
     """🔒 Get current security status"""
-    status = check_security_status()
-    return sanitize_output(status)
+#     status = check_security_status()
+#     return sanitize_output(status)
 
 
 @app.get("/api/security/memory")
-async def get_memory_status():
+# async def get_memory_status():
     """🔒 Get memory allocation and leak detection status"""
-    security_mgr = get_security_manager()
+#     security_mgr = get_security_manager()
     
-    leak_info = security_mgr.memory_manager.check_leaks()
-    active_allocs = security_mgr.memory_manager.get_active_allocations()
+#     leak_info = security_mgr.memory_manager.check_leaks()
+#     active_allocs = security_mgr.memory_manager.get_active_allocations()
     
-    return sanitize_output({
+#     return sanitize_output({
         "leak_detection": leak_info,
         "active_allocations_count": len(active_allocs),
         "active_allocations": active_allocs[:10],  # Top 10 only
@@ -2356,45 +2356,45 @@ async def get_memory_status():
 
 
 @app.get("/api/security/audit")
-async def get_audit_log(count: int = 100):
+# async def get_audit_log(count: int = 100):
     """🔒 Get recent security audit events"""
-    security_mgr = get_security_manager()
-    events = security_mgr.audit_logger.get_recent_events(count)
+#     security_mgr = get_security_manager()
+#     events = security_mgr.audit_logger.get_recent_events(count)
     
-    return sanitize_output({
+#     return sanitize_output({
         "events": events,
         "count": len(events)
     })
 
 
 @app.get("/api/security/report")
-async def get_security_report():
+# async def get_security_report():
     """🔒 Get comprehensive security report"""
-    security_mgr = get_security_manager()
-    report = security_mgr.audit_logger.get_security_report()
+#     security_mgr = get_security_manager()
+#     report = security_mgr.audit_logger.get_security_report()
     
-    return sanitize_output(report)
+#     return sanitize_output(report)
 
 
 @app.post("/api/security/cleanup")
-async def force_security_cleanup():
+# async def force_security_cleanup():
     """🔒 Force security cleanup (emergency use only)"""
-    security_mgr = get_security_manager()
+#     security_mgr = get_security_manager()
     
     # Log the cleanup request
-    security_mgr.audit_logger.log_event(
+#     security_mgr.audit_logger.log_event(
         'FORCE_CLEANUP_REQUESTED',
         {'timestamp': datetime.now().isoformat()},
         'WARNING'
     )
     
     # Force cleanup
-    security_mgr.memory_manager.force_cleanup()
+#     security_mgr.memory_manager.force_cleanup()
     
     # Check status after cleanup
-    status = check_security_status()
+#     status = check_security_status()
     
-    return sanitize_output({
+#     return sanitize_output({
         "status": "cleanup_complete",
         "security_status": status
     })
@@ -2405,33 +2405,33 @@ async def force_security_cleanup():
 # ============================================================================
 
 @app.post("/api/gen3d/text-to-3d-distributed")
-async def generate_3d_from_text_distributed(
-    prompt: str,
-    style: str = "realistic",
-    detail_level: str = "medium",
-    model: str = "shap-e"
+# async def generate_3d_from_text_distributed(
+#     prompt: str,
+#     style: str = "realistic",
+#     detail_level: str = "medium",
+#     model: str = "shap-e"
 ):
     """
-     DISTRIBUTED 3D Generation from text
+#      DISTRIBUTED 3D Generation from text
     
-    Spawns workers on-demand and distributes across Hive cluster
-    Returns task_id for async tracking
+#     Spawns workers on-demand and distributes across Hive cluster
+#     Returns task_id for async tracking
     """
     # Create task
-    task = Gen3DTask(
-        task_id="",
-        task_type=Gen3DTaskType.TEXT_TO_3D,
-        prompt=prompt,
-        style=style,
-        detail_level=detail_level,
-        model=model,
-        requires_gpu=True if model == "shap-e" else False
+#     task = Gen3DTask(
+#         task_id="",
+#         task_type=Gen3DTaskType.TEXT_TO_3D,
+#         prompt=prompt,
+#         style=style,
+#         detail_level=detail_level,
+#         model=model,
+#         requires_gpu=True if model == "shap-e" else False
     )
     
     # Submit to distributed workload manager (spawns workers if needed)
-    task_id = await gen3d_workload.submit_task(task)
+#     task_id = await gen3d_workload.submit_task(task)
     
-    return {
+#     return {
         "task_id": task_id,
         "status": "submitted",
         "message": "Task submitted to distributed Hive cluster",
@@ -2441,49 +2441,49 @@ async def generate_3d_from_text_distributed(
 
 
 @app.get("/api/gen3d/trained-model")
-async def generate_3d_from_trained_model(
-    prompt: str,
-    format: str = "obj"
+# async def generate_3d_from_trained_model(
+#     prompt: str,
+#     format: str = "obj"
 ):
     """
     🎓 Generate 3D model using TRAINED model
     
-    Uses the custom-trained model (fast, 512 vertices)
-    Much faster than Shap-E, completes in milliseconds
+#     Uses the custom-trained model (fast, 512 vertices)
+#     Much faster than Shap-E, completes in milliseconds
     """
-    import time
-    start = time.time()
+#     import time
+#     start = time.time()
     
-    try:
+#     try:
         # Get inference engine
-        engine = get_inference_engine()
+#         engine = get_inference_engine()
         
-        if not engine.is_available():
-            return {
+#         if not engine.is_available():
+#             return {
                 "error": "Trained model not available",
                 "fallback": "Use /api/gen3d/text-to-3d-distributed instead"
             }
         
         # Generate 3D model
-        result = engine.generate(prompt)
+#         result = engine.generate(prompt)
         
-        duration = time.time() - start
+#         duration = time.time() - start
         
         # Format output
-        if format == "obj":
+#         if format == "obj":
             # Convert to OBJ format
-            obj_data = "# Generated by Trained Model\n"
-            obj_data += f"# Prompt: {prompt}\n\n"
+#             obj_data = "# Generated by Trained Model\n"
+#             obj_data += f"# Prompt: {prompt}\n\n"
             
             # Vertices
-            for v in result['vertices']:
-                obj_data += f"v {v[0]} {v[1]} {v[2]}\n"
+#             for v in result['vertices']:
+#                 obj_data += f"v {v[0]} {v[1]} {v[2]}\n"
             
             # Faces
-            for f in result['faces']:
-                obj_data += f"f {f[0]+1} {f[1]+1} {f[2]+1}\n"
+#             for f in result['faces']:
+#                 obj_data += f"f {f[0]+1} {f[1]+1} {f[2]+1}\n"
             
-            return {
+#             return {
                 "model": obj_data,
                 "format": "obj",
                 "stats": result['stats'],
@@ -2491,9 +2491,9 @@ async def generate_3d_from_trained_model(
                 "method": "trained_model",
                 "prompt": prompt
             }
-        else:
-            mesh_data = mesh_to_json(result.mesh)
-            return {
+#         else:
+#             mesh_data = mesh_to_json(result.mesh)
+#             return {
                 "model": mesh_data,
                 "format": "json",
                 "prompt": result.prompt,
@@ -2503,65 +2503,65 @@ async def generate_3d_from_trained_model(
                 "faces": result.faces_count
             }
     
-    except Exception as e:
-        return {
+#     except Exception as e:
+#         return {
             "error": str(e),
             "prompt": prompt
         }
 
 
 @app.get("/api/gen3d/premium")
-async def generate_3d_premium(
-    prompt: str,
-    format: str = "stl",
-    size_mm: float = 100.0,
-    validate: bool = True
+# async def generate_3d_premium(
+#     prompt: str,
+#     format: str = "stl",
+#     size_mm: float = 100.0,
+#     validate: bool = True
 ):
     """
     🎨 PREMIUM: Generate 3D model with advanced formats
     
-    Supports: STL (3D printing), PLY, GLTF, OBJ
-    Includes validation and mesh repair
+#     Supports: STL (3D printing), PLY, GLTF, OBJ
+#     Includes validation and mesh repair
     """
-    import time
-    start = time.time()
+#     import time
+#     start = time.time()
     
-    try:
+#     try:
         # Get inference engine
-        engine = get_inference_engine()
+#         engine = get_inference_engine()
         
-        if not engine.is_available():
-            return {"error": "Model not available"}
+#         if not engine.is_available():
+#             return {"error": "Model not available"}
         
         # Generate base model
-        result = engine.generate(prompt)
+#         result = engine.generate(prompt)
         
-        vertices = np.array(result['vertices'])
-        faces = result['faces']
+#         vertices = np.array(result['vertices'])
+#         faces = result['faces']
         
         # Import premium features
-        try:
-            from .premium_features import PremiumExporter, MeshValidator, analyze_printability
+#         try:
+#             from .premium_features import PremiumExporter, MeshValidator, analyze_printability
             
             # Validate and repair if requested
-            if validate:
-                validator = MeshValidator()
-                vertices, faces = validator.remove_duplicate_vertices(vertices, faces)
+#             if validate:
+#                 validator = MeshValidator()
+#                 vertices, faces = validator.remove_duplicate_vertices(vertices, faces)
                 
                 # Normalize size for 3D printing
-                if format in ['stl', 'ply']:
-                    vertices = validator.normalize_scale(vertices, target_size=size_mm)
+#                 if format in ['stl', 'ply']:
+#                     vertices = validator.normalize_scale(vertices, target_size=size_mm)
             
             # Export to requested format
-            duration = time.time() - start
+#             duration = time.time() - start
             
-            if format == 'stl':
-                stl_data = PremiumExporter.to_stl(vertices, faces, prompt)
+#             if format == 'stl':
+#                 stl_data = PremiumExporter.to_stl(vertices, faces, prompt)
                 
                 # Analyze printability
-                printability = analyze_printability(vertices, faces) if validate else None
+#                 printability = analyze_printability(vertices, faces) if validate else None
                 
-                return {
+#                 return {
                     "format": "stl",
                     "data": stl_data.hex(),  # Hex-encoded binary
                     "size_bytes": len(stl_data),
@@ -2576,9 +2576,9 @@ async def generate_3d_premium(
                     "note": "Download as binary using .stl extension"
                 }
             
-            elif format == 'ply':
-                ply_data = PremiumExporter.to_ply(vertices, faces, prompt)
-                return {
+#             elif format == 'ply':
+#                 ply_data = PremiumExporter.to_ply(vertices, faces, prompt)
+#                 return {
                     "format": "ply",
                     "model": ply_data,
                     "stats": {
@@ -2589,25 +2589,25 @@ async def generate_3d_premium(
                     "prompt": prompt
                 }
             
-            elif format == 'gltf':
-                gltf_data = PremiumExporter.to_gltf(vertices, faces, prompt)
-                return {
+#             elif format == 'gltf':
+#                 gltf_data = PremiumExporter.to_gltf(vertices, faces, prompt)
+#                 return {
                     "format": "gltf",
                     "model": gltf_data,
                     "generation_time_ms": duration * 1000,
                     "prompt": prompt
                 }
             
-            elif format == 'obj':
+#             elif format == 'obj':
                 # Standard OBJ export
-                obj_data = "# Generated by QuetzalCore-Core Premium\n"
-                obj_data += f"# Prompt: {prompt}\n\n"
-                for v in vertices:
-                    obj_data += f"v {v[0]} {v[1]} {v[2]}\n"
-                for f in faces:
-                    obj_data += f"f {f[0]+1} {f[1]+1} {f[2]+1}\n"
+#                 obj_data = "# Generated by QuetzalCore-Core Premium\n"
+#                 obj_data += f"# Prompt: {prompt}\n\n"
+#                 for v in vertices:
+#                     obj_data += f"v {v[0]} {v[1]} {v[2]}\n"
+#                 for f in faces:
+#                     obj_data += f"f {f[0]+1} {f[1]+1} {f[2]+1}\n"
                 
-                return {
+#                 return {
                     "format": "obj",
                     "model": obj_data,
                     "stats": {
@@ -2618,15 +2618,15 @@ async def generate_3d_premium(
                     "prompt": prompt
                 }
             
-            else:
-                return {"error": f"Unsupported format: {format}"}
+#             else:
+#                 return {"error": f"Unsupported format: {format}"}
         
-        except ImportError:
-            return {"error": "Premium features not available"}
+#         except ImportError:
+#             return {"error": "Premium features not available"}
     
-    except Exception as e:
-        import traceback
-        return {
+#     except Exception as e:
+#         import traceback
+#         return {
             "error": str(e),
             "traceback": traceback.format_exc(),
             "prompt": prompt
@@ -2634,62 +2634,62 @@ async def generate_3d_premium(
 
 
 @app.get("/api/gen3d/task-status/{task_id}")
-async def get_gen3d_task_status(task_id: str):
+# async def get_gen3d_task_status(task_id: str):
     """Get status of distributed 3D generation task"""
-    status = await gen3d_workload.get_task_status(task_id)
+#     status = await gen3d_workload.get_task_status(task_id)
     
-    if not status:
-        return {"error": "Task not found"}
+#     if not status:
+#         return {"error": "Task not found"}
     
-    return status
+#     return status
 
 
 @app.get("/api/gen3d/task-result/{task_id}")
-async def get_gen3d_task_result(task_id: str):
+# async def get_gen3d_task_result(task_id: str):
     """Get result of completed distributed task"""
-    result = await gen3d_workload.get_task_result(task_id)
+#     result = await gen3d_workload.get_task_result(task_id)
     
-    if not result:
-        status = await gen3d_workload.get_task_status(task_id)
-        if status and status["status"] == "running":
-            return {"status": "running", "progress": status["progress"]}
-        else:
-            return {"error": "Task not found or not completed"}
+#     if not result:
+#         status = await gen3d_workload.get_task_status(task_id)
+#         if status and status["status"] == "running":
+#             return {"status": "running", "progress": status["progress"]}
+#         else:
+#             return {"error": "Task not found or not completed"}
     
-    return result
+#     return result
 
 
 @app.get("/api/gen3d/stats")
-async def get_gen3d_stats():
+# async def get_gen3d_stats():
     """Get Gen3D distributed workload statistics"""
-    return gen3d_workload.get_stats()
+#     return gen3d_workload.get_stats()
 
 
 @app.post("/api/gen3d/text-to-3d")
-async def generate_3d_from_text(
-    prompt: str,
-    style: str = "realistic",
-    detail_level: str = "medium",
-    format: str = "json"
+# async def generate_3d_from_text(
+#     prompt: str,
+#     style: str = "realistic",
+#     detail_level: str = "medium",
+#     format: str = "json"
 ):
     """
-    Generate 3D model from text prompt
+#     Generate 3D model from text prompt
     
-    Styles: realistic, stylized, low-poly, voxel
-    Detail: low, medium, high, ultra
-    Format: json (Three.js), obj (OBJ file)
+#     Styles: realistic, stylized, low-poly, voxel
+#     Detail: low, medium, high, ultra
+#     Format: json (Three.js), obj (OBJ file)
     """
     # Use AI3DGenerator with real Shap-E
-    ai_gen = AI3DGenerator()
-    result = await ai_gen.generate_from_text(
-        prompt=prompt,
-        style=style,
-        detail_level=detail_level
+#     ai_gen = AI3DGenerator()
+#     result = await ai_gen.generate_from_text(
+#         prompt=prompt,
+#         style=style,
+#         detail_level=detail_level
     )
     
-    if format == "obj":
-        obj_data = mesh_to_obj(result.mesh)
-        return {
+#     if format == "obj":
+#         obj_data = mesh_to_obj(result.mesh)
+#         return {
             "model": obj_data,
             "format": "obj",
             "prompt": result.prompt,
@@ -2697,9 +2697,9 @@ async def generate_3d_from_text(
             "vertices": result.vertices_count,
             "faces": result.faces_count
         }
-    else:
-        mesh_data = mesh_to_json(result.mesh)
-        return {
+#     else:
+#         mesh_data = mesh_to_json(result.mesh)
+#         return {
             "model": mesh_data,
             "format": "json",
             "prompt": result.prompt,
@@ -2711,38 +2711,38 @@ async def generate_3d_from_text(
 
 
 @app.post("/api/gen3d/image-to-3d")
-async def generate_3d_from_image(
-    image_data: str,
-    depth_estimation: str = "automatic",
-    extrusion_depth: float = 1.0,
-    format: str = "json"
+# async def generate_3d_from_image(
+#     image_data: str,
+#     depth_estimation: str = "automatic",
+#     extrusion_depth: float = 1.0,
+#     format: str = "json"
 ):
     """
-    Generate 3D model from 2D image
+#     Generate 3D model from 2D image
     
-    image_data: Base64 encoded image
-    depth_estimation: automatic, manual
+#     image_data: Base64 encoded image
+#     depth_estimation: automatic, manual
     """
     # Use AI3DGenerator for image-to-3D
-    ai_gen = AI3DGenerator()
-    result = await ai_gen.generate_from_image(
-        image_data=image_data,
-        depth_method=depth_estimation,
-        extrusion_depth=extrusion_depth
+#     ai_gen = AI3DGenerator()
+#     result = await ai_gen.generate_from_image(
+#         image_data=image_data,
+#         depth_method=depth_estimation,
+#         extrusion_depth=extrusion_depth
     )
     
-    if format == "obj":
-        obj_data = mesh_to_obj(result.mesh)
-        return {
+#     if format == "obj":
+#         obj_data = mesh_to_obj(result.mesh)
+#         return {
             "model": obj_data,
             "format": "obj",
             "generation_time": result.generation_time,
             "vertices": result.vertices_count,
             "faces": result.faces_count
         }
-    else:
-        mesh_data = mesh_to_json(result.mesh)
-        return {
+#     else:
+#         mesh_data = mesh_to_json(result.mesh)
+#         return {
             "model": mesh_data,
             "format": "json",
             "generation_time": result.generation_time,
@@ -2752,93 +2752,93 @@ async def generate_3d_from_image(
 
 
 @app.post("/api/gen3d/generate-texture")
-async def generate_texture(
-    vertices_count: int,
-    style: str = "realistic",
-    resolution: int = 1024
+# async def generate_texture(
+#     vertices_count: int,
+#     style: str = "realistic",
+#     resolution: int = 1024
 ):
     """Generate AI texture for 3D model"""
     # Create dummy mesh for texture generation
-    dummy_verts = np.random.randn(vertices_count, 3)
-    dummy_faces = np.array([[i, i+1, i+2] for i in range(0, vertices_count-2, 3)])
-    dummy_normals = np.random.randn(vertices_count, 3)
-    mesh = Mesh3D(vertices=dummy_verts, faces=dummy_faces, normals=dummy_normals)
+#     dummy_verts = np.random.randn(vertices_count, 3)
+#     dummy_faces = np.array([[i, i+1, i+2] for i in range(0, vertices_count-2, 3)])
+#     dummy_normals = np.random.randn(vertices_count, 3)
+#     mesh = Mesh3D(vertices=dummy_verts, faces=dummy_faces, normals=dummy_normals)
     
     # Use AI3DGenerator for texture generation
-    ai_gen = AI3DGenerator()
-    texture_result = await ai_gen.generate_texture(
-        mesh=mesh,
-        style=style,
-        resolution=resolution
+#     ai_gen = AI3DGenerator()
+#     texture_result = await ai_gen.generate_texture(
+#         mesh=mesh,
+#         style=style,
+#         resolution=resolution
     )
     
-    return texture_result
+#     return texture_result
 
 
 @app.post("/api/gen3d/photo-to-3d")
-async def photo_to_3d_endpoint(
-    file: UploadFile = File(...),
-    format: str = "json"
+# async def photo_to_3d_endpoint(
+#     file: UploadFile = File(...),
+#     format: str = "json"
 ):
     """
     🖼 Photo-to-3D: Better than Hexa3D
-    Upload a photo, get a 3D model
+#     Upload a photo, get a 3D model
     """
-    try:
+#     try:
         # Read image data
-        image_bytes = await file.read()
+#         image_bytes = await file.read()
         
         # Load trained model
-        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+#         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         
-        try:
-            checkpoint = torch.load('/workspace/models/image_to_3d_model.pt', map_location=device)
+#         try:
+#             checkpoint = torch.load('/workspace/models/image_to_3d_model.pt', map_location=device)
             
             # Import model class
-            import sys
-            sys.path.insert(0, '/workspace')
-            from train_image_to_3d import ImageTo3DGenerator
+#             import sys
+#             sys.path.insert(0, '/workspace')
+#             from train_image_to_3d import ImageTo3DGenerator
             
-            model = ImageTo3DGenerator(max_vertices=1024).to(device)
-            model.load_state_dict(checkpoint['model_state_dict'])
-            model.eval()
+#             model = ImageTo3DGenerator(max_vertices=1024).to(device)
+#             model.load_state_dict(checkpoint['model_state_dict'])
+#             model.eval()
             
             # Process image
-            image = Image.open(io.BytesIO(image_bytes)).convert('RGB')
-            image = image.resize((64, 64))  # Model trained on 64x64
+#             image = Image.open(io.BytesIO(image_bytes)).convert('RGB')
+#             image = image.resize((64, 64))  # Model trained on 64x64
             
             # Convert to tensor
-            image_array = np.array(image).transpose(2, 0, 1) / 255.0  # CHW format
-            image_tensor = torch.from_numpy(image_array).unsqueeze(0).float().to(device)
+#             image_array = np.array(image).transpose(2, 0, 1) / 255.0  # CHW format
+#             image_tensor = torch.from_numpy(image_array).unsqueeze(0).float().to(device)
             
             # Generate 3D
-            with torch.no_grad():
-                vertices, depth = model(image_tensor)
+#             with torch.no_grad():
+#                 vertices, depth = model(image_tensor)
             
             # Convert to numpy
-            vertices_np = vertices.cpu().numpy()[0]  # [1024, 3]
+#             vertices_np = vertices.cpu().numpy()[0]  # [1024, 3]
             
             # Generate faces (triangulation)
-            faces = []
-            grid_size = 32  # sqrt(1024)
-            for y in range(grid_size - 1):
-                for x in range(grid_size - 1):
-                    i = y * grid_size + x
-                    faces.extend([
-                        i, i + 1, i + grid_size,
-                        i + 1, i + grid_size + 1, i + grid_size
+#             faces = []
+#             grid_size = 32  # sqrt(1024)
+#             for y in range(grid_size - 1):
+#                 for x in range(grid_size - 1):
+#                     i = y * grid_size + x
+#                     faces.extend([
+#                         i, i + 1, i + grid_size,
+#                         i + 1, i + grid_size + 1, i + grid_size
                     ])
             
-            if format == "obj":
+#             if format == "obj":
                 # Generate OBJ format
-                obj_lines = ["# Generated by QuetzalCore Photo-to-3D\n"]
-                for v in vertices_np:
-                    obj_lines.append(f"v {v[0]} {v[1]} {v[2]}\n")
-                for i in range(0, len(faces), 3):
-                    f1, f2, f3 = faces[i] + 1, faces[i+1] + 1, faces[i+2] + 1
-                    obj_lines.append(f"f {f1} {f2} {f3}\n")
+#                 obj_lines = ["# Generated by QuetzalCore Photo-to-3D\n"]
+#                 for v in vertices_np:
+#                     obj_lines.append(f"v {v[0]} {v[1]} {v[2]}\n")
+#                 for i in range(0, len(faces), 3):
+#                     f1, f2, f3 = faces[i] + 1, faces[i+1] + 1, faces[i+2] + 1
+#                     obj_lines.append(f"f {f1} {f2} {f3}\n")
                 
-                return JSONResponse({
+#                 return JSONResponse({
                     "model": "".join(obj_lines),
                     "format": "obj",
                     "vertices": len(vertices_np),
@@ -2846,8 +2846,8 @@ async def photo_to_3d_endpoint(
                     "generation_time_ms": duration * 1000,
                     "source": "photo-to-3d-trained-model"
                 })
-            else:
-                return {
+#             else:
+#                 return {
                     "vertices": vertices_np.tolist(),
                     "faces": faces,
                     "format": "json",
@@ -2858,43 +2858,43 @@ async def photo_to_3d_endpoint(
                     "source": "photo-to-3d-trained-model"
                 }
         
-        except FileNotFoundError:
-            return JSONResponse(
-                status_code=503,
-                content={"error": "Model still training. Try again in a few minutes."}
+#         except FileNotFoundError:
+#             return JSONResponse(
+#                 status_code=503,
+#                 content={"error": "Model still training. Try again in a few minutes."}
             )
     
-    except Exception as e:
-        return JSONResponse(
-            status_code=500,
-            content={"error": f"Generation failed: {str(e)}"}
+#     except Exception as e:
+#         return JSONResponse(
+#             status_code=500,
+#             content={"error": f"Generation failed: {str(e)}"}
         )
 
 
 # 🌍 GIS / LiDAR / Radar API Endpoints
 
-lidar_processor = LiDARProcessor()
-radar_processor = RadarProcessor()
-multi_sensor = MultiSensorFusion()
+# lidar_processor = LiDARProcessor()
+# radar_processor = RadarProcessor()
+# multi_sensor = MultiSensorFusion()
 
 
 @app.post("/api/gis/lidar-process")
-async def process_lidar(
-    file: UploadFile = File(...),
-    operation: str = "classify",
-    resolution: float = 1.0
+# async def process_lidar(
+#     file: UploadFile = File(...),
+#     operation: str = "classify",
+#     resolution: float = 1.0
 ):
     """
-    Process LiDAR point cloud data (.las/.laz)
-    Operations: classify, extract_ground, generate_dtm, extract_buildings
+#     Process LiDAR point cloud data (.las/.laz)
+#     Operations: classify, extract_ground, generate_dtm, extract_buildings
     """
-    try:
-        data = await file.read()
+#     try:
+#         data = await file.read()
         
         # Load point cloud
-        cloud = lidar_processor.load_las(data)
+#         cloud = lidar_processor.load_las(data)
         
-        result = {
+#         result = {
             "num_points": cloud.num_points,
             "bounds": {
                 "min": cloud.bounds()[0].tolist(),
@@ -2902,12 +2902,12 @@ async def process_lidar(
             }
         }
         
-        if operation == "classify":
-            cloud = lidar_processor.classify_points(cloud)
+#         if operation == "classify":
+#             cloud = lidar_processor.classify_points(cloud)
             
             # Classification stats
-            unique, counts = np.unique(cloud.classifications, return_counts=True)
-            class_names = {
+#             unique, counts = np.unique(cloud.classifications, return_counts=True)
+#             class_names = {
                 0: "never_classified",
                 1: "unclassified",
                 2: "ground",
@@ -2917,15 +2917,15 @@ async def process_lidar(
                 6: "building"
             }
             
-            result["classifications"] = {
-                class_names.get(int(cls), f"class_{cls}"): int(count)
-                for cls, count in zip(unique, counts)
+#             result["classifications"] = {
+#                 class_names.get(int(cls), f"class_{cls}"): int(count)
+#                 for cls, count in zip(unique, counts)
             }
         
-        elif operation == "generate_dtm":
-            dtm = lidar_processor.generate_dtm(cloud, resolution)
+#         elif operation == "generate_dtm":
+#             dtm = lidar_processor.generate_dtm(cloud, resolution)
             
-            result["dtm"] = {
+#             result["dtm"] = {
                 "shape": dtm.shape,
                 "resolution": dtm.resolution,
                 "origin": dtm.origin,
@@ -2937,46 +2937,46 @@ async def process_lidar(
                 "elevation_preview": dtm.elevation[::10, ::10].tolist()
             }
         
-        elif operation == "extract_buildings":
-            buildings = lidar_processor.extract_buildings(cloud)
+#         elif operation == "extract_buildings":
+#             buildings = lidar_processor.extract_buildings(cloud)
             
-            result["buildings"] = {
+#             result["buildings"] = {
                 "count": len(buildings),
                 "footprints": [b.tolist() for b in buildings[:100]]  # Limit to 100
             }
         
-        return result
+#         return result
     
-    except Exception as e:
-        return JSONResponse(
-            status_code=500,
-            content={"error": f"LiDAR processing failed: {str(e)}"}
+#     except Exception as e:
+#         return JSONResponse(
+#             status_code=500,
+#             content={"error": f"LiDAR processing failed: {str(e)}"}
         )
 
 
 @app.post("/api/gis/radar-analyze")
-async def analyze_radar(
-    file: UploadFile = File(...),
-    operation: str = "speckle_filter",
-    file2: Optional[UploadFile] = File(None)
+# async def analyze_radar(
+#     file: UploadFile = File(...),
+#     operation: str = "speckle_filter",
+#     file2: Optional[UploadFile] = File(None)
 ):
     """
-    Analyze SAR (Synthetic Aperture Radar) imagery
-    Operations: speckle_filter, change_detection, coherence_analysis
+#     Analyze SAR (Synthetic Aperture Radar) imagery
+#     Operations: speckle_filter, change_detection, coherence_analysis
     """
-    try:
-        data1 = await file.read()
-        sar_image1 = radar_processor.load_sentinel1(data1)
+#     try:
+#         data1 = await file.read()
+#         sar_image1 = radar_processor.load_sentinel1(data1)
         
-        result = {
+#         result = {
             "shape": sar_image1.shape,
             "data_type": str(sar_image1.dtype)
         }
         
-        if operation == "speckle_filter":
-            filtered = radar_processor.speckle_filter(sar_image1, method="lee")
+#         if operation == "speckle_filter":
+#             filtered = radar_processor.speckle_filter(sar_image1, method="lee")
             
-            result["filtered"] = {
+#             result["filtered"] = {
                 "shape": filtered.shape,
                 "stats": {
                     "mean": float(filtered.mean()),
@@ -2986,69 +2986,69 @@ async def analyze_radar(
                 }
             }
         
-        elif operation == "change_detection" and file2:
-            data2 = await file2.read()
-            sar_image2 = radar_processor.load_sentinel1(data2)
+#         elif operation == "change_detection" and file2:
+#             data2 = await file2.read()
+#             sar_image2 = radar_processor.load_sentinel1(data2)
             
-            changes = radar_processor.change_detection(sar_image1, sar_image2)
+#             changes = radar_processor.change_detection(sar_image1, sar_image2)
             
-            result["changes"] = {
+#             result["changes"] = {
                 "total_pixels": int(changes.size),
                 "changed_pixels": int(changes.sum()),
                 "change_percentage": float((changes.sum() / changes.size) * 100)
             }
         
-        elif operation == "coherence_analysis" and file2:
-            data2 = await file2.read()
-            sar_image2 = radar_processor.load_sentinel1(data2)
+#         elif operation == "coherence_analysis" and file2:
+#             data2 = await file2.read()
+#             sar_image2 = radar_processor.load_sentinel1(data2)
             
-            coherence = radar_processor.coherence_analysis(sar_image1, sar_image2)
+#             coherence = radar_processor.coherence_analysis(sar_image1, sar_image2)
             
-            result["coherence"] = {
+#             result["coherence"] = {
                 "average": float(coherence.mean()),
                 "std": float(coherence.std()),
                 "high_coherence_pixels": int((coherence > 0.7).sum()),
                 "low_coherence_pixels": int((coherence < 0.3).sum())
             }
         
-        return result
+#         return result
     
-    except Exception as e:
-        return JSONResponse(
-            status_code=500,
-            content={"error": f"Radar analysis failed: {str(e)}"}
+#     except Exception as e:
+#         return JSONResponse(
+#             status_code=500,
+#             content={"error": f"Radar analysis failed: {str(e)}"}
         )
 
 
 # 🌍 GEOPHYSICS API ENDPOINTS
 
-igrf_model = IGRFModel()
-wmm_model = WMMModel()
-magnetic_analyzer = MagneticAnalyzer()
-resistivity_analyzer = ResistivityAnalyzer()
-seismic_analyzer = SeismicAnalyzer()
-subsurface_modeler = SubsurfaceModeler()
+# igrf_model = IGRFModel()
+# wmm_model = WMMModel()
+# magnetic_analyzer = MagneticAnalyzer()
+# resistivity_analyzer = ResistivityAnalyzer()
+# seismic_analyzer = SeismicAnalyzer()
+# subsurface_modeler = SubsurfaceModeler()
 
 
 @app.post("/api/geophysics/magnetic-field")
-async def calculate_magnetic_field(
-    latitude: float,
-    longitude: float,
-    altitude: float = 0.0,
-    year: float = 2025.0,
-    model: str = "igrf"
+# async def calculate_magnetic_field(
+#     latitude: float,
+#     longitude: float,
+#     altitude: float = 0.0,
+#     year: float = 2025.0,
+#     model: str = "igrf"
 ):
     """
-    Calculate Earth's magnetic field at location
-    Models: igrf (International), wmm (World Magnetic Model)
+#     Calculate Earth's magnetic field at location
+#     Models: igrf (International), wmm (World Magnetic Model)
     """
-    try:
-        if model == "wmm":
-            total_field = igrf_model.calculate(latitude, longitude, year, altitude)
-            declination = wmm_model.calculate_declination(latitude, longitude, year, altitude)
-            inclination = wmm_model.calculate_inclination(latitude, longitude, year, altitude)
+#     try:
+#         if model == "wmm":
+#             total_field = igrf_model.calculate(latitude, longitude, year, altitude)
+#             declination = wmm_model.calculate_declination(latitude, longitude, year, altitude)
+#             inclination = wmm_model.calculate_inclination(latitude, longitude, year, altitude)
             
-            return {
+#             return {
                 "model": "WMM",
                 "location": {
                     "latitude": latitude,
@@ -3065,9 +3065,9 @@ async def calculate_magnetic_field(
                     "inclination": "degrees"
                 }
             }
-        else:
-            total_field = igrf_model.calculate(latitude, longitude, year, altitude)
-            return {
+#         else:
+#             total_field = igrf_model.calculate(latitude, longitude, year, altitude)
+#             return {
                 "model": "IGRF-13",
                 "location": {
                     "latitude": latitude,
@@ -3079,52 +3079,52 @@ async def calculate_magnetic_field(
                 "units": "nT"
             }
     
-    except Exception as e:
-        return JSONResponse(
-            status_code=500,
-            content={"error": f"Magnetic field calculation failed: {str(e)}"}
+#     except Exception as e:
+#         return JSONResponse(
+#             status_code=500,
+#             content={"error": f"Magnetic field calculation failed: {str(e)}"}
         )
 
 
 @app.post("/api/geophysics/magnetic-survey")
-async def analyze_magnetic_survey(
-    file: UploadFile = File(...),
-    date: str = "2025-01-01",
-    remove_igrf: bool = True
+# async def analyze_magnetic_survey(
+#     file: UploadFile = File(...),
+#     date: str = "2025-01-01",
+#     remove_igrf: bool = True
 ):
     """
-    Analyze magnetometer survey data
-    Detects magnetic anomalies, interprets subsurface
+#     Analyze magnetometer survey data
+#     Detects magnetic anomalies, interprets subsurface
     """
-    try:
-        data = await file.read()
+#     try:
+#         data = await file.read()
         
         # Parse CSV format (lat, lon, elev, total_field)
         # Simplified: generate synthetic data for demo
-        num_stations = min(1000, len(data) // 50)
+#         num_stations = min(1000, len(data) // 50)
         
-        locations = np.random.randn(num_stations, 3)
-        locations[:, 0] = locations[:, 0] * 10 + 40  # Latitude around 40°N
-        locations[:, 1] = locations[:, 1] * 10 - 100  # Longitude around 100°W
-        locations[:, 2] = np.abs(locations[:, 2]) * 100  # Elevation
+#         locations = np.random.randn(num_stations, 3)
+#         locations[:, 0] = locations[:, 0] * 10 + 40  # Latitude around 40°N
+#         locations[:, 1] = locations[:, 1] * 10 - 100  # Longitude around 100°W
+#         locations[:, 2] = np.abs(locations[:, 2]) * 100  # Elevation
         
         # Synthetic magnetic field with anomalies
-        base_field = 50000  # nT
-        total_field = base_field + np.random.randn(num_stations) * 500
+#         base_field = 50000  # nT
+#         total_field = base_field + np.random.randn(num_stations) * 500
         
         # Add some anomalies
-        anomaly_indices = np.random.choice(num_stations, size=num_stations//10, replace=False)
-        total_field[anomaly_indices] += np.random.randn(len(anomaly_indices)) * 2000
+#         anomaly_indices = np.random.choice(num_stations, size=num_stations//10, replace=False)
+#         total_field[anomaly_indices] += np.random.randn(len(anomaly_indices)) * 2000
         
-        survey = MagneticSurvey(
-            locations=locations,
-            total_field=total_field,
-            date=datetime.strptime(date, "%Y-%m-%d")
+#         survey = MagneticSurvey(
+#             locations=locations,
+#             total_field=total_field,
+#             date=datetime.strptime(date, "%Y-%m-%d")
         )
         
-        result = magnetic_analyzer.process_survey(survey)
+#         result = magnetic_analyzer.process_survey(survey)
         
-        return {
+#         return {
             "survey_info": {
                 "num_stations": survey.num_stations,
                 "date": date,
@@ -3133,57 +3133,57 @@ async def analyze_magnetic_survey(
             "analysis": result
         }
     
-    except Exception as e:
-        return JSONResponse(
-            status_code=500,
-            content={"error": f"Magnetic survey analysis failed: {str(e)}"}
+#     except Exception as e:
+#         return JSONResponse(
+#             status_code=500,
+#             content={"error": f"Magnetic survey analysis failed: {str(e)}"}
         )
 
 
 @app.post("/api/geophysics/resistivity-survey")
-async def analyze_resistivity_survey(
-    file: UploadFile = File(...),
-    array_type: str = "wenner",
-    spacing: float = 5.0
+# async def analyze_resistivity_survey(
+#     file: UploadFile = File(...),
+#     array_type: str = "wenner",
+#     spacing: float = 5.0
 ):
     """
-    Analyze electrical resistivity survey
-    Detects groundwater, bedrock, subsurface layers
+#     Analyze electrical resistivity survey
+#     Detects groundwater, bedrock, subsurface layers
     """
-    try:
-        data = await file.read()
+#     try:
+#         data = await file.read()
         
         # Generate synthetic resistivity data
-        num_measurements = min(500, len(data) // 20)
+#         num_measurements = min(500, len(data) // 20)
         
-        electrodes = np.random.randn(num_measurements, 3) * 10
+#         electrodes = np.random.randn(num_measurements, 3) * 10
         
         # Synthetic apparent resistivity (ohm-m)
         # Layered model: soil -> weathered rock -> bedrock
-        apparent_resistivity = np.zeros(num_measurements)
-        for i in range(num_measurements):
-            depth = abs(electrodes[i, 2])
-            if depth < 2:
-                apparent_resistivity[i] = np.random.uniform(20, 100)  # Soil
-            elif depth < 10:
-                apparent_resistivity[i] = np.random.uniform(100, 500)  # Weathered
-            else:
-                apparent_resistivity[i] = np.random.uniform(1000, 5000)  # Bedrock
+#         apparent_resistivity = np.zeros(num_measurements)
+#         for i in range(num_measurements):
+#             depth = abs(electrodes[i, 2])
+#             if depth < 2:
+#                 apparent_resistivity[i] = np.random.uniform(20, 100)  # Soil
+#             elif depth < 10:
+#                 apparent_resistivity[i] = np.random.uniform(100, 500)  # Weathered
+#             else:
+#                 apparent_resistivity[i] = np.random.uniform(1000, 5000)  # Bedrock
         
-        survey = ResistivitySurvey(
-            electrodes=electrodes,
-            apparent_resistivity=apparent_resistivity,
-            current=0.1,
-            spacing=spacing,
-            array_type=array_type
+#         survey = ResistivitySurvey(
+#             electrodes=electrodes,
+#             apparent_resistivity=apparent_resistivity,
+#             current=0.1,
+#             spacing=spacing,
+#             array_type=array_type
         )
         
-        result = resistivity_analyzer.process_survey(survey)
+#         result = resistivity_analyzer.process_survey(survey)
         
         # Run inversion
-        inversion_model = resistivity_analyzer.invert_2d(survey)
+#         inversion_model = resistivity_analyzer.invert_2d(survey)
         
-        return {
+#         return {
             "survey_info": {
                 "num_measurements": survey.num_measurements,
                 "array_type": array_type,
@@ -3196,56 +3196,56 @@ async def analyze_resistivity_survey(
             }
         }
     
-    except Exception as e:
-        return JSONResponse(
-            status_code=500,
-            content={"error": f"Resistivity survey analysis failed: {str(e)}"}
+#     except Exception as e:
+#         return JSONResponse(
+#             status_code=500,
+#             content={"error": f"Resistivity survey analysis failed: {str(e)}"}
         )
 
 
 @app.post("/api/geophysics/seismic-analysis")
-async def analyze_seismic_survey(
-    file: UploadFile = File(...),
-    survey_type: str = "reflection",
-    sample_rate: float = 1000.0
+# async def analyze_seismic_survey(
+#     file: UploadFile = File(...),
+#     survey_type: str = "reflection",
+#     sample_rate: float = 1000.0
 ):
     """
-    Analyze seismic survey data (SEG-Y format)
-    Reflection/refraction surveys for subsurface imaging
+#     Analyze seismic survey data (SEG-Y format)
+#     Reflection/refraction surveys for subsurface imaging
     """
-    try:
-        data = await file.read()
+#     try:
+#         data = await file.read()
         
         # Generate synthetic seismic traces
-        num_traces = min(100, len(data) // 1000)
-        num_samples = 500
+#         num_traces = min(100, len(data) // 1000)
+#         num_samples = 500
         
         # Synthetic seismic data with reflectors
-        traces = np.random.randn(num_traces, num_samples) * 0.1
+#         traces = np.random.randn(num_traces, num_samples) * 0.1
         
         # Add some reflectors
-        for reflector_time in [100, 250, 400]:
-            if reflector_time < num_samples:
-                amplitude = np.random.uniform(0.5, 1.0)
-                traces[:, reflector_time] += amplitude
+#         for reflector_time in [100, 250, 400]:
+#             if reflector_time < num_samples:
+#                 amplitude = np.random.uniform(0.5, 1.0)
+#                 traces[:, reflector_time] += amplitude
         
-        source_locations = np.random.randn(num_traces, 3) * 100
-        receiver_locations = source_locations + np.array([10, 0, 0])  # Offset
+#         source_locations = np.random.randn(num_traces, 3) * 100
+#         receiver_locations = source_locations + np.array([10, 0, 0])  # Offset
         
-        survey = SeismicSurvey(
-            traces=traces,
-            sample_rate=sample_rate,
-            source_locations=source_locations,
-            receiver_locations=receiver_locations,
-            survey_type=survey_type
+#         survey = SeismicSurvey(
+#             traces=traces,
+#             sample_rate=sample_rate,
+#             source_locations=source_locations,
+#             receiver_locations=receiver_locations,
+#             survey_type=survey_type
         )
         
-        result = seismic_analyzer.process_survey(survey)
+#         result = seismic_analyzer.process_survey(survey)
         
         # Apply AGC processing
-        agc_traces = seismic_analyzer.apply_agc(traces)
+#         agc_traces = seismic_analyzer.apply_agc(traces)
         
-        return {
+#         return {
             "survey_info": {
                 "num_traces": survey.num_traces,
                 "sample_rate": sample_rate,
@@ -3259,75 +3259,75 @@ async def analyze_seismic_survey(
             }
         }
     
-    except Exception as e:
-        return JSONResponse(
-            status_code=500,
-            content={"error": f"Seismic analysis failed: {str(e)}"}
+#     except Exception as e:
+#         return JSONResponse(
+#             status_code=500,
+#             content={"error": f"Seismic analysis failed: {str(e)}"}
         )
 
 
 @app.post("/api/geophysics/subsurface-model")
-async def create_subsurface_model(
-    magnetic_file: Optional[UploadFile] = File(None),
-    resistivity_file: Optional[UploadFile] = File(None),
-    seismic_file: Optional[UploadFile] = File(None),
-    grid_size: str = "50,50,20"
+# async def create_subsurface_model(
+#     magnetic_file: Optional[UploadFile] = File(None),
+#     resistivity_file: Optional[UploadFile] = File(None),
+#     seismic_file: Optional[UploadFile] = File(None),
+#     grid_size: str = "50,50,20"
 ):
     """
-    Create integrated 3D subsurface model
-    Combines magnetic, resistivity, and seismic data
+#     Create integrated 3D subsurface model
+#     Combines magnetic, resistivity, and seismic data
     """
-    try:
+#     try:
         # Parse grid size
-        grid_dims = tuple(map(int, grid_size.split(',')))
+#         grid_dims = tuple(map(int, grid_size.split(',')))
         
-        magnetic_survey = None
-        resistivity_survey = None
-        seismic_survey = None
+#         magnetic_survey = None
+#         resistivity_survey = None
+#         seismic_survey = None
         
         # Load and process each dataset if provided
-        if magnetic_file:
+#         if magnetic_file:
             # Create synthetic magnetic survey
-            num_stations = 100
-            locations = np.random.randn(num_stations, 3)
-            total_field = 50000 + np.random.randn(num_stations) * 1000
-            magnetic_survey = MagneticSurvey(
-                locations=locations,
-                total_field=total_field,
-                date=datetime.now()
+#             num_stations = 100
+#             locations = np.random.randn(num_stations, 3)
+#             total_field = 50000 + np.random.randn(num_stations) * 1000
+#             magnetic_survey = MagneticSurvey(
+#                 locations=locations,
+#                 total_field=total_field,
+#                 date=datetime.now()
             )
         
-        if resistivity_file:
+#         if resistivity_file:
             # Create synthetic resistivity survey
-            num_measurements = 200
-            electrodes = np.random.randn(num_measurements, 3)
-            apparent_resistivity = np.random.uniform(50, 5000, num_measurements)
-            resistivity_survey = ResistivitySurvey(
-                electrodes=electrodes,
-                apparent_resistivity=apparent_resistivity,
-                current=0.1,
-                spacing=5.0
+#             num_measurements = 200
+#             electrodes = np.random.randn(num_measurements, 3)
+#             apparent_resistivity = np.random.uniform(50, 5000, num_measurements)
+#             resistivity_survey = ResistivitySurvey(
+#                 electrodes=electrodes,
+#                 apparent_resistivity=apparent_resistivity,
+#                 current=0.1,
+#                 spacing=5.0
             )
         
-        if seismic_file:
+#         if seismic_file:
             # Create synthetic seismic survey
-            traces = np.random.randn(50, 500)
-            seismic_survey = SeismicSurvey(
-                traces=traces,
-                sample_rate=1000.0,
-                source_locations=np.random.randn(50, 3),
-                receiver_locations=np.random.randn(50, 3)
+#             traces = np.random.randn(50, 500)
+#             seismic_survey = SeismicSurvey(
+#                 traces=traces,
+#                 sample_rate=1000.0,
+#                 source_locations=np.random.randn(50, 3),
+#                 receiver_locations=np.random.randn(50, 3)
             )
-        print("Creating model")
+#         print("Creating model")
         # Create integrated model
-        model = subsurface_modeler.create_3d_model(
-            magnetic_survey=magnetic_survey,
-            resistivity_survey=resistivity_survey,
-            seismic_survey=seismic_survey,
-            grid_size=grid_dims
+#         model = subsurface_modeler.create_3d_model(
+#             magnetic_survey=magnetic_survey,
+#             resistivity_survey=resistivity_survey,
+#             seismic_survey=seismic_survey,
+#             grid_size=grid_dims
         )
         
-        return {
+#         return {
             "model_info": {
                 "grid_size": grid_dims,
                 "datasets_integrated": {
@@ -3339,54 +3339,54 @@ async def create_subsurface_model(
             "model": model
         }
     
-    except Exception as e:
-        return JSONResponse(
-            status_code=500,
-            content={"error": f"Subsurface modeling failed: {str(e)}"}
+#     except Exception as e:
+#         return JSONResponse(
+#             status_code=500,
+#             content={"error": f"Subsurface modeling failed: {str(e)}"}
         )
 
 
 @app.post("/api/mining/mag-survey")
-async def process_mining_mag_survey(
-    file: UploadFile = File(...),
-    file_format: str = "csv",
-    latitude: Optional[float] = None,
-    longitude: Optional[float] = None,
-    date: Optional[str] = None
+# async def process_mining_mag_survey(
+#     file: UploadFile = File(...),
+#     file_format: str = "csv",
+#     latitude: Optional[float] = None,
+#     longitude: Optional[float] = None,
+#     date: Optional[str] = None
 ):
     """
-    Process mining magnetometry survey data
-    Upload MAG survey files (CSV, XYZ, or Geosoft format)
-    Returns anomaly map and mineral discrimination
+#     Process mining magnetometry survey data
+#     Upload MAG survey files (CSV, XYZ, or Geosoft format)
+#     Returns anomaly map and mineral discrimination
     """
-    try:
+#     try:
         # Read uploaded file
-        contents = await file.read()
+#         contents = await file.read()
         
         # Save to temp file
-        import tempfile
-        with tempfile.NamedTemporaryFile(mode='wb', delete=False, suffix=f'.{file_format}') as tmp:
-            tmp.write(contents)
-            tmp_path = tmp.name
+#         import tempfile
+#         with tempfile.NamedTemporaryFile(mode='wb', delete=False, suffix=f'.{file_format}') as tmp:
+#             tmp.write(contents)
+#             tmp_path = tmp.name
         
         # Initialize mining processor
-        mining_processor = MiningMagnetometryProcessor()
+#         mining_processor = MiningMagnetometryProcessor()
         
         # Import survey data
-        survey = mining_processor.import_mag_survey(tmp_path, file_format)
+#         survey = mining_processor.import_mag_survey(tmp_path, file_format)
         
         # Discriminate minerals (includes IGRF correction internally)
-        mineral_results = mining_processor.discriminate_minerals(survey)
+#         mineral_results = mining_processor.discriminate_minerals(survey)
         
         # Extract drill targets from results
-        drill_targets = mineral_results.get('recommended_drill_targets', [])
-        all_targets = mineral_results.get('targets', [])
+#         drill_targets = mineral_results.get('recommended_drill_targets', [])
+#         all_targets = mineral_results.get('targets', [])
         
         # Clean up temp file
-        import os
-        os.unlink(tmp_path)
+#         import os
+#         os.unlink(tmp_path)
         
-        return {
+#         return {
             "survey_info": {
                 "num_stations": len(survey.locations),
                 "file_format": file_format,
@@ -3402,106 +3402,106 @@ async def process_mining_mag_survey(
             "num_drill_targets": len(drill_targets)
         }
     
-    except Exception as e:
-        return JSONResponse(
-            status_code=500,
-            content={"error": f"MAG survey processing failed: {str(e)}"}
+#     except Exception as e:
+#         return JSONResponse(
+#             status_code=500,
+#             content={"error": f"MAG survey processing failed: {str(e)}"}
         )
 
 
 @app.post("/api/mining/discriminate")
-async def discriminate_minerals_endpoint(
-    magnetic_data: List[float],
-    locations: List[List[float]],
-    target_minerals: Optional[List[str]] = None
+# async def discriminate_minerals_endpoint(
+#     magnetic_data: List[float],
+#     locations: List[List[float]],
+#     target_minerals: Optional[List[str]] = None
 ):
     """
-    Discriminate mineral types from magnetic signature
+#     Discriminate mineral types from magnetic signature
     
-    Args:
-        magnetic_data: Residual magnetic field values (nT)
-        locations: Station coordinates [[lat, lon, elev], ...]
-        target_minerals: Optional list of minerals to focus on
+#     Args:
+#         magnetic_data: Residual magnetic field values (nT)
+#         locations: Station coordinates [[lat, lon, elev], ...]
+#         target_minerals: Optional list of minerals to focus on
                         (e.g., ["iron", "gold", "copper"])
     
-    Returns:
-        Mineral type predictions with confidence scores
+#     Returns:
+#         Mineral type predictions with confidence scores
     """
-    try:
+#     try:
         # Create survey from data
-        survey = MagneticSurvey(
-            locations=np.array(locations),
-            total_field=np.array(magnetic_data),
-            date=datetime.now()
+#         survey = MagneticSurvey(
+#             locations=np.array(locations),
+#             total_field=np.array(magnetic_data),
+#             date=datetime.now()
         )
         
         # Process and discriminate
-        mining_processor = MiningMagnetometryProcessor()
-        mineral_results = mining_processor.discriminate_minerals(survey)
+#         mining_processor = MiningMagnetometryProcessor()
+#         mineral_results = mining_processor.discriminate_minerals(survey)
         
         # Filter by target minerals if specified
-        if target_minerals:
-            filtered_targets = [
-                t for t in mineral_results.get('targets', [])
-                if any(mineral.lower() in t['mineral_type'].lower() for mineral in target_minerals)
+#         if target_minerals:
+#             filtered_targets = [
+#                 t for t in mineral_results.get('targets', [])
+#                 if any(mineral.lower() in t['mineral_type'].lower() for mineral in target_minerals)
             ]
-            mineral_results['targets'] = filtered_targets
-            mineral_results['num_target_types'] = len(filtered_targets)
+#             mineral_results['targets'] = filtered_targets
+#             mineral_results['num_target_types'] = len(filtered_targets)
         
-        return {
+#         return {
             "discrimination_results": mineral_results,
             "target_minerals": target_minerals or "all",
             "num_stations": len(locations)
         }
     
-    except Exception as e:
-        return JSONResponse(
-            status_code=500,
-            content={"error": f"Mineral discrimination failed: {str(e)}"}
+#     except Exception as e:
+#         return JSONResponse(
+#             status_code=500,
+#             content={"error": f"Mineral discrimination failed: {str(e)}"}
         )
 
 
 @app.post("/api/mining/target-drills")
-async def target_drill_locations_endpoint(
-    magnetic_data: List[float],
-    locations: List[List[float]],
-    min_anomaly: float = 100.0,
-    top_n: int = 10
+# async def target_drill_locations_endpoint(
+#     magnetic_data: List[float],
+#     locations: List[List[float]],
+#     min_anomaly: float = 100.0,
+#     top_n: int = 10
 ):
     """
-    Generate drill target recommendations from MAG survey
+#     Generate drill target recommendations from MAG survey
     
-    Args:
-        magnetic_data: Residual magnetic field values (nT)
-        locations: Station coordinates [[lat, lon, elev], ...]
-        min_anomaly: Minimum anomaly strength (nT) to consider
-        top_n: Number of top targets to return
+#     Args:
+#         magnetic_data: Residual magnetic field values (nT)
+#         locations: Station coordinates [[lat, lon, elev], ...]
+#         min_anomaly: Minimum anomaly strength (nT) to consider
+#         top_n: Number of top targets to return
     
-    Returns:
-        Ranked drill target locations with confidence scores
+#     Returns:
+#         Ranked drill target locations with confidence scores
     """
-    try:
+#     try:
         # Create survey
-        survey = MagneticSurvey(
-            locations=np.array(locations),
-            total_field=np.array(magnetic_data),
-            date=datetime.now()
+#         survey = MagneticSurvey(
+#             locations=np.array(locations),
+#             total_field=np.array(magnetic_data),
+#             date=datetime.now()
         )
         
         # Process and discriminate
-        mining_processor = MiningMagnetometryProcessor()
-        mineral_results = mining_processor.discriminate_minerals(survey)
+#         mining_processor = MiningMagnetometryProcessor()
+#         mineral_results = mining_processor.discriminate_minerals(survey)
         
         # Get drill targets - filter by minimum anomaly and sort by priority
-        all_targets = mineral_results.get('targets', [])
+#         all_targets = mineral_results.get('targets', [])
         
         # Flatten all locations from all targets
-        drill_locations = []
-        for target in all_targets:
-            if 'locations' in target and 'max_anomaly' in target:
-                if target['max_anomaly'] >= min_anomaly:
-                    for loc in target['locations']:
-                        drill_locations.append({
+#         drill_locations = []
+#         for target in all_targets:
+#             if 'locations' in target and 'max_anomaly' in target:
+#                 if target['max_anomaly'] >= min_anomaly:
+#                     for loc in target['locations']:
+#                         drill_locations.append({
                             'location': loc,
                             'mineral_type': target['mineral_type'],
                             'confidence': target['confidence'],
@@ -3510,10 +3510,10 @@ async def target_drill_locations_endpoint(
                         })
         
         # Sort by anomaly strength and priority
-        drill_locations.sort(key=lambda x: (-x['anomaly_nT'], x['priority']))
-        drill_targets = drill_locations[:top_n]
+#         drill_locations.sort(key=lambda x: (-x['anomaly_nT'], x['priority']))
+#         drill_targets = drill_locations[:top_n]
         
-        return {
+#         return {
             "drill_targets": drill_targets,
             "parameters": {
                 "min_anomaly_nt": min_anomaly,
@@ -3522,61 +3522,61 @@ async def target_drill_locations_endpoint(
             }
         }
     
-    except Exception as e:
-        return JSONResponse(
-            status_code=500,
-            content={"error": f"Drill targeting failed: {str(e)}"}
+#     except Exception as e:
+#         return JSONResponse(
+#             status_code=500,
+#             content={"error": f"Drill targeting failed: {str(e)}"}
         )
 
 
 @app.get("/api/mining/survey-cost")
-async def analyze_survey_cost(
-    area_km2: float,
-    line_spacing_m: float = 100.0,
-    station_spacing_m: float = 25.0,
-    cost_per_station: float = 50.0,
-    cost_per_drill: float = 100000.0
+# async def analyze_survey_cost(
+#     area_km2: float,
+#     line_spacing_m: float = 100.0,
+#     station_spacing_m: float = 25.0,
+#     cost_per_station: float = 50.0,
+#     cost_per_drill: float = 100000.0
 ):
     """
-    Cost-effectiveness analysis for MAG surveys vs drilling
+#     Cost-effectiveness analysis for MAG surveys vs drilling
     
-    Args:
-        area_km2: Survey area in square kilometers
-        line_spacing_m: Distance between survey lines (meters)
-        station_spacing_m: Distance between stations (meters)
-        cost_per_station: Cost per MAG station ($)
-        cost_per_drill: Cost per drill hole ($)
+#     Args:
+#         area_km2: Survey area in square kilometers
+#         line_spacing_m: Distance between survey lines (meters)
+#         station_spacing_m: Distance between stations (meters)
+#         cost_per_station: Cost per MAG station ($)
+#         cost_per_drill: Cost per drill hole ($)
     
-    Returns:
-        Cost analysis and survey design recommendations
+#     Returns:
+#         Cost analysis and survey design recommendations
     """
-    try:
-        mining_processor = MiningMagnetometryProcessor()
+#     try:
+#         mining_processor = MiningMagnetometryProcessor()
         
         # Calculate survey requirements
-        area_m2 = area_km2 * 1e6
-        num_lines = int(np.sqrt(area_m2) / line_spacing_m)
-        stations_per_line = int(np.sqrt(area_m2) / station_spacing_m)
-        total_stations = num_lines * stations_per_line
+#         area_m2 = area_km2 * 1e6
+#         num_lines = int(np.sqrt(area_m2) / line_spacing_m)
+#         stations_per_line = int(np.sqrt(area_m2) / station_spacing_m)
+#         total_stations = num_lines * stations_per_line
         
         # Cost analysis
-        mag_survey_cost = total_stations * cost_per_station
-        coverage_m2_per_station = area_m2 / total_stations
+#         mag_survey_cost = total_stations * cost_per_station
+#         coverage_m2_per_station = area_m2 / total_stations
         
         # Equivalent drilling cost (if no MAG survey)
         # Assume 1 drill per 1 km² without MAG targeting
-        blind_drills_needed = int(area_km2)
-        blind_drilling_cost = blind_drills_needed * cost_per_drill
+#         blind_drills_needed = int(area_km2)
+#         blind_drilling_cost = blind_drills_needed * cost_per_drill
         
         # With MAG targeting (assume 80% reduction in drilling)
-        targeted_drills_needed = max(1, int(blind_drills_needed * 0.2))
-        targeted_drilling_cost = targeted_drills_needed * cost_per_drill
-        total_cost_with_mag = mag_survey_cost + targeted_drilling_cost
+#         targeted_drills_needed = max(1, int(blind_drills_needed * 0.2))
+#         targeted_drilling_cost = targeted_drills_needed * cost_per_drill
+#         total_cost_with_mag = mag_survey_cost + targeted_drilling_cost
         
-        savings = blind_drilling_cost - total_cost_with_mag
-        roi = (savings / mag_survey_cost) * 100 if mag_survey_cost > 0 else 0
+#         savings = blind_drilling_cost - total_cost_with_mag
+#         roi = (savings / mag_survey_cost) * 100 if mag_survey_cost > 0 else 0
         
-        return {
+#         return {
             "survey_design": {
                 "area_km2": area_km2,
                 "num_lines": num_lines,
@@ -3601,10 +3601,10 @@ async def analyze_survey_cost(
                 "confidence": "high" if roi > 200 else "medium" if roi > 100 else "low"
             }
         }
-    except Exception as e:
-        return JSONResponse(
-            status_code=500,
-            content={"error": f"Cost analysis failed: {str(e)}"}
+#     except Exception as e:
+#         return JSONResponse(
+#             status_code=500,
+#             content={"error": f"Cost analysis failed: {str(e)}"}
         )
 
 
@@ -3613,110 +3613,110 @@ async def analyze_survey_cost(
 # =============================================================================
 
 @app.post("/api/gis/studio/validate/lidar")
-async def validate_lidar_data(
-    points: List[List[float]],
-    classification: Optional[List[int]] = None,
-    intensity: Optional[List[int]] = None
+# async def validate_lidar_data(
+#     points: List[List[float]],
+#     classification: Optional[List[int]] = None,
+#     intensity: Optional[List[int]] = None
 ):
     """Validate LiDAR point cloud: Nx3 points, classifications (0-18), intensity (0-255)"""
-    try:
-        points_array = np.array(points)
-        result = LiDARValidator.validate_point_cloud(
-            points_array,
-            np.array(classification) if classification else None,
-            np.array(intensity) if intensity else None
+#     try:
+#         points_array = np.array(points)
+#         result = LiDARValidator.validate_point_cloud(
+#             points_array,
+#             np.array(classification) if classification else None,
+#             np.array(intensity) if intensity else None
         )
-        return {
+#         return {
             "valid": result.valid,
             "status": result.status.value,
             "metadata": result.metadata,
             "issues": result.issues,
             "warnings": result.warnings
         }
-    except Exception as e:
-        return JSONResponse(status_code=500, content={"error": str(e)})
+#     except Exception as e:
+#         return JSONResponse(status_code=500, content={"error": str(e)})
 
 
 @app.post("/api/gis/studio/validate/dem")
-async def validate_dem_data(elevation: List[List[float]]):
+# async def validate_dem_data(elevation: List[List[float]]):
     """Validate Digital Elevation Model (DEM)"""
-    try:
-        result = RasterValidator.validate_elevation_grid(np.array(elevation))
-        return {"valid": result.valid, "metadata": result.metadata, "issues": result.issues}
-    except Exception as e:
-        return JSONResponse(status_code=500, content={"error": str(e)})
+#     try:
+#         result = RasterValidator.validate_elevation_grid(np.array(elevation))
+#         return {"valid": result.valid, "metadata": result.metadata, "issues": result.issues}
+#     except Exception as e:
+#         return JSONResponse(status_code=500, content={"error": str(e)})
 
 
 @app.post("/api/gis/studio/integrate/terrain")
-async def analyze_terrain(dem: List[List[float]], points: Optional[List[List[float]]] = None):
+# async def analyze_terrain(dem: List[List[float]], points: Optional[List[List[float]]] = None):
     """Analyze terrain: elevation, slope, roughness, classification"""
-    try:
-        result = gis_integrator.analyze_terrain_surface(
-            np.array(dem),
-            np.array(points) if points else None
+#     try:
+#         result = gis_integrator.analyze_terrain_surface(
+#             np.array(dem),
+#             np.array(points) if points else None
         )
-        return {"terrain_stats": result.get("terrain_stats", {}), "classification": result.get("terrain_classification", {})}
-    except Exception as e:
-        return JSONResponse(status_code=500, content={"error": str(e)})
+#         return {"terrain_stats": result.get("terrain_stats", {}), "classification": result.get("terrain_classification", {})}
+#     except Exception as e:
+#         return JSONResponse(status_code=500, content={"error": str(e)})
 
 
 @app.post("/api/gis/studio/integrate/magnetic")
-async def correlate_magnetic_terrain(magnetic_data: List[List[float]], dem_data: List[List[float]]):
+# async def correlate_magnetic_terrain(magnetic_data: List[List[float]], dem_data: List[List[float]]):
     """Correlate magnetic anomalies with terrain topography"""
-    try:
-        result = gis_integrator.correlate_magnetic_terrain(np.array(magnetic_data), np.array(dem_data))
-        return {"correlation": result.get("correlation", 0.0), "anomalies": result.get("anomalies", [])}
-    except Exception as e:
-        return JSONResponse(status_code=500, content={"error": str(e)})
+#     try:
+#         result = gis_integrator.correlate_magnetic_terrain(np.array(magnetic_data), np.array(dem_data))
+#         return {"correlation": result.get("correlation", 0.0), "anomalies": result.get("anomalies", [])}
+#     except Exception as e:
+#         return JSONResponse(status_code=500, content={"error": str(e)})
 
 
 @app.post("/api/gis/studio/train/terrain")
-async def train_terrain_classifier(features: List[List[float]], labels: List[int]):
+# async def train_terrain_classifier(features: List[List[float]], labels: List[int]):
     """Train terrain classification ML model"""
-    try:
-        gis_trainer.train_terrain_classifier(np.array(features), np.array(labels))
-        return {"model_trained": True, "samples": len(features), "classes": len(set(labels))}
-    except Exception as e:
-        return JSONResponse(status_code=500, content={"error": str(e)})
+#     try:
+#         gis_trainer.train_terrain_classifier(np.array(features), np.array(labels))
+#         return {"model_trained": True, "samples": len(features), "classes": len(set(labels))}
+#     except Exception as e:
+#         return JSONResponse(status_code=500, content={"error": str(e)})
 
 
 @app.post("/api/gis/studio/train/depth")
-async def train_depth_predictor(features: List[List[float]], depths: List[float]):
+# async def train_depth_predictor(features: List[List[float]], depths: List[float]):
     """Train subsurface depth prediction model"""
-    try:
-        gis_trainer.train_depth_predictor(np.array(features), np.array(depths))
-        return {"model_trained": True, "samples": len(features), "depth_range": {"min": min(depths), "max": max(depths)}}
-    except Exception as e:
-        return JSONResponse(status_code=500, content={"error": str(e)})
+#     try:
+#         gis_trainer.train_depth_predictor(np.array(features), np.array(depths))
+#         return {"model_trained": True, "samples": len(features), "depth_range": {"min": min(depths), "max": max(depths)}}
+#     except Exception as e:
+#         return JSONResponse(status_code=500, content={"error": str(e)})
 
 
 @app.post("/api/gis/studio/predict")
-async def make_prediction(model_type: str, features: List[List[float]]):
+# async def make_prediction(model_type: str, features: List[List[float]]):
     """Make predictions: terrain_classifier, depth_predictor, or lithology_classifier"""
-    try:
-        model = gis_trainer.models.get(model_type)
-        if not model:
-            return JSONResponse(status_code=404, content={"error": f"Model '{model_type}' not trained yet"})
-        predictions = model.predict(np.array(features))
-        return {"model_type": model_type, "predictions": predictions.tolist()}
-    except Exception as e:
-        return JSONResponse(status_code=500, content={"error": str(e)})
+#     try:
+#         model = gis_trainer.models.get(model_type)
+#         if not model:
+#             return JSONResponse(status_code=404, content={"error": f"Model '{model_type}' not trained yet"})
+#         predictions = model.predict(np.array(features))
+#         return {"model_type": model_type, "predictions": predictions.tolist()}
+#     except Exception as e:
+#         return JSONResponse(status_code=500, content={"error": str(e)})
 
 
 @app.post("/api/gis/studio/improve/feedback")
-async def submit_feedback(prediction_id: str, predicted_value: List[float], ground_truth: List[float], confidence: float, user_notes: str = ""):
+# async def submit_feedback(prediction_id: str, predicted_value: List[float], ground_truth: List[float], confidence: float, user_notes: str = ""):
     """Submit feedback for continuous model improvement"""
-    try:
-        gis_improvement.collect_feedback(prediction_id, np.array(predicted_value), np.array(ground_truth), confidence, user_notes)
-        return {"feedback_recorded": True, "prediction_id": prediction_id}
-    except Exception as e:
-        return JSONResponse(status_code=500, content={"error": str(e)})
+#     try:
+#         gis_improvement.collect_feedback(prediction_id, np.array(predicted_value), np.array(ground_truth), confidence, user_notes)
+#         return {"feedback_recorded": True, "prediction_id": prediction_id}
+#     except Exception as e:
+#         return JSONResponse(status_code=500, content={"error": str(e)})
 
 
 @app.get("/api/gis/studio/status")
-async def get_gis_studio_status():
+# async def get_gis_studio_status():
     """Get GIS Studio system status"""
-    return {
+#     return {
         "gis_studio": {
             "status": "operational",
             "version": "1.0.0",
@@ -3732,9 +3732,9 @@ async def get_gis_studio_status():
 
 
 @app.get("/api/gen3d/capabilities")
-async def get_gen3d_capabilities():
+# async def get_gen3d_capabilities():
     """Get Gen3D + GIS + Geophysics engine capabilities"""
-    return {
+#     return {
         "text_to_3d": {
             "supported_styles": ["realistic", "stylized", "low-poly", "voxel"],
             "detail_levels": ["low", "medium", "high", "ultra"],
@@ -3815,102 +3815,102 @@ async def get_gen3d_capabilities():
     }
 
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+# if __name__ == "__main__":
+#     import uvicorn
+#     uvicorn.run(app, host="0.0.0.0", port=8000)
 
 
 # ============= 5K RENDERER ENDPOINT =============
-from pydantic import BaseModel as PydanticBaseModel
+# from pydantic import BaseModel as PydanticBaseModel
 
-class RenderRequest(PydanticBaseModel):
-    scene_type: str = "photorealistic"
-    width: int = 5120
-    height: int = 2880
-    return_image: bool = False
+# class RenderRequest(PydanticBaseModel):
+#     scene_type: str = "photorealistic"
+#     width: int = 5120
+#     height: int = 2880
+#     return_image: bool = False
 
 @app.post("/api/render/5k")
-async def render_5k(request: RenderRequest):
+# async def render_5k(request: RenderRequest):
     """Render 5K resolution using QI Card GPU"""
-    import torch
-    import time
+#     import torch
+#     import time
     
-    try:
+#     try:
         # Detect QI Card
-        if torch.cuda.is_available():
-            device = torch.device("cuda")
-            qi_name = torch.cuda.get_device_name(0)
-            qi_memory = torch.cuda.get_device_properties(0).total_memory / 1e9
-            qi_type = "CUDA"
-        elif torch.backends.mps.is_available():
-            device = torch.device("mps")
-            qi_name = "Apple Silicon GPU"
-            qi_memory = "Unified"
-            qi_type = "Metal/MPS"
-        else:
-            device = torch.device("cpu")
-            qi_name = "Software Fallback"
-            qi_memory = 0
-            qi_type = "CPU"
+#         if torch.cuda.is_available():
+#             device = torch.device("cuda")
+#             qi_name = torch.cuda.get_device_name(0)
+#             qi_memory = torch.cuda.get_device_properties(0).total_memory / 1e9
+#             qi_type = "CUDA"
+#         elif torch.backends.mps.is_available():
+#             device = torch.device("mps")
+#             qi_name = "Apple Silicon GPU"
+#             qi_memory = "Unified"
+#             qi_type = "Metal/MPS"
+#         else:
+#             device = torch.device("cpu")
+#             qi_name = "Software Fallback"
+#             qi_memory = 0
+#             qi_type = "CPU"
         
-        width, height = request.width, request.height
-        start = time.time()
+#         width, height = request.width, request.height
+#         start = time.time()
         
         # Create coordinate grids
-        x = torch.linspace(0, 1, width, device=device)
-        y = torch.linspace(0, 1, height, device=device)
-        X, Y = torch.meshgrid(x, y, indexing='xy')
+#         x = torch.linspace(0, 1, width, device=device)
+#         y = torch.linspace(0, 1, height, device=device)
+#         X, Y = torch.meshgrid(x, y, indexing='xy')
         
-        if request.scene_type == "photorealistic":
+#         if request.scene_type == "photorealistic":
             # Ray-traced sphere
-            cx, cy, r = 0.5, 0.5, 0.3
-            dist = torch.sqrt((X - cx)**2 + (Y - cy)**2)
-            mask = (dist < r).float()
-            depth = torch.sqrt(torch.clamp(r**2 - dist**2, min=0))
+#             cx, cy, r = 0.5, 0.5, 0.3
+#             dist = torch.sqrt((X - cx)**2 + (Y - cy)**2)
+#             mask = (dist < r).float()
+#             depth = torch.sqrt(torch.clamp(r**2 - dist**2, min=0))
             
-            nx = (X - cx) / (r + 1e-6)
-            ny = (Y - cy) / (r + 1e-6)
-            nz = depth / (r + 1e-6)
+#             nx = (X - cx) / (r + 1e-6)
+#             ny = (Y - cy) / (r + 1e-6)
+#             nz = depth / (r + 1e-6)
             
-            light = torch.tensor([0.3, 0.5, 1.0], device=device).view(3, 1, 1)
-            normal = torch.stack([nx, ny, nz])
-            diffuse = torch.sum(normal * light, dim=0).clamp(0, 1) * mask
+#             light = torch.tensor([0.3, 0.5, 1.0], device=device).view(3, 1, 1)
+#             normal = torch.stack([nx, ny, nz])
+#             diffuse = torch.sum(normal * light, dim=0).clamp(0, 1) * mask
             
-            R = diffuse * 204 + (1 - mask) * X * 127
-            G = diffuse * 153 + (1 - mask) * Y * 127
-            B = diffuse * 255 + (1 - mask) * 128
+#             R = diffuse * 204 + (1 - mask) * X * 127
+#             G = diffuse * 153 + (1 - mask) * Y * 127
+#             B = diffuse * 255 + (1 - mask) * 128
             
-        elif request.scene_type == "fractal":
+#         elif request.scene_type == "fractal":
             # Mandelbrot
-            max_iter = 100
-            c_real = (X - 0.5) * 3
-            c_imag = (Y - 0.5) * 3
-            z_real = torch.zeros_like(X)
-            z_imag = torch.zeros_like(Y)
-            iterations = torch.zeros_like(X)
+#             max_iter = 100
+#             c_real = (X - 0.5) * 3
+#             c_imag = (Y - 0.5) * 3
+#             z_real = torch.zeros_like(X)
+#             z_imag = torch.zeros_like(Y)
+#             iterations = torch.zeros_like(X)
             
-            for i in range(max_iter):
-                mask = (z_real**2 + z_imag**2) < 4
-                z_real_new = z_real**2 - z_imag**2 + c_real
-                z_imag = 2 * z_real * z_imag + c_imag
-                z_real = z_real_new
-                iterations += mask.float()
+#             for i in range(max_iter):
+#                 mask = (z_real**2 + z_imag**2) < 4
+#                 z_real_new = z_real**2 - z_imag**2 + c_real
+#                 z_imag = 2 * z_real * z_imag + c_imag
+#                 z_real = z_real_new
+#                 iterations += mask.float()
             
-            R = (iterations / max_iter * 255).clamp(0, 255)
-            G = ((iterations / max_iter)**0.5 * 255).clamp(0, 255)
-            B = ((iterations / max_iter)**2 * 255).clamp(0, 255)
-        else:
+#             R = (iterations / max_iter * 255).clamp(0, 255)
+#             G = ((iterations / max_iter)**0.5 * 255).clamp(0, 255)
+#             B = ((iterations / max_iter)**2 * 255).clamp(0, 255)
+#         else:
             # Benchmark
-            R = torch.sin(X * 50) * torch.cos(Y * 50) * 127 + 128
-            G = torch.sin(X * 30 + Y * 30) * 127 + 128
-            B = torch.cos(X * 40 - Y * 20) * 127 + 128
+#             R = torch.sin(X * 50) * torch.cos(Y * 50) * 127 + 128
+#             G = torch.sin(X * 30 + Y * 30) * 127 + 128
+#             B = torch.cos(X * 40 - Y * 20) * 127 + 128
         
-        duration = time.time() - start
-        pixels = width * height
-        mpixels = (pixels / duration) / 1e6
-        gflops = (pixels * 100 / duration) / 1e9
+#         duration = time.time() - start
+#         pixels = width * height
+#         mpixels = (pixels / duration) / 1e6
+#         gflops = (pixels * 100 / duration) / 1e9
         
-        result = {
+#         result = {
             "workload": "5K Rendering",
             "emoji": "🎨",
             "qi_card": {"name": qi_name, "type": qi_type, "memory_gb": qi_memory},
@@ -3923,28 +3923,28 @@ async def render_5k(request: RenderRequest):
             "grade": "S" if gflops > 100 else "A" if gflops > 50 else "B" if gflops > 10 else "C"
         }
         
-        if request.return_image:
-            try:
-                import numpy as np
-                from PIL import Image
-                from io import BytesIO
+#         if request.return_image:
+#             try:
+#                 import numpy as np
+#                 from PIL import Image
+#                 from io import BytesIO
                 
                 # Downsample to 1080p
-                image_t = torch.stack([R, G, B], dim=-1)
-                step_h = max(1, height // 1080)
-                step_w = max(1, width // 1920)
-                small = image_t[::step_h, ::step_w, :].cpu().numpy().astype('uint8')
+#                 image_t = torch.stack([R, G, B], dim=-1)
+#                 step_h = max(1, height // 1080)
+#                 step_w = max(1, width // 1920)
+#                 small = image_t[::step_h, ::step_w, :].cpu().numpy().astype('uint8')
                 
-                pil = Image.fromarray(small)
-                buf = BytesIO()
-                pil.save(buf, format="PNG")
-                result["image_preview"] = f"data:image/png;base64,{base64.b64encode(buf.getvalue()).decode()}"
-            except:
-                pass
+#                 pil = Image.fromarray(small)
+#                 buf = BytesIO()
+#                 pil.save(buf, format="PNG")
+#                 result["image_preview"] = f"data:image/png;base64,{base64.b64encode(buf.getvalue()).decode()}"
+#             except:
+#                 pass
         
-        return result
-    except Exception as e:
-        return {"error": str(e), "workload": "5K Rendering", "emoji": ""}
+#         return result
+#     except Exception as e:
+#         return {"error": str(e), "workload": "5K Rendering", "emoji": ""}
 
 
 
@@ -3953,166 +3953,166 @@ async def render_5k(request: RenderRequest):
 # Full Power Analysis + Strategy Generation
 # ============================================
 
-try:
-    from backend.super_intelligence import (
-        analyze_competition,
-        analyze_massive_data,
-        create_winning_strategy,
-        implement_strategy,
-        get_super_status
+# try:
+#     from backend.super_intelligence import (
+#         analyze_competition,
+#         analyze_massive_data,
+#         create_winning_strategy,
+#         implement_strategy,
+#         get_super_status
     )
-    SUPER_LOADED = True
-except ImportError as e:
-    SUPER_LOADED = False
-    print(f"⚠ Super Intelligence not loaded: {e}")
+#     SUPER_LOADED = True
+# except ImportError as e:
+#     SUPER_LOADED = False
+#     print(f"⚠ Super Intelligence not loaded: {e}")
 
 
 @app.get("/api/super/status")
-async def super_intelligence_status():
+# async def super_intelligence_status():
     """Get super intelligence system status"""
-    if not SUPER_LOADED:
-        return {"success": False, "error": "Super Intelligence not loaded"}
+#     if not SUPER_LOADED:
+#         return {"success": False, "error": "Super Intelligence not loaded"}
     
-    try:
-        status = await get_super_status()
-        return {
+#     try:
+#         status = await get_super_status()
+#         return {
             "success": True,
             "super_intelligence": status,
             "message": " FULL POWER ACTIVE"
         }
-    except Exception as e:
-        return {"success": False, "error": str(e)}
+#     except Exception as e:
+#         return {"success": False, "error": str(e)}
 
 
 @app.post("/api/super/analyze-competitors")
-async def analyze_competitors_endpoint(domain: str):
+# async def analyze_competitors_endpoint(domain: str):
     """
-    Analyze all competitors in a domain
+#     Analyze all competitors in a domain
     
-    Domains: "5k_rendering", "gis_analysis", "ml_platforms", "video_processing"
+#     Domains: "5k_rendering", "gis_analysis", "ml_platforms", "video_processing"
     """
-    if not SUPER_LOADED:
-        return {"success": False, "error": "Super Intelligence not loaded"}
+#     if not SUPER_LOADED:
+#         return {"success": False, "error": "Super Intelligence not loaded"}
     
-    try:
-        result = await analyze_competition(domain)
-        return {
+#     try:
+#         result = await analyze_competition(domain)
+#         return {
             "success": True,
             "analysis": result,
             "message": f"🔍 Analyzed {result['competitors_found']} competitors"
         }
-    except Exception as e:
-        return {"success": False, "error": str(e)}
+#     except Exception as e:
+#         return {"success": False, "error": str(e)}
 
 
 @app.post("/api/super/analyze-data")
-async def analyze_large_data_endpoint(dataset: str, source: str = "industry"):
+# async def analyze_large_data_endpoint(dataset: str, source: str = "industry"):
     """
-    Analyze massive dataset for insights
+#     Analyze massive dataset for insights
     
-    Sources: "github", "kaggle", "papers", "industry"
+#     Sources: "github", "kaggle", "papers", "industry"
     """
-    if not SUPER_LOADED:
-        return {"success": False, "error": "Super Intelligence not loaded"}
+#     if not SUPER_LOADED:
+#         return {"success": False, "error": "Super Intelligence not loaded"}
     
-    try:
-        result = await analyze_massive_data(dataset, source)
-        return {
+#     try:
+#         result = await analyze_massive_data(dataset, source)
+#         return {
             "success": True,
             "analysis": result,
             "message": f" Analyzed {result['size']:,} data points"
         }
-    except Exception as e:
-        return {"success": False, "error": str(e)}
+#     except Exception as e:
+#         return {"success": False, "error": str(e)}
 
 
 @app.post("/api/super/winning-strategy")
-async def generate_winning_strategy_endpoint(objective: str):
+# async def generate_winning_strategy_endpoint(objective: str):
     """
-    Generate comprehensive winning strategy
+#     Generate comprehensive winning strategy
     
-    Objectives: 
+#     Objectives: 
     - "dominate_video_ai"
     - "lead_gis_ml" 
     - "best_ml_platform"
     """
-    if not SUPER_LOADED:
-        return {"success": False, "error": "Super Intelligence not loaded"}
+#     if not SUPER_LOADED:
+#         return {"success": False, "error": "Super Intelligence not loaded"}
     
-    try:
-        strategy = await create_winning_strategy(objective)
-        return {
+#     try:
+#         strategy = await create_winning_strategy(objective)
+#         return {
             "success": True,
             "strategy": strategy,
             "message": "🎯 Winning strategy generated"
         }
-    except Exception as e:
-        return {"success": False, "error": str(e)}
+#     except Exception as e:
+#         return {"success": False, "error": str(e)}
 
 
 @app.post("/api/super/implement")
-async def auto_implement_endpoint(strategy: Dict[str, Any]):
+# async def auto_implement_endpoint(strategy: Dict[str, Any]):
     """Auto-implement strategy improvements"""
-    if not SUPER_LOADED:
-        return {"success": False, "error": "Super Intelligence not loaded"}
+#     if not SUPER_LOADED:
+#         return {"success": False, "error": "Super Intelligence not loaded"}
     
-    try:
-        result = await implement_strategy(strategy)
-        return {
+#     try:
+#         result = await implement_strategy(strategy)
+#         return {
             "success": True,
             "implementation": result,
             "message": "🔨 Auto-implementation complete"
         }
-    except Exception as e:
-        return {"success": False, "error": str(e)}
+#     except Exception as e:
+#         return {"success": False, "error": str(e)}
 
 
 # ============================================================================
 # VIRTUAL MEMORY RESISTOR ENDPOINTS
 # ============================================================================
 
-from backend.virtual_memory_resistor import (
-    VirtualMemoryResistor, 
-    ParallelVMRArray, 
-    ResistorMode
+# from backend.virtual_memory_resistor import (
+#     VirtualMemoryResistor, 
+#     ParallelVMRArray, 
+#     ResistorMode
 )
 
 # Initialize VMR instances
-vmr = VirtualMemoryResistor(base_resistance=10.0, mode=ResistorMode.ADAPTIVE)
-vmr_array = ParallelVMRArray(num_resistors=8)  # 8 VMRs en paralelo
+# vmr = VirtualMemoryResistor(base_resistance=10.0, mode=ResistorMode.ADAPTIVE)
+# vmr_array = ParallelVMRArray(num_resistors=8)  # 8 VMRs en paralelo
 
 
 @app.post("/api/vmr/transfer")
-async def vmr_transfer_data(
-    bytes_to_transfer: int,
-    priority: float = 1.0,
-    use_parallel: bool = False
+# async def vmr_transfer_data(
+#     bytes_to_transfer: int,
+#     priority: float = 1.0,
+#     use_parallel: bool = False
 ):
     """ Transfer data through Virtual Memory Resistor"""
-    try:
-        if use_parallel:
-            result = vmr_array.parallel_transfer(bytes_to_transfer, priority)
-            return {
+#     try:
+#         if use_parallel:
+#             result = vmr_array.parallel_transfer(bytes_to_transfer, priority)
+#             return {
                 "vmr_type": "parallel_array",
                 "num_vmrs": 8,
                 "result": result,
                 "emoji": ""
             }
-        else:
-            result = vmr.transfer_data(bytes_to_transfer, priority)
-            return {
+#         else:
+#             result = vmr.transfer_data(bytes_to_transfer, priority)
+#             return {
                 "vmr_type": "single",
                 "result": result,
                 "emoji": ""
             }
-    except Exception as e:
-        return {"error": str(e), "emoji": ""}
+#     except Exception as e:
+#         return {"error": str(e), "emoji": ""}
 
 
 @app.get("/api/vmr/stats")
-async def get_vmr_stats():
+# async def get_vmr_stats():
     """ Get VMR statistics"""
-    return {
+#     return {
         "single_vmr": vmr.get_stats(),
         "parallel_array": vmr_array.get_array_stats(),
         "emoji": ""
@@ -4120,13 +4120,13 @@ async def get_vmr_stats():
 
 
 @app.post("/api/vmr/set-resistance")
-async def set_vmr_resistance(resistance: float):
+# async def set_vmr_resistance(resistance: float):
     """🎛 Manually set VMR resistance"""
-    vmr.set_resistance(resistance)
-    for vmr_unit in vmr_array.vmrs:
-        vmr_unit.set_resistance(resistance)
+#     vmr.set_resistance(resistance)
+#     for vmr_unit in vmr_array.vmrs:
+#         vmr_unit.set_resistance(resistance)
     
-    return {
+#     return {
         "new_resistance": resistance,
         "single_vmr": vmr.current_resistance,
         "array_resistance": vmr_array.vmrs[0].current_resistance,
@@ -4136,9 +4136,9 @@ async def set_vmr_resistance(resistance: float):
 
 
 @app.post("/api/vmr/benchmark")
-async def benchmark_vmr():
+# async def benchmark_vmr():
     """ Benchmark VMR performance"""
-    test_sizes = [
+#     test_sizes = [
         1024 * 1024,           # 1 MB
         10 * 1024 * 1024,      # 10 MB
         100 * 1024 * 1024,     # 100 MB
@@ -4147,13 +4147,13 @@ async def benchmark_vmr():
     ]
     
     # Single VMR benchmark
-    single_result = vmr.benchmark(test_sizes)
+#     single_result = vmr.benchmark(test_sizes)
     
     # Parallel VMR benchmark
-    parallel_results = []
-    for size in test_sizes:
-        result = vmr_array.parallel_transfer(size, priority=1.0)
-        parallel_results.append({
+#     parallel_results = []
+#     for size in test_sizes:
+#         result = vmr_array.parallel_transfer(size, priority=1.0)
+#         parallel_results.append({
             "size_mb": size / (1024 * 1024),
             "throughput_mbps": result["total_throughput_mbps"],
             "speedup": result["speedup"],
@@ -4161,7 +4161,7 @@ async def benchmark_vmr():
             "power_watts": result["total_power_watts"]
         })
     
-    return {
+#     return {
         "single_vmr": single_result,
         "parallel_vmr": {
             "benchmark_results": parallel_results,
@@ -4177,16 +4177,16 @@ async def benchmark_vmr():
 
 
 @app.get("/api/vmr/live-monitor")
-async def vmr_live_monitor():
+# async def vmr_live_monitor():
     """ Real-time VMR monitoring"""
-    single_stats = vmr.get_stats()
-    array_stats = vmr_array.get_array_stats()
+#     single_stats = vmr.get_stats()
+#     array_stats = vmr_array.get_array_stats()
     
     # Calculate system-wide metrics
-    total_throughput = array_stats["total_throughput_mbps"]
-    total_power = array_stats["total_power_watts"]
+#     total_throughput = array_stats["total_throughput_mbps"]
+#     total_power = array_stats["total_power_watts"]
     
-    return {
+#     return {
         "timestamp": time.time(),
         "single_vmr": {
             "resistance": single_stats["current_resistance_ohms"],
