@@ -1,56 +1,55 @@
 """
-Advanced Training & Benchmarking System for QuetzalCore-Core
-Stress testing, power measurement, and creative training scenarios
+# Advanced Training & Benchmarking System for QuetzalCore-Core
+# Stress testing, power measurement, and creative training scenarios
 """
-import asyncio
-import time
-import random
-import statistics
-from typing import List, Dict, Any, Optional
-from datetime import datetime
-import psutil
-import json
-from .security_layer import (
-    get_security_manager, secure_operation, sanitize_output,
-    SecureContext
-)
+# import asyncio
+# import time
+# import random
+# import statistics
+# from typing import List, Dict, Any, Optional
+# from datetime import datetime
+# import psutil
+# import json
+# from .security_layer import (
+#     get_security_manager, secure_operation, sanitize_output,
+#     SecureContext
 
-class PowerMeter:
+# class PowerMeter:
     """Measure and track system performance and capabilities"""
     
-    def __init__(self):
-        self.metrics_history = []
-        self.benchmark_results = {}
-        self.stress_test_results = {}
+#     def __init__(self):
+#         self.metrics_history = []
+#         self.benchmark_results = {}
+#         self.stress_test_results = {}
         
-    async def measure_power(self) -> Dict[str, Any]:
+#     async def measure_power(self) -> Dict[str, Any]:
         """Comprehensive power measurement"""
-        start_time = time.time()
+#         start_time = time.time()
         
         # CPU metrics
-        cpu_percent = psutil.cpu_percent(interval=0.1)
-        cpu_count = psutil.cpu_count()
-        cpu_freq = psutil.cpu_freq()
+#         cpu_percent = psutil.cpu_percent(interval=0.1)
+#         cpu_count = psutil.cpu_count()
+#         cpu_freq = psutil.cpu_freq()
         
         # Memory metrics
-        memory = psutil.virtual_memory()
+#         memory = psutil.virtual_memory()
         
         # Disk metrics
-        disk = psutil.disk_usage('/')
+#         disk = psutil.disk_usage('/')
         
         # Network metrics (if available)
-        try:
-            network = psutil.net_io_counters()
-            network_stats = {
+#         try:
+#             network = psutil.net_io_counters()
+#             network_stats = {
                 'bytes_sent': network.bytes_sent,
                 'bytes_recv': network.bytes_recv,
                 'packets_sent': network.packets_sent,
                 'packets_recv': network.packets_recv,
             }
-        except:
-            network_stats = None
+#         except:
+#             network_stats = None
         
-        measurement = {
+#         measurement = {
             'timestamp': datetime.utcnow().isoformat(),
             'duration_ms': (time.time() - start_time) * 1000,
             'cpu': {
@@ -75,23 +74,23 @@ class PowerMeter:
             'power_score': self._calculate_power_score(cpu_percent, memory.percent, cpu_count)
         }
         
-        self.metrics_history.append(measurement)
-        return measurement
+#         self.metrics_history.append(measurement)
+#         return measurement
     
-    def _calculate_power_score(self, cpu_percent: float, memory_percent: float, cpu_count: int) -> float:
+#     def _calculate_power_score(self, cpu_percent: float, memory_percent: float, cpu_count: int) -> float:
         """Calculate overall system power score (0-100)"""
         # Higher available resources = higher power
-        cpu_score = (100 - cpu_percent) * 0.4
-        memory_score = (100 - memory_percent) * 0.4
-        core_bonus = min(cpu_count * 5, 20)  # Bonus for multi-core
+#         cpu_score = (100 - cpu_percent) * 0.4
+#         memory_score = (100 - memory_percent) * 0.4
+#         core_bonus = min(cpu_count * 5, 20)  # Bonus for multi-core
         
-        return min(cpu_score + memory_score + core_bonus, 100)
+#         return min(cpu_score + memory_score + core_bonus, 100)
     
-    async def run_stress_test(self, duration_seconds: int = 10, intensity: str = 'medium') -> Dict[str, Any]:
+#     async def run_stress_test(self, duration_seconds: int = 10, intensity: str = 'medium') -> Dict[str, Any]:
         """Run a stress test to measure maximum capacity"""
-        print(f"🔥 Starting {intensity} stress test for {duration_seconds}s...")
+#         print(f" Starting {intensity} stress test for {duration_seconds}s...")
         
-        results = {
+#         results = {
             'start_time': datetime.utcnow().isoformat(),
             'duration_seconds': duration_seconds,
             'intensity': intensity,
@@ -99,64 +98,64 @@ class PowerMeter:
         }
         
         # Determine workload based on intensity
-        workload_config = {
+#         workload_config = {
             'light': {'workers': 10, 'ops_per_worker': 100},
             'medium': {'workers': 50, 'ops_per_worker': 500},
             'heavy': {'workers': 100, 'ops_per_worker': 1000},
             'extreme': {'workers': 200, 'ops_per_worker': 2000},
         }
         
-        config = workload_config.get(intensity, workload_config['medium'])
+#         config = workload_config.get(intensity, workload_config['medium'])
         
-        start_time = time.time()
-        end_time = start_time + duration_seconds
+#         start_time = time.time()
+#         end_time = start_time + duration_seconds
         
-        total_operations = 0
-        errors = 0
+#         total_operations = 0
+#         errors = 0
         
-        async def stress_worker(worker_id: int):
-            nonlocal total_operations, errors
-            ops = 0
-            worker_errors = 0
+#         async def stress_worker(worker_id: int):
+#             nonlocal total_operations, errors
+#             ops = 0
+#             worker_errors = 0
             
-            while time.time() < end_time:
-                try:
+#             while time.time() < end_time:
+#                 try:
                     # Simulate various operations
-                    await self._simulate_workload()
-                    ops += 1
-                    total_operations += 1
-                except Exception as e:
-                    worker_errors += 1
-                    errors += 1
+#                     await self._simulate_workload()
+#                     ops += 1
+#                     total_operations += 1
+#                 except Exception as e:
+#                     worker_errors += 1
+#                     errors += 1
                 
                 # Small delay to prevent total system lock
-                await asyncio.sleep(0.001)
+#                 await asyncio.sleep(0.001)
             
-            return {'worker_id': worker_id, 'operations': ops, 'errors': worker_errors}
+#             return {'worker_id': worker_id, 'operations': ops, 'errors': worker_errors}
         
         # Run stress workers
-        workers = [stress_worker(i) for i in range(config['workers'])]
+#         workers = [stress_worker(i) for i in range(config['workers'])]
         
         # Collect metrics while stress testing
-        async def collect_metrics():
-            while time.time() < end_time:
-                metric = await self.measure_power()
-                results['metrics'].append(metric)
-                await asyncio.sleep(0.5)
+#         async def collect_metrics():
+#             while time.time() < end_time:
+#                 metric = await self.measure_power()
+#                 results['metrics'].append(metric)
+#                 await asyncio.sleep(0.5)
         
         # Run workers and metric collection concurrently
-        metric_task = asyncio.create_task(collect_metrics())
-        worker_results = await asyncio.gather(*workers)
-        await metric_task
+#         metric_task = asyncio.create_task(collect_metrics())
+#         worker_results = await asyncio.gather(*workers)
+#         await metric_task
         
-        elapsed = time.time() - start_time
+#         elapsed = time.time() - start_time
         
         # Calculate statistics
-        cpu_usage = [m['cpu']['usage_percent'] for m in results['metrics']]
-        memory_usage = [m['memory']['percent'] for m in results['metrics']]
-        power_scores = [m['power_score'] for m in results['metrics']]
+#         cpu_usage = [m['cpu']['usage_percent'] for m in results['metrics']]
+#         memory_usage = [m['memory']['percent'] for m in results['metrics']]
+#         power_scores = [m['power_score'] for m in results['metrics']]
         
-        results.update({
+#         results.update({
             'end_time': datetime.utcnow().isoformat(),
             'total_operations': total_operations,
             'operations_per_second': total_operations / elapsed,
@@ -185,91 +184,91 @@ class PowerMeter:
             'grade': self._grade_stress_test(total_operations / elapsed, errors / total_operations if total_operations > 0 else 0)
         })
         
-        self.stress_test_results[datetime.utcnow().isoformat()] = results
+#         self.stress_test_results[datetime.utcnow().isoformat()] = results
         
-        print(f"✅ Stress test complete!")
-        print(f"   Operations/sec: {results['operations_per_second']:.2f}")
-        print(f"   Error rate: {results['error_rate']*100:.2f}%")
-        print(f"   Grade: {results['grade']}")
+#         print(f" Stress test complete!")
+#         print(f"   Operations/sec: {results['operations_per_second']:.2f}")
+#         print(f"   Error rate: {results['error_rate']*100:.2f}%")
+#         print(f"   Grade: {results['grade']}")
         
-        return results
+#         return results
     
-    async def _simulate_workload(self):
+#     async def _simulate_workload(self):
         """Simulate various computational workloads - OPTIMIZED"""
         # Random mix of operations (reduced range for speed)
-        operation = random.choice(['compute', 'memory', 'io', 'mixed'])
+#         operation = random.choice(['compute', 'memory', 'io', 'mixed'])
         
-        if operation == 'compute':
+#         if operation == 'compute':
             # CPU-intensive operation - optimized with smaller range
             _ = sum(i**2 for i in range(random.randint(50, 200)))
-        elif operation == 'memory':
+#         elif operation == 'memory':
             # Memory operation - optimized with generator and smaller range
-            data = [random.random() for _ in range(random.randint(50, 500))]
+#             data = [random.random() for _ in range(random.randint(50, 500))]
             _ = sorted(data)
-        elif operation == 'io':
+#         elif operation == 'io':
             # Simulate I/O delay - reduced sleep time
-            await asyncio.sleep(random.uniform(0.0001, 0.002))
-        else:
+#             await asyncio.sleep(random.uniform(0.0001, 0.002))
+#         else:
             # Mixed operations - optimized calculations
-            data = [i * random.random() for i in range(random.randint(25, 100))]
+#             data = [i * random.random() for i in range(random.randint(25, 100))]
             _ = sum(data) / len(data) if data else 0
     
-    def _grade_stress_test(self, ops_per_sec: float, error_rate: float) -> str:
+#     def _grade_stress_test(self, ops_per_sec: float, error_rate: float) -> str:
         """Grade the stress test results"""
-        if error_rate > 0.1:
-            return 'F - High Error Rate'
-        elif ops_per_sec > 10000:
-            return 'S - Exceptional'
-        elif ops_per_sec > 5000:
-            return 'A - Excellent'
-        elif ops_per_sec > 2000:
-            return 'B - Very Good'
-        elif ops_per_sec > 1000:
-            return 'C - Good'
-        elif ops_per_sec > 500:
-            return 'D - Fair'
-        else:
-            return 'E - Poor'
+#         if error_rate > 0.1:
+#             return 'F - High Error Rate'
+#         elif ops_per_sec > 10000:
+#             return 'S - Exceptional'
+#         elif ops_per_sec > 5000:
+#             return 'A - Excellent'
+#         elif ops_per_sec > 2000:
+#             return 'B - Very Good'
+#         elif ops_per_sec > 1000:
+#             return 'C - Good'
+#         elif ops_per_sec > 500:
+#             return 'D - Fair'
+#         else:
+#             return 'E - Poor'
     
-    async def run_benchmark_suite(self) -> Dict[str, Any]:
+#     async def run_benchmark_suite(self) -> Dict[str, Any]:
         """Run comprehensive benchmark suite with secure memory management"""
-        print("🏃 Running benchmark suite...")
+#         print(" Running benchmark suite...")
         
-        security_mgr = get_security_manager()
+#         security_mgr = get_security_manager()
         
         # Use secure context for entire benchmark
-        with security_mgr.create_secure_context("benchmark_suite"):
-            benchmarks = {
+#         with security_mgr.create_secure_context("benchmark_suite"):
+#             benchmarks = {
                 'timestamp': datetime.utcnow().isoformat(),
                 'tests': {}
             }
             
             # 1. Throughput test
-            print("  📊 Testing throughput...")
-            start = time.time()
-            operations = 0
-            duration = 5  # 5 seconds
+#             print("   Testing throughput...")
+#             start = time.time()
+#             operations = 0
+#             duration = 5  # 5 seconds
             
-            while time.time() - start < duration:
-                await self._simulate_workload()
-                operations += 1
+#             while time.time() - start < duration:
+#                 await self._simulate_workload()
+#                 operations += 1
             
-            throughput = operations / duration
-            benchmarks['tests']['throughput'] = {
+#             throughput = operations / duration
+#             benchmarks['tests']['throughput'] = {
                 'operations_per_second': throughput,
                 'duration': duration,
                 'total_operations': operations
             }
             
             # 2. Latency test
-            print("  ⏱️  Testing latency...")
-            latencies = []
-            for _ in range(100):
-                start = time.perf_counter()
-                await self._simulate_workload()
-                latencies.append((time.perf_counter() - start) * 1000)
+#             print("    Testing latency...")
+#             latencies = []
+#             for _ in range(100):
+#                 start = time.perf_counter()
+#                 await self._simulate_workload()
+#                 latencies.append((time.perf_counter() - start) * 1000)
             
-            benchmarks['tests']['latency'] = {
+#             benchmarks['tests']['latency'] = {
                 'avg_ms': statistics.mean(latencies),
                 'median_ms': statistics.median(latencies),
                 'min_ms': min(latencies),
@@ -279,18 +278,18 @@ class PowerMeter:
             }
             
             # 3. Concurrent operations test
-            print("  🔀 Testing concurrency...")
-            concurrent_workers = 50
-            start = time.time()
+#             print("   Testing concurrency...")
+#             concurrent_workers = 50
+#             start = time.time()
             
-            async def worker():
-                for _ in range(20):
-                    await self._simulate_workload()
+#             async def worker():
+#                 for _ in range(20):
+#                     await self._simulate_workload()
             
-            await asyncio.gather(*[worker() for _ in range(concurrent_workers)])
-            concurrent_duration = time.time() - start
+#             await asyncio.gather(*[worker() for _ in range(concurrent_workers)])
+#             concurrent_duration = time.time() - start
             
-            benchmarks['tests']['concurrency'] = {
+#             benchmarks['tests']['concurrency'] = {
                 'workers': concurrent_workers,
                 'operations_per_worker': 20,
                 'total_time': concurrent_duration,
@@ -298,82 +297,82 @@ class PowerMeter:
             }
             
             # 4. Memory test
-            print("  💾 Testing memory...")
-            memory_before = psutil.virtual_memory()
+#             print("   Testing memory...")
+#             memory_before = psutil.virtual_memory()
             
             # Allocate and process data
-            test_data = []
-            for _ in range(1000):
-                test_data.append([random.random() for _ in range(1000)])
+#             test_data = []
+#             for _ in range(1000):
+#                 test_data.append([random.random() for _ in range(1000)])
             
-            memory_after = psutil.virtual_memory()
+#             memory_after = psutil.virtual_memory()
             
             # SECURE: Clear sensitive data before releasing
-            for data in test_data:
-                data.clear()
-            test_data.clear()
-            del test_data
+#             for data in test_data:
+#                 data.clear()
+#             test_data.clear()
+#             del test_data
             
-            benchmarks['tests']['memory'] = {
+#             benchmarks['tests']['memory'] = {
                 'allocated_mb': (memory_after.used - memory_before.used) / (1024**2),
                 'available_percent': memory_after.available / memory_after.total * 100
             }
             
             # Calculate overall score
-            benchmarks['overall_score'] = self._calculate_benchmark_score(benchmarks['tests'])
+#             benchmarks['overall_score'] = self._calculate_benchmark_score(benchmarks['tests'])
             
-            self.benchmark_results = benchmarks
+#             self.benchmark_results = benchmarks
             
             # Check for memory leaks
-            leak_info = security_mgr.memory_manager.check_leaks()
-            benchmarks['security'] = {
+#             leak_info = security_mgr.memory_manager.check_leaks()
+#             benchmarks['security'] = {
                 'memory_leaks_detected': leak_info['is_leaking'],
                 'potential_leak_mb': leak_info['potential_leak_mb']
             }
             
-            print("✅ Benchmark suite complete!")
-            print(f"   Overall Score: {benchmarks['overall_score']:.2f}/100")
-            if leak_info['is_leaking']:
-                print(f"   ⚠️  WARNING: Potential memory leak detected: {leak_info['potential_leak_mb']:.2f} MB")
+#             print(" Benchmark suite complete!")
+#             print(f"   Overall Score: {benchmarks['overall_score']:.2f}/100")
+#             if leak_info['is_leaking']:
+#                 print(f"     WARNING: Potential memory leak detected: {leak_info['potential_leak_mb']:.2f} MB")
             
-            return sanitize_output(benchmarks)
+#             return sanitize_output(benchmarks)
     
-    def _calculate_benchmark_score(self, tests: Dict) -> float:
+#     def _calculate_benchmark_score(self, tests: Dict) -> float:
         """Calculate overall benchmark score"""
-        scores = []
+#         scores = []
         
         # Throughput score (0-25 points)
-        throughput = tests['throughput']['operations_per_second']
-        throughput_score = min(throughput / 100, 25)
-        scores.append(throughput_score)
+#         throughput = tests['throughput']['operations_per_second']
+#         throughput_score = min(throughput / 100, 25)
+#         scores.append(throughput_score)
         
         # Latency score (0-25 points) - lower is better
-        avg_latency = tests['latency']['avg_ms']
-        latency_score = max(25 - (avg_latency / 10), 0)
-        scores.append(latency_score)
+#         avg_latency = tests['latency']['avg_ms']
+#         latency_score = max(25 - (avg_latency / 10), 0)
+#         scores.append(latency_score)
         
         # Concurrency score (0-25 points)
-        concurrency_ops = tests['concurrency']['operations_per_second']
-        concurrency_score = min(concurrency_ops / 200, 25)
-        scores.append(concurrency_score)
+#         concurrency_ops = tests['concurrency']['operations_per_second']
+#         concurrency_score = min(concurrency_ops / 200, 25)
+#         scores.append(concurrency_score)
         
         # Memory score (0-25 points)
-        memory_available = tests['memory']['available_percent']
-        memory_score = memory_available / 4
-        scores.append(memory_score)
+#         memory_available = tests['memory']['available_percent']
+#         memory_score = memory_available / 4
+#         scores.append(memory_score)
         
-        return sum(scores)
+#         return sum(scores)
     
-    def get_power_report(self) -> Dict[str, Any]:
+#     def get_power_report(self) -> Dict[str, Any]:
         """Generate comprehensive power report"""
-        if not self.metrics_history:
-            return {'error': 'No metrics collected yet'}
+#         if not self.metrics_history:
+#             return {'error': 'No metrics collected yet'}
         
-        cpu_usage = [m['cpu']['usage_percent'] for m in self.metrics_history]
-        memory_usage = [m['memory']['percent'] for m in self.metrics_history]
-        power_scores = [m['power_score'] for m in self.metrics_history]
+#         cpu_usage = [m['cpu']['usage_percent'] for m in self.metrics_history]
+#         memory_usage = [m['memory']['percent'] for m in self.metrics_history]
+#         power_scores = [m['power_score'] for m in self.metrics_history]
         
-        return {
+#         return {
             'total_measurements': len(self.metrics_history),
             'time_range': {
                 'start': self.metrics_history[0]['timestamp'],
@@ -400,11 +399,11 @@ class PowerMeter:
         }
 
 
-class CreativeTrainer:
+# class CreativeTrainer:
     """Generate creative and challenging training scenarios"""
     
-    def __init__(self):
-        self.creativity_modes = [
+#     def __init__(self):
+#         self.creativity_modes = [
             'chaos_monkey',
             'resource_starving',
             'cascade_failure',
@@ -415,9 +414,9 @@ class CreativeTrainer:
             'adaptive_adversary'
         ]
     
-    async def chaos_monkey_scenario(self) -> Dict[str, Any]:
+#     async def chaos_monkey_scenario(self) -> Dict[str, Any]:
         """Random failures and disruptions"""
-        return {
+#         return {
             'name': 'Chaos Monkey',
             'description': 'Random services fail unpredictably',
             'parameters': {
@@ -432,9 +431,9 @@ class CreativeTrainer:
             ]
         }
     
-    async def resource_starving_scenario(self) -> Dict[str, Any]:
+#     async def resource_starving_scenario(self) -> Dict[str, Any]:
         """Limited resources challenge"""
-        return {
+#         return {
             'name': 'Resource Starvation',
             'description': 'System has critically low resources',
             'parameters': {
@@ -450,9 +449,9 @@ class CreativeTrainer:
             ]
         }
     
-    async def cascade_failure_scenario(self) -> Dict[str, Any]:
+#     async def cascade_failure_scenario(self) -> Dict[str, Any]:
         """One failure triggers others"""
-        return {
+#         return {
             'name': 'Cascade Failure',
             'description': 'Initial failure causes chain reaction',
             'parameters': {
@@ -468,9 +467,9 @@ class CreativeTrainer:
             ]
         }
     
-    async def traffic_spike_scenario(self) -> Dict[str, Any]:
+#     async def traffic_spike_scenario(self) -> Dict[str, Any]:
         """Sudden massive traffic increase"""
-        return {
+#         return {
             'name': 'Traffic Spike',
             'description': 'Sudden surge in requests',
             'parameters': {
@@ -486,9 +485,9 @@ class CreativeTrainer:
             ]
         }
     
-    async def adaptive_adversary_scenario(self) -> Dict[str, Any]:
+#     async def adaptive_adversary_scenario(self) -> Dict[str, Any]:
         """Opponent that learns and adapts"""
-        return {
+#         return {
             'name': 'Adaptive Adversary',
             'description': 'Intelligent system that learns from your defenses',
             'parameters': {
@@ -504,12 +503,12 @@ class CreativeTrainer:
             ]
         }
     
-    async def generate_creative_scenario(self, mode: Optional[str] = None) -> Dict[str, Any]:
+#     async def generate_creative_scenario(self, mode: Optional[str] = None) -> Dict[str, Any]:
         """Generate a creative training scenario"""
-        if mode is None:
-            mode = random.choice(self.creativity_modes)
+#         if mode is None:
+#             mode = random.choice(self.creativity_modes)
         
-        scenarios = {
+#         scenarios = {
             'chaos_monkey': self.chaos_monkey_scenario,
             'resource_starving': self.resource_starving_scenario,
             'cascade_failure': self.cascade_failure_scenario,
@@ -517,12 +516,12 @@ class CreativeTrainer:
             'adaptive_adversary': self.adaptive_adversary_scenario,
         }
         
-        generator = scenarios.get(mode)
-        if generator:
-            scenario = await generator()
-            scenario['mode'] = mode
-            scenario['created_at'] = datetime.utcnow().isoformat()
-            return scenario
+#         generator = scenarios.get(mode)
+#         if generator:
+#             scenario = await generator()
+#             scenario['mode'] = mode
+#             scenario['created_at'] = datetime.utcnow().isoformat()
+#             return scenario
         
         # Default scenario
-        return await self.chaos_monkey_scenario()
+#         return await self.chaos_monkey_scenario()

@@ -1,31 +1,31 @@
 #!/usr/bin/env python3
 """
-AIOSC Platform - Authentication & Subscription Management
-Tier-based access control for AI capabilities
+# AIOSC Platform - Authentication & Subscription Management
+# Tier-based access control for AI capabilities
 """
 
-import os
-import jwt
-import bcrypt
-from datetime import datetime, timedelta
-from typing import Optional, List, Dict
-from enum import Enum
+# import os
+# import jwt
+# import bcrypt
+# from datetime import datetime, timedelta
+# from typing import Optional, List, Dict
+# from enum import Enum
 
-from fastapi import FastAPI, HTTPException, Depends, Header
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from pydantic import BaseModel, EmailStr
-import sqlite3
+# from fastapi import FastAPI, HTTPException, Depends, Header
+# from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+# from pydantic import BaseModel, EmailStr
+# import sqlite3
 
 # Subscription Tiers
-class Tier(str, Enum):
-    FREE = "free"
-    CREATOR = "creator"
-    PROFESSIONAL = "professional"
-    ENTERPRISE = "enterprise"
-    CUSTOM = "custom"
+# class Tier(str, Enum):
+#     FREE = "free"
+#     CREATOR = "creator"
+#     PROFESSIONAL = "professional"
+#     ENTERPRISE = "enterprise"
+#     CUSTOM = "custom"
 
 # Capability Registry
-CAPABILITIES = {
+# CAPABILITIES = {
     "text-to-3d-basic": {
         "tiers": [Tier.FREE, Tier.CREATOR, Tier.PROFESSIONAL, Tier.ENTERPRISE, Tier.CUSTOM],
         "cost_credits": 0.1,
@@ -92,8 +92,8 @@ CAPABILITIES = {
 }
 
 # Tier Limits
-TIER_LIMITS = {
-    Tier.FREE: {
+# TIER_LIMITS = {
+#     Tier.FREE: {
         "monthly_credits": 10,
         "requests_per_day": 10,
         "requests_per_hour": 5,
@@ -102,7 +102,7 @@ TIER_LIMITS = {
         "priority": 0,
         "support": "community"
     },
-    Tier.CREATOR: {
+#     Tier.CREATOR: {
         "monthly_credits": 100,
         "requests_per_day": 100,
         "requests_per_hour": 20,
@@ -111,7 +111,7 @@ TIER_LIMITS = {
         "priority": 1,
         "support": "email"
     },
-    Tier.PROFESSIONAL: {
+#     Tier.PROFESSIONAL: {
         "monthly_credits": 1000,
         "requests_per_day": 500,
         "requests_per_hour": 100,
@@ -120,7 +120,7 @@ TIER_LIMITS = {
         "priority": 2,
         "support": "phone+email"
     },
-    Tier.ENTERPRISE: {
+#     Tier.ENTERPRISE: {
         "monthly_credits": float('inf'),  # Unlimited
         "requests_per_day": float('inf'),
         "requests_per_hour": float('inf'),
@@ -129,7 +129,7 @@ TIER_LIMITS = {
         "priority": 3,
         "support": "24/7+dedicated"
     },
-    Tier.CUSTOM: {
+#     Tier.CUSTOM: {
         "monthly_credits": float('inf'),
         "requests_per_day": float('inf'),
         "requests_per_hour": float('inf'),
@@ -141,196 +141,196 @@ TIER_LIMITS = {
 }
 
 # Pricing
-TIER_PRICING = {
-    Tier.FREE: 0,
-    Tier.CREATOR: 29,
-    Tier.PROFESSIONAL: 99,
-    Tier.ENTERPRISE: 499,
-    Tier.CUSTOM: None  # Contact sales
+# TIER_PRICING = {
+#     Tier.FREE: 0,
+#     Tier.CREATOR: 29,
+#     Tier.PROFESSIONAL: 99,
+#     Tier.ENTERPRISE: 499,
+#     Tier.CUSTOM: None  # Contact sales
 }
 
 # JWT Configuration
-JWT_SECRET = os.getenv("JWT_SECRET", "your-secret-key-change-this")
-JWT_ALGORITHM = "HS256"
-JWT_EXPIRATION_HOURS = 24
+# JWT_SECRET = os.getenv("JWT_SECRET", "your-secret-key-change-this")
+# JWT_ALGORITHM = "HS256"
+# JWT_EXPIRATION_HOURS = 24
 
-app = FastAPI(title="AIOSC Platform API")
-security = HTTPBearer()
+# app = FastAPI(title="AIOSC Platform API")
+# security = HTTPBearer()
 
 # Database initialization
-def init_db():
+# def init_db():
     """Initialize SQLite database for subscriptions"""
-    conn = sqlite3.connect('aiosc.db')
-    c = conn.cursor()
+#     conn = sqlite3.connect('aiosc.db')
+#     c = conn.cursor()
     
     # Users table
-    c.execute('''CREATE TABLE IF NOT EXISTS users (
-        user_id TEXT PRIMARY KEY,
-        email TEXT UNIQUE NOT NULL,
-        password_hash TEXT NOT NULL,
-        tier TEXT NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        api_key TEXT UNIQUE
+#     c.execute('''CREATE TABLE IF NOT EXISTS users (
+#         user_id TEXT PRIMARY KEY,
+#         email TEXT UNIQUE NOT NULL,
+#         password_hash TEXT NOT NULL,
+#         tier TEXT NOT NULL,
+#         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+#         api_key TEXT UNIQUE
     )''')
     
     # Usage table
-    c.execute('''CREATE TABLE IF NOT EXISTS usage (
-        usage_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        user_id TEXT NOT NULL,
-        capability TEXT NOT NULL,
-        credits_used REAL NOT NULL,
-        timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(user_id)
+#     c.execute('''CREATE TABLE IF NOT EXISTS usage (
+#         usage_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         user_id TEXT NOT NULL,
+#         capability TEXT NOT NULL,
+#         credits_used REAL NOT NULL,
+#         timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+#         FOREIGN KEY (user_id) REFERENCES users(user_id)
     )''')
     
     # Credits table
-    c.execute('''CREATE TABLE IF NOT EXISTS credits (
-        user_id TEXT PRIMARY KEY,
-        monthly_limit REAL NOT NULL,
-        used_this_month REAL DEFAULT 0,
-        last_reset TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(user_id)
+#     c.execute('''CREATE TABLE IF NOT EXISTS credits (
+#         user_id TEXT PRIMARY KEY,
+#         monthly_limit REAL NOT NULL,
+#         used_this_month REAL DEFAULT 0,
+#         last_reset TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+#         FOREIGN KEY (user_id) REFERENCES users(user_id)
     )''')
     
-    conn.commit()
-    conn.close()
+#     conn.commit()
+#     conn.close()
 
 # Pydantic models
-class UserCreate(BaseModel):
-    email: EmailStr
-    password: str
-    tier: Tier = Tier.FREE
+# class UserCreate(BaseModel):
+#     email: EmailStr
+#     password: str
+#     tier: Tier = Tier.FREE
 
-class UserLogin(BaseModel):
-    email: EmailStr
-    password: str
+# class UserLogin(BaseModel):
+#     email: EmailStr
+#     password: str
 
-class CapabilityRequest(BaseModel):
-    capability: str
-    parameters: Dict
+# class CapabilityRequest(BaseModel):
+#     capability: str
+#     parameters: Dict
 
 # Helper functions
-def create_jwt_token(user_id: str, tier: str) -> str:
+# def create_jwt_token(user_id: str, tier: str) -> str:
     """Create JWT token"""
-    payload = {
+#     payload = {
         "user_id": user_id,
         "tier": tier,
         "exp": datetime.utcnow() + timedelta(hours=JWT_EXPIRATION_HOURS)
     }
-    return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
+#     return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
-def verify_jwt_token(token: str) -> Dict:
+# def verify_jwt_token(token: str) -> Dict:
     """Verify JWT token"""
-    try:
-        payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
-        return payload
-    except jwt.ExpiredSignatureError:
-        raise HTTPException(status_code=401, detail="Token expired")
-    except jwt.InvalidTokenError:
-        raise HTTPException(status_code=401, detail="Invalid token")
+#     try:
+#         payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
+#         return payload
+#     except jwt.ExpiredSignatureError:
+#         raise HTTPException(status_code=401, detail="Token expired")
+#     except jwt.InvalidTokenError:
+#         raise HTTPException(status_code=401, detail="Invalid token")
 
-async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)) -> Dict:
+# async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)) -> Dict:
     """Get current authenticated user"""
-    token = credentials.credentials
-    return verify_jwt_token(token)
+#     token = credentials.credentials
+#     return verify_jwt_token(token)
 
-def check_capability_access(capability: str, tier: Tier) -> bool:
+# def check_capability_access(capability: str, tier: Tier) -> bool:
     """Check if tier has access to capability"""
-    if capability not in CAPABILITIES:
-        return False
-    return tier in CAPABILITIES[capability]["tiers"]
+#     if capability not in CAPABILITIES:
+#         return False
+#     return tier in CAPABILITIES[capability]["tiers"]
 
-def check_credits(user_id: str, credits_needed: float) -> bool:
+# def check_credits(user_id: str, credits_needed: float) -> bool:
     """Check if user has enough credits"""
-    conn = sqlite3.connect('aiosc.db')
-    c = conn.cursor()
+#     conn = sqlite3.connect('aiosc.db')
+#     c = conn.cursor()
     
-    c.execute("""
-        SELECT monthly_limit, used_this_month, last_reset 
-        FROM credits WHERE user_id = ?
+#     c.execute("""
+#         SELECT monthly_limit, used_this_month, last_reset 
+#         FROM credits WHERE user_id = ?
     """, (user_id,))
     
-    result = c.fetchone()
-    conn.close()
+#     result = c.fetchone()
+#     conn.close()
     
-    if not result:
-        return False
+#     if not result:
+#         return False
     
-    monthly_limit, used, last_reset = result
+#     monthly_limit, used, last_reset = result
     
     # Check if we need to reset (new month)
-    last_reset_date = datetime.fromisoformat(last_reset)
-    if (datetime.now() - last_reset_date).days >= 30:
+#     last_reset_date = datetime.fromisoformat(last_reset)
+#     if (datetime.now() - last_reset_date).days >= 30:
         # Reset credits
-        conn = sqlite3.connect('aiosc.db')
-        c = conn.cursor()
-        c.execute("UPDATE credits SET used_this_month = 0, last_reset = ? WHERE user_id = ?",
+#         conn = sqlite3.connect('aiosc.db')
+#         c = conn.cursor()
+#         c.execute("UPDATE credits SET used_this_month = 0, last_reset = ? WHERE user_id = ?",
                  (datetime.now().isoformat(), user_id))
-        conn.commit()
-        conn.close()
-        used = 0
+#         conn.commit()
+#         conn.close()
+#         used = 0
     
-    return (used + credits_needed) <= monthly_limit
+#     return (used + credits_needed) <= monthly_limit
 
-def deduct_credits(user_id: str, credits: float):
+# def deduct_credits(user_id: str, credits: float):
     """Deduct credits from user account"""
-    conn = sqlite3.connect('aiosc.db')
-    c = conn.cursor()
+#     conn = sqlite3.connect('aiosc.db')
+#     c = conn.cursor()
     
-    c.execute("""
-        UPDATE credits 
-        SET used_this_month = used_this_month + ? 
-        WHERE user_id = ?
+#     c.execute("""
+#         UPDATE credits 
+#         SET used_this_month = used_this_month + ? 
+#         WHERE user_id = ?
     """, (credits, user_id))
     
-    c.execute("""
-        INSERT INTO usage (user_id, capability, credits_used) 
-        VALUES (?, ?, ?)
+#     c.execute("""
+#         INSERT INTO usage (user_id, capability, credits_used) 
+#         VALUES (?, ?, ?)
     """, (user_id, "generic", credits))
     
-    conn.commit()
-    conn.close()
+#     conn.commit()
+#     conn.close()
 
 # API Endpoints
 
 @app.post("/auth/register")
-async def register(user: UserCreate):
+# async def register(user: UserCreate):
     """Register new user"""
-    conn = sqlite3.connect('aiosc.db')
-    c = conn.cursor()
+#     conn = sqlite3.connect('aiosc.db')
+#     c = conn.cursor()
     
     # Check if email exists
-    c.execute("SELECT user_id FROM users WHERE email = ?", (user.email,))
-    if c.fetchone():
-        raise HTTPException(status_code=400, detail="Email already registered")
+#     c.execute("SELECT user_id FROM users WHERE email = ?", (user.email,))
+#     if c.fetchone():
+#         raise HTTPException(status_code=400, detail="Email already registered")
     
     # Hash password
-    password_hash = bcrypt.hashpw(user.password.encode(), bcrypt.gensalt()).decode()
+#     password_hash = bcrypt.hashpw(user.password.encode(), bcrypt.gensalt()).decode()
     
     # Generate user ID and API key
-    user_id = f"user_{datetime.now().timestamp()}"
-    api_key = f"sk_{os.urandom(32).hex()}"
+#     user_id = f"user_{datetime.now().timestamp()}"
+#     api_key = f"sk_{os.urandom(32).hex()}"
     
     # Create user
-    c.execute("""
-        INSERT INTO users (user_id, email, password_hash, tier, api_key) 
-        VALUES (?, ?, ?, ?, ?)
+#     c.execute("""
+#         INSERT INTO users (user_id, email, password_hash, tier, api_key) 
+#         VALUES (?, ?, ?, ?, ?)
     """, (user_id, user.email, password_hash, user.tier.value, api_key))
     
     # Initialize credits
-    monthly_limit = TIER_LIMITS[user.tier]["monthly_credits"]
-    c.execute("""
-        INSERT INTO credits (user_id, monthly_limit, used_this_month) 
-        VALUES (?, ?, 0)
+#     monthly_limit = TIER_LIMITS[user.tier]["monthly_credits"]
+#     c.execute("""
+#         INSERT INTO credits (user_id, monthly_limit, used_this_month) 
+#         VALUES (?, ?, 0)
     """, (user_id, monthly_limit))
     
-    conn.commit()
-    conn.close()
+#     conn.commit()
+#     conn.close()
     
     # Generate JWT
-    token = create_jwt_token(user_id, user.tier.value)
+#     token = create_jwt_token(user_id, user.tier.value)
     
-    return {
+#     return {
         "user_id": user_id,
         "email": user.email,
         "tier": user.tier.value,
@@ -340,80 +340,80 @@ async def register(user: UserCreate):
     }
 
 @app.post("/auth/login")
-async def login(credentials: UserLogin):
+# async def login(credentials: UserLogin):
     """Login user"""
-    conn = sqlite3.connect('aiosc.db')
-    c = conn.cursor()
+#     conn = sqlite3.connect('aiosc.db')
+#     c = conn.cursor()
     
-    c.execute("SELECT user_id, password_hash, tier FROM users WHERE email = ?", 
+#     c.execute("SELECT user_id, password_hash, tier FROM users WHERE email = ?", 
              (credentials.email,))
-    result = c.fetchone()
-    conn.close()
+#     result = c.fetchone()
+#     conn.close()
     
-    if not result:
-        raise HTTPException(status_code=401, detail="Invalid credentials")
+#     if not result:
+#         raise HTTPException(status_code=401, detail="Invalid credentials")
     
-    user_id, password_hash, tier = result
+#     user_id, password_hash, tier = result
     
     # Verify password
-    if not bcrypt.checkpw(credentials.password.encode(), password_hash.encode()):
-        raise HTTPException(status_code=401, detail="Invalid credentials")
+#     if not bcrypt.checkpw(credentials.password.encode(), password_hash.encode()):
+#         raise HTTPException(status_code=401, detail="Invalid credentials")
     
     # Generate JWT
-    token = create_jwt_token(user_id, tier)
+#     token = create_jwt_token(user_id, tier)
     
-    return {
+#     return {
         "token": token,
         "user_id": user_id,
         "tier": tier
     }
 
 @app.get("/capabilities")
-async def list_capabilities(user: Dict = Depends(get_current_user)):
+# async def list_capabilities(user: Dict = Depends(get_current_user)):
     """List capabilities available to user's tier"""
-    tier = Tier(user["tier"])
+#     tier = Tier(user["tier"])
     
-    available = {}
-    for cap_name, cap_info in CAPABILITIES.items():
-        if tier in cap_info["tiers"]:
-            available[cap_name] = {
+#     available = {}
+#     for cap_name, cap_info in CAPABILITIES.items():
+#         if tier in cap_info["tiers"]:
+#             available[cap_name] = {
                 "cost_credits": cap_info["cost_credits"],
                 "timeout_seconds": cap_info["timeout_seconds"],
                 "max_quality": cap_info["max_quality"]
             }
     
-    return {
+#     return {
         "tier": tier.value,
         "available_capabilities": available,
         "tier_limits": TIER_LIMITS[tier]
     }
 
 @app.get("/usage")
-async def get_usage(user: Dict = Depends(get_current_user)):
+# async def get_usage(user: Dict = Depends(get_current_user)):
     """Get user's usage statistics"""
-    user_id = user["user_id"]
+#     user_id = user["user_id"]
     
-    conn = sqlite3.connect('aiosc.db')
-    c = conn.cursor()
+#     conn = sqlite3.connect('aiosc.db')
+#     c = conn.cursor()
     
     # Get credits
-    c.execute("SELECT monthly_limit, used_this_month FROM credits WHERE user_id = ?", 
+#     c.execute("SELECT monthly_limit, used_this_month FROM credits WHERE user_id = ?", 
              (user_id,))
-    credits = c.fetchone()
+#     credits = c.fetchone()
     
     # Get recent usage
-    c.execute("""
-        SELECT capability, credits_used, timestamp 
-        FROM usage 
-        WHERE user_id = ? 
-        ORDER BY timestamp DESC 
-        LIMIT 10
+#     c.execute("""
+#         SELECT capability, credits_used, timestamp 
+#         FROM usage 
+#         WHERE user_id = ? 
+#         ORDER BY timestamp DESC 
+#         LIMIT 10
     """, (user_id,))
-    recent = c.fetchall()
+#     recent = c.fetchall()
     
-    conn.close()
+#     conn.close()
     
-    return {
+#     return {
         "credits": {
             "monthly_limit": credits[0],
             "used": credits[1],
@@ -421,44 +421,43 @@ async def get_usage(user: Dict = Depends(get_current_user)):
         },
         "recent_usage": [
             {"capability": r[0], "credits": r[1], "time": r[2]}
-            for r in recent
+#             for r in recent
         ]
     }
 
 @app.post("/execute/{capability}")
-async def execute_capability(
-    capability: str,
-    request: CapabilityRequest,
-    user: Dict = Depends(get_current_user)
+# async def execute_capability(
+#     capability: str,
+#     request: CapabilityRequest,
+#     user: Dict = Depends(get_current_user)
 ):
     """Execute a capability"""
-    tier = Tier(user["tier"])
-    user_id = user["user_id"]
+#     tier = Tier(user["tier"])
+#     user_id = user["user_id"]
     
     # Check if capability exists
-    if capability not in CAPABILITIES:
-        raise HTTPException(status_code=404, detail="Capability not found")
+#     if capability not in CAPABILITIES:
+#         raise HTTPException(status_code=404, detail="Capability not found")
     
-    cap_info = CAPABILITIES[capability]
+#     cap_info = CAPABILITIES[capability]
     
     # Check tier access
-    if not check_capability_access(capability, tier):
-        raise HTTPException(
-            status_code=403, 
-            detail=f"Capability '{capability}' not available in tier '{tier.value}'. Upgrade required."
-        )
+#     if not check_capability_access(capability, tier):
+#         raise HTTPException(
+#             status_code=403, 
+#             detail=f"Capability '{capability}' not available in tier '{tier.value}'. Upgrade required."
     
     # Check credits
-    credits_needed = cap_info["cost_credits"]
-    if not check_credits(user_id, credits_needed):
-        raise HTTPException(status_code=402, detail="Insufficient credits")
+#     credits_needed = cap_info["cost_credits"]
+#     if not check_credits(user_id, credits_needed):
+#         raise HTTPException(status_code=402, detail="Insufficient credits")
     
     # Deduct credits
-    deduct_credits(user_id, credits_needed)
+#     deduct_credits(user_id, credits_needed)
     
     # TODO: Actually execute the capability via Hive orchestrator
     # For now, return mock response
-    return {
+#     return {
         "status": "queued",
         "capability": capability,
         "credits_charged": credits_needed,
@@ -468,14 +467,14 @@ async def execute_capability(
     }
 
 @app.get("/health")
-async def health():
+# async def health():
     """Health check"""
-    return {"status": "healthy", "platform": "AIOSC"}
+#     return {"status": "healthy", "platform": "AIOSC"}
 
-if __name__ == "__main__":
-    import uvicorn
-    init_db()
-    print("🚀 AIOSC Platform starting...")
-    print("   Database initialized")
-    print("   Starting API server on :8001")
-    uvicorn.run(app, host="0.0.0.0", port=8001)
+# if __name__ == "__main__":
+#     import uvicorn
+#     init_db()
+#     print(" AIOSC Platform starting...")
+#     print("   Database initialized")
+#     print("   Starting API server on :8001")
+#     uvicorn.run(app, host="0.0.0.0", port=8001)
