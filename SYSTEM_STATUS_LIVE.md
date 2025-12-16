@@ -1,11 +1,11 @@
 # QuetzalCore System Status
-Generated: 2025-12-12 13:02:44
+Generated: 2025-12-11 12:49:16
 
 ## Agent Metrics
-- **Uptime**: 91.68 hours
-- **Total Health Checks**: 5520
+- **Uptime**: 67.45 hours
+- **Total Health Checks**: 4160
 - **Total Fixes Applied**: 0
-- **Total Optimizations**: 552
+- **Total Optimizations**: 416
 
 ## Service Status
 
@@ -13,19 +13,19 @@ Generated: 2025-12-12 13:02:44
 - **Status**: unhealthy
 - **Uptime**: N/A
 - **Restarts**: 0
-- **Failures**: 2760
-- **Last Check**: 13:01:35
+- **Failures**: 2080
+- **Last Check**: 12:49:00
 
 ### ❌ FRONTEND
 - **Status**: unhealthy
 - **Uptime**: N/A
 - **Restarts**: 0
-- **Failures**: 2760
-- **Last Check**: 13:01:35
+- **Failures**: 2080
+- **Last Check**: 12:49:00
 
 ## System Resources
-- **CPU Usage**: 13.0%
-- **Memory Usage**: 62.7% (8.4GB / 17.2GB)
+- **CPU Usage**: 19.9%
+- **Memory Usage**: 67.7% (8.4GB / 17.2GB)
 - **Disk Usage**: 11.6% (12.2GB / 245.1GB)
 
 ---
