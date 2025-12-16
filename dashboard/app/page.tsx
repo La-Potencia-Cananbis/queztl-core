@@ -4,17 +4,41 @@ import { useState, useEffect } from 'react'
 import LiveChart from '@/components/LiveChart'
 import PacketFlow from '@/components/PacketFlow'
 
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://queztl-core-backend.onrender.com'
+
 export default function Dashboard() {
     const [metrics, setMetrics] = useState({
         packetsPerSecond: 185000,
         activeNodes: 847,
         latency: 2.3,
-        uptime: 99.97
+        uptime: 99.97,
+        backendConnected: false
     })
 
+    // Fetch real data from backend
+    useEffect(() => {
+        const fetchMetrics = async () => {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/metrics`)
+                if (response.ok) {
+                    const data = await response.json()
+                    setMetrics(prev => ({ ...prev, ...data, backendConnected: true }))
+                }
+            } catch (error) {
+                console.error('Backend not connected:', error)
+            }
+        }
+
+        fetchMetrics()
+        const interval = setInterval(fetchMetrics, 5000)
+        return () => clearInterval(interval)
+    }, [])
+
+    // Simulate metrics if backend not connected
     useEffect(() => {
         const interval = setInterval(() => {
             setMetrics(prev => ({
+                ...prev,
                 packetsPerSecond: prev.packetsPerSecond + Math.floor(Math.random() * 10000 - 5000),
                 activeNodes: prev.activeNodes + Math.floor(Math.random() * 20 - 10),
                 latency: Math.max(0.5, prev.latency + (Math.random() * 0.4 - 0.2)),
@@ -27,6 +51,14 @@ export default function Dashboard() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 p-8">
             <PacketFlow />
+
+            {/* Backend Status Indicator */}
+            <div className="fixed top-4 right-4 z-50">
+                <div className={`px-4 py-2 rounded-full ${metrics.backendConnected ? 'bg-green-500' : 'bg-red-500'} text-white text-sm font-semibold flex items-center gap-2`}>
+                    <div className={`w-2 h-2 rounded-full ${metrics.backendConnected ? 'bg-green-200 animate-pulse' : 'bg-red-200'}`}></div>
+                    {metrics.backendConnected ? '🦅 BACKEND CONNECTED' : '⚠️ SIMULATED DATA'}
+                </div>
+            </div>
 
             <div className="max-w-7xl mx-auto">
                 <div className="mb-8 text-center">
