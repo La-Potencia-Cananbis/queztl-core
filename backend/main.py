@@ -26,6 +26,22 @@ For licensing inquiries: legal@quetzalcore-core.com
 """
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI(title="QuetzalCore-Core Testing & Monitoring System")
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://senasaitech.com",
+        "http://localhost:3000",
+        "https://queztl-core-backend.onrender.com"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel
 from contextlib import asynccontextmanager
@@ -65,22 +81,6 @@ from .gis_engine import (
 from .gis_validator import (
     GISDataValidator, GISDataType, ValidationStatus, LiDARValidator,
     RasterValidator, VectorValidator
-)
-from .gis_geophysics_integrator import GISGeophysicsIntegrator
-from .gis_geophysics_trainer import GISGeophysicsTrainer, TrainingDataset
-from .gis_geophysics_improvement import AdaptiveImprovementEngine
-from .geophysics_engine import (
-    IGRFModel, WMMModel, MagneticSurvey, ResistivitySurvey, SeismicSurvey,
-    MagneticAnalyzer, ResistivityAnalyzer, SeismicAnalyzer, SubsurfaceModeler,
-    MiningMagnetometryProcessor  # NEW: Mining-specific MAG processing
-)
-from .qp_protocol import (
-    QPProtocol, QPHandler, QPMessageType, QPGPUHandler, QPGISHandler,
-    create_qp_handler
-)
-import time
-import hashlib
-import numpy as np
 import torch
 from PIL import Image
 import io
