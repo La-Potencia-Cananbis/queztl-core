@@ -13,7 +13,7 @@ Patent Pending - USPTO Provisional Application
 This file contains trade secrets and confidential information protected under:
 - United States Patent Law (35 U.S.C.)
 - Uniform Trade Secrets Act
-- Economic Espionage Act (18 U.S.C. § 1831-1839)
+- Economic Espionage Act (18 U.S.C. Section 1831-1839)
 
 PATENT-PENDING INNOVATIONS IN THIS FILE:
 - Claim 2: Web-Native GPU API (27+ RESTful endpoints for GPU operations)
