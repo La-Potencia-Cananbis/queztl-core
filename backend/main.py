@@ -92,7 +92,7 @@ class VMRTransferRequest(BaseModel):
     
     @app.post("/api/vmr/transfer")
     async def vmr_transfer_data(request: VMRTransferRequest):
-        """🔌 Transfer data through Virtual Memory Resistor"""
+        """ Transfer data through Virtual Memory Resistor"""
         try:
             if request.use_parallel:
                 result = vmr_array.parallel_transfer(request.bytes_to_transfer, request.priority)
@@ -100,17 +100,17 @@ class VMRTransferRequest(BaseModel):
                     "vmr_type": "parallel_array",
                     "num_vmrs": 8,
                     "result": result,
-                    "emoji": "🔌⚡🔌⚡🔌⚡🔌⚡"
+                    "emoji": ""
                 }
             else:
                 result = vmr.transfer_data(request.bytes_to_transfer, request.priority)
                 return {
                     "vmr_type": "single",
                     "result": result,
-                    "emoji": "🔌"
+                    "emoji": ""
                 }
         except Exception as e:
-            return {"error": str(e), "emoji": "💥"}            # 1. Abre backend/main.py y reemplaza el endpoint /api/vmr/transfer por esto:
+            return {"error": str(e), "emoji": ""}            # 1. Abre backend/main.py y reemplaza el endpoint /api/vmr/transfer por esto:
             ````python
             from pydantic import BaseModel
             
@@ -121,7 +121,7 @@ class VMRTransferRequest(BaseModel):
             
             @app.post("/api/vmr/transfer")
             async def vmr_transfer_data(request: VMRTransferRequest):
-                """🔌 Transfer data through Virtual Memory Resistor"""
+                """ Transfer data through Virtual Memory Resistor"""
                 try:
                     if request.use_parallel:
                         result = vmr_array.parallel_transfer(request.bytes_to_transfer, request.priority)
@@ -129,23 +129,23 @@ class VMRTransferRequest(BaseModel):
                             "vmr_type": "parallel_array",
                             "num_vmrs": 8,
                             "result": result,
-                            "emoji": "🔌⚡🔌⚡🔌⚡🔌⚡"
+                            "emoji": ""
                         }
                     else:
                         result = vmr.transfer_data(request.bytes_to_transfer, request.priority)
                         return {
                             "vmr_type": "single",
                             "result": result,
-                            "emoji": "🔌"
+                            "emoji": ""
                         }
                 except Exception as e:
-                    return {"error": str(e), "emoji": "💥"}
+                    return {"error": str(e), "emoji": ""}
     priority: float = 1.0
     use_parallel: bool = False
 
 @app.post("/api/vmr/transfer")
 async def vmr_transfer_data(request: VMRTransferRequest):
-    """🔌 Transfer data through Virtual Memory Resistor"""
+    """ Transfer data through Virtual Memory Resistor"""
     try:
         if request.use_parallel:
             result = vmr_array.parallel_transfer(request.bytes_to_transfer, request.priority)
@@ -153,17 +153,17 @@ async def vmr_transfer_data(request: VMRTransferRequest):
                 "vmr_type": "parallel_array",
                 "num_vmrs": 8,
                 "result": result,
-                "emoji": "🔌⚡🔌⚡🔌⚡🔌⚡"
+                "emoji": ""
             }
         else:
             result = vmr.transfer_data(request.bytes_to_transfer, request.priority)
             return {
                 "vmr_type": "single",
                 "result": result,
-                "emoji": "🔌"
+                "emoji": ""
             }
     except Exception as e:
-        return {"error": str(e), "emoji": "💥"}
+        return {"error": str(e), "emoji": ""}
 from .gis_validator import (
     GISDataValidator, GISDataType, ValidationStatus, LiDARValidator,
     RasterValidator, VectorValidator
@@ -215,7 +215,7 @@ gpu_workload = GPU3DWorkload()
 mining_workload = CryptoMiningWorkload()
 combined_workload = ExtremeCombinedWorkload()
 
-# 🚀 SOFTWARE GPU & QUANTUM SYSTEMS
+#  SOFTWARE GPU & QUANTUM SYSTEMS
 software_gpu = SoftwareGPU(num_blocks=256, threads_per_block=32)  # 8192 threads!
 vectorized_miner = VectorizedMiner(software_gpu)
 quad_list = QuadLinkedList()
@@ -229,7 +229,7 @@ quantum_parallelism = QuantumLikeParallelism()
 gpu_benchmarker = PerformanceBenchmark()
 hardware_comparison = ComparisonWithHardware()
 
-# 🚀 PARALLEL GPU ORCHESTRATOR - Multiple GPUs for Real Performance
+#  PARALLEL GPU ORCHESTRATOR - Multiple GPUs for Real Performance
 parallel_gpu_orchestrator = ParallelGPUOrchestrator(min_units=2, max_units=8)
 
 # 🧠 AI SWARM INTELLIGENCE
@@ -237,12 +237,12 @@ message_bus = MessageBus(buffer_size=100000)
 swarm_coordinator = SwarmCoordinator(message_bus)
 agent_hierarchy = AgentHierarchy(message_bus)
 
-# 🖥️ WEB GPU DRIVER
+# 🖥 WEB GPU DRIVER
 web_gpu_driver = WebGPUDriver(software_gpu)
 web_gpu_api = WebGPUAPI(web_gpu_driver)
 opengl_compat = OpenGLCompatLayer(web_gpu_driver)
 
-# 🗺️ GIS & GEOPHYSICS SYSTEMS
+# 🗺 GIS & GEOPHYSICS SYSTEMS
 gis_validator = GISDataValidator()
 gis_integrator = GISGeophysicsIntegrator()
 gis_trainer = GISGeophysicsTrainer()
@@ -319,7 +319,7 @@ qp_handler = None
 async def lifespan(app: FastAPI):
     # Startup
     await init_db()
-    print("✅ Database initialized")
+    print(" Database initialized")
     
     # Start security monitoring
     security_manager = get_security_manager()
@@ -332,7 +332,7 @@ async def lifespan(app: FastAPI):
     
     # Start auto-scaler
     asyncio.create_task(auto_scaler.run_scaling_loop())
-    print("⚡ Auto-scaler started (will scale 1-100 nodes)")
+    print(" Auto-scaler started (will scale 1-100 nodes)")
     
     # Start Gen3D workload processor (spawns workers on-demand)
     asyncio.create_task(gen3d_workload.process_tasks())
@@ -346,7 +346,7 @@ async def lifespan(app: FastAPI):
         gis_integrator=None,  # Will be created below
         gis_trainer=None      # Will be created below
     )
-    print("🚀 QP Protocol handler initialized (Binary WebSocket - 10-20x faster than REST)")
+    print(" QP Protocol handler initialized (Binary WebSocket - 10-20x faster than REST)")
     
     yield
     
@@ -788,7 +788,7 @@ async def run_3d_workload(
     ray_count: int = 10000
 ):
     """
-    🦅 Run GPU-accelerated 3D graphics workload
+     Run GPU-accelerated 3D graphics workload
     
     Simulates:
     - Matrix transformations (rotation, scaling, translation)
@@ -827,7 +827,7 @@ async def run_mining_workload(
     num_workers: int = 4
 ):
     """
-    ⛏️ Run cryptocurrency mining simulation
+    ⛏ Run cryptocurrency mining simulation
     
     Simulates:
     - SHA-256 hashing (Bitcoin-style)
@@ -845,7 +845,7 @@ async def run_mining_workload(
     
     return {
         "workload": "Crypto Mining",
-        "emoji": "⛏️",
+        "emoji": "⛏",
         "duration": result["duration"],
         "blocks_mined": result["blocks_mined"],
         "total_hashes": result["total_hashes"],
@@ -866,7 +866,7 @@ async def run_mining_workload(
 @app.post("/api/workload/extreme")
 async def run_extreme_combined_workload(duration_seconds: int = 30):
     """
-    🔥 BEAST MODE - Run combined GPU + Mining workload simultaneously
+     BEAST MODE - Run combined GPU + Mining workload simultaneously
     
     Ultimate stress test that pushes both CPU and theoretical GPU to limits:
     - 3D matrix operations + ray tracing
@@ -879,7 +879,7 @@ async def run_extreme_combined_workload(duration_seconds: int = 30):
     
     return {
         "workload": "EXTREME COMBINED",
-        "emoji": "🔥",
+        "emoji": "",
         "duration": result["duration"],
         "gpu_workload": result["gpu_workload"],
         "mining_workload": result["mining_workload"],
@@ -894,7 +894,7 @@ async def run_extreme_combined_workload(duration_seconds: int = 30):
 @app.get("/api/workload/capabilities")
 async def get_workload_capabilities():
     """
-    📊 Get system capabilities for advanced workloads
+     Get system capabilities for advanced workloads
     """
     import sys
     
@@ -930,7 +930,7 @@ async def spawn_ai_swarm(
     capabilities: str = "compute,hash,aggregate"
 ):
     """
-    🦅 Spawn AI worker swarm
+     Spawn AI worker swarm
     
     Creates hundreds or thousands of autonomous AI agents
     Each agent can process tasks and communicate with others
@@ -969,7 +969,7 @@ async def distribute_swarm_task(
     num_splits: int = None
 ):
     """
-    🚀 Distribute task across AI swarm
+     Distribute task across AI swarm
     
     Splits task and distributes to available agents
     Implements map-reduce pattern for massive parallelism
@@ -1011,7 +1011,7 @@ async def distribute_swarm_task(
     
     return {
         "status": "task_distributed",
-        "emoji": "⚡",
+        "emoji": "",
         "task_id": task['id'],
         "task_type": task_type,
         "data_size": data_size,
@@ -1026,7 +1026,7 @@ async def distribute_swarm_task(
 @app.get("/api/swarm/stats")
 async def get_swarm_stats():
     """
-    📊 Get AI swarm statistics
+     Get AI swarm statistics
     
     Returns comprehensive swarm metrics:
     - Total agents and their states
@@ -1060,7 +1060,7 @@ async def get_swarm_stats():
                 2
             )
         },
-        "emoji": "📊"
+        "emoji": ""
     }
 
 
@@ -1070,7 +1070,7 @@ async def create_agent_hierarchy(
     workers: int = 100
 ):
     """
-    🏗️ Create hierarchical agent network
+    🏗 Create hierarchical agent network
     
     Creates multi-level agent structure:
     - Master agents: Supervise and aggregate
@@ -1100,7 +1100,7 @@ async def create_agent_hierarchy(
     
     return {
         "status": "hierarchy_created",
-        "emoji": "🏗️",
+        "emoji": "🏗",
         "hierarchy": hierarchy,
         "total_agents": total_agents,
         "duration": round(duration, 3),
@@ -1160,7 +1160,7 @@ async def quantum_mining_with_swarm(
     num_agents: int = 100
 ):
     """
-    ⚛️ QUANTUM MINING with AI Swarm + GPU Simulation
+    ⚛ QUANTUM MINING with AI Swarm + GPU Simulation
     
     The ULTIMATE test: Combines everything!
     - Software GPU simulation (8192 threads)
@@ -1197,7 +1197,7 @@ async def quantum_mining_with_swarm(
     
     return {
         "status": "quantum_mining_complete",
-        "emoji": "⚛️",
+        "emoji": "⚛",
         "found": mining_result['found'],
         "nonce": mining_result['nonce'],
         "hash": mining_result['hash'],
@@ -1222,7 +1222,7 @@ async def quantum_mining_with_swarm(
         },
         "grade": "S" if mining_result['hash_rate'] > 5000000 else "A" if mining_result['hash_rate'] > 1000000 else "B",
         "beast_level": "QUANTUM",
-        "message": f"⚛️ QUANTUM BEAST: {mining_result['hashes_computed']:,} hashes in {duration:.2f}s with {num_agents} AI agents!"
+        "message": f"⚛ QUANTUM BEAST: {mining_result['hashes_computed']:,} hashes in {duration:.2f}s with {num_agents} AI agents!"
     }
 
 
@@ -1243,12 +1243,12 @@ async def shutdown_swarm():
 
 
 # ============================================================================
-# 🖥️ WEB GPU DRIVER ENDPOINTS
+# 🖥 WEB GPU DRIVER ENDPOINTS
 # ============================================================================
 
 @app.post("/api/gpu/session/create")
 async def create_gpu_session(session_id: str):
-    """🖥️ Create Web GPU rendering session"""
+    """🖥 Create Web GPU rendering session"""
     web_gpu_api.create_session(session_id)
     return {
         "session_id": session_id,
@@ -1265,7 +1265,7 @@ async def create_gpu_session(session_id: str):
 @app.post("/api/gpu/commands/execute")
 async def execute_gpu_commands(session_id: str, commands: List[Dict[str, Any]]):
     """
-    🚀 Execute batch GPU commands
+     Execute batch GPU commands
     
     Supported commands:
     - createBuffer: {type: "createBuffer", size: 1024, bufferType: "vertex"}
@@ -1281,7 +1281,7 @@ async def execute_gpu_commands(session_id: str, commands: List[Dict[str, Any]]):
 
 @app.get("/api/gpu/stats")
 async def get_gpu_stats():
-    """📊 Get Web GPU driver statistics (software GPU)"""
+    """ Get Web GPU driver statistics (software GPU)"""
     stats = web_gpu_driver.get_stats()
     
     # Grade the GPU performance
@@ -1325,7 +1325,7 @@ async def get_gpu_stats():
 
 @app.get("/api/gpu/software/benchmark")
 async def benchmark_software_gpu():
-    """🚀 Benchmark QuetzalCore Software GPU - Pure Software Beating Hardware"""
+    """ Benchmark QuetzalCore Software GPU - Pure Software Beating Hardware"""
     matmul_results = gpu_benchmarker.benchmark_matmul([1024, 2048])
     conv_result = gpu_benchmarker.benchmark_conv2d()
     memory_result = gpu_benchmarker.benchmark_memory_hierarchy()
@@ -1342,7 +1342,7 @@ async def benchmark_software_gpu():
 
 @app.get("/api/gpu/software/vs-hardware")
 async def compare_software_vs_hardware():
-    """⚡ Detailed Comparison: QuetzalCore Software GPU vs Hardware GPUs"""
+    """ Detailed Comparison: QuetzalCore Software GPU vs Hardware GPUs"""
     report = hardware_comparison.generate_comparison_report()
     
     return {
@@ -1350,14 +1350,14 @@ async def compare_software_vs_hardware():
         "hardware_baselines": report['hardware_baselines'],
         "conclusion": report['key_insight'],
         "advantages": [
-            "✅ Runs on ANY CPU without special hardware",
-            "✅ Pure Python + Numba JIT compilation",
-            "✅ Cache-aware memory optimization",
-            "✅ Speculative execution hides latency",
-            "✅ Quantum-like parallelism through algorithm design",
-            "✅ Portable across all platforms (Mac, Linux, Windows)",
-            "✅ No GPU driver dependencies",
-            "✅ Better than hardware through clever algorithms"
+            " Runs on ANY CPU without special hardware",
+            " Pure Python + Numba JIT compilation",
+            " Cache-aware memory optimization",
+            " Speculative execution hides latency",
+            " Quantum-like parallelism through algorithm design",
+            " Portable across all platforms (Mac, Linux, Windows)",
+            " No GPU driver dependencies",
+            " Better than hardware through clever algorithms"
         ]
     }
 
@@ -1422,7 +1422,7 @@ async def parallel_matmul_endpoint(
     num_gpu_units: int = 4,
     num_iterations: int = 1
 ):
-    """⚡ Execute Matrix Multiplication across Multiple Software GPU Units
+    """ Execute Matrix Multiplication across Multiple Software GPU Units
     
     This endpoint distributes a matrix multiplication operation across N software GPU units
     working in parallel. Each unit processes a partition of the work, then results are merged.
@@ -1494,7 +1494,7 @@ async def parallel_matmul_endpoint(
                 "efficiency_percent": (speedup / num_gpu_units) * 100
             },
             "pool_status": parallel_gpu_orchestrator.get_pool_status(),
-            "message": f"✅ Parallel matmul completed: {num_gpu_units} units achieved {parallel_gflops:.1f} GFLOPS ({speedup:.1f}x speedup)"
+            "message": f" Parallel matmul completed: {num_gpu_units} units achieved {parallel_gflops:.1f} GFLOPS ({speedup:.1f}x speedup)"
         }
     except Exception as e:
         return {
@@ -1582,7 +1582,7 @@ async def parallel_conv2d_endpoint(
                 "efficiency_percent": (speedup / num_gpu_units) * 100
             },
             "pool_status": parallel_gpu_orchestrator.get_pool_status(),
-            "message": f"✅ Parallel conv2d completed: {num_gpu_units} units achieved {parallel_gflops:.1f} GFLOPS"
+            "message": f" Parallel conv2d completed: {num_gpu_units} units achieved {parallel_gflops:.1f} GFLOPS"
         }
     except Exception as e:
         return {
@@ -1594,7 +1594,7 @@ async def parallel_conv2d_endpoint(
 
 @app.get("/api/gpu/parallel/benchmark")
 async def parallel_gpu_benchmark():
-    """🔥 Full Benchmark Suite - Compare 1, 2, 4, 8 GPU Units
+    """ Full Benchmark Suite - Compare 1, 2, 4, 8 GPU Units
     
     Executes matrix multiplication across different numbers of parallel GPU units
     to show scaling efficiency and approach to hardware GPU performance.
@@ -1672,7 +1672,7 @@ async def parallel_gpu_benchmark():
                 "rtx_3080_baseline_gflops": hardware_rtx_3080,
                 "achieved_with_units": matching_units,
                 "our_4_units_gflops": next((r["total_gflops"] for r in results if r["gpu_units"] == 4), 0),
-                "verdict": "✅ Pure software GPU approaching hardware performance!"
+                "verdict": " Pure software GPU approaching hardware performance!"
             },
             "pool_status": parallel_gpu_orchestrator.get_pool_status(),
             "insights": [
@@ -1692,7 +1692,7 @@ async def parallel_gpu_benchmark():
 
 @app.get("/api/gpu/parallel/pool-status")
 async def get_parallel_gpu_pool_status():
-    """📊 Check Current Parallel GPU Pool Status & Utilization
+    """ Check Current Parallel GPU Pool Status & Utilization
     
     Returns real-time information about GPU unit pool:
     - How many units are active vs on standby
@@ -1725,7 +1725,7 @@ async def get_parallel_gpu_pool_status():
             "current_state": status,
             "performance_summary": performance,
             "utilization_percent": (status.get("active_units", 0) / 8) * 100,
-            "message": f"✅ GPU Pool Status: {status.get('active_units', 0)}/8 units active, {status.get('idle_units', 0)} idle"
+            "message": f" GPU Pool Status: {status.get('active_units', 0)}/8 units active, {status.get('idle_units', 0)} idle"
         }
     except Exception as e:
         return {
@@ -1737,7 +1737,7 @@ async def get_parallel_gpu_pool_status():
 
 @app.post("/api/gpu/parallel/benchmark/vs-hardware")
 async def benchmark_vs_hardware():
-    """⚖️ Detailed Comparison: Our Parallel GPU vs Hardware (RTX 3080)
+    """⚖ Detailed Comparison: Our Parallel GPU vs Hardware (RTX 3080)
     
     Side-by-side performance comparison showing:
     - QuetzalCore 1 GPU vs Hardware
@@ -1816,7 +1816,7 @@ async def benchmark_vs_hardware():
             },
             "verdict": {
                 "software_1gpu_vs_hardware": f"{(gflops_1gpu / hardware_specs['real_world_gflops'] * 100):.1f}% of RTX 3080",
-                "software_4gpu_vs_hardware": "✅ Achieves RTX 3080 parity!" if gflops_4gpu >= hardware_specs["real_world_gflops"] * 0.95 else f"{(gflops_4gpu / hardware_specs['real_world_gflops'] * 100):.1f}% of RTX 3080",
+                "software_4gpu_vs_hardware": " Achieves RTX 3080 parity!" if gflops_4gpu >= hardware_specs["real_world_gflops"] * 0.95 else f"{(gflops_4gpu / hardware_specs['real_world_gflops'] * 100):.1f}% of RTX 3080",
                 "software_8gpu_vs_hardware": "🎉 Exceeds RTX 3080!" if gflops_8gpu > hardware_specs["real_world_gflops"] else "Approaching RTX 3080",
                 "conclusion": "Pure software GPU successfully approaches and exceeds hardware through parallelization!"
             },
@@ -1838,7 +1838,7 @@ async def advanced_parallel_matmul(
     enable_simd: bool = True,
     enable_prefetch: bool = True
 ):
-    """🚀 Advanced Parallel MatMul with Optimization Control
+    """ Advanced Parallel MatMul with Optimization Control
     
     Fine-grained control over matrix multiplication:
     - Choose tiling strategy
@@ -2032,7 +2032,7 @@ async def benchmark_webgl():
 
 @app.post("/api/gpu/benchmark/compute")
 async def benchmark_compute():
-    """⚡ Benchmark compute shader performance"""
+    """ Benchmark compute shader performance"""
     import time
     start = time.time()
     
@@ -2193,7 +2193,7 @@ async def get_gpu_capabilities():
 
 @app.get("/api/gpu/info")
 async def get_gpu_info():
-    """🦅 Get GPU info for Blender addon"""
+    """ Get GPU info for Blender addon"""
     return {
         "vendor": "QuetzalCore-Core",
         "device": "Software GPU (BEAST Mode)",
@@ -2212,7 +2212,7 @@ async def get_gpu_info():
 
 @app.post("/api/gpu/buffer/create")
 async def create_gpu_buffer(request: dict):
-    """🦅 Create GPU buffer (for Blender mesh data)"""
+    """ Create GPU buffer (for Blender mesh data)"""
     size = request.get("size", 0)
     buffer_type_str = request.get("buffer_type", "vertex")
     usage = request.get("usage", "static")
@@ -2240,7 +2240,7 @@ async def create_gpu_buffer(request: dict):
 
 @app.post("/api/gpu/buffer/write")
 async def write_gpu_buffer(request: dict):
-    """🦅 Write data to GPU buffer"""
+    """ Write data to GPU buffer"""
     buffer_id = request.get("buffer_id")
     data = request.get("data", [])
     offset = request.get("offset", 0)
@@ -2262,7 +2262,7 @@ async def write_gpu_buffer(request: dict):
 
 @app.post("/api/gpu/render")
 async def submit_render_job(request: dict):
-    """🦅 Submit render job from Blender"""
+    """ Submit render job from Blender"""
     vertices = request.get("vertices", [])
     indices = request.get("indices", [])
     width = request.get("width", 512)
@@ -2412,7 +2412,7 @@ async def generate_3d_from_text_distributed(
     model: str = "shap-e"
 ):
     """
-    🚀 DISTRIBUTED 3D Generation from text
+     DISTRIBUTED 3D Generation from text
     
     Spawns workers on-demand and distributes across Hive cluster
     Returns task_id for async tracking
@@ -2781,7 +2781,7 @@ async def photo_to_3d_endpoint(
     format: str = "json"
 ):
     """
-    🖼️ Photo-to-3D: Better than Hexa3D
+    🖼 Photo-to-3D: Better than Hexa3D
     Upload a photo, get a 3D model
     """
     try:
@@ -3609,7 +3609,7 @@ async def analyze_survey_cost(
 
 
 # =============================================================================
-# 🗺️ GIS STUDIO API ENDPOINTS - Complete Validation, Integration & ML
+# 🗺 GIS STUDIO API ENDPOINTS - Complete Validation, Integration & ML
 # =============================================================================
 
 @app.post("/api/gis/studio/validate/lidar")
@@ -3944,12 +3944,12 @@ async def render_5k(request: RenderRequest):
         
         return result
     except Exception as e:
-        return {"error": str(e), "workload": "5K Rendering", "emoji": "❌"}
+        return {"error": str(e), "workload": "5K Rendering", "emoji": ""}
 
 
 
 # ============================================
-# 🧠🔥 SUPER INTELLIGENCE ENDPOINTS
+# 🧠 SUPER INTELLIGENCE ENDPOINTS
 # Full Power Analysis + Strategy Generation
 # ============================================
 
@@ -3964,7 +3964,7 @@ try:
     SUPER_LOADED = True
 except ImportError as e:
     SUPER_LOADED = False
-    print(f"⚠️ Super Intelligence not loaded: {e}")
+    print(f"⚠ Super Intelligence not loaded: {e}")
 
 
 @app.get("/api/super/status")
@@ -3978,7 +3978,7 @@ async def super_intelligence_status():
         return {
             "success": True,
             "super_intelligence": status,
-            "message": "🔥 FULL POWER ACTIVE"
+            "message": " FULL POWER ACTIVE"
         }
     except Exception as e:
         return {"success": False, "error": str(e)}
@@ -4020,7 +4020,7 @@ async def analyze_large_data_endpoint(dataset: str, source: str = "industry"):
         return {
             "success": True,
             "analysis": result,
-            "message": f"📊 Analyzed {result['size']:,} data points"
+            "message": f" Analyzed {result['size']:,} data points"
         }
     except Exception as e:
         return {"success": False, "error": str(e)}
@@ -4088,7 +4088,7 @@ async def vmr_transfer_data(
     priority: float = 1.0,
     use_parallel: bool = False
 ):
-    """🔌 Transfer data through Virtual Memory Resistor"""
+    """ Transfer data through Virtual Memory Resistor"""
     try:
         if use_parallel:
             result = vmr_array.parallel_transfer(bytes_to_transfer, priority)
@@ -4096,32 +4096,32 @@ async def vmr_transfer_data(
                 "vmr_type": "parallel_array",
                 "num_vmrs": 8,
                 "result": result,
-                "emoji": "🔌⚡🔌⚡🔌⚡🔌⚡"
+                "emoji": ""
             }
         else:
             result = vmr.transfer_data(bytes_to_transfer, priority)
             return {
                 "vmr_type": "single",
                 "result": result,
-                "emoji": "🔌"
+                "emoji": ""
             }
     except Exception as e:
-        return {"error": str(e), "emoji": "💥"}
+        return {"error": str(e), "emoji": ""}
 
 
 @app.get("/api/vmr/stats")
 async def get_vmr_stats():
-    """📊 Get VMR statistics"""
+    """ Get VMR statistics"""
     return {
         "single_vmr": vmr.get_stats(),
         "parallel_array": vmr_array.get_array_stats(),
-        "emoji": "📊🔌"
+        "emoji": ""
     }
 
 
 @app.post("/api/vmr/set-resistance")
 async def set_vmr_resistance(resistance: float):
-    """🎛️ Manually set VMR resistance"""
+    """🎛 Manually set VMR resistance"""
     vmr.set_resistance(resistance)
     for vmr_unit in vmr_array.vmrs:
         vmr_unit.set_resistance(resistance)
@@ -4130,14 +4130,14 @@ async def set_vmr_resistance(resistance: float):
         "new_resistance": resistance,
         "single_vmr": vmr.current_resistance,
         "array_resistance": vmr_array.vmrs[0].current_resistance,
-        "message": f"🔌 All VMRs set to {resistance} Ohms",
-        "emoji": "⚡"
+        "message": f" All VMRs set to {resistance} Ohms",
+        "emoji": ""
     }
 
 
 @app.post("/api/vmr/benchmark")
 async def benchmark_vmr():
-    """🏎️💨 Benchmark VMR performance"""
+    """ Benchmark VMR performance"""
     test_sizes = [
         1024 * 1024,           # 1 MB
         10 * 1024 * 1024,      # 10 MB
@@ -4172,13 +4172,13 @@ async def benchmark_vmr():
             "actual_avg": sum(r["speedup"] for r in parallel_results) / len(parallel_results),
             "efficiency_percent": (sum(r["speedup"] for r in parallel_results) / len(parallel_results) / 8.0) * 100
         },
-        "emoji": "🏎️💨🔥"
+        "emoji": ""
     }
 
 
 @app.get("/api/vmr/live-monitor")
 async def vmr_live_monitor():
-    """📡 Real-time VMR monitoring"""
+    """ Real-time VMR monitoring"""
     single_stats = vmr.get_stats()
     array_stats = vmr_array.get_array_stats()
     
@@ -4205,7 +4205,7 @@ async def vmr_live_monitor():
             "efficiency": (total_throughput / 8000) * 100,  # 8 VMRs * 1000 MB/s
             "overload_events": single_stats["overload_events"]
         },
-        "emoji": "📡⚡" if total_throughput < 7000 else "📡🔥"
+        "emoji": "" if total_throughput < 7000 else ""
     }
 
 
