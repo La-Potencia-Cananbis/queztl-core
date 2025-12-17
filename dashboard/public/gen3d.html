@@ -305,7 +305,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         // API Configuration
-        const API_URL = 'http://localhost:8000';
+        // Use production endpoint by default, allow override via ?api= or input box
+        let API_URL = 'https://hive-backend.onrender.com';
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('api')) {
+            API_URL = urlParams.get('api');
+        }
+        // Optionally allow user to override via input box (add if not present)
+        function setApiUrl(newUrl) {
+            API_URL = newUrl;
+            document.getElementById('api-url').value = newUrl;
+        }
 
         // Three.js Setup
         let scene, camera, renderer, mesh;
