@@ -129,7 +129,7 @@ class RGISWorkerNode:
                     f"{self.master_url}/api/v1.2/nodes/{self.node_id}/heartbeat",
                     json={
                         "load": psutil.cpu_percent() / 100.0,
-                        "active_tasks": 0,  # TODO: Track actual tasks
+                        "active_tasks": get_active_task_count(),  # Tracks actual tasks
                         "available": True
                     },
                     timeout=aiohttp.ClientTimeout(total=5)

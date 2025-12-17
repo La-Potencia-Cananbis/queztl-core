@@ -1,1 +1,27 @@
 running
+import os
+import subprocess
+
+def clean_python_files(path="backend"):
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            if file.endswith(".py"):
+                fpath = os.path.join(root, file)
+                print(f"Cleaning {fpath}")
+                # Remove unicode
+                subprocess.run(["sed", "-i", "", "s/[^ -~#\\t\\r\\n]//g", fpath])
+                # Comment stray text
+                subprocess.run(["sed", "-i", "", "/^[[:space:]]*[A-Za-z]/s/^/# /", fpath])
+                # Remove stray parens
+                subprocess.run(["sed", "-i", "", "/^[[:space:]]*)[[:space:]]*$/d", fpath])
+                # Remove lines with only numbers or dashes
+                subprocess.run(["sed", "-i", "", "/^[[:space:]]*[0-9\\-xX ]\\+[[:space:]]*$/d", fpath])
+
+def test_backend():
+    print("Testing backend health endpoint...")
+    r = os.system("curl -s https://queztl-core-backend.onrender.com/health")
+    print(r)
+
+if __name__ == "__main__":
+    clean_python_files()
+    test_backend()

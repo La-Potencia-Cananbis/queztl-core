@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
-"""
+# """
 #  QuetzalCore Advanced Memory Optimizer
 
 # Features:
-- Memory ballooning (better than VMware)
-- Transparent Page Sharing (TPS)
-- Memory compression (zswap-like)
-- NUMA-aware allocation
-- Memory overcommitment
-- Hot/cold page classification
-- Predictive page prefetching
-- Memory deduplication
-"""
+# - Memory ballooning (better than VMware)
+# - Transparent Page Sharing (TPS)
+# - Memory compression (zswap-like)
+# - NUMA-aware allocation
+# - Memory overcommitment
+# - Hot/cold page classification
+# - Predictive page prefetching
+# - Memory deduplication
+# """
 
 # import asyncio
 # import mmap
@@ -26,9 +26,10 @@
 # logger = logging.getLogger(__name__)
 
 
-@dataclass
+
+# @dataclass
 # class MemoryPage:
-    """Memory page (4KB)"""
+#     """Memory page (4KB)"""
 #     page_id: int
 #     vm_id: str
 #     virtual_address: int
@@ -43,9 +44,10 @@
 #     hot: bool = True  # Hot vs cold page
 
 
-@dataclass
+
+# @dataclass
 # class VMMemoryState:
-    """VM memory state"""
+#     """VM memory state"""
 #     vm_id: str
 #     allocated_mb: int
 #     used_mb: int
@@ -55,24 +57,25 @@
 #     pages: Dict[int, MemoryPage] = field(default_factory=dict)
 
 
+
 # class QuetzalCoreMemoryOptimizer:
-    """
+#     """
 #     Advanced Memory Optimizer for QuetzalCore VMs
 #     Better than VMware ESXi memory management!
-    
+#     
 #     Features VMware has:
-    - Memory ballooning 
-    - Transparent Page Sharing (TPS) 
-    - Memory compression 
-    - Memory overcommitment 
-    
+#         - Memory ballooning 
+#         - Transparent Page Sharing (TPS) 
+#         - Memory compression 
+#         - Memory overcommitment 
+#     
 #     Features we do BETTER:
-    - AI-powered memory prediction 
-    - Faster TPS scanning (hash-based) 
-    - Better compression (zstd) 
-    - NUMA-aware allocation 
-    - Real-time adaptation 
-    """
+#         - AI-powered memory prediction 
+#         - Faster TPS scanning (hash-based) 
+#         - Better compression (zstd) 
+#         - NUMA-aware allocation 
+#         - Real-time adaptation 
+#     """
     
 #     PAGE_SIZE = 4096  # 4KB pages
 #     TPS_SCAN_INTERVAL = 10  # seconds

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""
+# """
 #  QuetzalCore Memory Optimizer Integration
 
 # Integrates advanced memory optimization with the hypervisor
-"""
+# """
 
 # import asyncio
 # from typing import Dict, Optional

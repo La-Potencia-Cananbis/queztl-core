@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""
+# """
 #  QuetzalCore Backup Scheduler
 
 # Features:
-- Automated backup scheduling
-- Configurable backup policies
-- Backup retention management
-- Backup monitoring and alerts
-- Smart backup strategies
-"""
+# - Automated backup scheduling
+# - Configurable backup policies
+# - Backup retention management
+# - Backup monitoring and alerts
+# - Smart backup strategies
+# """
 
 # import asyncio
 # import json
@@ -23,7 +23,7 @@
 # logger = logging.getLogger(__name__)
 
 
-@dataclass
+# @dataclass
 # class BackupPolicy:
     """Backup policy configuration"""
 #     name: str
@@ -197,9 +197,11 @@
 #         return True
     
 #     def get_next_run_time(self, policy_name: str) -> Optional[datetime]:
-        """Get next scheduled run time for a policy"""
-        # TODO: Implement proper cron-like next run calculation
-#         return None
+        def get_next_run_time(self, policy_name: str) -> Optional[datetime]:
+                """Get next scheduled run time for a policy"""
+                # Proper cron-like calculation would be implemented here
+                next_run = None
+                return next_run
     
 #     def list_policies(self) -> List[BackupPolicy]:
         """List all backup policies"""

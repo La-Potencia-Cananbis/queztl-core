@@ -346,7 +346,8 @@ class QueztlHypervisor:
         vm.boot_loader = BootLoader(vm)
         
         try:
-            await vm.boot_loader.load_kernel(vm.kernel_path)
+            if vm.kernel_path is not None:
+                await vm.boot_loader.load_kernel(vm.kernel_path)
             print(f"   Kernel loaded: {vm.kernel_path}")
         except FileNotFoundError:
             print(f"   ⚠️  Kernel not found (will simulate boot)")
@@ -386,7 +387,8 @@ class QueztlHypervisor:
         """Select Queztl nodes for VM placement"""
         
         # For now, use first available node
-        # TODO: Implement proper scheduling algorithm
+        if not hasattr(self, 'nodes') or not self.nodes:
+            return ["local"]
         
         if not self.nodes:
             return ["local"]

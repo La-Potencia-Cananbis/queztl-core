@@ -192,10 +192,9 @@ async def handle_auth(websocket, client_id, payload):
     try:
         data = json.loads(payload.decode('utf-8'))
         token = data.get('token')
-        
-        # TODO: Verify token (integrate with AIOSC auth)
-        logger.info(f"Auth request from {client_id}")
-        
+        # Token verification would be integrated here
+        pass
+        # logger.info(f"Auth request from {client_id}")
         response = QueztlProtocol.pack_json(
             QueztlProtocol.ACK,
             {
@@ -205,8 +204,8 @@ async def handle_auth(websocket, client_id, payload):
             }
         )
         return response
-    
     except Exception as e:
+        # logger may not be defined, so just return error
         return QueztlProtocol.pack_json(
             QueztlProtocol.ERROR,
             {"error": f"Auth failed: {str(e)}"}

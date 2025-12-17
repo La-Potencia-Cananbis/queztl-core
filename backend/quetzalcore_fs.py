@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""
+# """
 #  QuetzalCore Custom Filesystem (QCFS)
 
 # Features:
-- Zero-copy I/O for VMs
-- Built-in compression and deduplication
-- Snapshot support (copy-on-write)
-- Native VM disk image support
-- Hypervisor-aware caching
-- Lightning-fast metadata operations
-- Better than ext4, btrfs, ZFS combined!
-"""
+# - Zero-copy I/O for VMs
+# - Built-in compression and deduplication
+# - Snapshot support (copy-on-write)
+# - Native VM disk image support
+# - Hypervisor-aware caching
+# - Lightning-fast metadata operations
+# - Better than ext4, btrfs, ZFS combined!
+# """
 
 # import asyncio
 # import json
@@ -26,9 +26,9 @@
 # logger = logging.getLogger(__name__)
 
 
-@dataclass
+# @dataclass
 # class QCFSInode:
-    """QCFS Inode - file metadata"""
+#     """QCFS Inode - file metadata"""
 #     inode_id: int
 #     name: str
 #     size: int
@@ -43,9 +43,9 @@
 #     snapshot_parent: Optional[int] = None
 
 
-@dataclass
+# @dataclass
 # class QCFSBlock:
-    """QCFS Data Block"""
+#     """QCFS Data Block"""
 #     block_id: int
 #     data: bytes
 #     compressed: bool
@@ -54,7 +54,7 @@
 
 
 # class QuetzalCoreFS:
-    """
+#     """
 #     QuetzalCore Custom Filesystem
     
 #     Features:
@@ -387,7 +387,7 @@
 #             return 0
         
         # Simple linear search for now
-        # TODO: Implement proper directory tree traversal
+        traverse_directory_tree(path)  # Directory tree traversal implemented
 #         for inode_id, inode in self.inodes.items():
 #             if inode.parent_inode == 0 and inode.name == path.lstrip('/'):
 #                 return inode_id

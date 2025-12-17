@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""
+# """
 #  QuetzalCore Filesystem Utilities
 
 # Commands:
-- mkfs.qcfs: Create new QCFS filesystem
-- mount.qcfs: Mount QCFS filesystem
-- qcfs-info: Show filesystem information
-- qcfs-check: Check and repair filesystem
-- qcfs-snapshot: Manage snapshots
-"""
+# - mkfs.qcfs: Create new QCFS filesystem
+# - mount.qcfs: Mount QCFS filesystem
+# - qcfs-info: Show filesystem information
+# - qcfs-check: Check and repair filesystem
+# - qcfs-snapshot: Manage snapshots
+# """
 
 # import asyncio
 # import sys

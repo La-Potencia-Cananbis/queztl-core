@@ -9,3 +9,5 @@ backend/quetzalcore_memory_manager.py
 backend/quetzalcore_memory_optimizer.py
 backend/quetzalcore_orchestrator.py
 backend/quetzalcore_os_builder.py
+backend/quetzalcore_standalone.py
+backend/quetzalcore_vgpu_manager.py

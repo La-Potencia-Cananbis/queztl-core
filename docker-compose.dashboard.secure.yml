@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard.secure
+    ports:
+      - "8080:80"
+    container_name: queztl-dashboard-secure
+    restart: unless-stopped
+    volumes:
+      - ./nginx-dashboard.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./.htpasswd:/etc/nginx/.htpasswd:ro

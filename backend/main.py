@@ -1,5 +1,121 @@
-# from .gis_validator import (
-#     GISDataValidator, GISDataType, ValidationStatus, LiDARValidator, RasterValidator, VectorValidator
+# --- Cluster-wide vGPU status aggregation ---
+import threading
+import requests
+import os
+import time
+
+# In-memory registry of node vGPU status (in production, use Redis or DB)
+_vgpu_node_registry = {}
+
+# Each node should POST its vGPU status here periodically
+@app.post("/api/vgpu/node/heartbeat")
+def vgpu_node_heartbeat(node_id: str, vgpu_status: dict):
+    """Receive vGPU pool status from a node (agent heartbeat)."""
+    _vgpu_node_registry[node_id] = {
+        "status": vgpu_status,
+        "last_update": int(time.time())
+    }
+    return {"status": "ok", "node_id": node_id}
+
+# Cluster-wide aggregation endpoint
+@app.get("/api/vgpu/cluster/status")
+def get_vgpu_cluster_status():
+    """Aggregate vGPU pool status from all registered nodes."""
+    return {
+        "nodes": list(_vgpu_node_registry.keys()),
+        "vgpu_pools": {k: v["status"] for k, v in _vgpu_node_registry.items()},
+        "last_update": {k: v["last_update"] for k, v in _vgpu_node_registry.items()},
+        "message": "Aggregated vGPU pool status from all nodes."
+    }
+
+# --- Optional: Agent-side reporting function (to be run on each node) ---
+def report_vgpu_status_to_central(central_url, node_id, interval=10):
+    """Background thread to report this node's vGPU pool status to central backend."""
+    while True:
+        try:
+            # Use the local endpoint to get vGPU status
+            resp = requests.get("http://localhost:8000/api/vgpu/pool/status")
+            if resp.status_code == 200:
+                vgpu_status = resp.json()
+                requests.post(f"{central_url}/api/vgpu/node/heartbeat", json={"node_id": node_id, "vgpu_status": vgpu_status})
+        except Exception as e:
+            print(f"[vGPU Heartbeat] Error: {e}")
+        time.sleep(interval)
+
+# To enable: Start this in a background thread on each node
+# threading.Thread(target=report_vgpu_status_to_central, args=("http://central-backend:8000", os.getenv("NODE_ID", "node-1")), daemon=True).start()
+
+# --- Node-local vGPU pool status ---
+@app.get("/api/vgpu/pool/status")
+def get_vgpu_pool_status():
+    """Return the status of all software vGPUs on this node (scalable, distributed)."""
+    global _hypervisor
+    try:
+        _hypervisor
+    except NameError:
+        _hypervisor = QuetzalCoreHypervisor()
+        _hypervisor.init_gpu_pool(pool_size=4)
+    pool = getattr(_hypervisor, 'gpu_pool', [])
+    vgpu_status = []
+    for idx, gpu in enumerate(pool):
+        vgpu_status.append({
+            "vgpu_id": idx,
+            "device_name": getattr(gpu, 'device_name', f"vGPU-{idx}"),
+            "threads": getattr(gpu, 'total_threads', None),
+            "blocks": getattr(gpu, 'num_blocks', None),
+            "threads_per_block": getattr(gpu, 'threads_per_block', None),
+            "memory_mb": getattr(getattr(gpu, 'global_memory', None), 'size', 0) // (1024**2) if getattr(gpu, 'global_memory', None) else None
+        })
+    return {
+        "node": os.getenv("NODE_ID", "local"),
+        "vgpu_count": len(vgpu_status),
+        "vgpus": vgpu_status,
+        "scalable": True,
+        "message": "This node's software vGPU pool is ready for distributed, scalable workloads."
+    }
+
+# --- Cluster-wide vGPU status aggregation ---
+_vgpu_node_registry = {}
+
+@app.post("/api/vgpu/node/heartbeat")
+def vgpu_node_heartbeat(node_id: str, vgpu_status: dict):
+    """Receive vGPU pool status from a node (agent heartbeat)."""
+    _vgpu_node_registry[node_id] = {
+        "status": vgpu_status,
+        "last_update": int(time.time())
+    }
+    return {"status": "ok", "node_id": node_id}
+
+@app.get("/api/vgpu/cluster/status")
+def get_vgpu_cluster_status():
+    """Aggregate vGPU pool status from all registered nodes."""
+    return {
+        "nodes": list(_vgpu_node_registry.keys()),
+        "vgpu_pools": {k: v["status"] for k, v in _vgpu_node_registry.items()},
+        "last_update": {k: v["last_update"] for k, v in _vgpu_node_registry.items()},
+        "message": "Aggregated vGPU pool status from all nodes."
+    }
+
+# --- Optional: Agent-side reporting function (to be run on each node) ---
+def report_vgpu_status_to_central(central_url, node_id, interval=10):
+    """Background thread to report this node's vGPU pool status to central backend."""
+    while True:
+        try:
+            # Use the local endpoint to get vGPU status
+            resp = requests.get("http://localhost:8000/api/vgpu/pool/status")
+            if resp.status_code == 200:
+                vgpu_status = resp.json()
+                requests.post(f"{central_url}/api/vgpu/node/heartbeat", json={"node_id": node_id, "vgpu_status": vgpu_status})
+        except Exception as e:
+            print(f"[vGPU Heartbeat] Error: {e}")
+        time.sleep(interval)
+
+# To enable: Start this in a background thread on each node
+# threading.Thread(target=report_vgpu_status_to_central, args=("http://central-backend:8000", os.getenv("NODE_ID", "node-1")), daemon=True).start()
+
+from .gis_validator import (
+    GISDataValidator, GISDataType, ValidationStatus, LiDARValidator, RasterValidator, VectorValidator
+)
 
 
 ================================================================================
@@ -25,143 +141,82 @@
 # For licensing inquiries: legal@quetzalcore-core.com
 ================================================================================
 """
-# from fastapi import FastAPI, WebSocket, WebSocketDisconnect, UploadFile, File
-# from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
 
-# app = FastAPI(title="QuetzalCore-Core Testing & Monitoring System")
+app = FastAPI(title="QuetzalCore-Core Testing & Monitoring System")
 
-# Add CORS middleware
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=[
-        "https://senasaitech.com",
-        "http://localhost:3000",
-        "https://queztl-core-backend.onrender.com"
-    ],
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
+from backend.native_hypervisor import QuetzalCoreHypervisor
 
-# from fastapi.responses import JSONResponse, StreamingResponse
-# from pydantic import BaseModel
-# from contextlib import asynccontextmanager
-# import asyncio
-# from typing import List, Dict, Any, Optional
-# import json
-# from datetime import datetime
-# import psutil
-# import sys
-# import base64
-# import random
+# --- Node-local vGPU pool status ---
+@app.get("/api/vgpu/pool/status")
+def get_vgpu_pool_status():
+    """Return the status of all software vGPUs on this node (scalable, distributed)."""
+    global _hypervisor
+    try:
+        _hypervisor
+    except NameError:
+        _hypervisor = QuetzalCoreHypervisor()
+        _hypervisor.init_gpu_pool(pool_size=4)
+    pool = getattr(_hypervisor, 'gpu_pool', [])
+    vgpu_status = []
+    for idx, gpu in enumerate(pool):
+        vgpu_status.append({
+            "vgpu_id": idx,
+            "device_name": getattr(gpu, 'device_name', f"vGPU-{idx}"),
+            "threads": getattr(gpu, 'total_threads', None),
+            "blocks": getattr(gpu, 'num_blocks', None),
+            "threads_per_block": getattr(gpu, 'threads_per_block', None),
+            "memory_mb": getattr(getattr(gpu, 'global_memory', None), 'size', 0) // (1024**2) if getattr(gpu, 'global_memory', None) else None
+        })
+    return {
+        "node": os.getenv("NODE_ID", "local"),
+        "vgpu_count": len(vgpu_status),
+        "vgpus": vgpu_status,
+        "scalable": True,
+        "message": "This node's software vGPU pool is ready for distributed, scalable workloads."
+    }
 
-# from .database import init_db, get_db
-# from .models import PerformanceMetric, TestScenario
-# from .problem_generator import ProblemGenerator
-# from .training_engine import TrainingEngine
-# from .power_meter import PowerMeter, CreativeTrainer
-# from .advanced_workloads import GPU3DWorkload, CryptoMiningWorkload, ExtremeCombinedWorkload, NUMBA_AVAILABLE
-# from .gpu_simulator import SoftwareGPU, VectorizedMiner, QuadLinkedList, ParallelTaskScheduler
-# from .gpu_optimizer import (
-#     SIMDAccelerator, MemoryHierarchyOptimizer, SpeculativeExecutor,
-#     QuantumLikeParallelism, PerformanceBenchmark, ComparisonWithHardware
-# from .parallel_gpu_orchestrator import (
-#     ParallelGPUOrchestrator, GPUUnitPool, TaskPartitioner, ParallelGPUTask
-# from .ai_swarm import MessageBus, SwarmCoordinator, AgentHierarchy
-# from .webgpu_driver import WebGPUDriver, WebGPUAPI, OpenGLCompatLayer, BufferType, TextureFormat
-# from .security_layer import (
-#     get_security_manager, secure_operation, sanitize_output,
-#     check_security_status, SecureContext
-# from .gis_engine import (
-#     LiDARProcessor, RadarProcessor, MultiSensorFusion,
-#     PointCloud, CoordinateSystem
-)# ...existing code...
-# from pydantic import BaseModel
+# --- Cluster-wide vGPU status aggregation ---
+_vgpu_node_registry = {}
 
-# class VMRTransferRequest(BaseModel):
-#     bytes_to_transfer: int    from pydantic import BaseModel
-    
-#     class VMRTransferRequest(BaseModel):
-#         bytes_to_transfer: int
-#         priority: float = 1.0
-#         use_parallel: bool = False
-    
-    @app.post("/api/vmr/transfer")
-#     async def vmr_transfer_data(request: VMRTransferRequest):
-        """ Transfer data through Virtual Memory Resistor"""
-#         try:
-#             if request.use_parallel:
-#                 result = vmr_array.parallel_transfer(request.bytes_to_transfer, request.priority)
-#                 return {
-                    "vmr_type": "parallel_array",
-                    "num_vmrs": 8,
-                    "result": result,
-                    "emoji": ""
-                }
-#             else:
-#                 result = vmr.transfer_data(request.bytes_to_transfer, request.priority)
-#                 return {
-                    "vmr_type": "single",
-                    "result": result,
-                    "emoji": ""
-                }
-#         except Exception as e:
-#             return {"error": str(e), "emoji": ""}            # 1. Abre backend/main.py y reemplaza el endpoint /api/vmr/transfer por esto:
-            ````python
-#             from pydantic import BaseModel
-            
-#             class VMRTransferRequest(BaseModel):
-#                 bytes_to_transfer: int
-#                 priority: float = 1.0
-#                 use_parallel: bool = False
-            
-            @app.post("/api/vmr/transfer")
-#             async def vmr_transfer_data(request: VMRTransferRequest):
-                """ Transfer data through Virtual Memory Resistor"""
-#                 try:
-#                     if request.use_parallel:
-#                         result = vmr_array.parallel_transfer(request.bytes_to_transfer, request.priority)
-#                         return {
-                            "vmr_type": "parallel_array",
-                            "num_vmrs": 8,
-                            "result": result,
-                            "emoji": ""
-                        }
-#                     else:
-#                         result = vmr.transfer_data(request.bytes_to_transfer, request.priority)
-#                         return {
-                            "vmr_type": "single",
-                            "result": result,
-                            "emoji": ""
-                        }
-#                 except Exception as e:
-#                     return {"error": str(e), "emoji": ""}
-#     priority: float = 1.0
-#     use_parallel: bool = False
+@app.post("/api/vgpu/node/heartbeat")
+def vgpu_node_heartbeat(node_id: str, vgpu_status: dict):
+    """Receive vGPU pool status from a node (agent heartbeat)."""
+    _vgpu_node_registry[node_id] = {
+        "status": vgpu_status,
+        "last_update": int(time.time())
+    }
+    return {"status": "ok", "node_id": node_id}
 
-@app.post("/api/vmr/transfer")
-# async def vmr_transfer_data(request: VMRTransferRequest):
-    """ Transfer data through Virtual Memory Resistor"""
-#     try:
-#         if request.use_parallel:
-#             result = vmr_array.parallel_transfer(request.bytes_to_transfer, request.priority)
-#             return {
-                "vmr_type": "parallel_array",
-                "num_vmrs": 8,
-                "result": result,
-                "emoji": ""
-            }
-#         else:
-#             result = vmr.transfer_data(request.bytes_to_transfer, request.priority)
-#             return {
-                "vmr_type": "single",
-                "result": result,
-                "emoji": ""
-            }
-#     except Exception as e:
-#         return {"error": str(e), "emoji": ""}
+@app.get("/api/vgpu/cluster/status")
+def get_vgpu_cluster_status():
+    """Aggregate vGPU pool status from all registered nodes."""
+    return {
+        "nodes": list(_vgpu_node_registry.keys()),
+        "vgpu_pools": {k: v["status"] for k, v in _vgpu_node_registry.items()},
+        "last_update": {k: v["last_update"] for k, v in _vgpu_node_registry.items()},
+        "message": "Aggregated vGPU pool status from all nodes."
+    }
+
+# --- Optional: Agent-side reporting function (to be run on each node) ---
+def report_vgpu_status_to_central(central_url, node_id, interval=10):
+    """Background thread to report this node's vGPU pool status to central backend."""
+    while True:
+        try:
+            # Use the local endpoint to get vGPU status
+            resp = requests.get("http://localhost:8000/api/vgpu/pool/status")
+            if resp.status_code == 200:
+                vgpu_status = resp.json()
+                requests.post(f"{central_url}/api/vgpu/node/heartbeat", json={"node_id": node_id, "vgpu_status": vgpu_status})
+        except Exception as e:
+            print(f"[vGPU Heartbeat] Error: {e}")
+        time.sleep(interval)
+
+# To enable: Start this in a background thread on each node
+# threading.Thread(target=report_vgpu_status_to_central, args=("http://central-backend:8000", os.getenv("NODE_ID", "node-1")), daemon=True).start()
+
 # from .gis_validator import (
-#     GISDataValidator, GISDataType, ValidationStatus, LiDARValidator,
-#     RasterValidator, VectorValidator
+#     GISDataValidator, GISDataType, ValidationStatus, LiDARValidator, RasterValidator, VectorValidator
 # from .gis_geophysics_integrator import GISGeophysicsIntegrator
 # from .gis_geophysics_trainer import GISGeophysicsTrainer, TrainingDataset
 # from .gis_geophysics_improvement import AdaptiveImprovementEngine
@@ -1994,7 +2049,6 @@
     ]
     
 #     result = await web_gpu_api.execute_commands(session_id, commands)
-    
 #     duration = time.time() - start
     
 #     return {
@@ -2256,11 +2310,11 @@
 #         vertex_buffer_id = web_gpu_driver.create_buffer(
 #             vertices_array.nbytes, 
 #             BufferType.VERTEX, 
-            "static"
+#             "static"
 #         index_buffer_id = web_gpu_driver.create_buffer(
 #             indices_array.nbytes, 
 #             BufferType.INDEX, 
-            "static"
+#             "static"
         
         # Upload data
 #         web_gpu_driver.write_buffer(vertex_buffer_id, vertices_array.tobytes())
@@ -2454,7 +2508,7 @@
             # Faces
 #             for f in result['faces']:
 #                 obj_data += f"f {f[0]+1} {f[1]+1} {f[2]+1}\n"
-            
+                
 #             return {
                 "model": obj_data,
                 "format": "obj",
@@ -2597,7 +2651,6 @@
 #             return {"error": "Premium features not available"}
     
 #     except Exception as e:
-#         import traceback
 #         return {
             "error": str(e),
             "traceback": traceback.format_exc(),
@@ -2846,720 +2899,6 @@
 
 
 @app.post("/api/gis/lidar-process")
-# async def process_lidar(
-#     file: UploadFile = File(...),
-#     operation: str = "classify",
-#     resolution: float = 1.0
-):
-    """
-#     Process LiDAR point cloud data (.las/.laz)
-#     Operations: classify, extract_ground, generate_dtm, extract_buildings
-    """
-#     try:
-#         data = await file.read()
-        
-        # Load point cloud
-#         cloud = lidar_processor.load_las(data)
-        
-#         result = {
-            "num_points": cloud.num_points,
-            "bounds": {
-                "min": cloud.bounds()[0].tolist(),
-                "max": cloud.bounds()[1].tolist()
-            }
-        }
-        
-#         if operation == "classify":
-#             cloud = lidar_processor.classify_points(cloud)
-            
-            # Classification stats
-#             unique, counts = np.unique(cloud.classifications, return_counts=True)
-#             class_names = {
-                0: "never_classified",
-                1: "unclassified",
-                2: "ground",
-                3: "low_vegetation",
-                4: "medium_vegetation",
-                5: "high_vegetation",
-                6: "building"
-            }
-            
-#             result["classifications"] = {
-#                 class_names.get(int(cls), f"class_{cls}"): int(count)
-#                 for cls, count in zip(unique, counts)
-            }
-        
-#         elif operation == "generate_dtm":
-#             dtm = lidar_processor.generate_dtm(cloud, resolution)
-            
-#             result["dtm"] = {
-                "shape": dtm.shape,
-                "resolution": dtm.resolution,
-                "origin": dtm.origin,
-                "elevation_range": {
-                    "min": float(np.nanmin(dtm.elevation)),
-                    "max": float(np.nanmax(dtm.elevation))
-                },
-                # Return downsampled elevation data
-                "elevation_preview": dtm.elevation[::10, ::10].tolist()
-            }
-        
-#         elif operation == "extract_buildings":
-#             buildings = lidar_processor.extract_buildings(cloud)
-            
-#             result["buildings"] = {
-                "count": len(buildings),
-                "footprints": [b.tolist() for b in buildings[:100]]  # Limit to 100
-            }
-        
-#         return result
-    
-#     except Exception as e:
-#         return JSONResponse(
-#             status_code=500,
-#             content={"error": f"LiDAR processing failed: {str(e)}"}
-
-
-@app.post("/api/gis/radar-analyze")
-# async def analyze_radar(
-#     file: UploadFile = File(...),
-#     operation: str = "speckle_filter",
-#     file2: Optional[UploadFile] = File(None)
-):
-    """
-#     Analyze SAR (Synthetic Aperture Radar) imagery
-#     Operations: speckle_filter, change_detection, coherence_analysis
-    """
-#     try:
-#         data1 = await file.read()
-#         sar_image1 = radar_processor.load_sentinel1(data1)
-        
-#         result = {
-            "shape": sar_image1.shape,
-            "data_type": str(sar_image1.dtype)
-        }
-        
-#         if operation == "speckle_filter":
-#             filtered = radar_processor.speckle_filter(sar_image1, method="lee")
-            
-#             result["filtered"] = {
-                "shape": filtered.shape,
-                "stats": {
-                    "mean": float(filtered.mean()),
-                    "std": float(filtered.std()),
-                    "min": float(filtered.min()),
-                    "max": float(filtered.max())
-                }
-            }
-        
-#         elif operation == "change_detection" and file2:
-#             data2 = await file2.read()
-#             sar_image2 = radar_processor.load_sentinel1(data2)
-            
-#             changes = radar_processor.change_detection(sar_image1, sar_image2)
-            
-#             result["changes"] = {
-                "total_pixels": int(changes.size),
-                "changed_pixels": int(changes.sum()),
-                "change_percentage": float((changes.sum() / changes.size) * 100)
-            }
-        
-#         elif operation == "coherence_analysis" and file2:
-#             data2 = await file2.read()
-#             sar_image2 = radar_processor.load_sentinel1(data2)
-            
-#             coherence = radar_processor.coherence_analysis(sar_image1, sar_image2)
-            
-#             result["coherence"] = {
-                "average": float(coherence.mean()),
-                "std": float(coherence.std()),
-                "high_coherence_pixels": int((coherence > 0.7).sum()),
-                "low_coherence_pixels": int((coherence < 0.3).sum())
-            }
-        
-#         return result
-    
-#     except Exception as e:
-#         return JSONResponse(
-#             status_code=500,
-#             content={"error": f"Radar analysis failed: {str(e)}"}
-
-
-#  GEOPHYSICS API ENDPOINTS
-
-# igrf_model = IGRFModel()
-# wmm_model = WMMModel()
-# magnetic_analyzer = MagneticAnalyzer()
-# resistivity_analyzer = ResistivityAnalyzer()
-# seismic_analyzer = SeismicAnalyzer()
-# subsurface_modeler = SubsurfaceModeler()
-
-
-@app.post("/api/geophysics/magnetic-field")
-# async def calculate_magnetic_field(
-#     latitude: float,
-#     longitude: float,
-#     altitude: float = 0.0,
-#     year: float = 2025.0,
-#     model: str = "igrf"
-):
-    """
-#     Calculate Earth's magnetic field at location
-#     Models: igrf (International), wmm (World Magnetic Model)
-    """
-#     try:
-#         if model == "wmm":
-#             total_field = igrf_model.calculate(latitude, longitude, year, altitude)
-#             declination = wmm_model.calculate_declination(latitude, longitude, year, altitude)
-#             inclination = wmm_model.calculate_inclination(latitude, longitude, year, altitude)
-            
-#             return {
-                "model": "WMM",
-                "location": {
-                    "latitude": latitude,
-                    "longitude": longitude,
-                    "altitude": altitude,
-                    "year": year
-                },
-                "total_field": float(total_field),
-                "declination": float(declination),
-                "inclination": float(inclination),
-                "units": {
-                    "total_field": "nT",
-                    "declination": "degrees",
-                    "inclination": "degrees"
-                }
-            }
-#         else:
-#             total_field = igrf_model.calculate(latitude, longitude, year, altitude)
-#             return {
-                "model": "IGRF-13",
-                "location": {
-                    "latitude": latitude,
-                    "longitude": longitude,
-                    "altitude": altitude,
-                    "year": year
-                },
-                "total_field": float(total_field),
-                "units": "nT"
-            }
-    
-#     except Exception as e:
-#         return JSONResponse(
-#             status_code=500,
-#             content={"error": f"Magnetic field calculation failed: {str(e)}"}
-
-
-@app.post("/api/geophysics/magnetic-survey")
-# async def analyze_magnetic_survey(
-#     file: UploadFile = File(...),
-#     date: str = "2025-01-01",
-#     remove_igrf: bool = True
-):
-    """
-#     Analyze magnetometer survey data
-#     Detects magnetic anomalies, interprets subsurface
-    """
-#     try:
-#         data = await file.read()
-        
-        # Parse CSV format (lat, lon, elev, total_field)
-        # Simplified: generate synthetic data for demo
-#         num_stations = min(1000, len(data) // 50)
-        
-#         locations = np.random.randn(num_stations, 3)
-#         locations[:, 0] = locations[:, 0] * 10 + 40  # Latitude around 40N
-#         locations[:, 1] = locations[:, 1] * 10 - 100  # Longitude around 100W
-#         locations[:, 2] = np.abs(locations[:, 2]) * 100  # Elevation
-        
-        # Synthetic magnetic field with anomalies
-#         base_field = 50000  # nT
-#         total_field = base_field + np.random.randn(num_stations) * 500
-        
-        # Add some anomalies
-#         anomaly_indices = np.random.choice(num_stations, size=num_stations//10, replace=False)
-#         total_field[anomaly_indices] += np.random.randn(len(anomaly_indices)) * 2000
-        
-#         survey = MagneticSurvey(
-#             locations=locations,
-#             total_field=total_field,
-#             date=datetime.strptime(date, "%Y-%m-%d")
-        
-#         result = magnetic_analyzer.process_survey(survey)
-        
-#         return {
-            "survey_info": {
-                "num_stations": survey.num_stations,
-                "date": date,
-                "igrf_removed": remove_igrf
-            },
-            "analysis": result
-        }
-    
-#     except Exception as e:
-#         return JSONResponse(
-#             status_code=500,
-#             content={"error": f"Magnetic survey analysis failed: {str(e)}"}
-
-
-@app.post("/api/geophysics/resistivity-survey")
-# async def analyze_resistivity_survey(
-#     file: UploadFile = File(...),
-#     array_type: str = "wenner",
-#     spacing: float = 5.0
-):
-    """
-#     Analyze electrical resistivity survey
-#     Detects groundwater, bedrock, subsurface layers
-    """
-#     try:
-#         data = await file.read()
-        
-        # Generate synthetic resistivity data
-#         num_measurements = min(500, len(data) // 20)
-        
-#         electrodes = np.random.randn(num_measurements, 3) * 10
-        
-        # Synthetic apparent resistivity (ohm-m)
-        # Layered model: soil -> weathered rock -> bedrock
-#         apparent_resistivity = np.zeros(num_measurements)
-#         for i in range(num_measurements):
-#             depth = abs(electrodes[i, 2])
-#             if depth < 2:
-#                 apparent_resistivity[i] = np.random.uniform(20, 100)  # Soil
-#             elif depth < 10:
-#                 apparent_resistivity[i] = np.random.uniform(100, 500)  # Weathered
-#             else:
-#                 apparent_resistivity[i] = np.random.uniform(1000, 5000)  # Bedrock
-        
-#         survey = ResistivitySurvey(
-#             electrodes=electrodes,
-#             apparent_resistivity=apparent_resistivity,
-#             current=0.1,
-#             spacing=spacing,
-#             array_type=array_type
-        
-#         result = resistivity_analyzer.process_survey(survey)
-        
-        # Run inversion
-#         inversion_model = resistivity_analyzer.invert_2d(survey)
-        
-#         return {
-            "survey_info": {
-                "num_measurements": survey.num_measurements,
-                "array_type": array_type,
-                "electrode_spacing": spacing
-            },
-            "analysis": result,
-            "inversion": {
-                "num_layers": len(inversion_model),
-                "layer_resistivities": inversion_model.tolist()
-            }
-        }
-    
-#     except Exception as e:
-#         return JSONResponse(
-#             status_code=500,
-#             content={"error": f"Resistivity survey analysis failed: {str(e)}"}
-
-
-@app.post("/api/geophysics/seismic-analysis")
-# async def analyze_seismic_survey(
-#     file: UploadFile = File(...),
-#     survey_type: str = "reflection",
-#     sample_rate: float = 1000.0
-):
-    """
-#     Analyze seismic survey data (SEG-Y format)
-#     Reflection/refraction surveys for subsurface imaging
-    """
-#     try:
-#         data = await file.read()
-        
-        # Generate synthetic seismic traces
-#         num_traces = min(100, len(data) // 1000)
-#         num_samples = 500
-        
-        # Synthetic seismic data with reflectors
-#         traces = np.random.randn(num_traces, num_samples) * 0.1
-        
-        # Add some reflectors
-#         for reflector_time in [100, 250, 400]:
-#             if reflector_time < num_samples:
-#                 amplitude = np.random.uniform(0.5, 1.0)
-#                 traces[:, reflector_time] += amplitude
-        
-#         source_locations = np.random.randn(num_traces, 3) * 100
-#         receiver_locations = source_locations + np.array([10, 0, 0])  # Offset
-        
-#         survey = SeismicSurvey(
-#             traces=traces,
-#             sample_rate=sample_rate,
-#             source_locations=source_locations,
-#             receiver_locations=receiver_locations,
-#             survey_type=survey_type
-        
-#         result = seismic_analyzer.process_survey(survey)
-        
-        # Apply AGC processing
-#         agc_traces = seismic_analyzer.apply_agc(traces)
-        
-#         return {
-            "survey_info": {
-                "num_traces": survey.num_traces,
-                "sample_rate": sample_rate,
-                "duration": survey.duration,
-                "survey_type": survey_type
-            },
-            "analysis": result,
-            "processing": {
-                "agc_applied": True,
-                "num_processed_traces": len(agc_traces)
-            }
-        }
-    
-#     except Exception as e:
-#         return JSONResponse(
-#             status_code=500,
-#             content={"error": f"Seismic analysis failed: {str(e)}"}
-
-
-@app.post("/api/geophysics/subsurface-model")
-# async def create_subsurface_model(
-#     magnetic_file: Optional[UploadFile] = File(None),
-#     resistivity_file: Optional[UploadFile] = File(None),
-#     seismic_file: Optional[UploadFile] = File(None),
-#     grid_size: str = "50,50,20"
-):
-    """
-#     Create integrated 3D subsurface model
-#     Combines magnetic, resistivity, and seismic data
-    """
-#     try:
-        # Parse grid size
-#         grid_dims = tuple(map(int, grid_size.split(',')))
-        
-#         magnetic_survey = None
-#         resistivity_survey = None
-#         seismic_survey = None
-        
-        # Load and process each dataset if provided
-#         if magnetic_file:
-            # Create synthetic magnetic survey
-#             num_stations = 100
-#             locations = np.random.randn(num_stations, 3)
-#             total_field = 50000 + np.random.randn(num_stations) * 1000
-#             magnetic_survey = MagneticSurvey(
-#                 locations=locations,
-#                 total_field=total_field,
-#                 date=datetime.now()
-        
-#         if resistivity_file:
-            # Create synthetic resistivity survey
-#             num_measurements = 200
-#             electrodes = np.random.randn(num_measurements, 3)
-#             apparent_resistivity = np.random.uniform(50, 5000, num_measurements)
-#             resistivity_survey = ResistivitySurvey(
-#                 electrodes=electrodes,
-#                 apparent_resistivity=apparent_resistivity,
-#                 current=0.1,
-#                 spacing=5.0
-        
-#         if seismic_file:
-            # Create synthetic seismic survey
-#             traces = np.random.randn(50, 500)
-#             seismic_survey = SeismicSurvey(
-#                 traces=traces,
-#                 sample_rate=1000.0,
-#                 source_locations=np.random.randn(50, 3),
-#                 receiver_locations=np.random.randn(50, 3)
-#         print("Creating model")
-        # Create integrated model
-#         model = subsurface_modeler.create_3d_model(
-#             magnetic_survey=magnetic_survey,
-#             resistivity_survey=resistivity_survey,
-#             seismic_survey=seismic_survey,
-#             grid_size=grid_dims
-        
-#         return {
-            "model_info": {
-                "grid_size": grid_dims,
-                "datasets_integrated": {
-                    "magnetic": magnetic_file is not None,
-                    "resistivity": resistivity_file is not None,
-                    "seismic": seismic_file is not None
-                }
-            },
-            "model": model
-        }
-    
-#     except Exception as e:
-#         return JSONResponse(
-#             status_code=500,
-#             content={"error": f"Subsurface modeling failed: {str(e)}"}
-
-
-@app.post("/api/mining/mag-survey")
-# async def process_mining_mag_survey(
-#     file: UploadFile = File(...),
-#     file_format: str = "csv",
-#     latitude: Optional[float] = None,
-#     longitude: Optional[float] = None,
-#     date: Optional[str] = None
-):
-    """
-#     Process mining magnetometry survey data
-#     Upload MAG survey files (CSV, XYZ, or Geosoft format)
-#     Returns anomaly map and mineral discrimination
-    """
-#     try:
-        # Read uploaded file
-#         contents = await file.read()
-        
-        # Save to temp file
-#         import tempfile
-#         with tempfile.NamedTemporaryFile(mode='wb', delete=False, suffix=f'.{file_format}') as tmp:
-#             tmp.write(contents)
-#             tmp_path = tmp.name
-        
-        # Initialize mining processor
-#         mining_processor = MiningMagnetometryProcessor()
-        
-        # Import survey data
-#         survey = mining_processor.import_mag_survey(tmp_path, file_format)
-        
-        # Discriminate minerals (includes IGRF correction internally)
-#         mineral_results = mining_processor.discriminate_minerals(survey)
-        
-        # Extract drill targets from results
-#         drill_targets = mineral_results.get('recommended_drill_targets', [])
-#         all_targets = mineral_results.get('targets', [])
-        
-        # Clean up temp file
-#         import os
-#         os.unlink(tmp_path)
-        
-#         return {
-            "survey_info": {
-                "num_stations": len(survey.locations),
-                "file_format": file_format,
-                "igrf_corrected": True,
-                "survey_stats": mineral_results.get('survey_stats', {})
-            },
-            "mineral_discrimination": {
-                "num_target_types": len(all_targets),
-                "all_targets": all_targets,
-                "high_priority_targets": drill_targets
-            },
-            "drill_targets": drill_targets,
-            "num_drill_targets": len(drill_targets)
-        }
-    
-#     except Exception as e:
-#         return JSONResponse(
-#             status_code=500,
-#             content={"error": f"MAG survey processing failed: {str(e)}"}
-
-
-@app.post("/api/mining/discriminate")
-# async def discriminate_minerals_endpoint(
-#     magnetic_data: List[float],
-#     locations: List[List[float]],
-#     target_minerals: Optional[List[str]] = None
-):
-    """
-#     Discriminate mineral types from magnetic signature
-    
-#     Args:
-#         magnetic_data: Residual magnetic field values (nT)
-#         locations: Station coordinates [[lat, lon, elev], ...]
-#         target_minerals: Optional list of minerals to focus on
-                        (e.g., ["iron", "gold", "copper"])
-    
-#     Returns:
-#         Mineral type predictions with confidence scores
-    """
-#     try:
-        # Create survey from data
-#         survey = MagneticSurvey(
-#             locations=np.array(locations),
-#             total_field=np.array(magnetic_data),
-#             date=datetime.now()
-        
-        # Process and discriminate
-#         mining_processor = MiningMagnetometryProcessor()
-#         mineral_results = mining_processor.discriminate_minerals(survey)
-        
-        # Filter by target minerals if specified
-#         if target_minerals:
-#             filtered_targets = [
-#                 t for t in mineral_results.get('targets', [])
-#                 if any(mineral.lower() in t['mineral_type'].lower() for mineral in target_minerals)
-            ]
-#             mineral_results['targets'] = filtered_targets
-#             mineral_results['num_target_types'] = len(filtered_targets)
-        
-#         return {
-            "discrimination_results": mineral_results,
-            "target_minerals": target_minerals or "all",
-            "num_stations": len(locations)
-        }
-    
-#     except Exception as e:
-#         return JSONResponse(
-#             status_code=500,
-#             content={"error": f"Mineral discrimination failed: {str(e)}"}
-
-
-@app.post("/api/mining/target-drills")
-# async def target_drill_locations_endpoint(
-#     magnetic_data: List[float],
-#     locations: List[List[float]],
-#     min_anomaly: float = 100.0,
-#     top_n: int = 10
-):
-    """
-#     Generate drill target recommendations from MAG survey
-    
-#     Args:
-#         magnetic_data: Residual magnetic field values (nT)
-#         locations: Station coordinates [[lat, lon, elev], ...]
-#         min_anomaly: Minimum anomaly strength (nT) to consider
-#         top_n: Number of top targets to return
-    
-#     Returns:
-#         Ranked drill target locations with confidence scores
-    """
-#     try:
-        # Create survey
-#         survey = MagneticSurvey(
-#             locations=np.array(locations),
-#             total_field=np.array(magnetic_data),
-#             date=datetime.now()
-        
-        # Process and discriminate
-#         mining_processor = MiningMagnetometryProcessor()
-#         mineral_results = mining_processor.discriminate_minerals(survey)
-        
-        # Get drill targets - filter by minimum anomaly and sort by priority
-#         all_targets = mineral_results.get('targets', [])
-        
-        # Flatten all locations from all targets
-#         drill_locations = []
-#         for target in all_targets:
-#             if 'locations' in target and 'max_anomaly' in target:
-#                 if target['max_anomaly'] >= min_anomaly:
-#                     for loc in target['locations']:
-#                         drill_locations.append({
-                            'location': loc,
-                            'mineral_type': target['mineral_type'],
-                            'confidence': target['confidence'],
-                            'priority': target['drill_priority'],
-                            'anomaly_nT': target['max_anomaly']
-                        })
-        
-        # Sort by anomaly strength and priority
-#         drill_locations.sort(key=lambda x: (-x['anomaly_nT'], x['priority']))
-#         drill_targets = drill_locations[:top_n]
-        
-#         return {
-            "drill_targets": drill_targets,
-            "parameters": {
-                "min_anomaly_nt": min_anomaly,
-                "top_n": top_n,
-                "num_stations": len(locations)
-            }
-        }
-    
-#     except Exception as e:
-#         return JSONResponse(
-#             status_code=500,
-#             content={"error": f"Drill targeting failed: {str(e)}"}
-
-
-@app.get("/api/mining/survey-cost")
-# async def analyze_survey_cost(
-#     area_km2: float,
-#     line_spacing_m: float = 100.0,
-#     station_spacing_m: float = 25.0,
-#     cost_per_station: float = 50.0,
-#     cost_per_drill: float = 100000.0
-):
-    """
-#     Cost-effectiveness analysis for MAG surveys vs drilling
-    
-#     Args:
-#         area_km2: Survey area in square kilometers
-#         line_spacing_m: Distance between survey lines (meters)
-#         station_spacing_m: Distance between stations (meters)
-#         cost_per_station: Cost per MAG station ($)
-#         cost_per_drill: Cost per drill hole ($)
-    
-#     Returns:
-#         Cost analysis and survey design recommendations
-    """
-#     try:
-#         mining_processor = MiningMagnetometryProcessor()
-        
-        # Calculate survey requirements
-#         area_m2 = area_km2 * 1e6
-#         num_lines = int(np.sqrt(area_m2) / line_spacing_m)
-#         stations_per_line = int(np.sqrt(area_m2) / station_spacing_m)
-#         total_stations = num_lines * stations_per_line
-        
-        # Cost analysis
-#         mag_survey_cost = total_stations * cost_per_station
-#         coverage_m2_per_station = area_m2 / total_stations
-        
-        # Equivalent drilling cost (if no MAG survey)
-        # Assume 1 drill per 1 km without MAG targeting
-#         blind_drills_needed = int(area_km2)
-#         blind_drilling_cost = blind_drills_needed * cost_per_drill
-        
-        # With MAG targeting (assume 80% reduction in drilling)
-#         targeted_drills_needed = max(1, int(blind_drills_needed * 0.2))
-#         targeted_drilling_cost = targeted_drills_needed * cost_per_drill
-#         total_cost_with_mag = mag_survey_cost + targeted_drilling_cost
-        
-#         savings = blind_drilling_cost - total_cost_with_mag
-#         roi = (savings / mag_survey_cost) * 100 if mag_survey_cost > 0 else 0
-        
-#         return {
-            "survey_design": {
-                "area_km2": area_km2,
-                "num_lines": num_lines,
-                "stations_per_line": stations_per_line,
-                "total_stations": total_stations,
-                "line_spacing_m": line_spacing_m,
-                "station_spacing_m": station_spacing_m,
-                "coverage_m2_per_station": coverage_m2_per_station
-            },
-            "cost_analysis": {
-                "mag_survey_cost_usd": mag_survey_cost,
-                "blind_drilling_cost_usd": blind_drilling_cost,
-                "targeted_drilling_cost_usd": targeted_drilling_cost,
-                "total_cost_with_mag_usd": total_cost_with_mag,
-                "savings_usd": savings,
-                "roi_percent": roi,
-                "drills_avoided": blind_drills_needed - targeted_drills_needed
-            },
-            "recommendations": {
-                "use_mag_survey": savings > 0,
-                "optimal_strategy": "MAG + Targeted Drilling" if savings > 0 else "Direct Drilling",
-                "confidence": "high" if roi > 200 else "medium" if roi > 100 else "low"
-            }
-        }
-#     except Exception as e:
-#         return JSONResponse(
-#             status_code=500,
-#             content={"error": f"Cost analysis failed: {str(e)}"}
-
-
-# =============================================================================
-#  GIS STUDIO API ENDPOINTS - Complete Validation, Integration & ML
-# =============================================================================
-
-@app.post("/api/gis/studio/validate/lidar")
 # async def validate_lidar_data(
 #     points: List[List[float]],
 #     classification: Optional[List[int]] = None,

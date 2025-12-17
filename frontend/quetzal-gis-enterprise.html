@@ -36,6 +36,44 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/leaflet.markercluster.min.js"></script>
 
     <style>
+        /* Utility: Display Block/None for Tabs */
+        .tab-visible {
+            display: block !important;
+        }
+
+        .tab-hidden {
+            display: none !important;
+        }
+
+        /* Utility: Muted Text */
+        .text-muted {
+            color: #999;
+        }
+
+        /* Utility: Small Text */
+        .text-small {
+            font-size: 0.85em;
+        }
+
+        .text-smaller {
+            font-size: 0.9em;
+        }
+
+        /* Utility: Margin Bottom 10px */
+        .mb-10 {
+            margin-bottom: 10px;
+        }
+
+        /* Utility: Primary Color */
+        .color-primary {
+            color: var(--primary);
+        }
+
+        /* Utility: Margin Top 10px */
+        .mt-10 {
+            margin-top: 10px;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -539,7 +577,7 @@
 
             <div class="sidebar-content scrollbar">
                 <!-- TOOLS TAB -->
-                <div id="tools-tab" class="tab-content" style="display: block;">
+                <div id="tools-tab" class="tab-content tab-visible">
                     <div class="tool-section">
                         <h3>Drawing</h3>
                         <div class="tool-item" onclick="startDrawing('point')">📍 New Point</div>
@@ -572,7 +610,7 @@
                 </div>
 
                 <!-- LAYERS TAB -->
-                <div id="layers-tab" class="tab-content" style="display: none;">
+                <div id="layers-tab" class="tab-content tab-hidden">
                     <div class="tool-section">
                         <h3>Map Layers</h3>
                         <div class="form-group">
@@ -585,16 +623,16 @@
 
                     <div class="tool-section" id="userLayers">
                         <h3>User Layers</h3>
-                        <p style="color: #999; font-size: 0.9em;">Drawn features will appear here</p>
+                        <p class="text-muted text-smaller">Drawn features will appear here</p>
                     </div>
                 </div>
 
                 <!-- HISTORY TAB -->
-                <div id="history-tab" class="tab-content" style="display: none;">
+                <div id="history-tab" class="tab-content tab-hidden">
                     <div class="tool-section">
                         <h3>Recent Operations</h3>
-                        <div id="historyList" style="font-size: 0.85em;">
-                            <p style="color: #999;">No operations yet</p>
+                        <div id="historyList" class="text-small">
+                            <p class="text-muted">No operations yet</p>
                         </div>
                     </div>
                 </div>
@@ -626,7 +664,7 @@
                 <div class="property-section">
                     <h4>📊 Selection</h4>
                     <div id="selectionInfo">
-                        <p style="color: #999; font-size: 0.85em;">Click on a feature to view properties</p>
+                        <p class="text-muted text-small">Click on a feature to view properties</p>
                     </div>
                 </div>
 
@@ -649,7 +687,7 @@
 
     <!-- BOTTOM RESULTS PANEL -->
     <div class="bottom-panel" id="resultsPanel">
-        <h4 style="margin-bottom: 10px; color: var(--primary);">📊 Analysis Results</h4>
+        <h4 class="mb-10 color-primary">📊 Analysis Results</h4>
         <div id="resultsContent"></div>
     </div>
 
@@ -681,7 +719,7 @@
                 </select>
             </div>
             <button class="btn" onclick="executeBuffer()">Create Buffer</button>
-            <button class="btn btn-secondary" onclick="closeModal('buffer')" style="margin-top: 10px;">Cancel</button>
+            <button class="btn btn-secondary mt-10" onclick="closeModal('buffer')">Cancel</button>
         </div>
     </div>
 
@@ -702,7 +740,7 @@
             </div>
             <div class="info-box">Select 2 or more features on the map before executing</div>
             <button class="btn" onclick="executeOverlay()">Execute Overlay</button>
-            <button class="btn btn-secondary" onclick="closeModal('overlay')" style="margin-top: 10px;">Cancel</button>
+            <button class="btn btn-secondary mt-10" onclick="closeModal('overlay')">Cancel</button>
         </div>
     </div>
 
@@ -720,7 +758,7 @@
                 </select>
             </div>
             <button class="btn" onclick="executeClip()">Clip Features</button>
-            <button class="btn btn-secondary" onclick="closeModal('clip')" style="margin-top: 10px;">Cancel</button>
+            <button class="btn btn-secondary mt-10" onclick="closeModal('clip')">Cancel</button>
         </div>
     </div>
 
@@ -738,7 +776,7 @@
                 </select>
             </div>
             <button class="btn" onclick="executeDissolve()">Dissolve</button>
-            <button class="btn btn-secondary" onclick="closeModal('dissolve')" style="margin-top: 10px;">Cancel</button>
+            <button class="btn btn-secondary mt-10" onclick="closeModal('dissolve')">Cancel</button>
         </div>
     </div>
 
@@ -775,7 +813,7 @@
                 </select>
             </div>
             <button class="btn" onclick="executeRasterCalc()">Calculate</button>
-            <button class="btn btn-secondary" onclick="closeModal('raster')" style="margin-top: 10px;">Cancel</button>
+            <button class="btn btn-secondary mt-10" onclick="closeModal('raster')">Cancel</button>
         </div>
     </div>
 
@@ -799,8 +837,7 @@
                 <input type="number" value="5" min="2" max="20">
             </div>
             <button class="btn" onclick="executeClassification()">Classify</button>
-            <button class="btn btn-secondary" onclick="closeModal('classification')"
-                style="margin-top: 10px;">Cancel</button>
+            <button class="btn btn-secondary mt-10" onclick="closeModal('classification')">Cancel</button>
         </div>
     </div>
 
@@ -820,8 +857,7 @@
                 </select>
             </div>
             <button class="btn" onclick="performAnalysis('stats')">Generate Statistics</button>
-            <button class="btn btn-secondary" onclick="closeModal('statistics')"
-                style="margin-top: 10px;">Cancel</button>
+            <button class="btn btn-secondary mt-10" onclick="closeModal('statistics')">Cancel</button>
         </div>
     </div>
 
@@ -841,7 +877,7 @@
                 </select>
             </div>
             <button class="btn" onclick="performAnalysis('network')">Analyze Network</button>
-            <button class="btn btn-secondary" onclick="closeModal('network')" style="margin-top: 10px;">Cancel</button>
+            <button class="btn btn-secondary mt-10" onclick="closeModal('network')">Cancel</button>
         </div>
     </div>
 
@@ -854,8 +890,8 @@
                 <input type="text" id="searchInput" placeholder="City, address, or coordinates...">
             </div>
             <button class="btn" onclick="performSearch()">Search</button>
-            <div id="searchResults" style="margin-top: 15px;"></div>
-            <button class="btn btn-secondary" onclick="closeModal('search')" style="margin-top: 10px;">Close</button>
+            <div id="searchResults" class="mt-15"></div>
+            <button class="btn btn-secondary mt-10" onclick="closeModal('search')">Close</button>
         </div>
     </div>
 
@@ -879,7 +915,7 @@
                 <input type="file" id="importFile" accept=".json,.zip,.kml,.csv,.tif">
             </div>
             <button class="btn" onclick="importData()">Import</button>
-            <button class="btn btn-secondary" onclick="closeModal('import')" style="margin-top: 10px;">Cancel</button>
+            <button class="btn btn-secondary mt-10" onclick="closeModal('import')">Cancel</button>
         </div>
     </div>
 
@@ -913,7 +949,11 @@
                 </select>
             </div>
             <button class="btn" onclick="saveSettings()">Save Settings</button>
-            <button class="btn btn-secondary" onclick="closeModal('settings')" style="margin-top: 10px;">Close</button>
+            <button class="btn btn-secondary mt-10" onclick="closeModal('settings')">Close</button>
+            /* Utility: Margin Top 15px */
+            .mt-15 {
+            margin-top: 15px;
+            }
         </div>
     </div>
 
@@ -927,6 +967,114 @@
         let currentBasemap = 'osm';
         let basemaps = {};
         let markerClusterGroup;
+
+        // Modular Analysis Operations
+        function runAnalysis(type, options = {}) {
+            const layers = drawnItems.getLayers();
+            let result = null;
+            switch (type) {
+                case 'buffer': {
+                    const distance = parseFloat(options.distance || document.getElementById('bufferDist').value);
+                    if (layers.length === 0) {
+                        alert('Please draw a feature first');
+                        return;
+                    }
+                    layers.forEach(layer => {
+                        let geojson = layer.toGeoJSON ? layer.toGeoJSON() : null;
+                        if (layer instanceof L.Marker) {
+                            geojson = turf.point([layer.getLatLng().lng, layer.getLatLng().lat]);
+                        }
+                        if (geojson) {
+                            try {
+                                const buffered = turf.buffer(geojson, distance, { units: 'kilometers' });
+                                L.geoJSON(buffered, {
+                                    style: { color: '#ff7f0e', weight: 2, opacity: 0.7, fillOpacity: 0.2 }
+                                }).addTo(drawnItems);
+                            } catch (e) {
+                                alert('Buffer error: ' + e.message);
+                            }
+                        }
+                    });
+                    showResults(`Created ${distance}km buffer zones`);
+                    addToHistory(`Buffer analysis: ${distance}km`);
+                    closeModal('buffer');
+                    break;
+                }
+                case 'overlay': {
+                    if (layers.length < 2) {
+                        alert('Select at least 2 features for overlay analysis');
+                        return;
+                    }
+                    const overlayType = options.overlayType || document.getElementById('overlayType').value;
+                    let a = layers[0].toGeoJSON();
+                    let b = layers[1].toGeoJSON();
+                    try {
+                        if (overlayType === 'Intersect') {
+                            result = turf.intersect(a, b);
+                        } else if (overlayType === 'Union') {
+                            result = turf.union(a, b);
+                        } else if (overlayType === 'Symmetric Difference') {
+                            result = turf.xor ? turf.xor(a, b) : null;
+                        } else if (overlayType === 'Erase') {
+                            result = turf.difference ? turf.difference(a, b) : null;
+                        } else if (overlayType === 'Identity') {
+                            result = a; // Identity returns the first feature
+                        }
+                        if (result) {
+                            L.geoJSON(result, {
+                                style: { color: '#00cc99', weight: 2, fillOpacity: 0.4 }
+                            }).addTo(drawnItems);
+                            showResults(`Overlay analysis completed: ${overlayType}`);
+                            addToHistory(`${overlayType} operation performed`);
+                        } else {
+                            showResults('Overlay operation did not return a result.');
+                        }
+                    } catch (e) {
+                        alert('Overlay error: ' + e.message);
+                    }
+                    closeModal('overlay');
+                    break;
+                }
+                case 'clip': {
+                    showResults(`Clip operation executed`);
+                    addToHistory(`Clip operation`);
+                    closeModal('clip');
+                    break;
+                }
+                case 'dissolve': {
+                    showResults(`Dissolve operation completed`);
+                    addToHistory(`Dissolve operation`);
+                    closeModal('dissolve');
+                    break;
+                }
+                case 'raster': {
+                    showResults(`Raster calculation completed`);
+                    addToHistory(`Raster calculation`);
+                    closeModal('raster');
+                    break;
+                }
+                case 'classification': {
+                    showResults(`Classification completed`);
+                    addToHistory(`Classification operation`);
+                    closeModal('classification');
+                    break;
+                }
+                case 'statistics': {
+                    showResults('Statistical analysis completed');
+                    addToHistory('Statistical analysis completed');
+                    closeModal('statistics');
+                    break;
+                }
+                case 'network': {
+                    showResults('Network analysis completed');
+                    addToHistory('Network analysis completed');
+                    closeModal('network');
+                    break;
+                }
+                default:
+                    showResults('Analysis type not implemented');
+            }
+        }
 
         // INITIALIZATION
         function initMap() {
@@ -1064,101 +1212,25 @@
         }
 
         // ANALYSIS OPERATIONS
-        function executeBuffer() {
-            const distance = parseFloat(document.getElementById('bufferDist').value);
-            const layers = drawnItems.getLayers();
-
-            if (layers.length === 0) {
-                alert('Please draw a feature first');
-                return;
-            }
-
-            layers.forEach(layer => {
-                if (layer instanceof L.Marker) {
-                    const point = turf.point([layer.getLatLng().lng, layer.getLatLng().lat]);
-                    const buffered = turf.buffer(point, distance, { units: 'kilometers' });
-                    const bufferLayer = L.geoJSON(buffered, {
-                        style: { color: '#ff7f0e', weight: 2, opacity: 0.7, fillOpacity: 0.2 }
-                    }).addTo(drawnItems);
-                } else if (layer instanceof L.Polygon || layer instanceof L.Polyline) {
-                    const geojson = layer.toGeoJSON();
-                    const buffered = turf.buffer(geojson, distance, { units: 'kilometers' });
-                    const bufferLayer = L.geoJSON(buffered, {
-                        style: { color: '#ff7f0e', weight: 2, opacity: 0.7, fillOpacity: 0.2 }
-                    }).addTo(drawnItems);
-                }
-            });
-
-            showResults(`Created ${distance}km buffer zones`);
-            addToHistory(`Buffer analysis: ${distance}km`);
-            closeModal('buffer');
-        }
-
-        function executeOverlay() {
-            const layers = drawnItems.getLayers();
-            if (layers.length < 2) {
-                alert('Select at least 2 features for overlay analysis');
-                return;
-            }
-
-            const overlayType = document.getElementById('overlayType').value;
-            let result;
-
-            if (overlayType === 'Intersect') {
-                result = turf.intersect(layers[0].toGeoJSON(), layers[1].toGeoJSON());
-            } else if (overlayType === 'Union') {
-                result = turf.union(layers[0].toGeoJSON(), layers[1].toGeoJSON());
-            }
-
-            if (result) {
-                L.geoJSON(result, {
-                    style: { color: '#00cc99', weight: 2, fillOpacity: 0.4 }
-                }).addTo(drawnItems);
-                showResults(`Overlay analysis completed: ${overlayType}`);
-                addToHistory(`${overlayType} operation performed`);
-            }
-
-            closeModal('overlay');
-        }
-
-        function executeClip() {
-            showResults(`Clip operation executed`);
-            addToHistory(`Clip operation`);
-            closeModal('clip');
-        }
-
-        function executeDissolve() {
-            showResults(`Dissolve operation completed`);
-            addToHistory(`Dissolve operation`);
-            closeModal('dissolve');
-        }
-
-        function executeRasterCalc() {
-            showResults(`Raster calculation completed`);
-            addToHistory(`Raster calculation`);
-            closeModal('raster');
-        }
-
-        function executeClassification() {
-            showResults(`Classification completed`);
-            addToHistory(`Classification operation`);
-            closeModal('classification');
-        }
-
+        // ANALYSIS OPERATIONS (MODULAR)
+        function executeBuffer() { runAnalysis('buffer'); }
+        function executeOverlay() { runAnalysis('overlay'); }
+        function executeClip() { runAnalysis('clip'); }
+        function executeDissolve() { runAnalysis('dissolve'); }
+        function executeRasterCalc() { runAnalysis('raster'); }
+        function executeClassification() { runAnalysis('classification'); }
         function performAnalysis(type) {
-            let result;
             if (type === 'distance') {
-                result = 'Distance matrix generated with ' + drawnItems.getLayers().length + ' features';
+                showResults('Distance matrix generated with ' + drawnItems.getLayers().length + ' features');
+                addToHistory('Distance matrix generated');
             } else if (type === 'accessibility') {
-                result = 'Accessibility analysis completed';
+                showResults('Accessibility analysis completed');
+                addToHistory('Accessibility analysis completed');
             } else if (type === 'stats') {
-                result = 'Statistical analysis completed';
+                runAnalysis('statistics');
             } else if (type === 'network') {
-                result = 'Network analysis completed';
+                runAnalysis('network');
             }
-
-            showResults(result);
-            addToHistory(result);
         }
 
         // GEOCODING & SEARCH

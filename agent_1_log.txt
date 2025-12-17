@@ -1,18 +1,22 @@
-[17:48:00] 🚀 AGENT 1 STARTING - Infrastructure Validation
-[17:48:00] 🔄 Starting: Check Python environment
-[17:48:01] ✅ Completed: Check Python environment
-[17:48:01] 🔄 Starting: Validate cluster code
-[17:48:01] ✅ Completed: Validate cluster code
-[17:48:02] 🔄 Starting: Validate logging code
-[17:48:02] ✅ Completed: Validate logging code
-[17:48:02] 🔄 Starting: Validate backup code
-[17:48:02] ✅ Completed: Validate backup code
-[17:48:03] 🔄 Starting: Validate scheduler code
-[17:48:03] ✅ Completed: Validate scheduler code
-[17:48:03] 🔄 Starting: Create test reports dir
-[17:48:03] ✅ Completed: Create test reports dir
-[17:48:04] 🔄 Starting: Run cluster smoke test
-[17:48:04] ✅ Completed: Run cluster smoke test
-[17:48:04] 🔄 Starting: Run logging smoke test
-[17:48:04] ✅ Completed: Run logging smoke test
-[17:48:05] 🎉 AGENT 1 COMPLETE - 8 tasks done!
+[11:28:58] 🚀 AGENT 1 STARTING - Infrastructure Validation
+[11:28:58] 🔄 Starting: Check Python environment
+[11:28:58] ✅ Completed: Check Python environment
+[11:28:59] 🔄 Starting: Validate cluster code
+[11:28:59] ⚠️  Warning in Validate cluster code: Sorry: IndentationError: unexpected indent (quetzalcore_cluster.py, line 35)
+[11:28:59] 🔄 Starting: Validate logging code
+[11:29:00] ⚠️  Warning in Validate logging code: Sorry: IndentationError: unexpected indent (quetzalcore_logging.py, line 30)
+[11:29:00] 🔄 Starting: Validate backup code
+[11:29:00] ⚠️  Warning in Validate backup code: Sorry: IndentationError: unexpected indent (quetzalcore_backup.py, line 31)
+[11:29:01] 🔄 Starting: Validate scheduler code
+[11:29:01] ⚠️  Warning in Validate scheduler code: Sorry: IndentationError: unexpected indent (quetzalcore_backup_scheduler.py, line 28)
+[11:29:01] 🔄 Starting: Create test reports dir
+[11:29:01] ✅ Completed: Create test reports dir
+[11:29:02] 🔄 Starting: Run cluster smoke test
+[11:29:02] ⚠️  Warning in Run cluster smoke test: Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    from backend.quetzalco
+[11:29:02] 🔄 Starting: Run logging smoke test
+[11:29:02] ⚠️  Warning in Run logging smoke test: Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    from backend.quetzalco
+[11:29:03] 🎉 AGENT 1 COMPLETE - 8 tasks done!

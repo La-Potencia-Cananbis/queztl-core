@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import LiveChart from '@/components/LiveChart'
-import PacketFlow from '@/components/PacketFlow'
+import LiveChart from '../components/LiveChart'
+import PacketFlow from '../components/PacketFlow'
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://queztl-core-backend.onrender.com'
 

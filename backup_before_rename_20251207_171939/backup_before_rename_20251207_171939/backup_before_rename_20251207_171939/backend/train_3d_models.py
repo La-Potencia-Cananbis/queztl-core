@@ -421,7 +421,8 @@ class Distributed3DTrainingCoordinator:
             trainer = SimpleDiffusionTrainer(model)
         else:
             model = NeuralSDFNetwork()
-            trainer = None  # TODO: SDF trainer
+            # SDF trainer would be implemented here
+            trainer = None
         
         self.training_status = "running"
         

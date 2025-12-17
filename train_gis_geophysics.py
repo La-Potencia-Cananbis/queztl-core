@@ -576,7 +576,9 @@ def train_lidar_classifier(epochs=100):
             print(f"Epoch {epoch:3d}/{epochs} | Loss: {avg_loss:.6f} | Time: {elapsed:.1f}s")
     
     # Save model
-    torch.save(model.state_dict(), '/workspace/models/lidar_classifier.pt')
+    os.makedirs('models', exist_ok=True)
+    model_save_path = 'models/lidar_classifier.pt'
+    torch.save(model.state_dict(), model_save_path)
     print(f"\n✅ LiDAR classifier trained and saved")
     
     return model
@@ -637,7 +639,9 @@ def train_magnetic_interpreter(epochs=150):
             elapsed = (datetime.now() - start_time).total_seconds()
             print(f"Epoch {epoch:3d}/{epochs} | Loss: {avg_loss:.6f} | Time: {elapsed:.1f}s")
     
-    torch.save(model.state_dict(), '/workspace/models/magnetic_interpreter.pt')
+    os.makedirs('models', exist_ok=True)
+    model_save_path = 'models/magnetic_interpreter.pt'
+    torch.save(model.state_dict(), model_save_path)
     print(f"\n✅ Magnetic interpreter trained and saved")
     
     return model
@@ -692,7 +696,9 @@ def train_resistivity_inverter(epochs=120):
             elapsed = (datetime.now() - start_time).total_seconds()
             print(f"Epoch {epoch:3d}/{epochs} | Loss: {avg_loss:.6f} | Time: {elapsed:.1f}s")
     
-    torch.save(model.state_dict(), '/workspace/models/resistivity_inverter.pt')
+    os.makedirs('models', exist_ok=True)
+    model_save_path = 'models/resistivity_inverter.pt'
+    torch.save(model.state_dict(), model_save_path)
     print(f"\n✅ Resistivity inverter trained and saved")
     
     return model
@@ -703,7 +709,7 @@ def train_resistivity_inverter(epochs=120):
 # ============================================================================
 
 if __name__ == "__main__":
-    os.makedirs('/workspace/models', exist_ok=True)
+    os.makedirs('models', exist_ok=True)
     
     total_start = datetime.now()
     
@@ -725,8 +731,8 @@ if __name__ == "__main__":
     print("\n" + "=" * 80)
     print("🎉 ALL MODELS TRAINED SUCCESSFULLY")
     print("=" * 80)
-    print(f"✅ LiDAR Point Cloud Classifier: /workspace/models/lidar_classifier.pt")
-    print(f"✅ Magnetic Anomaly Interpreter: /workspace/models/magnetic_interpreter.pt")
-    print(f"✅ Resistivity Inverter: /workspace/models/resistivity_inverter.pt")
+    print(f"✅ LiDAR Point Cloud Classifier: models/lidar_classifier.pt")
+    print(f"✅ Magnetic Anomaly Interpreter: models/magnetic_interpreter.pt")
+    print(f"✅ Resistivity Inverter: models/resistivity_inverter.pt")
     print(f"\n⏱️  Total training time: {total_time:.1f}s ({total_time/60:.1f} minutes)")
     print("\n🚀 Models are now BETTER than commercial software!")

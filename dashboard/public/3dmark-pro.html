@@ -6,6 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🦅 Queztl 3DMark Professional - WebGL Benchmark</title>
     <style>
+        .hidden {
+            display: none !important;
+        }
+
+        .mt-30 {
+            margin-top: 30px;
+        }
+
+        /* Cluster Status Panel */
+        #cluster-status-panel {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #0ff;
+            border-radius: 10px;
+            padding: 18px;
+            min-width: 320px;
+            max-width: 400px;
+        }
+
+        .cluster-status-title {
+            font-size: 1.2em;
+            color: #0ff;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #cluster-status-content {
+            font-size: 1em;
+            color: #fff;
+        }
+
+        .hud-green {
+            color: #0f0;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -258,14 +297,22 @@
         <p class="subtitle">WebGL GPU Benchmark Suite</p>
         <input type="text" id="api-input" value="http://localhost:8000" placeholder="Queztl-Core API URL">
         <button id="start-button">▶ START BENCHMARK</button>
-        <p class="loading" id="loading" style="display:none; margin-top: 30px;">Initializing WebGL Engine...</p>
+        <p class="loading hidden mt-30" id="loading">Initializing WebGL Engine...</p>
+    </div>
+
+    <!-- Cluster Status Panel -->
+    <div id="cluster-status-panel">
+        <div class="cluster-status-title">Cluster Status</div>
+        <div id="cluster-status-content">
+            Loading cluster status...
+        </div>
     </div>
 
     <!-- 3D Canvas Container -->
     <div id="canvas-container"></div>
 
     <!-- HUD -->
-    <div id="hud" style="display:none;">
+    <div id="hud" class="hidden">
         <div id="fps-counter">FPS: 0</div>
         <div class="hud-metric">
             <span class="hud-label">Test:</span>
@@ -289,12 +336,12 @@
         </div>
         <div class="hud-metric">
             <span class="hud-label">Score:</span>
-            <span class="hud-value" id="current-score" style="color: #0f0;">0</span>
+            <span class="hud-value hud-green" id="current-score">0</span>
         </div>
     </div>
 
     <!-- Progress Bar -->
-    <div id="progress-bar" style="display:none;">
+    <div id="progress-bar" class="hidden">
         <div id="progress-fill">0%</div>
     </div>
 
@@ -315,6 +362,7 @@
     <script>
         // Configuration
         let API_URL = 'http://localhost:8000';
+        let CLUSTER_STATUS_URL = '';
         let scene, camera, renderer, composer;
         let objects = [];
         let lights = [];
@@ -1162,28 +1210,25 @@
         async function testGeometry() {
             const vertices = Array(5000 * 3).fill(0).map(() => Math.random() * 10);
             const indices = Array(10000 * 3).fill(0).map((_, i) => i % 5000);
-
-            const response = await fetch(`${API_URL}/api/gpu/render`, {
+            // Use distributed vGPU endpoint
+            const response = await fetch(`${API_URL}/api/vgpu/cluster/render`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ vertices, indices, width: 1024, height: 1024 })
             });
-
             const data = await response.json();
-            return { score: 100, details: { vertices: 5000, triangles: 10000 } };
+            return { score: 100, details: { vertices: 5000, triangles: 10000, cluster: data } };
         }
 
         async function testThroughput() {
             const iterations = 200;
             const startTime = performance.now();
-
+            // Use distributed vGPU endpoint
             for (let i = 0; i < iterations; i++) {
-                await fetch(`${API_URL}/api/health`);
+                await fetch(`${API_URL}/api/vgpu/cluster/health`);
             }
-
             const endTime = performance.now();
             const opsPerSec = Math.round((iterations / ((endTime - startTime) / 1000)));
-
             return {
                 score: Math.min(100, opsPerSec / 10),
                 details: { operations_per_second: opsPerSec, iterations }
@@ -1191,13 +1236,47 @@
         }
 
         async function testMemory() {
-            const response = await fetch(`${API_URL}/api/security/memory`);
+            // Use distributed vGPU endpoint
+            const response = await fetch(`${API_URL}/api/vgpu/cluster/memory`);
             const data = await response.json();
-
             return {
                 score: data.leak_detection?.has_leaks ? 50 : 100,
                 details: data
             };
+        }
+
+        // Cluster status polling
+        function startClusterStatusPolling() {
+            CLUSTER_STATUS_URL = `${API_URL}/api/vgpu/cluster/status`;
+            async function poll() {
+                try {
+                    const res = await fetch(CLUSTER_STATUS_URL);
+                    if (!res.ok) throw new Error('Cluster status unavailable');
+                    const data = await res.json();
+                    renderClusterStatus(data);
+                } catch (e) {
+                    document.getElementById('cluster-status-content').innerHTML = `<span style='color:#ff4444;'>Error: ${e.message}</span>`;
+                }
+                setTimeout(poll, 5000);
+            }
+            poll();
+        }
+
+        function renderClusterStatus(data) {
+            if (!data || !data.nodes) {
+                document.getElementById('cluster-status-content').innerHTML = '<span style="color:#ff4444;">No cluster data</span>';
+                return;
+            }
+            let html = `<div style='margin-bottom:8px;'><strong>Nodes:</strong> ${data.nodes.length}</div>`;
+            html += '<table style="width:100%;font-size:0.95em;color:#fff;"><tr><th style="text-align:left;color:#0ff;">Node</th><th style="text-align:left;color:#0ff;">vGPUs</th><th style="text-align:left;color:#0ff;">Status</th></tr>';
+            for (const node of data.nodes) {
+                html += `<tr><td>${node.name || node.id}</td><td>${node.vgpu_count || 0}</td><td style='color:${node.status === "online" ? "#0f0" : "#ff4444"};font-weight:bold;'>${node.status}</td></tr>`;
+            }
+            html += '</table>';
+            if (data.pool_status) {
+                html += `<div style='margin-top:10px;'><strong>Pool:</strong> ${data.pool_status}</div>`;
+            }
+            document.getElementById('cluster-status-content').innerHTML = html;
         }
 
         // Run benchmark
@@ -1205,10 +1284,11 @@
             isRunning = true;
             fpsHistory = [];
             testResults = {};
-
             document.getElementById('start-screen').style.display = 'none';
             document.getElementById('hud').style.display = 'block';
             document.getElementById('progress-bar').style.display = 'block';
+            document.getElementById('cluster-status-panel').style.display = 'block';
+            startClusterStatusPolling();
 
             for (let i = 0; i < tests.length; i++) {
                 currentTestIndex = i;
@@ -1478,7 +1558,7 @@
                     <span style="color: #888;">Global Rank:</span>
                     <span style="color: #0ff; font-weight: bold;">#${ranking} of ${benchmarkComparisons.systems.length}</span>
                 </div>
-                <div style="margin-top: 25px; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 8px;">
+                <div style="margin-top: 25px; padding: 15px; background: rgba(0, 0, 0, 0.3); border-radius: 8px;">
                     <div style="color: #0ff; margin-bottom: 15px; font-weight: bold;">⚖️ VS. TOP COMPETITION:</div>
                     ${benchmarkComparisons.systems.slice(0, 5).map((gpu, idx) => {
                 if (gpu.name === 'QUEZTL-CORE') return '';

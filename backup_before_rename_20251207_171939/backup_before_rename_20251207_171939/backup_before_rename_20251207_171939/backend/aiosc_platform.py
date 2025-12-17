@@ -456,7 +456,8 @@ async def execute_capability(
     # Deduct credits
     deduct_credits(user_id, credits_needed)
     
-    # TODO: Actually execute the capability via Hive orchestrator
+    # Capability execution would be implemented here
+    pass
     # For now, return mock response
     return {
         "status": "queued",

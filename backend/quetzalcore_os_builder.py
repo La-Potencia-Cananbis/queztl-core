@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""
+# """
 #  QuetzalCore Custom Linux OS Builder
 
 # Features:
-- Minimal Linux kernel build
-- Custom kernel configuration
-- QuetzalCore-optimized settings
-- Hypervisor integration
-- Fast boot optimization
-"""
+# - Minimal Linux kernel build
+# - Custom kernel configuration
+# - QuetzalCore-optimized settings
+# - Hypervisor integration
+# - Fast boot optimization
+# """
 
 # import asyncio
 # import json
