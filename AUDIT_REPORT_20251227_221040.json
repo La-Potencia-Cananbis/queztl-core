@@ -1,0 +1,3036 @@
+{
+  "timestamp": "2025-12-27T22:10:40.137488",
+  "total_files": 211,
+  "duplicate_groups": [
+    {
+      "similarity": 1.0,
+      "files": [
+        "quetzal-gis-pro.html",
+        "gis-work.html",
+        "dashboard/out/quetzal-gis-pro.html",
+        "dashboard/out/gis-work.html",
+        "dashboard/public/quetzal-gis-pro.html",
+        "dashboard/public/gis-work.html"
+      ],
+      "recommendation": "KEEP: dashboard/public/quetzal-gis-pro.html (source), DELETE: quetzal-gis-pro.html, gis-work.html, dashboard/out/quetzal-gis-pro.html, dashboard/out/gis-work.html, dashboard/public/gis-work.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "gis-simple.html",
+        "dashboard/out/gis-simple.html",
+        "dashboard/public/gis-simple.html"
+      ],
+      "recommendation": "KEEP: dashboard/public/gis-simple.html (source), DELETE: gis-simple.html, dashboard/out/gis-simple.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "404.html",
+        "404/index.html"
+      ],
+      "recommendation": "KEEP: 404.html, DELETE: 404/index.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "gis.html",
+        "gis-deploy/index.html",
+        "dashboard/gis-index.html",
+        "dashboard/out/gis.html"
+      ],
+      "recommendation": "KEEP: gis.html, DELETE: gis-deploy/index.html, dashboard/gis-index.html, dashboard/out/gis.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "gpu-demo.html",
+        "dashboard/out/gpu-demo.html",
+        "dashboard/public/gpu-demo.html"
+      ],
+      "recommendation": "KEEP: dashboard/public/gpu-demo.html (source), DELETE: gpu-demo.html, dashboard/out/gpu-demo.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "3dmark-pro.html",
+        "dashboard/out/3dmark-pro.html"
+      ],
+      "recommendation": "KEEP: 3dmark-pro.html, DELETE: dashboard/out/3dmark-pro.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "test-api.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/test-api.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/test-api.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/test-api.html",
+        "backup_before_rename_20251207_171939/dashboard/public/test-api.html",
+        "dashboard/out/test-api.html",
+        "dashboard/public/test-api.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/test-api.html (source), DELETE: test-api.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/test-api.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/test-api.html, backup_before_rename_20251207_171939/dashboard/public/test-api.html, dashboard/out/test-api.html, dashboard/public/test-api.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "web-gpu-explained.html",
+        "dashboard/out/web-gpu-explained.html",
+        "dashboard/public/web-gpu-explained.html"
+      ],
+      "recommendation": "KEEP: dashboard/public/web-gpu-explained.html (source), DELETE: web-gpu-explained.html, dashboard/out/web-gpu-explained.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "3dmark-immersive.html",
+        "dashboard/out/3dmark-immersive.html",
+        "dashboard/public/3dmark-immersive.html"
+      ],
+      "recommendation": "KEEP: dashboard/public/3dmark-immersive.html (source), DELETE: 3dmark-immersive.html, dashboard/out/3dmark-immersive.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "gen3d.html",
+        "dashboard/out/gen3d.html"
+      ],
+      "recommendation": "KEEP: gen3d.html, DELETE: dashboard/out/gen3d.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "frontend/quetzal-browser.html",
+        "build/mac/QuetzalBrowser.app/Contents/Resources/quetzal-browser.html"
+      ],
+      "recommendation": "KEEP: frontend/quetzal-browser.html, DELETE: build/mac/QuetzalBrowser.app/Contents/Resources/quetzal-browser.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backend/outreach_dashboard.html",
+        "backup_before_rename_20251207_171939/backend/outreach_dashboard.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/outreach_dashboard.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/outreach_dashboard.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/outreach_dashboard.html"
+      ],
+      "recommendation": "KEEP: backend/outreach_dashboard.html, DELETE: backup_before_rename_20251207_171939/backend/outreach_dashboard.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/outreach_dashboard.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/outreach_dashboard.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/outreach_dashboard.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backend/qhp_demo.html",
+        "backup_before_rename_20251207_171939/backend/qhp_demo.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/qhp_demo.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/qhp_demo.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/qhp_demo.html"
+      ],
+      "recommendation": "KEEP: backend/qhp_demo.html, DELETE: backup_before_rename_20251207_171939/backend/qhp_demo.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/qhp_demo.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/qhp_demo.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/qhp_demo.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backend/queztl_dashboard.html",
+        "backup_before_rename_20251207_171939/backend/queztl_dashboard.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/queztl_dashboard.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/queztl_dashboard.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/queztl_dashboard.html"
+      ],
+      "recommendation": "KEEP: backend/queztl_dashboard.html, DELETE: backup_before_rename_20251207_171939/backend/queztl_dashboard.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/queztl_dashboard.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/queztl_dashboard.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/queztl_dashboard.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/queztl_os_demo.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/queztl_os_demo.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/queztl_os_demo.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/queztl_os_demo.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/queztl_os_demo.html, DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/queztl_os_demo.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/queztl_os_demo.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/queztl_os_demo.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/3d-showcase-deploy/index.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/index.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/index.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/3d-showcase-deploy/index.html (deployed), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/index.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/index.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/3d-showcase-deploy/home.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/home.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/home.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/3d-showcase-deploy/home.html (deployed), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/home.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/home.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/3d-showcase-deploy/email.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/email.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/email.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/3d-showcase-deploy/email.html (deployed), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/email.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/email.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/3d-showcase-deploy/login.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/login.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/login.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/3d-showcase-deploy/login.html (deployed), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/login.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/login.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/3d-showcase-deploy/demos.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/demos.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/demos.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/3d-showcase-deploy/demos.html (deployed), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/demos.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/demos.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/3d-showcase-deploy/secrets.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/secrets.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/secrets.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/3d-showcase-deploy/secrets.html (deployed), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/secrets.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/secrets.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/3d-showcase-deploy/benchmark.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/benchmark.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/benchmark.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/3d-showcase-deploy/benchmark.html (deployed), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/benchmark.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/benchmark.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/3d-showcase-deploy/3d-demo.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/3d-demo.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/3d-demo.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/3d-showcase-deploy/3d-demo.html (deployed), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/3d-demo.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/3d-demo.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html",
+        "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html, DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html, backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html",
+        "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html, DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html, backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/numba/core/annotations/template.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/numba/core/annotations/template.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/numba/core/annotations/template.html",
+        "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/numba/core/annotations/template.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/numba/core/annotations/template.html, DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/numba/core/annotations/template.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/numba/core/annotations/template.html, backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/numba/core/annotations/template.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html",
+        "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html, DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html, backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html",
+        "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html, DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html, backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html",
+        "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html, DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html, backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html",
+        "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html, DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html, backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/index.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/index.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/index.html",
+        "backup_before_rename_20251207_171939/dashboard/out/index.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/index.html, DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/index.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/index.html, backup_before_rename_20251207_171939/dashboard/out/index.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/404.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/404.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/404.html",
+        "backup_before_rename_20251207_171939/dashboard/out/404.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/404.html, DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/404.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/404.html, backup_before_rename_20251207_171939/dashboard/out/404.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gpu-demo.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gpu-demo.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gpu-demo.html",
+        "backup_before_rename_20251207_171939/dashboard/public/gpu-demo.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gpu-demo.html (source), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gpu-demo.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gpu-demo.html, backup_before_rename_20251207_171939/dashboard/public/gpu-demo.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-pro.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-pro.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-pro.html",
+        "backup_before_rename_20251207_171939/dashboard/public/3dmark-pro.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-pro.html (source), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-pro.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-pro.html, backup_before_rename_20251207_171939/dashboard/public/3dmark-pro.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/web-gpu-explained.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/web-gpu-explained.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/web-gpu-explained.html",
+        "backup_before_rename_20251207_171939/dashboard/public/web-gpu-explained.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/web-gpu-explained.html (source), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/web-gpu-explained.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/web-gpu-explained.html, backup_before_rename_20251207_171939/dashboard/public/web-gpu-explained.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-immersive.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-immersive.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-immersive.html",
+        "backup_before_rename_20251207_171939/dashboard/public/3dmark-immersive.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-immersive.html (source), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-immersive.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-immersive.html, backup_before_rename_20251207_171939/dashboard/public/3dmark-immersive.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gen3d.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gen3d.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gen3d.html",
+        "backup_before_rename_20251207_171939/dashboard/public/gen3d.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gen3d.html (source), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gen3d.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gen3d.html, backup_before_rename_20251207_171939/dashboard/public/gen3d.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/.next/server/pages/500.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/.next/server/pages/500.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/.next/server/pages/500.html",
+        "backup_before_rename_20251207_171939/dashboard/.next/server/pages/500.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/.next/server/pages/500.html, DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/.next/server/pages/500.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/.next/server/pages/500.html, backup_before_rename_20251207_171939/dashboard/.next/server/pages/500.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/recharts/umd/report.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/recharts/umd/report.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/recharts/umd/report.html",
+        "backup_before_rename_20251207_171939/dashboard/node_modules/recharts/umd/report.html",
+        "dashboard/node_modules/recharts/umd/report.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/recharts/umd/report.html, DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/recharts/umd/report.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/recharts/umd/report.html, backup_before_rename_20251207_171939/dashboard/node_modules/recharts/umd/report.html, dashboard/node_modules/recharts/umd/report.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/decimal.js-light/doc/API.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/decimal.js-light/doc/API.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/decimal.js-light/doc/API.html",
+        "backup_before_rename_20251207_171939/dashboard/node_modules/decimal.js-light/doc/API.html",
+        "dashboard/node_modules/decimal.js-light/doc/API.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/decimal.js-light/doc/API.html, DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/decimal.js-light/doc/API.html, backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/decimal.js-light/doc/API.html, backup_before_rename_20251207_171939/dashboard/node_modules/decimal.js-light/doc/API.html, dashboard/node_modules/decimal.js-light/doc/API.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html",
+        "backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html",
+        "3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html",
+        "dashboard/.netlify/plugins/node_modules/pino/index.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html (deployed), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html, backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html, 3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html, dashboard/.netlify/plugins/node_modules/pino/index.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+        "backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+        "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+        "dashboard/.netlify/plugins/node_modules/tslib/tslib.es6.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html (deployed), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html, backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html, 3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html, dashboard/.netlify/plugins/node_modules/tslib/tslib.es6.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html",
+        "backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html",
+        "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html",
+        "dashboard/.netlify/plugins/node_modules/tslib/tslib.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html (deployed), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html, backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html, 3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html, dashboard/.netlify/plugins/node_modules/tslib/tslib.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+        "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+        "backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+        "3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+        "dashboard/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html"
+      ],
+      "recommendation": "KEEP: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html (deployed), DELETE: backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html, backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html, 3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html, dashboard/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "dashboard/out/index.html",
+        "dashboard/.next/server/app/index.html"
+      ],
+      "recommendation": "KEEP: dashboard/out/index.html, DELETE: dashboard/.next/server/app/index.html"
+    },
+    {
+      "similarity": 1.0,
+      "files": [
+        "dashboard/out/404.html",
+        "dashboard/.next/server/app/_not-found.html",
+        "dashboard/.next/server/pages/404.html",
+        "dashboard/.next/server/app/_not-found/index.html",
+        "dashboard/out/404/index.html"
+      ],
+      "recommendation": "KEEP: dashboard/out/404.html, DELETE: dashboard/.next/server/app/_not-found.html, dashboard/.next/server/pages/404.html, dashboard/.next/server/app/_not-found/index.html, dashboard/out/404/index.html"
+    }
+  ],
+  "file_inventory": {
+    "quetzal-gis-pro.html": {
+      "path": "quetzal-gis-pro.html",
+      "size": 19315,
+      "hash": "a3db44d1b48305625d5bd6f18bea590d",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro - Enterprise Platform",
+      "type": "utility"
+    },
+    "index.html": {
+      "path": "index.html",
+      "size": 17191,
+      "hash": "4e150d8dd1a88e20b7c60aedb18e9a48",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl-Core Testing &amp; Monitoring Dashboard",
+      "type": "landing"
+    },
+    "gis-simple.html": {
+      "path": "gis-simple.html",
+      "size": 10300,
+      "hash": "0736733e41a28311ef4c3d36fe2cdd28",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro",
+      "type": "utility"
+    },
+    "web3-premium-dashboard.html": {
+      "path": "web3-premium-dashboard.html",
+      "size": 26123,
+      "hash": "ff2219d1294cedd46628b24dbf7cabb7",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl Web 3.0 - Ultra Premium Edition",
+      "type": "dashboard"
+    },
+    "graphics-demo.html": {
+      "path": "graphics-demo.html",
+      "size": 14595,
+      "hash": "1caf1d7caffe64a015f44b4892a8067f",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl Graphics Demo - 3D Visualizations",
+      "type": "demo"
+    },
+    "404.html": {
+      "path": "404.html",
+      "size": 6740,
+      "hash": "bc3938035c4aebf6846f154f11cf6f5b",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "404: This page could not be found.",
+      "type": "utility"
+    },
+    "queztl_os_demo.html": {
+      "path": "queztl_os_demo.html",
+      "size": 29845,
+      "hash": "a5d5c722e975e5943bfb7aca65ace0de",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl OS - Demo Dashboard",
+      "type": "demo"
+    },
+    "gis.html": {
+      "path": "gis.html",
+      "size": 13969,
+      "hash": "5de9ead29a4c9f0ac7302606e888c325",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro - EPIC Demo",
+      "type": "utility"
+    },
+    "gis-work.html": {
+      "path": "gis-work.html",
+      "size": 19315,
+      "hash": "a3db44d1b48305625d5bd6f18bea590d",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro - Enterprise Platform",
+      "type": "utility"
+    },
+    "gpu-demo.html": {
+      "path": "gpu-demo.html",
+      "size": 17574,
+      "hash": "40fbda4dbd3a61e004079bc080ae72ff",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/gpu"
+      ],
+      "title": "\ud83e\udd85 Queztl Web GPU Driver - Demo",
+      "type": "demo"
+    },
+    "supercomputer-comparison.html": {
+      "path": "supercomputer-comparison.html",
+      "size": 18521,
+      "hash": "68563eaf32adc2b909a119c62366b025",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl vs Supercomputers - 2025 Comparison",
+      "type": "utility"
+    },
+    "3dmark-pro.html": {
+      "path": "3dmark-pro.html",
+      "size": 67198,
+      "hash": "ab1062729b23ebdd102c5a963c344461",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl 3DMark Professional - WebGL Benchmark",
+      "type": "benchmark"
+    },
+    "test-api.html": {
+      "path": "test-api.html",
+      "size": 4277,
+      "hash": "13eebb57b46b24687bf0247ed1534666",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/health",
+        "/api/gpu/info",
+        "/api/power/benchmark",
+        "/api/security/memory"
+      ],
+      "title": "API Test",
+      "type": "utility"
+    },
+    "web-gpu-explained.html": {
+      "path": "web-gpu-explained.html",
+      "size": 16420,
+      "hash": "bd4e20ac4a6440c2648379af83171904",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Web GPU - Simple Explanation",
+      "type": "utility"
+    },
+    "demo.html": {
+      "path": "demo.html",
+      "size": 19238,
+      "hash": "6cf12cbe52b55e2a924bb5571dc91ccd",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore BETA 1 - Mining Intelligence Demo",
+      "type": "demo"
+    },
+    "3dmark-immersive.html": {
+      "path": "3dmark-immersive.html",
+      "size": 23740,
+      "hash": "d8eba5df2c9cba4e470e2caae29c42f9",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl 3DMark - GPU Benchmark",
+      "type": "benchmark"
+    },
+    "gen3d.html": {
+      "path": "gen3d.html",
+      "size": 17294,
+      "hash": "72b08822a365999dc07dc9ef871dd2d6",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl Gen3D - AI 3D Model Generation",
+      "type": "demo"
+    },
+    "quetzalcore-portal/index.html": {
+      "path": "quetzalcore-portal/index.html",
+      "size": 18262,
+      "hash": "a1bfc12a59a16be5e3b4eaf3e64c5af6",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Portal - Testing Dashboard",
+      "type": "landing"
+    },
+    "frontend/gis-studio-integrated.html": {
+      "path": "frontend/gis-studio-integrated.html",
+      "size": 32241,
+      "hash": "8219cf7cbd9184e17672f2094c58b8ee",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\u26a1 QUETZAL GIS - ArcGIS + OPEN TOOLS INTEGRATED",
+      "type": "utility"
+    },
+    "frontend/quetzal-gis-demo.html": {
+      "path": "frontend/quetzal-gis-demo.html",
+      "size": 22508,
+      "hash": "53ce5b26485de0fe8ba7b2f94e723f1c",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro - EPIC Demo",
+      "type": "demo"
+    },
+    "frontend/gis-studio-pro.html": {
+      "path": "frontend/gis-studio-pro.html",
+      "size": 48034,
+      "hash": "9d206ae87cfcd1d0afcdbd4256f4b1ac",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\u26a1 QUETZAL GIS - PROFESSIONAL ANALYSIS TOOL",
+      "type": "utility"
+    },
+    "frontend/gis-studio.html": {
+      "path": "frontend/gis-studio.html",
+      "size": 24818,
+      "hash": "1f27abc999f96392a922b4efbd06a0a7",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\u26a1 QUETZAL GIS STUDIO - NEXT GEN",
+      "type": "utility"
+    },
+    "frontend/quetzal-arcgis-complete.html": {
+      "path": "frontend/quetzal-arcgis-complete.html",
+      "size": 44178,
+      "hash": "570114821555636a9ec4f9c7aaf14e00",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS PRO - ArcGIS Alternative & Surpasser",
+      "type": "utility"
+    },
+    "frontend/quetzal-gis-fixed.html": {
+      "path": "frontend/quetzal-gis-fixed.html",
+      "size": 29501,
+      "hash": "7bd1e814ae45b66b42f325539b8bb99a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro - Enterprise Geospatial Platform",
+      "type": "utility"
+    },
+    "frontend/gis-real.html": {
+      "path": "frontend/gis-real.html",
+      "size": 32400,
+      "hash": "ad650a4845a257853273e30fa01289f6",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\u26a1 REAL GIS ANALYSIS TOOL",
+      "type": "utility"
+    },
+    "frontend/gis-studio-dashboard.html": {
+      "path": "frontend/gis-studio-dashboard.html",
+      "size": 27670,
+      "hash": "8cfaaa72c509319f4c8f56b82e12dbbc",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/gis/studio/validate/lidar",
+        "/api/gis/studio/validate/dem",
+        "/api/gis/studio/integrate/terrain",
+        "/api/gis/studio/integrate/magnetic",
+        "/api/gis/studio/train/terrain",
+        "/api/gis/studio/train/depth",
+        "/api/gis/studio/predict",
+        "/api/gis/studio/improve/feedback",
+        "/api/gis/studio/status"
+      ],
+      "title": "\ud83d\uddfa\ufe0f QuetzalCore GIS Studio - Interactive Dashboard",
+      "type": "dashboard"
+    },
+    "frontend/quetzal-gis-ultimate.html": {
+      "path": "frontend/quetzal-gis-ultimate.html",
+      "size": 42601,
+      "hash": "c26f85818c7fff90543c03c9eaab89c9",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro - Enterprise Geospatial Platform",
+      "type": "utility"
+    },
+    "frontend/quetzal-gis-enterprise.html": {
+      "path": "frontend/quetzal-gis-enterprise.html",
+      "size": 49327,
+      "hash": "08878af692a05a0204d3c7b41a0da7de",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS ENTERPRISE - Professional Geospatial Platform",
+      "type": "utility"
+    },
+    "frontend/gis-pro-platform.html": {
+      "path": "frontend/gis-pro-platform.html",
+      "size": 27776,
+      "hash": "81e19dd3b1af4caa112499fe586d129c",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83d\uddfa\ufe0f QUETZAL GIS PRO - Enterprise Geospatial Platform",
+      "type": "utility"
+    },
+    "frontend/quetzal-browser.html": {
+      "path": "frontend/quetzal-browser.html",
+      "size": 18480,
+      "hash": "2c6c96e97670499431b8dcddf9a7e93d",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Native Browser - QP Protocol",
+      "type": "utility"
+    },
+    "backend/outreach_dashboard.html": {
+      "path": "backend/outreach_dashboard.html",
+      "size": 14440,
+      "hash": "85e1a15a8dd8756209360f2bae0c0f4f",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QHP Outreach Engine - Dashboard",
+      "type": "dashboard"
+    },
+    "backend/qhp_demo.html": {
+      "path": "backend/qhp_demo.html",
+      "size": 11240,
+      "hash": "b61a6b13064c86bb6e1d7a869f59ea88",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Protocol Demo",
+      "type": "demo"
+    },
+    "backend/queztl_dashboard.html": {
+      "path": "backend/queztl_dashboard.html",
+      "size": 14118,
+      "hash": "059095c452db95aa6c397aeb2c6b64e6",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Protocol - ML Dashboard",
+      "type": "dashboard"
+    },
+    "gis-deploy/index.html": {
+      "path": "gis-deploy/index.html",
+      "size": 13969,
+      "hash": "5de9ead29a4c9f0ac7302606e888c325",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro - EPIC Demo",
+      "type": "landing"
+    },
+    "dashboard/index.html": {
+      "path": "dashboard/index.html",
+      "size": 8746,
+      "hash": "3e5778d9515e1a0f39a6f7bf1e30981b",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Dashboard - Better than VMware",
+      "type": "landing"
+    },
+    "dashboard/gis-index.html": {
+      "path": "dashboard/gis-index.html",
+      "size": 13969,
+      "hash": "5de9ead29a4c9f0ac7302606e888c325",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro - EPIC Demo",
+      "type": "landing"
+    },
+    "3d-showcase-deploy/index.html": {
+      "path": "3d-showcase-deploy/index.html",
+      "size": 9225,
+      "hash": "b0e36aa88721c857dd1ce9203018aff1",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl Email - 10x Faster than ProtonMail",
+      "type": "landing"
+    },
+    "3d-showcase-deploy/home.html": {
+      "path": "3d-showcase-deploy/home.html",
+      "size": 14680,
+      "hash": "7c0068f4ac2c58a4009421f6a1c9ab55",
+      "has_canvas": false,
+      "has_webgl": true,
+      "has_auth": true,
+      "api_endpoints": [
+        "/api/generate/text-to-3d",
+        "/api/generate/image-to-3d",
+        "/api/blender/connect",
+        "/api/gis/process",
+        "/api/geophysics/analyze",
+        "/api/training/start",
+        "/api/health"
+      ],
+      "title": "\ud83e\udd85 Queztl - Application Portal",
+      "type": "dashboard"
+    },
+    "3d-showcase-deploy/email.html": {
+      "path": "3d-showcase-deploy/email.html",
+      "size": 17845,
+      "hash": "39b2f6dabcf20d6bc2d2725fbe819b5c",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Salvador's Email - Queztl",
+      "type": "utility"
+    },
+    "3d-showcase-deploy/login.html": {
+      "path": "3d-showcase-deploy/login.html",
+      "size": 6274,
+      "hash": "bd630bd1738ee304da6f60dcc860562d",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83d\udd10 Queztl Access Control",
+      "type": "auth"
+    },
+    "3d-showcase-deploy/demos.html": {
+      "path": "3d-showcase-deploy/demos.html",
+      "size": 5786,
+      "hash": "d1da63ef2ef000623128c8af69dc7182",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "Queztl 3D Showcase",
+      "type": "demo"
+    },
+    "3d-showcase-deploy/secrets.html": {
+      "path": "3d-showcase-deploy/secrets.html",
+      "size": 14940,
+      "hash": "7c476aff02ab16607fe26bdf55792e9a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83d\udd10 Queztl Secrets Vault",
+      "type": "utility"
+    },
+    "3d-showcase-deploy/benchmark.html": {
+      "path": "3d-showcase-deploy/benchmark.html",
+      "size": 33178,
+      "hash": "c1f2213b865ac1cee8f12584333480cb",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl-Core 3DMark - GPU Benchmark Suite",
+      "type": "benchmark"
+    },
+    "3d-showcase-deploy/3d-demo.html": {
+      "path": "3d-showcase-deploy/3d-demo.html",
+      "size": 67486,
+      "hash": "dd0be2a65fa60122c970612924f9265c",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl 3DMark Professional - WebGL Benchmark",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/queztl_os_demo.html": {
+      "path": "backup_before_rename_20251207_171939/queztl_os_demo.html",
+      "size": 29905,
+      "hash": "47aefd5554f21e476d09cbf9da855bce",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore OS - Demo Dashboard",
+      "type": "demo"
+    },
+    "404/index.html": {
+      "path": "404/index.html",
+      "size": 6740,
+      "hash": "bc3938035c4aebf6846f154f11cf6f5b",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "404: This page could not be found.",
+      "type": "landing"
+    },
+    "gen3d-app/frontend/index.html": {
+      "path": "gen3d-app/frontend/index.html",
+      "size": 20287,
+      "hash": "38972c0920aac0d4b36dd757d347ef73",
+      "has_canvas": false,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Gen3D - AI 3D Model Generation",
+      "type": "landing"
+    },
+    "vms/test-vm/console.html": {
+      "path": "vms/test-vm/console.html",
+      "size": 27656,
+      "hash": "9d8a0bbda70140f539b11e3da0079c6f",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore VM Console - test-vm-001",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backend/outreach_dashboard.html": {
+      "path": "backup_before_rename_20251207_171939/backend/outreach_dashboard.html",
+      "size": 14440,
+      "hash": "85e1a15a8dd8756209360f2bae0c0f4f",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QHP Outreach Engine - Dashboard",
+      "type": "dashboard"
+    },
+    "backup_before_rename_20251207_171939/backend/qhp_demo.html": {
+      "path": "backup_before_rename_20251207_171939/backend/qhp_demo.html",
+      "size": 11240,
+      "hash": "b61a6b13064c86bb6e1d7a869f59ea88",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Protocol Demo",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backend/queztl_dashboard.html": {
+      "path": "backup_before_rename_20251207_171939/backend/queztl_dashboard.html",
+      "size": 14118,
+      "hash": "059095c452db95aa6c397aeb2c6b64e6",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Protocol - ML Dashboard",
+      "type": "dashboard"
+    },
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/index.html": {
+      "path": "backup_before_rename_20251207_171939/3d-showcase-deploy/index.html",
+      "size": 9265,
+      "hash": "2099bd090487542a57d242cfa896ac4c",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Email - 10x Faster than ProtonMail",
+      "type": "landing"
+    },
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/home.html": {
+      "path": "backup_before_rename_20251207_171939/3d-showcase-deploy/home.html",
+      "size": 14725,
+      "hash": "55c2d87a5183e7b7d8b88e2cce2af8d8",
+      "has_canvas": false,
+      "has_webgl": true,
+      "has_auth": true,
+      "api_endpoints": [
+        "/api/generate/text-to-3d",
+        "/api/generate/image-to-3d",
+        "/api/blender/connect",
+        "/api/gis/process",
+        "/api/geophysics/analyze",
+        "/api/training/start",
+        "/api/health"
+      ],
+      "title": "\ud83e\udd85 QuetzalCore - Application Portal",
+      "type": "dashboard"
+    },
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/email.html": {
+      "path": "backup_before_rename_20251207_171939/3d-showcase-deploy/email.html",
+      "size": 17865,
+      "hash": "01eff1a05300311910718c0807bd6801",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Salvador's Email - QuetzalCore",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/login.html": {
+      "path": "backup_before_rename_20251207_171939/3d-showcase-deploy/login.html",
+      "size": 6314,
+      "hash": "133eb5ebdca421275fed0f27979e2d01",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83d\udd10 QuetzalCore Access Control",
+      "type": "auth"
+    },
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/demos.html": {
+      "path": "backup_before_rename_20251207_171939/3d-showcase-deploy/demos.html",
+      "size": 5816,
+      "hash": "e4badf08517fc2e007bf2d28d31086b2",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "QuetzalCore 3D Showcase",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/secrets.html": {
+      "path": "backup_before_rename_20251207_171939/3d-showcase-deploy/secrets.html",
+      "size": 15005,
+      "hash": "192e73c75bbd8bb2cbe04f4f9dd88a24",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83d\udd10 QuetzalCore Secrets Vault",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/benchmark.html": {
+      "path": "backup_before_rename_20251207_171939/3d-showcase-deploy/benchmark.html",
+      "size": 33233,
+      "hash": "ee963e000b1861ba374813e9a262f1a3",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 QuetzalCore-Core 3DMark - GPU Benchmark Suite",
+      "type": "benchmark"
+    },
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/3d-demo.html": {
+      "path": "backup_before_rename_20251207_171939/3d-showcase-deploy/3d-demo.html",
+      "size": 67636,
+      "hash": "fd5fd093c23699020a8de1dba92c53c9",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 QuetzalCore 3DMark Professional - WebGL Benchmark",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/queztl_os_demo.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/queztl_os_demo.html",
+      "size": 29905,
+      "hash": "47aefd5554f21e476d09cbf9da855bce",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore OS - Demo Dashboard",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/outreach_dashboard.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/outreach_dashboard.html",
+      "size": 14440,
+      "hash": "85e1a15a8dd8756209360f2bae0c0f4f",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QHP Outreach Engine - Dashboard",
+      "type": "dashboard"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/qhp_demo.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/qhp_demo.html",
+      "size": 11240,
+      "hash": "b61a6b13064c86bb6e1d7a869f59ea88",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Protocol Demo",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/queztl_dashboard.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/queztl_dashboard.html",
+      "size": 14118,
+      "hash": "059095c452db95aa6c397aeb2c6b64e6",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Protocol - ML Dashboard",
+      "type": "dashboard"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/index.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/index.html",
+      "size": 9265,
+      "hash": "2099bd090487542a57d242cfa896ac4c",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Email - 10x Faster than ProtonMail",
+      "type": "landing"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/home.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/home.html",
+      "size": 14725,
+      "hash": "55c2d87a5183e7b7d8b88e2cce2af8d8",
+      "has_canvas": false,
+      "has_webgl": true,
+      "has_auth": true,
+      "api_endpoints": [
+        "/api/generate/text-to-3d",
+        "/api/generate/image-to-3d",
+        "/api/blender/connect",
+        "/api/gis/process",
+        "/api/geophysics/analyze",
+        "/api/training/start",
+        "/api/health"
+      ],
+      "title": "\ud83e\udd85 QuetzalCore - Application Portal",
+      "type": "dashboard"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/email.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/email.html",
+      "size": 17865,
+      "hash": "01eff1a05300311910718c0807bd6801",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Salvador's Email - QuetzalCore",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/login.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/login.html",
+      "size": 6314,
+      "hash": "133eb5ebdca421275fed0f27979e2d01",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83d\udd10 QuetzalCore Access Control",
+      "type": "auth"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/demos.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/demos.html",
+      "size": 5816,
+      "hash": "e4badf08517fc2e007bf2d28d31086b2",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "QuetzalCore 3D Showcase",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/secrets.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/secrets.html",
+      "size": 15005,
+      "hash": "192e73c75bbd8bb2cbe04f4f9dd88a24",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83d\udd10 QuetzalCore Secrets Vault",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/benchmark.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/benchmark.html",
+      "size": 33233,
+      "hash": "ee963e000b1861ba374813e9a262f1a3",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 QuetzalCore-Core 3DMark - GPU Benchmark Suite",
+      "type": "benchmark"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/3d-demo.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/3d-demo.html",
+      "size": 67636,
+      "hash": "fd5fd093c23699020a8de1dba92c53c9",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 QuetzalCore 3DMark Professional - WebGL Benchmark",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/queztl_os_demo.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/queztl_os_demo.html",
+      "size": 29905,
+      "hash": "47aefd5554f21e476d09cbf9da855bce",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore OS - Demo Dashboard",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/outreach_dashboard.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/outreach_dashboard.html",
+      "size": 14440,
+      "hash": "85e1a15a8dd8756209360f2bae0c0f4f",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QHP Outreach Engine - Dashboard",
+      "type": "dashboard"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/qhp_demo.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/qhp_demo.html",
+      "size": 11240,
+      "hash": "b61a6b13064c86bb6e1d7a869f59ea88",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Protocol Demo",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/queztl_dashboard.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/queztl_dashboard.html",
+      "size": 14118,
+      "hash": "059095c452db95aa6c397aeb2c6b64e6",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Protocol - ML Dashboard",
+      "type": "dashboard"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/index.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/index.html",
+      "size": 9265,
+      "hash": "2099bd090487542a57d242cfa896ac4c",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Email - 10x Faster than ProtonMail",
+      "type": "landing"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/home.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/home.html",
+      "size": 14725,
+      "hash": "55c2d87a5183e7b7d8b88e2cce2af8d8",
+      "has_canvas": false,
+      "has_webgl": true,
+      "has_auth": true,
+      "api_endpoints": [
+        "/api/generate/text-to-3d",
+        "/api/generate/image-to-3d",
+        "/api/blender/connect",
+        "/api/gis/process",
+        "/api/geophysics/analyze",
+        "/api/training/start",
+        "/api/health"
+      ],
+      "title": "\ud83e\udd85 QuetzalCore - Application Portal",
+      "type": "dashboard"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/email.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/email.html",
+      "size": 17865,
+      "hash": "01eff1a05300311910718c0807bd6801",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Salvador's Email - QuetzalCore",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/login.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/login.html",
+      "size": 6314,
+      "hash": "133eb5ebdca421275fed0f27979e2d01",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83d\udd10 QuetzalCore Access Control",
+      "type": "auth"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/demos.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/demos.html",
+      "size": 5816,
+      "hash": "e4badf08517fc2e007bf2d28d31086b2",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "QuetzalCore 3D Showcase",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/secrets.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/secrets.html",
+      "size": 15005,
+      "hash": "192e73c75bbd8bb2cbe04f4f9dd88a24",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83d\udd10 QuetzalCore Secrets Vault",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/benchmark.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/benchmark.html",
+      "size": 33233,
+      "hash": "ee963e000b1861ba374813e9a262f1a3",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 QuetzalCore-Core 3DMark - GPU Benchmark Suite",
+      "type": "benchmark"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/3d-demo.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/3d-demo.html",
+      "size": 67636,
+      "hash": "fd5fd093c23699020a8de1dba92c53c9",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 QuetzalCore 3DMark Professional - WebGL Benchmark",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/queztl_os_demo.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/queztl_os_demo.html",
+      "size": 29905,
+      "hash": "47aefd5554f21e476d09cbf9da855bce",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore OS - Demo Dashboard",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/outreach_dashboard.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/outreach_dashboard.html",
+      "size": 14440,
+      "hash": "85e1a15a8dd8756209360f2bae0c0f4f",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QHP Outreach Engine - Dashboard",
+      "type": "dashboard"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/qhp_demo.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/qhp_demo.html",
+      "size": 11240,
+      "hash": "b61a6b13064c86bb6e1d7a869f59ea88",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Protocol Demo",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/queztl_dashboard.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backend/queztl_dashboard.html",
+      "size": 14118,
+      "hash": "059095c452db95aa6c397aeb2c6b64e6",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Protocol - ML Dashboard",
+      "type": "dashboard"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html",
+      "size": 92,
+      "hash": "efaf4d8f81365b7dd8b41909bb863780",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html",
+      "size": 174,
+      "hash": "8f6c384492448086db776d20426e088b",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "landing"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/numba/core/annotations/template.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/numba/core/annotations/template.html",
+      "size": 3464,
+      "hash": "86d178f4c0c9c2adadff5a2a43bc856e",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html",
+      "size": 1753,
+      "hash": "8cea6a7c800fba6803837dd62aa1824d",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "MPL | WebAgg current figures",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html",
+      "size": 1311,
+      "hash": "b7e79800afdcd237de9d11e3da9daead",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html",
+      "size": 1357,
+      "hash": "8ff1acf87a06e3c7d93b486ea1540459",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "matplotlib",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html",
+      "size": 384,
+      "hash": "3c3e9f41de31ab419f8843503e6b805e",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "TorchScript Model",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/index.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/index.html",
+      "size": 17206,
+      "hash": "adae152c5c61cc845bedb0e5851e5fa1",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore-Core Testing &amp; Monitoring Dashboard",
+      "type": "landing"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/404.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/404.html",
+      "size": 6749,
+      "hash": "9a817b923f7d306538fa87122c1d148f",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "404: This page could not be found.",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gpu-demo.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gpu-demo.html",
+      "size": 17589,
+      "hash": "e6f49fef36f1f13d973124dcc43e6e1b",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/gpu"
+      ],
+      "title": "\ud83e\udd85 QuetzalCore Web GPU Driver - Demo",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-pro.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-pro.html",
+      "size": 67343,
+      "hash": "d3593fc11045293d755adef6c9a1813b",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 QuetzalCore 3DMark Professional - WebGL Benchmark",
+      "type": "benchmark"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/test-api.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/test-api.html",
+      "size": 4277,
+      "hash": "13eebb57b46b24687bf0247ed1534666",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/health",
+        "/api/gpu/info",
+        "/api/power/benchmark",
+        "/api/security/memory"
+      ],
+      "title": "API Test",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/web-gpu-explained.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/web-gpu-explained.html",
+      "size": 16425,
+      "hash": "3635ffb76f56363f5b3a6f42dddf41ad",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Web GPU - Simple Explanation",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-immersive.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-immersive.html",
+      "size": 23750,
+      "hash": "a8a828bc7a3243059bceee4eae6a4d54",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 QuetzalCore 3DMark - GPU Benchmark",
+      "type": "benchmark"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gen3d.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gen3d.html",
+      "size": 17304,
+      "hash": "20d4b447edb7ad59c291bc995657771c",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Gen3D - AI 3D Model Generation",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/.next/server/pages/500.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/.next/server/pages/500.html",
+      "size": 2130,
+      "hash": "60582e8d4f02740b188e976b8a7130ed",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "500: Internal Server Error",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/recharts/umd/report.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/recharts/umd/report.html",
+      "size": 348549,
+      "hash": "82f0623e8442526eee3d05d57c08cf76",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "recharts [20 Jun 2025 at 21:43]",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/decimal.js-light/doc/API.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/decimal.js-light/doc/API.html",
+      "size": 51905,
+      "hash": "b70fb1190b6b8a7743e28b256dcb204a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "decimal.js-light API",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html",
+      "size": 1826,
+      "hash": "3c62db2ee38f5268b0ff264616ccae4a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Pino - Super fast, all natural JSON logger for Node.js",
+      "type": "landing"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+      "size": 36,
+      "hash": "5b9030beaa547926ac803bc3e7626b63",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html",
+      "size": 32,
+      "hash": "442aa09e10281318cdf6be9e026232b0",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+      "size": 9850,
+      "hash": "c511dcdbb9c495dc0f07e8d5705b5a0a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Invocation failed",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html",
+      "size": 92,
+      "hash": "efaf4d8f81365b7dd8b41909bb863780",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html",
+      "size": 174,
+      "hash": "8f6c384492448086db776d20426e088b",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "landing"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/numba/core/annotations/template.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/numba/core/annotations/template.html",
+      "size": 3464,
+      "hash": "86d178f4c0c9c2adadff5a2a43bc856e",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html",
+      "size": 1753,
+      "hash": "8cea6a7c800fba6803837dd62aa1824d",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "MPL | WebAgg current figures",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html",
+      "size": 1311,
+      "hash": "b7e79800afdcd237de9d11e3da9daead",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html",
+      "size": 1357,
+      "hash": "8ff1acf87a06e3c7d93b486ea1540459",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "matplotlib",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html",
+      "size": 384,
+      "hash": "3c3e9f41de31ab419f8843503e6b805e",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "TorchScript Model",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/index.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/index.html",
+      "size": 17206,
+      "hash": "adae152c5c61cc845bedb0e5851e5fa1",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore-Core Testing &amp; Monitoring Dashboard",
+      "type": "landing"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/404.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/404.html",
+      "size": 6749,
+      "hash": "9a817b923f7d306538fa87122c1d148f",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "404: This page could not be found.",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gpu-demo.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gpu-demo.html",
+      "size": 17589,
+      "hash": "e6f49fef36f1f13d973124dcc43e6e1b",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/gpu"
+      ],
+      "title": "\ud83e\udd85 QuetzalCore Web GPU Driver - Demo",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-pro.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-pro.html",
+      "size": 67343,
+      "hash": "d3593fc11045293d755adef6c9a1813b",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 QuetzalCore 3DMark Professional - WebGL Benchmark",
+      "type": "benchmark"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/test-api.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/test-api.html",
+      "size": 4277,
+      "hash": "13eebb57b46b24687bf0247ed1534666",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/health",
+        "/api/gpu/info",
+        "/api/power/benchmark",
+        "/api/security/memory"
+      ],
+      "title": "API Test",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/web-gpu-explained.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/web-gpu-explained.html",
+      "size": 16425,
+      "hash": "3635ffb76f56363f5b3a6f42dddf41ad",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Web GPU - Simple Explanation",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-immersive.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-immersive.html",
+      "size": 23750,
+      "hash": "a8a828bc7a3243059bceee4eae6a4d54",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 QuetzalCore 3DMark - GPU Benchmark",
+      "type": "benchmark"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gen3d.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gen3d.html",
+      "size": 17304,
+      "hash": "20d4b447edb7ad59c291bc995657771c",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Gen3D - AI 3D Model Generation",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/.next/server/pages/500.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/.next/server/pages/500.html",
+      "size": 2130,
+      "hash": "60582e8d4f02740b188e976b8a7130ed",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "500: Internal Server Error",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/recharts/umd/report.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/recharts/umd/report.html",
+      "size": 348549,
+      "hash": "82f0623e8442526eee3d05d57c08cf76",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "recharts [20 Jun 2025 at 21:43]",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/decimal.js-light/doc/API.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/decimal.js-light/doc/API.html",
+      "size": 51905,
+      "hash": "b70fb1190b6b8a7743e28b256dcb204a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "decimal.js-light API",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html",
+      "size": 1826,
+      "hash": "3c62db2ee38f5268b0ff264616ccae4a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Pino - Super fast, all natural JSON logger for Node.js",
+      "type": "landing"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+      "size": 36,
+      "hash": "5b9030beaa547926ac803bc3e7626b63",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html",
+      "size": 32,
+      "hash": "442aa09e10281318cdf6be9e026232b0",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+      "size": 9850,
+      "hash": "c511dcdbb9c495dc0f07e8d5705b5a0a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Invocation failed",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html",
+      "size": 92,
+      "hash": "efaf4d8f81365b7dd8b41909bb863780",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html",
+      "size": 174,
+      "hash": "8f6c384492448086db776d20426e088b",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "landing"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/numba/core/annotations/template.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/numba/core/annotations/template.html",
+      "size": 3464,
+      "hash": "86d178f4c0c9c2adadff5a2a43bc856e",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html",
+      "size": 1753,
+      "hash": "8cea6a7c800fba6803837dd62aa1824d",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "MPL | WebAgg current figures",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html",
+      "size": 1311,
+      "hash": "b7e79800afdcd237de9d11e3da9daead",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html",
+      "size": 1357,
+      "hash": "8ff1acf87a06e3c7d93b486ea1540459",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "matplotlib",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html",
+      "size": 384,
+      "hash": "3c3e9f41de31ab419f8843503e6b805e",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "TorchScript Model",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/index.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/index.html",
+      "size": 17206,
+      "hash": "adae152c5c61cc845bedb0e5851e5fa1",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore-Core Testing &amp; Monitoring Dashboard",
+      "type": "landing"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/404.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/404.html",
+      "size": 6749,
+      "hash": "9a817b923f7d306538fa87122c1d148f",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "404: This page could not be found.",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gpu-demo.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gpu-demo.html",
+      "size": 17589,
+      "hash": "e6f49fef36f1f13d973124dcc43e6e1b",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/gpu"
+      ],
+      "title": "\ud83e\udd85 QuetzalCore Web GPU Driver - Demo",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-pro.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-pro.html",
+      "size": 67343,
+      "hash": "d3593fc11045293d755adef6c9a1813b",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 QuetzalCore 3DMark Professional - WebGL Benchmark",
+      "type": "benchmark"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/test-api.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/test-api.html",
+      "size": 4277,
+      "hash": "13eebb57b46b24687bf0247ed1534666",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/health",
+        "/api/gpu/info",
+        "/api/power/benchmark",
+        "/api/security/memory"
+      ],
+      "title": "API Test",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/web-gpu-explained.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/web-gpu-explained.html",
+      "size": 16425,
+      "hash": "3635ffb76f56363f5b3a6f42dddf41ad",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Web GPU - Simple Explanation",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-immersive.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/3dmark-immersive.html",
+      "size": 23750,
+      "hash": "a8a828bc7a3243059bceee4eae6a4d54",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 QuetzalCore 3DMark - GPU Benchmark",
+      "type": "benchmark"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gen3d.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/public/gen3d.html",
+      "size": 17304,
+      "hash": "20d4b447edb7ad59c291bc995657771c",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Gen3D - AI 3D Model Generation",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/.next/server/pages/500.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/.next/server/pages/500.html",
+      "size": 2130,
+      "hash": "60582e8d4f02740b188e976b8a7130ed",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "500: Internal Server Error",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/recharts/umd/report.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/recharts/umd/report.html",
+      "size": 348549,
+      "hash": "82f0623e8442526eee3d05d57c08cf76",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "recharts [20 Jun 2025 at 21:43]",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/decimal.js-light/doc/API.html": {
+      "path": "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/node_modules/decimal.js-light/doc/API.html",
+      "size": 51905,
+      "hash": "b70fb1190b6b8a7743e28b256dcb204a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "decimal.js-light API",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html": {
+      "path": "backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html",
+      "size": 1826,
+      "hash": "3c62db2ee38f5268b0ff264616ccae4a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Pino - Super fast, all natural JSON logger for Node.js",
+      "type": "landing"
+    },
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html": {
+      "path": "backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+      "size": 36,
+      "hash": "5b9030beaa547926ac803bc3e7626b63",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html": {
+      "path": "backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html",
+      "size": 32,
+      "hash": "442aa09e10281318cdf6be9e026232b0",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html": {
+      "path": "backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+      "size": 9850,
+      "hash": "c511dcdbb9c495dc0f07e8d5705b5a0a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Invocation failed",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html": {
+      "path": "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/external.html",
+      "size": 92,
+      "hash": "efaf4d8f81365b7dd8b41909bb863780",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html": {
+      "path": "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html",
+      "size": 174,
+      "hash": "8f6c384492448086db776d20426e088b",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "landing"
+    },
+    "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/numba/core/annotations/template.html": {
+      "path": "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/numba/core/annotations/template.html",
+      "size": 3464,
+      "hash": "86d178f4c0c9c2adadff5a2a43bc856e",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html": {
+      "path": "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/all_figures.html",
+      "size": 1753,
+      "hash": "8cea6a7c800fba6803837dd62aa1824d",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "MPL | WebAgg current figures",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html": {
+      "path": "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/ipython_inline_figure.html",
+      "size": 1311,
+      "hash": "b7e79800afdcd237de9d11e3da9daead",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html": {
+      "path": "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/matplotlib/backends/web_backend/single_figure.html",
+      "size": 1357,
+      "hash": "8ff1acf87a06e3c7d93b486ea1540459",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "matplotlib",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html": {
+      "path": "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/torch/utils/model_dump/skeleton.html",
+      "size": 384,
+      "hash": "3c3e9f41de31ab419f8843503e6b805e",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "TorchScript Model",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/dashboard/out/index.html": {
+      "path": "backup_before_rename_20251207_171939/dashboard/out/index.html",
+      "size": 17206,
+      "hash": "adae152c5c61cc845bedb0e5851e5fa1",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore-Core Testing &amp; Monitoring Dashboard",
+      "type": "landing"
+    },
+    "backup_before_rename_20251207_171939/dashboard/out/404.html": {
+      "path": "backup_before_rename_20251207_171939/dashboard/out/404.html",
+      "size": 6749,
+      "hash": "9a817b923f7d306538fa87122c1d148f",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "404: This page could not be found.",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/dashboard/public/gpu-demo.html": {
+      "path": "backup_before_rename_20251207_171939/dashboard/public/gpu-demo.html",
+      "size": 17589,
+      "hash": "e6f49fef36f1f13d973124dcc43e6e1b",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/gpu"
+      ],
+      "title": "\ud83e\udd85 QuetzalCore Web GPU Driver - Demo",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/dashboard/public/3dmark-pro.html": {
+      "path": "backup_before_rename_20251207_171939/dashboard/public/3dmark-pro.html",
+      "size": 67343,
+      "hash": "d3593fc11045293d755adef6c9a1813b",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 QuetzalCore 3DMark Professional - WebGL Benchmark",
+      "type": "benchmark"
+    },
+    "backup_before_rename_20251207_171939/dashboard/public/test-api.html": {
+      "path": "backup_before_rename_20251207_171939/dashboard/public/test-api.html",
+      "size": 4277,
+      "hash": "13eebb57b46b24687bf0247ed1534666",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/health",
+        "/api/gpu/info",
+        "/api/power/benchmark",
+        "/api/security/memory"
+      ],
+      "title": "API Test",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/dashboard/public/web-gpu-explained.html": {
+      "path": "backup_before_rename_20251207_171939/dashboard/public/web-gpu-explained.html",
+      "size": 16425,
+      "hash": "3635ffb76f56363f5b3a6f42dddf41ad",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Web GPU - Simple Explanation",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/dashboard/public/3dmark-immersive.html": {
+      "path": "backup_before_rename_20251207_171939/dashboard/public/3dmark-immersive.html",
+      "size": 23750,
+      "hash": "a8a828bc7a3243059bceee4eae6a4d54",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 QuetzalCore 3DMark - GPU Benchmark",
+      "type": "benchmark"
+    },
+    "backup_before_rename_20251207_171939/dashboard/public/gen3d.html": {
+      "path": "backup_before_rename_20251207_171939/dashboard/public/gen3d.html",
+      "size": 17304,
+      "hash": "20d4b447edb7ad59c291bc995657771c",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Gen3D - AI 3D Model Generation",
+      "type": "demo"
+    },
+    "backup_before_rename_20251207_171939/dashboard/.next/server/pages/500.html": {
+      "path": "backup_before_rename_20251207_171939/dashboard/.next/server/pages/500.html",
+      "size": 2130,
+      "hash": "60582e8d4f02740b188e976b8a7130ed",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "500: Internal Server Error",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/dashboard/node_modules/recharts/umd/report.html": {
+      "path": "backup_before_rename_20251207_171939/dashboard/node_modules/recharts/umd/report.html",
+      "size": 348549,
+      "hash": "82f0623e8442526eee3d05d57c08cf76",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "recharts [20 Jun 2025 at 21:43]",
+      "type": "utility"
+    },
+    "backup_before_rename_20251207_171939/dashboard/node_modules/decimal.js-light/doc/API.html": {
+      "path": "backup_before_rename_20251207_171939/dashboard/node_modules/decimal.js-light/doc/API.html",
+      "size": 51905,
+      "hash": "b70fb1190b6b8a7743e28b256dcb204a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "decimal.js-light API",
+      "type": "utility"
+    },
+    "build/mac/QuetzalBrowser.app/Contents/Resources/quetzal-browser.html": {
+      "path": "build/mac/QuetzalBrowser.app/Contents/Resources/quetzal-browser.html",
+      "size": 18480,
+      "hash": "2c6c96e97670499431b8dcddf9a7e93d",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QuetzalCore Native Browser - QP Protocol",
+      "type": "utility"
+    },
+    "3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html": {
+      "path": "3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html",
+      "size": 1826,
+      "hash": "3c62db2ee38f5268b0ff264616ccae4a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Pino - Super fast, all natural JSON logger for Node.js",
+      "type": "landing"
+    },
+    "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html": {
+      "path": "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+      "size": 36,
+      "hash": "5b9030beaa547926ac803bc3e7626b63",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html": {
+      "path": "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html",
+      "size": 32,
+      "hash": "442aa09e10281318cdf6be9e026232b0",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html": {
+      "path": "3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+      "size": 9850,
+      "hash": "c511dcdbb9c495dc0f07e8d5705b5a0a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Invocation failed",
+      "type": "utility"
+    },
+    "dashboard/out/quetzal-gis-pro.html": {
+      "path": "dashboard/out/quetzal-gis-pro.html",
+      "size": 19315,
+      "hash": "a3db44d1b48305625d5bd6f18bea590d",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro - Enterprise Platform",
+      "type": "utility"
+    },
+    "dashboard/out/index.html": {
+      "path": "dashboard/out/index.html",
+      "size": 8039,
+      "hash": "e570a16ef06fc9ba324ce59d82afb181",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl-Core Testing &amp; Monitoring Dashboard",
+      "type": "landing"
+    },
+    "dashboard/out/gis-simple.html": {
+      "path": "dashboard/out/gis-simple.html",
+      "size": 10300,
+      "hash": "0736733e41a28311ef4c3d36fe2cdd28",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro",
+      "type": "utility"
+    },
+    "dashboard/out/404.html": {
+      "path": "dashboard/out/404.html",
+      "size": 7018,
+      "hash": "9bb02c1457e0214019b351e51c9674da",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "404: This page could not be found.",
+      "type": "utility"
+    },
+    "dashboard/out/gis.html": {
+      "path": "dashboard/out/gis.html",
+      "size": 13969,
+      "hash": "5de9ead29a4c9f0ac7302606e888c325",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro - EPIC Demo",
+      "type": "utility"
+    },
+    "dashboard/out/gis-work.html": {
+      "path": "dashboard/out/gis-work.html",
+      "size": 19315,
+      "hash": "a3db44d1b48305625d5bd6f18bea590d",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro - Enterprise Platform",
+      "type": "utility"
+    },
+    "dashboard/out/gpu-demo.html": {
+      "path": "dashboard/out/gpu-demo.html",
+      "size": 17574,
+      "hash": "40fbda4dbd3a61e004079bc080ae72ff",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/gpu"
+      ],
+      "title": "\ud83e\udd85 Queztl Web GPU Driver - Demo",
+      "type": "demo"
+    },
+    "dashboard/out/3dmark-pro.html": {
+      "path": "dashboard/out/3dmark-pro.html",
+      "size": 67198,
+      "hash": "ab1062729b23ebdd102c5a963c344461",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl 3DMark Professional - WebGL Benchmark",
+      "type": "benchmark"
+    },
+    "dashboard/out/test-api.html": {
+      "path": "dashboard/out/test-api.html",
+      "size": 4277,
+      "hash": "13eebb57b46b24687bf0247ed1534666",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/health",
+        "/api/gpu/info",
+        "/api/power/benchmark",
+        "/api/security/memory"
+      ],
+      "title": "API Test",
+      "type": "utility"
+    },
+    "dashboard/out/web-gpu-explained.html": {
+      "path": "dashboard/out/web-gpu-explained.html",
+      "size": 16420,
+      "hash": "bd4e20ac4a6440c2648379af83171904",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Web GPU - Simple Explanation",
+      "type": "utility"
+    },
+    "dashboard/out/3dmark-immersive.html": {
+      "path": "dashboard/out/3dmark-immersive.html",
+      "size": 23740,
+      "hash": "d8eba5df2c9cba4e470e2caae29c42f9",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl 3DMark - GPU Benchmark",
+      "type": "benchmark"
+    },
+    "dashboard/out/gen3d.html": {
+      "path": "dashboard/out/gen3d.html",
+      "size": 17294,
+      "hash": "72b08822a365999dc07dc9ef871dd2d6",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl Gen3D - AI 3D Model Generation",
+      "type": "demo"
+    },
+    "dashboard/public/quetzal-gis-pro.html": {
+      "path": "dashboard/public/quetzal-gis-pro.html",
+      "size": 19315,
+      "hash": "a3db44d1b48305625d5bd6f18bea590d",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro - Enterprise Platform",
+      "type": "utility"
+    },
+    "dashboard/public/index.html": {
+      "path": "dashboard/public/index.html",
+      "size": 10633,
+      "hash": "7735b59028691ccb82755adb91c8980b",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/health"
+      ],
+      "title": "\ud83e\udd85 QuetzalCore - Distributed AIOS Dashboard",
+      "type": "landing"
+    },
+    "dashboard/public/gis-simple.html": {
+      "path": "dashboard/public/gis-simple.html",
+      "size": 10300,
+      "hash": "0736733e41a28311ef4c3d36fe2cdd28",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro",
+      "type": "utility"
+    },
+    "dashboard/public/gis.html": {
+      "path": "dashboard/public/gis.html",
+      "size": 15121,
+      "hash": "f5d1e3c860d8433c9c10011973e5ea34",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro - EPIC Demo",
+      "type": "utility"
+    },
+    "dashboard/public/gis-work.html": {
+      "path": "dashboard/public/gis-work.html",
+      "size": 19315,
+      "hash": "a3db44d1b48305625d5bd6f18bea590d",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "QUETZAL GIS Pro - Enterprise Platform",
+      "type": "utility"
+    },
+    "dashboard/public/gpu-demo.html": {
+      "path": "dashboard/public/gpu-demo.html",
+      "size": 17574,
+      "hash": "40fbda4dbd3a61e004079bc080ae72ff",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/gpu"
+      ],
+      "title": "\ud83e\udd85 Queztl Web GPU Driver - Demo",
+      "type": "demo"
+    },
+    "dashboard/public/3dmark-pro.html": {
+      "path": "dashboard/public/3dmark-pro.html",
+      "size": 81815,
+      "hash": "a763a435c830d8b76aad146b3de95eda",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/vgpu/cluster/render`, opts: { method: ",
+        "/api/gpu/session/create`, opts: { method: ",
+        "/api/gpu/benchmark/webgl`, opts: { method: ",
+        "/api/gpu/benchmark/compute`, opts: { method: ",
+        "/api/gpu/demo/rotating-cube`, opts: { method: "
+      ],
+      "title": "\ud83e\udd85 Queztl 3DMark Professional - WebGL Benchmark",
+      "type": "benchmark"
+    },
+    "dashboard/public/test-api.html": {
+      "path": "dashboard/public/test-api.html",
+      "size": 4277,
+      "hash": "13eebb57b46b24687bf0247ed1534666",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [
+        "/api/health",
+        "/api/gpu/info",
+        "/api/power/benchmark",
+        "/api/security/memory"
+      ],
+      "title": "API Test",
+      "type": "utility"
+    },
+    "dashboard/public/web-gpu-explained.html": {
+      "path": "dashboard/public/web-gpu-explained.html",
+      "size": 16420,
+      "hash": "bd4e20ac4a6440c2648379af83171904",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Web GPU - Simple Explanation",
+      "type": "utility"
+    },
+    "dashboard/public/3dmark-immersive.html": {
+      "path": "dashboard/public/3dmark-immersive.html",
+      "size": 23740,
+      "hash": "d8eba5df2c9cba4e470e2caae29c42f9",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "\ud83e\udd85 Queztl 3DMark - GPU Benchmark",
+      "type": "benchmark"
+    },
+    "dashboard/public/gen3d.html": {
+      "path": "dashboard/public/gen3d.html",
+      "size": 17770,
+      "hash": "305cf2395563819e07790cedc544b20a",
+      "has_canvas": true,
+      "has_webgl": true,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl Gen3D - AI 3D Model Generation",
+      "type": "demo"
+    },
+    "dashboard/.netlify/plugins/node_modules/pino/index.html": {
+      "path": "dashboard/.netlify/plugins/node_modules/pino/index.html",
+      "size": 1826,
+      "hash": "3c62db2ee38f5268b0ff264616ccae4a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Pino - Super fast, all natural JSON logger for Node.js",
+      "type": "landing"
+    },
+    "dashboard/.netlify/plugins/node_modules/tslib/tslib.es6.html": {
+      "path": "dashboard/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+      "size": 36,
+      "hash": "5b9030beaa547926ac803bc3e7626b63",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "dashboard/.netlify/plugins/node_modules/tslib/tslib.html": {
+      "path": "dashboard/.netlify/plugins/node_modules/tslib/tslib.html",
+      "size": 32,
+      "hash": "442aa09e10281318cdf6be9e026232b0",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Unknown",
+      "type": "utility"
+    },
+    "dashboard/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html": {
+      "path": "dashboard/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+      "size": 9850,
+      "hash": "c511dcdbb9c495dc0f07e8d5705b5a0a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Invocation failed",
+      "type": "utility"
+    },
+    "dashboard/.next/server/app/index.html": {
+      "path": "dashboard/.next/server/app/index.html",
+      "size": 8039,
+      "hash": "e570a16ef06fc9ba324ce59d82afb181",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "Queztl-Core Testing &amp; Monitoring Dashboard",
+      "type": "landing"
+    },
+    "dashboard/.next/server/app/_not-found.html": {
+      "path": "dashboard/.next/server/app/_not-found.html",
+      "size": 7018,
+      "hash": "9bb02c1457e0214019b351e51c9674da",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "404: This page could not be found.",
+      "type": "utility"
+    },
+    "dashboard/.next/server/pages/500.html": {
+      "path": "dashboard/.next/server/pages/500.html",
+      "size": 1995,
+      "hash": "f95e78f6960ef29e322ce8f2d1d4e840",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "500: Internal Server Error",
+      "type": "utility"
+    },
+    "dashboard/.next/server/pages/404.html": {
+      "path": "dashboard/.next/server/pages/404.html",
+      "size": 7018,
+      "hash": "9bb02c1457e0214019b351e51c9674da",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "404: This page could not be found.",
+      "type": "utility"
+    },
+    "dashboard/.next/server/app/_not-found/index.html": {
+      "path": "dashboard/.next/server/app/_not-found/index.html",
+      "size": 7018,
+      "hash": "9bb02c1457e0214019b351e51c9674da",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "404: This page could not be found.",
+      "type": "landing"
+    },
+    "dashboard/node_modules/recharts/umd/report.html": {
+      "path": "dashboard/node_modules/recharts/umd/report.html",
+      "size": 348549,
+      "hash": "82f0623e8442526eee3d05d57c08cf76",
+      "has_canvas": true,
+      "has_webgl": false,
+      "has_auth": true,
+      "api_endpoints": [],
+      "title": "recharts [20 Jun 2025 at 21:43]",
+      "type": "utility"
+    },
+    "dashboard/node_modules/decimal.js-light/doc/API.html": {
+      "path": "dashboard/node_modules/decimal.js-light/doc/API.html",
+      "size": 51905,
+      "hash": "b70fb1190b6b8a7743e28b256dcb204a",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "decimal.js-light API",
+      "type": "utility"
+    },
+    "dashboard/out/404/index.html": {
+      "path": "dashboard/out/404/index.html",
+      "size": 7018,
+      "hash": "9bb02c1457e0214019b351e51c9674da",
+      "has_canvas": false,
+      "has_webgl": false,
+      "has_auth": false,
+      "api_endpoints": [],
+      "title": "404: This page could not be found.",
+      "type": "landing"
+    }
+  },
+  "app_statuses": [
+    {
+      "name": "Login",
+      "url": "https://senasaitech.com/login.html",
+      "accessible": true,
+      "has_auth": false,
+      "buttons_working": false,
+      "errors": [],
+      "response_time_ms": 962.3581249998097
+    },
+    {
+      "name": "Home Portal",
+      "url": "https://senasaitech.com/home.html",
+      "accessible": true,
+      "has_auth": true,
+      "buttons_working": false,
+      "errors": [],
+      "response_time_ms": 931.1697089997324
+    },
+    {
+      "name": "3DMark Demo",
+      "url": "https://senasaitech.com/3d-demo.html",
+      "accessible": true,
+      "has_auth": true,
+      "buttons_working": false,
+      "errors": [],
+      "response_time_ms": 948.4985839999354
+    },
+    {
+      "name": "Benchmark",
+      "url": "https://senasaitech.com/benchmark.html",
+      "accessible": true,
+      "has_auth": true,
+      "buttons_working": false,
+      "errors": [],
+      "response_time_ms": 899.5806249995439
+    },
+    {
+      "name": "Email System",
+      "url": "https://senasaitech.com/email.html",
+      "accessible": true,
+      "has_auth": true,
+      "buttons_working": false,
+      "errors": [],
+      "response_time_ms": 914.6083750001708
+    },
+    {
+      "name": "Secrets Vault",
+      "url": "https://senasaitech.com/secrets.html",
+      "accessible": true,
+      "has_auth": true,
+      "buttons_working": false,
+      "errors": [],
+      "response_time_ms": 945.5810420004127
+    },
+    {
+      "name": "Demos Hub",
+      "url": "https://senasaitech.com/demos.html",
+      "accessible": true,
+      "has_auth": true,
+      "buttons_working": false,
+      "errors": [],
+      "response_time_ms": 898.7573750000593
+    },
+    {
+      "name": "Backend API",
+      "url": "https://senasaitech.com/api/health",
+      "accessible": true,
+      "has_auth": false,
+      "buttons_working": false,
+      "errors": [],
+      "response_time_ms": 333.7134169996716
+    }
+  ],
+  "public_apps": [
+    "index.html",
+    "quetzalcore-portal/index.html",
+    "gis-deploy/index.html",
+    "dashboard/index.html",
+    "dashboard/gis-index.html",
+    "3d-showcase-deploy/index.html",
+    "3d-showcase-deploy/email.html",
+    "3d-showcase-deploy/login.html",
+    "404/index.html",
+    "gen3d-app/frontend/index.html",
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/index.html",
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/email.html",
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/login.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/index.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/email.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/login.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/index.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/email.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/login.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/index.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/index.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/dashboard/out/index.html",
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html",
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html",
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+    "backup_before_rename_20251207_171939/.venv/lib/python3.13/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/index.html",
+    "backup_before_rename_20251207_171939/dashboard/out/index.html",
+    "3d-showcase-deploy/.netlify/plugins/node_modules/pino/index.html",
+    "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.es6.html",
+    "3d-showcase-deploy/.netlify/plugins/node_modules/tslib/tslib.html",
+    "3d-showcase-deploy/.netlify/plugins/node_modules/@netlify/dev-utils/src/templates/function-error.html",
+    "dashboard/out/index.html",
+    "dashboard/public/index.html",
+    "dashboard/.netlify/plugins/node_modules/pino/index.html",
+    "dashboard/.next/server/app/index.html",
+    "dashboard/.next/server/app/_not-found/index.html",
+    "dashboard/out/404/index.html"
+  ],
+  "private_apps": [
+    "3d-showcase-deploy/home.html",
+    "3d-showcase-deploy/demos.html",
+    "3d-showcase-deploy/secrets.html",
+    "3d-showcase-deploy/benchmark.html",
+    "3d-showcase-deploy/3d-demo.html",
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/home.html",
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/demos.html",
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/secrets.html",
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/benchmark.html",
+    "backup_before_rename_20251207_171939/3d-showcase-deploy/3d-demo.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/home.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/demos.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/secrets.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/benchmark.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/3d-demo.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/home.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/demos.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/secrets.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/benchmark.html",
+    "backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/3d-showcase-deploy/3d-demo.html"
+  ],
+  "broken_files": [],
+  "recommendations": [
+    "\ud83d\uddd1\ufe0f  DELETE 46 exact duplicate files to clean up workspace",
+    "\ud83d\udd10 ADD authentication to 16 public files",
+    "\ud83c\udfd7\ufe0f  IMPLEMENT hypervisor structure for better app organization",
+    "\ud83d\udcca CREATE unified dashboard as main entry point",
+    "\ud83e\uddf9 ARCHIVE or DELETE non-deployed files in dashboard/public"
+  ]
+}
