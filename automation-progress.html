@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queztl-Core Cloud Automation Progress</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #181c20;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 60px auto;
+            background: #23272b;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px #0008;
+            padding: 32px 24px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.6em;
+            margin-bottom: 32px;
+        }
+
+        .progress-bar-bg {
+            background: #333;
+            border-radius: 8px;
+            height: 32px;
+            width: 100%;
+            margin-bottom: 24px;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, #38ef7d, #11998e);
+            height: 100%;
+            border-radius: 8px;
+            width: 0;
+            transition: width 0.5s;
+        }
+
+        .step-label {
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .step-complete {
+            color: #38ef7d;
+        }
+
+        .step-pending {
+            color: #bbb;
+        }
+
+        .step-active {
+            color: #ffe066;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 32px;
+            color: #888;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Queztl-Core Cloud Automation Log Analyzer</h1>
+        <div id="insights" style="margin-bottom:18px;"></div>
+        <h2 style="margin-top:32px; font-size:1.1em; color:#38ef7d;">Recent Log Output</h2>
+        <pre id="logbox"
+            style="background:#181c20; color:#eee; border-radius:8px; padding:16px; max-height:220px; overflow:auto; font-size:0.98em;"></pre>
+        <div id="errors"></div>
+        <div class="footer">Refreshes every 3 seconds. Powered by Queztl-Core AI Log Analyzer.</div>
+    </div>
+    <script>
+        async function fetchProgress() {
+            return fetch('http://localhost:5050/progress.json').then(r => r.json());
+        }
+        function renderInsights(insights) {
+            document.getElementById('insights').innerHTML = insights.map(
+                msg => `<div style="margin-bottom:6px;">🤖 <b>${msg}</b></div>`
+            ).join('');
+        }
+        function renderLogs(logs) {
+            document.getElementById('logbox').textContent = logs.join('');
+        }
+        function renderErrors(errors) {
+            if (!errors.length) {
+                document.getElementById('errors').innerHTML = '';
+                return;
+            }
+            let html = '<h2 style="color:#ff6b6b; font-size:1.1em; margin-top:18px;">Errors & Warnings</h2><ul>';
+            for (const err of errors) {
+                html += `<li style="margin-bottom:6px; color:#ffb3b3;">${err}</li>`;
+            }
+            html += '</ul>';
+            document.getElementById('errors').innerHTML = html;
+        }
+        async function update() {
+            try {
+                const data = await fetchProgress();
+                renderInsights(data.insights || []);
+                renderLogs(data.logs || []);
+                renderErrors(data.errors || []);
+            } catch (e) {
+                document.getElementById('insights').innerHTML = '<span style="color:#ff6b6b;">Could not connect to log analyzer backend.</span>';
+            }
+        }
+        update();
+        setInterval(update, 3000);
+    </script>
+</body>
+
+</html>
