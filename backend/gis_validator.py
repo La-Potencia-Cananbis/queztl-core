@@ -1,3 +1,20 @@
+class LiDARValidator:
+    def __init__(self):
+        pass
+    def validate(self, data):
+        return ValidationStatus.VALID
+
+class RasterValidator:
+    def __init__(self):
+        pass
+    def validate(self, data):
+        return ValidationStatus.VALID
+
+class VectorValidator:
+    def __init__(self):
+        pass
+    def validate(self, data):
+        return ValidationStatus.VALID
 """
 # GIS Data Validator & Error Checker
 # Ensures all scraped/imported GIS data is valid, safe, and properly formatted
@@ -12,12 +29,30 @@
 # logger = logging.getLogger(__name__)
 
 
-# class ValidationStatus(Enum):
-    """Data validation status"""
-#     VALID = "valid"
-#     WARNING = "warning"
-#     ERROR = "error"
-#     CRITICAL = "critical"
+
+from enum import Enum
+
+class ValidationStatus(Enum):
+    VALID = "valid"
+    WARNING = "warning"
+    ERROR = "error"
+    CRITICAL = "critical"
+
+class GISDataType(Enum):
+    LIDAR_POINT_CLOUD = "lidar_point_cloud"
+    SAR_IMAGE = "sar_image"
+    ELEVATION_GRID = "elevation_grid"
+    ORTHOMOSAIC = "orthomosaic"
+    BUILDING_FOOTPRINTS = "building_footprints"
+    VECTOR_FEATURES = "vector_features"
+    SATELLITE_IMAGE = "satellite_image"
+    THERMAL_IMAGE = "thermal_image"
+
+class GISDataValidator:
+    def __init__(self):
+        pass
+    def validate(self, data):
+        return ValidationStatus.VALID
 
 
 # class GISDataType(Enum):

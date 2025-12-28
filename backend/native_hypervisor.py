@@ -4,40 +4,12 @@
 # Runs directly on QuetzalCore-Core with hardware simulation
 """
 
-# import os
-# import sys
-# import multiprocessing as mp
-# import asyncio
-# import psutil
-# import signal
-# import json
-# from typing import Dict, List, Any, Optional
-# from dataclasses import dataclass, asdict
-# from enum import Enum
-# import time
-# import resource
-
-# Import our GPU simulator for virtualized GPU access
-# try:
-#     from backend.gpu_simulator import GPUSimulator, QuadLinkedList
-#     from backend.webgpu_driver import WebGPUDriver
-# except ImportError:
-#     GPUSimulator = None
-#     WebGPUDriver = None
-
-
-# class VirtualResourceType(Enum):
-    """Types of virtualized resources"""
-#     CPU = "cpu"
-#     MEMORY = "memory"
-#     GPU = "gpu"
-#     DISK = "disk"
-#     NETWORK = "network"
-
-
-@dataclass
-# class VirtualMachine:
-    """
+# Minimal stub for backend startup
+class QuetzalCoreHypervisor:
+        def __init__(self):
+                self.gpu_pool = []
+        def init_gpu_pool(self, pool_size=4):
+                self.gpu_pool = [{} for _ in range(pool_size)]
 #     Virtual Machine running as native process
 #     NO Docker, NO VMs - pure process isolation
     """

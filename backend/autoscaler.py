@@ -45,9 +45,9 @@
 #     PERFORMANCE = "performance"     # Maximize performance
 
 
-@dataclass
+# @dataclass
 # class ScalingMetrics:
-    """Metrics used for scaling decisions"""
+        # """Metrics used for scaling decisions"""
 #     timestamp: float = field(default_factory=time.time)
     
     # Task metrics
@@ -74,9 +74,9 @@
 #     success_rate: float = 1.0
 
 
-@dataclass
+# @dataclass
 # class ScalingTarget:
-    """Desired scaling configuration"""
+        # """Desired scaling configuration"""
 #     min_nodes: int = 1
 #     max_nodes: int = 100
 #     target_cpu_utilization: float = 0.70
@@ -91,7 +91,7 @@
 # ============================================================================
 
 # class CloudProvider(Enum):
-    """Supported cloud providers"""
+        # """Supported cloud providers"""
 #     AWS = "aws"
 #     GCP = "gcp"
 #     AZURE = "azure"
@@ -99,9 +99,9 @@
 #     DOCKER = "docker"  # Docker containers
 
 
-@dataclass
+# @dataclass
 # class NodeTemplate:
-    """Template for creating new nodes"""
+        # """Template for creating new nodes"""
 #     provider: CloudProvider
 #     instance_type: str
 #     image_id: str
@@ -126,42 +126,42 @@
 
 
 # class CloudProviderAdapter:
-    """
-#     Abstract adapter for cloud provider APIs
-#     Implement this for each cloud provider
-    """
+        # """
+        # Abstract adapter for cloud provider APIs
+        # Implement this for each cloud provider
+        # """
     
 #     async def launch_instance(self, template: NodeTemplate) -> str:
-        """
-#         Launch a new compute instance
-#         Returns: instance_id
-        """
+        # """
+        # Launch a new compute instance
+        # Returns: instance_id
+        # """
 #         raise NotImplementedError
     
 #     async def terminate_instance(self, instance_id: str):
-        """Terminate a compute instance"""
+        # """Terminate a compute instance"""
 #         raise NotImplementedError
     
 #     async def get_instance_status(self, instance_id: str) -> str:
-        """Get instance status (running, stopped, etc.)"""
+        # """Get instance status (running, stopped, etc.)"""
 #         raise NotImplementedError
     
 #     async def list_instances(self) -> List[Dict[str, Any]]:
-        """List all instances"""
+        # """List all instances"""
 #         raise NotImplementedError
 
 
 # class LocalDockerAdapter(CloudProviderAdapter):
-    """
-#     Adapter for local Docker containers
-#     Fastest for development and testing
-    """
+        # """
+        # Adapter for local Docker containers
+        # Fastest for development and testing
+        # """
     
 #     def __init__(self):
 #         self.containers: Dict[str, Dict[str, Any]] = {}
     
 #     async def launch_instance(self, template: NodeTemplate) -> str:
-        """Launch Docker container as worker node"""
+        # """Launch Docker container as worker node"""
 #         import uuid
 #         instance_id = f"docker-{uuid.uuid4().hex[:8]}"
         
@@ -179,16 +179,16 @@
         
         # For now, simulate
 #         self.containers[instance_id] = {
-            "status": "running",
-            "template": template,
-            "started_at": time.time()
-        }
+            # "status": "running",
+            # "template": template,
+            # "started_at": time.time()
+        # }
         
 #         logger.info(f"Launched Docker container: {instance_id}")
 #         return instance_id
     
 #     async def terminate_instance(self, instance_id: str):
-        """Stop Docker container"""
+        # """Stop Docker container"""
 #         if instance_id in self.containers:
             # In production: container.stop()
 #             del self.containers[instance_id]
@@ -201,22 +201,22 @@
     
 #     async def list_instances(self) -> List[Dict[str, Any]]:
 #         return [
-            {"instance_id": iid, **info}
+            # {"instance_id": iid, **info}
 #             for iid, info in self.containers.items()
-        ]
+        # ]
 
 
 # class AWSAdapter(CloudProviderAdapter):
-    """
-#     Adapter for AWS EC2
-    """
+        # """
+        # Adapter for AWS EC2
+        # """
     
 #     def __init__(self, region: str = "us-east-1"):
 #         self.region = region
         # In production: import boto3; self.ec2 = boto3.client('ec2', region_name=region)
     
 #     async def launch_instance(self, template: NodeTemplate) -> str:
-        """Launch EC2 instance"""
+        # """Launch EC2 instance"""
         # In production:
         # response = self.ec2.run_instances(
         #     ImageId=template.image_id,
@@ -236,7 +236,7 @@
 #         return instance_id
     
 #     async def terminate_instance(self, instance_id: str):
-        """Terminate EC2 instance"""
+        # """Terminate EC2 instance"""
         # In production: self.ec2.terminate_instances(InstanceIds=[instance_id])
 #         logger.info(f"Terminated AWS EC2 instance: {instance_id}")
     

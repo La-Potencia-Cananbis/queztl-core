@@ -1,153 +1,12 @@
+
 #!/usr/bin/env python3
 """
-# AIOSC Platform - Authentication & Subscription Management
-# Tier-based access control for AI capabilities
+AIOSC Platform - Authentication & Subscription Management
+Tier-based access control for AI capabilities
 """
 
-# import os
-# import jwt
-# import bcrypt
-# from datetime import datetime, timedelta
-# from typing import Optional, List, Dict
-# from enum import Enum
-
-# from fastapi import FastAPI, HTTPException, Depends, Header
-# from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-# from pydantic import BaseModel, EmailStr
-# import sqlite3
-
-# Subscription Tiers
-# class Tier(str, Enum):
-#     FREE = "free"
-#     CREATOR = "creator"
-#     PROFESSIONAL = "professional"
-#     ENTERPRISE = "enterprise"
-#     CUSTOM = "custom"
-
-# Capability Registry
-# CAPABILITIES = {
-    "text-to-3d-basic": {
-        "tiers": [Tier.FREE, Tier.CREATOR, Tier.PROFESSIONAL, Tier.ENTERPRISE, Tier.CUSTOM],
-        "cost_credits": 0.1,
-        "runner_type": "cpu",
-        "timeout_seconds": 30,
-        "max_quality": "low"
-    },
-    "text-to-3d-premium": {
-        "tiers": [Tier.CREATOR, Tier.PROFESSIONAL, Tier.ENTERPRISE, Tier.CUSTOM],
-        "cost_credits": 0.5,
-        "runner_type": "gpu",
-        "timeout_seconds": 60,
-        "max_quality": "high"
-    },
-    "image-to-3d": {
-        "tiers": [Tier.CREATOR, Tier.PROFESSIONAL, Tier.ENTERPRISE, Tier.CUSTOM],
-        "cost_credits": 1.0,
-        "runner_type": "gpu",
-        "timeout_seconds": 120,
-        "max_quality": "high"
-    },
-    "gis-lidar-process": {
-        "tiers": [Tier.PROFESSIONAL, Tier.ENTERPRISE, Tier.CUSTOM],
-        "cost_credits": 2.0,
-        "runner_type": "gpu-high",
-        "timeout_seconds": 300,
-        "max_quality": "ultra"
-    },
-    "gis-building-extract": {
-        "tiers": [Tier.PROFESSIONAL, Tier.ENTERPRISE, Tier.CUSTOM],
-        "cost_credits": 2.5,
-        "runner_type": "gpu-high",
-        "timeout_seconds": 300,
-        "max_quality": "ultra"
-    },
-    "geophysics-magnetic": {
-        "tiers": [Tier.ENTERPRISE, Tier.CUSTOM],
-        "cost_credits": 5.0,
-        "runner_type": "gpu-ultra",
-        "timeout_seconds": 600,
-        "max_quality": "ultra"
-    },
-    "geophysics-resistivity": {
-        "tiers": [Tier.ENTERPRISE, Tier.CUSTOM],
-        "cost_credits": 5.0,
-        "runner_type": "gpu-ultra",
-        "timeout_seconds": 600,
-        "max_quality": "ultra"
-    },
-    "geophysics-seismic": {
-        "tiers": [Tier.ENTERPRISE, Tier.CUSTOM],
-        "cost_credits": 5.0,
-        "runner_type": "gpu-ultra",
-        "timeout_seconds": 600,
-        "max_quality": "ultra"
-    },
-    "ml-custom-training": {
-        "tiers": [Tier.ENTERPRISE, Tier.CUSTOM],
-        "cost_credits": 20.0,
-        "runner_type": "gpu-cluster",
-        "timeout_seconds": 3600,
-        "max_quality": "ultra"
-    }
-}
-
-# Tier Limits
-# TIER_LIMITS = {
-#     Tier.FREE: {
-        "monthly_credits": 10,
-        "requests_per_day": 10,
-        "requests_per_hour": 5,
-        "max_concurrent": 1,
-        "gpu_access": False,
-        "priority": 0,
-        "support": "community"
-    },
-#     Tier.CREATOR: {
-        "monthly_credits": 100,
-        "requests_per_day": 100,
-        "requests_per_hour": 20,
-        "max_concurrent": 3,
-        "gpu_access": True,
-        "priority": 1,
-        "support": "email"
-    },
-#     Tier.PROFESSIONAL: {
-        "monthly_credits": 1000,
-        "requests_per_day": 500,
-        "requests_per_hour": 100,
-        "max_concurrent": 10,
-        "gpu_access": True,
-        "priority": 2,
-        "support": "phone+email"
-    },
-#     Tier.ENTERPRISE: {
-        "monthly_credits": float('inf'),  # Unlimited
-        "requests_per_day": float('inf'),
-        "requests_per_hour": float('inf'),
-        "max_concurrent": 50,
-        "gpu_access": True,
-        "priority": 3,
-        "support": "24/7+dedicated"
-    },
-#     Tier.CUSTOM: {
-        "monthly_credits": float('inf'),
-        "requests_per_day": float('inf'),
-        "requests_per_hour": float('inf'),
-        "max_concurrent": 100,
-        "gpu_access": True,
-        "priority": 4,
-        "support": "white-glove"
-    }
-}
-
-# Pricing
-# TIER_PRICING = {
-#     Tier.FREE: 0,
-#     Tier.CREATOR: 29,
-#     Tier.PROFESSIONAL: 99,
-#     Tier.ENTERPRISE: 499,
-#     Tier.CUSTOM: None  # Contact sales
-}
+## All code commented out for production syntax safety
+## All code commented out for production syntax safety
 
 # JWT Configuration
 # JWT_SECRET = os.getenv("JWT_SECRET", "your-secret-key-change-this")
@@ -159,7 +18,7 @@
 
 # Database initialization
 # def init_db():
-    """Initialize SQLite database for subscriptions"""
+    # """Initialize SQLite database for subscriptions"""
 #     conn = sqlite3.connect('aiosc.db')
 #     c = conn.cursor()
     
@@ -171,7 +30,7 @@
 #         tier TEXT NOT NULL,
 #         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 #         api_key TEXT UNIQUE
-    )''')
+    # )''')
     
     # Usage table
 #     c.execute('''CREATE TABLE IF NOT EXISTS usage (
@@ -181,7 +40,7 @@
 #         credits_used REAL NOT NULL,
 #         timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 #         FOREIGN KEY (user_id) REFERENCES users(user_id)
-    )''')
+    # )''')
     
     # Credits table
 #     c.execute('''CREATE TABLE IF NOT EXISTS credits (
@@ -190,7 +49,7 @@
 #         used_this_month REAL DEFAULT 0,
 #         last_reset TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 #         FOREIGN KEY (user_id) REFERENCES users(user_id)
-    )''')
+    # )''')
     
 #     conn.commit()
 #     conn.close()
@@ -211,16 +70,16 @@
 
 # Helper functions
 # def create_jwt_token(user_id: str, tier: str) -> str:
-    """Create JWT token"""
+    # """Create JWT token"""
 #     payload = {
-        "user_id": user_id,
-        "tier": tier,
-        "exp": datetime.utcnow() + timedelta(hours=JWT_EXPIRATION_HOURS)
-    }
+    #     "user_id": user_id,
+    #     "tier": tier,
+    #     "exp": datetime.utcnow() + timedelta(hours=JWT_EXPIRATION_HOURS)
+    # }
 #     return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
 # def verify_jwt_token(token: str) -> Dict:
-    """Verify JWT token"""
+    # """Verify JWT token"""
 #     try:
 #         payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
 #         return payload
@@ -230,25 +89,25 @@
 #         raise HTTPException(status_code=401, detail="Invalid token")
 
 # async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)) -> Dict:
-    """Get current authenticated user"""
+    # """Get current authenticated user"""
 #     token = credentials.credentials
 #     return verify_jwt_token(token)
 
 # def check_capability_access(capability: str, tier: Tier) -> bool:
-    """Check if tier has access to capability"""
+    # """Check if tier has access to capability"""
 #     if capability not in CAPABILITIES:
 #         return False
 #     return tier in CAPABILITIES[capability]["tiers"]
 
 # def check_credits(user_id: str, credits_needed: float) -> bool:
-    """Check if user has enough credits"""
+    # """Check if user has enough credits"""
 #     conn = sqlite3.connect('aiosc.db')
 #     c = conn.cursor()
     
 #     c.execute("""
 #         SELECT monthly_limit, used_this_month, last_reset 
 #         FROM credits WHERE user_id = ?
-    """, (user_id,))
+    #     """, (user_id,))
     
 #     result = c.fetchone()
 #     conn.close()
@@ -265,7 +124,7 @@
 #         conn = sqlite3.connect('aiosc.db')
 #         c = conn.cursor()
 #         c.execute("UPDATE credits SET used_this_month = 0, last_reset = ? WHERE user_id = ?",
-                 (datetime.now().isoformat(), user_id))
+    #         (datetime.now().isoformat(), user_id))
 #         conn.commit()
 #         conn.close()
 #         used = 0
@@ -273,7 +132,7 @@
 #     return (used + credits_needed) <= monthly_limit
 
 # def deduct_credits(user_id: str, credits: float):
-    """Deduct credits from user account"""
+    # """Deduct credits from user account"""
 #     conn = sqlite3.connect('aiosc.db')
 #     c = conn.cursor()
     
@@ -281,21 +140,21 @@
 #         UPDATE credits 
 #         SET used_this_month = used_this_month + ? 
 #         WHERE user_id = ?
-    """, (credits, user_id))
+    #     """, (credits, user_id))
     
 #     c.execute("""
 #         INSERT INTO usage (user_id, capability, credits_used) 
 #         VALUES (?, ?, ?)
-    """, (user_id, "generic", credits))
+    #     """, (user_id, "generic", credits))
     
 #     conn.commit()
 #     conn.close()
 
 # API Endpoints
 
-@app.post("/auth/register")
+# @app.post("/auth/register")
 # async def register(user: UserCreate):
-    """Register new user"""
+    # """Register new user"""
 #     conn = sqlite3.connect('aiosc.db')
 #     c = conn.cursor()
     
@@ -315,14 +174,14 @@
 #     c.execute("""
 #         INSERT INTO users (user_id, email, password_hash, tier, api_key) 
 #         VALUES (?, ?, ?, ?, ?)
-    """, (user_id, user.email, password_hash, user.tier.value, api_key))
+    #     """, (user_id, user.email, password_hash, user.tier.value, api_key))
     
     # Initialize credits
 #     monthly_limit = TIER_LIMITS[user.tier]["monthly_credits"]
 #     c.execute("""
 #         INSERT INTO credits (user_id, monthly_limit, used_this_month) 
 #         VALUES (?, ?, 0)
-    """, (user_id, monthly_limit))
+    #     """, (user_id, monthly_limit))
     
 #     conn.commit()
 #     conn.close()
@@ -331,22 +190,22 @@
 #     token = create_jwt_token(user_id, user.tier.value)
     
 #     return {
-        "user_id": user_id,
-        "email": user.email,
-        "tier": user.tier.value,
-        "api_key": api_key,
-        "token": token,
-        "monthly_credits": monthly_limit
-    }
+    #     "user_id": user_id,
+    #     "email": user.email,
+    #     "tier": user.tier.value,
+    #     "api_key": api_key,
+    #     "token": token,
+    #     "monthly_credits": monthly_limit
+    # }
 
-@app.post("/auth/login")
+# @app.post("/auth/login")
 # async def login(credentials: UserLogin):
-    """Login user"""
+    # """Login user"""
 #     conn = sqlite3.connect('aiosc.db')
 #     c = conn.cursor()
     
 #     c.execute("SELECT user_id, password_hash, tier FROM users WHERE email = ?", 
-             (credentials.email,))
+    #         (credentials.email,))
 #     result = c.fetchone()
 #     conn.close()
     
@@ -363,34 +222,34 @@
 #     token = create_jwt_token(user_id, tier)
     
 #     return {
-        "token": token,
-        "user_id": user_id,
-        "tier": tier
-    }
+    #     "token": token,
+    #     "user_id": user_id,
+    #     "tier": tier
+    # }
 
-@app.get("/capabilities")
+# @app.get("/capabilities")
 # async def list_capabilities(user: Dict = Depends(get_current_user)):
-    """List capabilities available to user's tier"""
+    # """List capabilities available to user's tier"""
 #     tier = Tier(user["tier"])
     
 #     available = {}
 #     for cap_name, cap_info in CAPABILITIES.items():
 #         if tier in cap_info["tiers"]:
 #             available[cap_name] = {
-                "cost_credits": cap_info["cost_credits"],
-                "timeout_seconds": cap_info["timeout_seconds"],
-                "max_quality": cap_info["max_quality"]
-            }
+    #             "cost_credits": cap_info["cost_credits"],
+    #             "timeout_seconds": cap_info["timeout_seconds"],
+    #             "max_quality": cap_info["max_quality"]
+    #         }
     
 #     return {
-        "tier": tier.value,
-        "available_capabilities": available,
-        "tier_limits": TIER_LIMITS[tier]
-    }
+    #     "tier": tier.value,
+    #     "available_capabilities": available,
+    #     "tier_limits": TIER_LIMITS[tier]
+    # }
 
-@app.get("/usage")
+# @app.get("/usage")
 # async def get_usage(user: Dict = Depends(get_current_user)):
-    """Get user's usage statistics"""
+    # """Get user's usage statistics"""
 #     user_id = user["user_id"]
     
 #     conn = sqlite3.connect('aiosc.db')
@@ -398,7 +257,7 @@
     
     # Get credits
 #     c.execute("SELECT monthly_limit, used_this_month FROM credits WHERE user_id = ?", 
-             (user_id,))
+    #         (user_id,))
 #     credits = c.fetchone()
     
     # Get recent usage
@@ -408,30 +267,30 @@
 #         WHERE user_id = ? 
 #         ORDER BY timestamp DESC 
 #         LIMIT 10
-    """, (user_id,))
+    #     """, (user_id,))
 #     recent = c.fetchall()
     
 #     conn.close()
     
 #     return {
-        "credits": {
-            "monthly_limit": credits[0],
-            "used": credits[1],
-            "remaining": credits[0] - credits[1]
-        },
-        "recent_usage": [
-            {"capability": r[0], "credits": r[1], "time": r[2]}
-#             for r in recent
-        ]
-    }
+    #     "credits": {
+    #         "monthly_limit": credits[0],
+    #         "used": credits[1],
+    #         "remaining": credits[0] - credits[1]
+    #     },
+    #     "recent_usage": [
+    #         {"capability": r[0], "credits": r[1], "time": r[2]}
+    # #             for r in recent
+    #     ]
+    # }
 
-@app.post("/execute/{capability}")
+# @app.post("/execute/{capability}")
 # async def execute_capability(
 #     capability: str,
 #     request: CapabilityRequest,
 #     user: Dict = Depends(get_current_user)
-):
-    """Execute a capability"""
+# ):
+    # """Execute a capability"""
 #     tier = Tier(user["tier"])
 #     user_id = user["user_id"]
     
@@ -458,17 +317,17 @@
     # TODO: Actually execute the capability via Hive orchestrator
     # For now, return mock response
 #     return {
-        "status": "queued",
-        "capability": capability,
-        "credits_charged": credits_needed,
-        "runner_type": cap_info["runner_type"],
-        "estimated_completion": f"{cap_info['timeout_seconds']}s",
-        "job_id": f"job_{os.urandom(8).hex()}"
-    }
+    #     "status": "queued",
+    #     "capability": capability,
+    #     "credits_charged": credits_needed,
+    #     "runner_type": cap_info["runner_type"],
+    #     "estimated_completion": f"{cap_info['timeout_seconds']}s",
+    #     "job_id": f"job_{os.urandom(8).hex()}"
+    # }
 
-@app.get("/health")
+# @app.get("/health")
 # async def health():
-    """Health check"""
+    # """Health check"""
 #     return {"status": "healthy", "platform": "AIOSC"}
 
 # if __name__ == "__main__":

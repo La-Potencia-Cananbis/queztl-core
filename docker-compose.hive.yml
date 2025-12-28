@@ -1,0 +1,77 @@
+# Quetzl-Core Distributed Hive Docker Compose
+# Launches backend, 4 ML agents, and dashboard in a real distributed cluster
+# Replace <your-public-host> with your real public DNS/IP if needed
+
+version: '3.8'
+services:
+  backend:
+    build: ./backend
+    image: quetzlcore/backend:latest
+    container_name: hive-backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ID=backend-1
+    networks:
+      - hive
+
+  agent1:
+    build: ./cluster
+    image: quetzlcore/agent:latest
+    container_name: hive-agent-1
+    restart: always
+    environment:
+      - AGENT_ID=1
+      - BACKEND_URL=http://backend:8000
+    networks:
+      - hive
+
+  agent2:
+    build: ./cluster
+    image: quetzlcore/agent:latest
+    container_name: hive-agent-2
+    restart: always
+    environment:
+      - AGENT_ID=2
+      - BACKEND_URL=http://backend:8000
+    networks:
+      - hive
+
+  agent3:
+    build: ./cluster
+    image: quetzlcore/agent:latest
+    container_name: hive-agent-3
+    restart: always
+    environment:
+      - AGENT_ID=3
+      - BACKEND_URL=http://backend:8000
+    networks:
+      - hive
+
+  agent4:
+    build: ./cluster
+    image: quetzlcore/agent:latest
+    container_name: hive-agent-4
+    restart: always
+    environment:
+      - AGENT_ID=4
+      - BACKEND_URL=http://backend:8000
+    networks:
+      - hive
+
+  dashboard:
+    build: ./dashboard
+    image: quetzlcore/dashboard:latest
+    container_name: hive-dashboard
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - BACKEND_URL=http://backend:8000
+    networks:
+      - hive
+
+networks:
+  hive:
+    driver: bridge
