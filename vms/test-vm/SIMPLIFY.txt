@@ -1,1 +1,0 @@
-Simple working VM display - just show it fullscreen immediately without all the xterm.js complexity. The display div should show VM info as soon as the tab is clicked. No websockets, no external libs, just HTML/CSS/JS.

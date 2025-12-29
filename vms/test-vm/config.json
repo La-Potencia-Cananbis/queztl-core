@@ -1,9 +1,0 @@
-{
-  "vm_id": "test-vm-001",
-  "name": "QuetzalCore Test VM",
-  "memory_mb": 2048,
-  "vcpus": 2,
-  "disk_size_gb": 20,
-  "network": "bridge",
-  "features": ["kvm", "virtio", "memory_hotplug"]
-}

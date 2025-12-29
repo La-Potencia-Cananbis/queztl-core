@@ -1,0 +1,48 @@
+# Lubuntu Dev Environment Dockerfile
+# Includes all core tools for backend, frontend, and devops
+
+FROM dorowu/ubuntu-desktop-lxde-vnc:latest
+
+
+# Install core dev tools and utilities, remove SSH server, add code-server
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    build-essential \
+    python3 python3-pip python3-venv \
+    nodejs npm \
+    git curl wget \
+    htop nano vim less tree imagemagick zip unzip \
+    postgresql-client redis-tools \
+    nginx \
+    sudo \
+    && npm install -g yarn \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Create admin user with password Welcome2026#!
+RUN useradd -m -s /bin/bash admin && echo 'admin:Welcome2026#!' | chpasswd && usermod -aG sudo admin
+
+# Install code-server (VS Code server)
+RUN curl -fsSL https://code-server.dev/install.sh | sh
+
+# Set up code-server to run as admin
+USER admin
+WORKDIR /workspace
+
+# Expose VNC and code-server ports
+EXPOSE 80 6080 8080
+
+
+# Start both VNC and code-server using a supervisor script
+COPY scripts/start-dev.sh /usr/local/bin/start-dev.sh
+RUN chmod +x /usr/local/bin/start-dev.sh
+CMD ["/usr/local/bin/start-dev.sh"]
+
+# Optional: VS Code server (uncomment to enable)
+# RUN wget -O- https://aka.ms/install-vscode-server/setup.sh | sh
+
+WORKDIR /workspace
+
+# Expose VNC and optional ports
+EXPOSE 80 6080
+
+CMD ["bash"]
