@@ -1,0 +1,31 @@
+# Netlify configuration for Quetzal-Core landing page
+[build]
+  # No build command needed - static HTML
+  publish = "."
+  
+[[redirects]]
+  # Redirect /docs to backend README
+  from = "/docs"
+  to = "/backend/README.md"
+  status = 200
+
+[[redirects]]
+  # Redirect /whitepaper to pitch deck
+  from = "/whitepaper"
+  to = "/backend/SENASAITECH_PITCH_DECK.md"
+  status = 200
+
+[[headers]]
+  # Security headers
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+[[headers]]
+  # Cache static assets
+  for = "*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

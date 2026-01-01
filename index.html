@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quetzal-Core: Quantum-inspired geospatial AI technology for mining exploration and Earth intelligence">
+    <title>Quetzal-Core | Quantum AI for Earth</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d9ff;
+            --secondary: #8b5cf6;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--light);
+            background: var(--darker);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+        }
+
+        .hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00d9ff 0%, #8b5cf6 50%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 8s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 2rem;
+            color: #94a3b8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--darker);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section */
+        section {
+            padding: 6rem 0;
+        }
+
+        section h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Technology Section */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.2);
+        }
+
+        .tech-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .tech-card p {
+            color: #94a3b8;
+            line-height: 1.8;
+        }
+
+        /* Features Section */
+        .features {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .feature-item p {
+            color: #94a3b8;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--dark);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        /* Investor Section */
+        .investor {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+        }
+
+        .investor-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .investor-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .investor-content p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            color: #64748b;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .tech-grid,
+            .feature-list,
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">🦅 Quetzal-Core</div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="navMenu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="/backend/README.md">API Docs</a></li>
+                <li><a href="/backend/SENASAITECH_PITCH_DECK.md">Whitepaper</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <canvas class="hero-canvas" id="heroCanvas"></canvas>
+        <div class="hero-content">
+            <h1>Quantum AI for Earth</h1>
+            <p>Revolutionary geospatial intelligence powered by quantum-inspired algorithms. Transforming mining exploration and Earth observation with AI that thinks ahead.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Partner With Us</a>
+                <a href="#technology" class="btn btn-secondary">Explore Technology</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Overview -->
+    <section id="technology">
+        <div class="container">
+            <h2>Quetzal-Core Technology</h2>
+            <p style="text-align: center; color: #94a3b8; font-size: 1.2rem; margin-bottom: 3rem;">
+                Advanced quantum-inspired AI platform that analyzes geospatial data 100x faster than traditional methods, 
+                helping mining companies find minerals without expensive drilling.
+            </p>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">⚛️</div>
+                    <h3>Quantum Intelligence</h3>
+                    <p>Leveraging quantum-inspired algorithms for parallel processing and predictive optimization. Our AI analyzes magnetic surveys in minutes, not weeks.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🗺️</div>
+                    <h3>Geospatial AI Engine</h3>
+                    <p>Advanced magnetic analysis and mineral discrimination. Identifies iron, copper, gold, and nickel deposits with 85% accuracy, saving millions in exploration costs.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🚀</div>
+                    <h3>10,000x Acceleration</h3>
+                    <p>Quantum multiplier technology processes geological data at unprecedented speeds. What took months now takes days.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🧠</div>
+                    <h3>Adaptive Learning</h3>
+                    <p>Self-improving AI that learns from every survey. Real-time adaptation and continuous optimization for better results over time.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🎯</div>
+                    <h3>Smart Drill Targeting</h3>
+                    <p>AI-powered drill site recommendations ranked by confidence. Reduce drilling costs by 75% by targeting only high-probability locations.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">☁️</div>
+                    <h3>Cloud-Native Platform</h3>
+                    <p>Web-based platform accessible anywhere. Upload magnetic survey data, get interactive results with drill target recommendations in real-time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Why Quetzal-Core Wins</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <h3>263% ROI</h3>
+                    <p>Save $580K+ per survey with AI-guided exploration</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <h3>90% Faster</h3>
+                    <p>Results in days, not months</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h3>85% Accuracy</h3>
+                    <p>25% better than traditional methods</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌍</div>
+                    <h3>$1.5B Market</h3>
+                    <p>Addressable mining exploration sector</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Patent Pending</h3>
+                    <p>Protected quantum prediction algorithms</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Production Ready</h3>
+                    <p>11 working APIs, deployed and tested</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Our Mission</h2>
+            <div class="about-content">
+                <p>
+                    Quetzal-Core is revolutionizing Earth intelligence through quantum-inspired AI. We're a startup on a mission 
+                    to make geospatial analysis faster, cheaper, and more accurate than ever before.
+                </p>
+                <p>
+                    Our platform transforms raw magnetic survey data into actionable intelligence for mining exploration, 
+                    helping companies find minerals without the traditional expense of blind drilling.
+                </p>
+                <p>
+                    <strong>Founded by visionary engineers and geophysicists</strong>, we combine deep technical expertise 
+                    with 20+ years of mining industry experience to deliver solutions that actually work.
+                </p>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">100x</div>
+                    <div class="stat-label">Faster Analysis</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">75%</div>
+                    <div class="stat-label">Cost Reduction</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1,200+</div>
+                    <div class="stat-label">Potential Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$150M</div>
+                    <div class="stat-label">5-Year Projection</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investor CTA -->
+    <section id="contact" class="investor">
+        <div class="container">
+            <div class="investor-content">
+                <h2>Let's Build the Future Together</h2>
+                <h3>Investment Opportunity</h3>
+                <p>
+                    We're seeking <strong>$500K seed funding</strong> to scale our proven technology. 
+                    Our platform is built, tested, and ready for market. First revenue expected within 30 days.
+                </p>
+                <p>
+                    Join us in disrupting the $1.5B mining exploration market with quantum-inspired AI technology.
+                </p>
+                <div class="contact-info">
+                    <p style="margin-bottom: 1rem; color: #94a3b8;">Contact Founder:</p>
+                    <a href="mailto:salvadorsena@live.com">salvadorsena@live.com</a>
+                    <p style="margin-top: 2rem; color: #64748b; font-size: 0.9rem;">
+                        Available for demo calls • Pitch deck ready • Term sheet discussion
+                    </p>
+                </div>
+                <div class="cta-buttons" style="margin-top: 2rem;">
+                    <a href="mailto:salvadorsena@live.com?subject=Investment%20Inquiry%20-%20Quetzal-Core" class="btn btn-primary">
+                        Schedule a Call
+                    </a>
+                    <a href="/backend/SENASAITECH_PITCH_DECK.md" class="btn btn-secondary">
+                        View Pitch Deck
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Quetzal-Core Project. All Rights Reserved. Patent Pending.</p>
+            <p style="margin-top: 1rem;">
+                <a href="/LICENSE">License</a> • 
+                <a href="/backend/README.md">Documentation</a> • 
+                <a href="mailto:salvadorsena@live.com">Contact</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        // Animated Canvas Background
+        const canvas = document.getElementById('heroCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        class Agent {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2 + 1;
+                this.color = this.getRandomColor();
+                this.pulse = Math.random() * Math.PI * 2;
+            }
+
+            getRandomColor() {
+                const colors = [
+                    'rgba(0, 217, 255, 0.8)',    // Primary
+                    'rgba(139, 92, 246, 0.8)',   // Secondary
+                    'rgba(245, 158, 11, 0.8)'    // Accent
+                ];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.pulse += 0.05;
+
+                // Bounce off edges
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                const glowSize = Math.max(1, this.radius + Math.sin(this.pulse) * 3);
+                const outerRadius = Math.max(1, glowSize * 3);
+                
+                // Glow effect
+                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, outerRadius);
+                gradient.addColorStop(0, this.color);
+                gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, outerRadius, 0, Math.PI * 2);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+
+                // Core
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color.replace('0.8', '1');
+                ctx.fill();
+            }
+        }
+
+        // Create agent network
+        const agents = [];
+        const agentCount = 50;
+
+        for (let i = 0; i < agentCount; i++) {
+            agents.push(new Agent());
+        }
+
+        function drawConnections() {
+            for (let i = 0; i < agents.length; i++) {
+                for (let j = i + 1; j < agents.length; j++) {
+                    const dx = agents[i].x - agents[j].x;
+                    const dy = agents[i].y - agents[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(agents[i].x, agents[i].y);
+                        ctx.lineTo(agents[j].x, agents[j].y);
+                        const alpha = (1 - distance / 150) * 0.3;
+                        ctx.strokeStyle = `rgba(0, 217, 255, ${alpha})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(2, 6, 23, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            drawConnections();
+
+            agents.forEach(agent => {
+                agent.update();
+                agent.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile menu if open
+                    document.getElementById('navMenu').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
