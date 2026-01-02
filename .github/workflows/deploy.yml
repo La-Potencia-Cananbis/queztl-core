@@ -1,4 +1,4 @@
-name: Deploy to Netlify
+name: Deploy dashboard to Netlify
 
 on:
   push:
@@ -41,5 +41,7 @@ jobs:
       #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
       #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       #   with:
-      #     # Change 'dist' if your build output directory is different
-      #     args: deploy --dir=frontend/dashboard/dist --prod
+      #     # For Next.js SSR, use .next
+      #     # For static export (next export), use out
+      #     # Set this to your actual output directory:
+      #     args: deploy --dir=frontend/dashboard/.next --prod
