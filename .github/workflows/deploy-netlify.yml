@@ -34,14 +34,10 @@ jobs:
           cd frontend/dashboard
           npm run build
 
-      # Uncomment and configure this if you want CI to deploy to Netlify:
-      # - name: Deploy to Netlify
-      #   uses: netlify/actions/cli@v4
-      #   env:
-      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      #   with:
-      #     # For Next.js SSR, use .next
-      #     # For static export (next export), use out
-      #     # Set this to your actual output directory:
-      #     args: deploy --dir=frontend/dashboard/.next --prod
+      - name: Deploy to Netlify
+        uses: netlify/actions/cli@v4
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        with:
+          args: deploy --dir=frontend/dashboard/.next --prod
