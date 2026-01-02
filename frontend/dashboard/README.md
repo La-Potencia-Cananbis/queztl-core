@@ -43,7 +43,7 @@ Backend: https://queztl-core-backend.onrender.com
 Automatically deployed to GitHub Pages on push to main branch.
 
 ## Performance
-
+Temp change to trigger Deploy dashboard to Netlify workflow.
 - Bundle size: ~191 KB
 - Load time: <1 second
 - Lighthouse score: 100/100 (estimated)
