@@ -1,8 +1,0 @@
-#!/bin/bash
-# Run this script ON SLOTH to enable passwordless SSH from your Mac
-
-mkdir -p ~/.ssh
-chmod 700 ~/.ssh
-echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDaOHjR4W70NDKCqAnm49Scj3bmYYUUCqAOvCN7O+ZuidaZBYz8tPEFh1ZAct+isMx28gE5Cv36fbhZyyELqb7qzTmf/u3HtHMr19kxyHqn6GSboZyGLWGML4/GFayMSl1b4bwdXL3PBxc1A5i9GIU+aPQhxF9N9ajjmP3wb9Zaz1fjr8U7eTe9Vv+xmJQbOxCfFXmDqgkZYCMa1a5x6XJnl7MtL4+Ppd9OLmXP5JU82FtM4jenax8hVF+LFfO4jKSYdMlQrNbfOTXZpfTPNyNZ6VP3oVrD68jaqgAs54g4ZKtjGcCv7lXGVfQmw0yj3iRlbaa7KiNG2s+QgPBtMgyZMO4scaasgrbqiyT3uUZSTwUvzVhfrmcbDTuoXgAlEchC0j4rO8hHEc4F79gfIlV5bCtoD9BedagRFSEwPHn1VUonKS3br7JvhMnIUNi5JmwMbUDSZLRLhtO1HPsWgTFtany7U72niYXx5eAHx1x4mSNA4EwDerh5S5ht0i6EuVqdK/Zo+FFI7wMNE19W67vdU8TemJYEWfJSi2Hg74OIJGPUCZdkKiPioIgQhLUA5Y1rOnKSIHmrhdtm0D9ascArJgs0HOR4paLIC1J1BWwddbB6pyt81SpdSsOQnIHo2Gf+HqoiDGQZgMaBHJxGazXpzFLyZon3U7erw4oq+F5+6w== xavasena@Mac.lan" >> ~/.ssh/authorized_keys
-chmod 600 ~/.ssh/authorized_keys
-echo "✅ SSH key installed!"
