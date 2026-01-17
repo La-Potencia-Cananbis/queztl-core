@@ -1,0 +1,21 @@
+[Unit]
+Description=QC Internal step-ca
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=step
+Group=step
+EnvironmentFile=/etc/default/step-ca
+ExecStart=/usr/bin/step-ca /etc/step-ca/config/ca.json --address=:8443
+Restart=on-failure
+RestartSec=10
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/step /var/log/step-ca
+RuntimeDirectory=step-ca
+RuntimeDirectoryMode=0750
+
+[Install]
+WantedBy=multi-user.target

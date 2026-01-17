@@ -1,0 +1,29 @@
+[Unit]
+Description=QC Node Phone-Home Enrollment
+ConditionPathExists=!/var/lib/qc/firstboot.done
+After=network-online.target
+Wants=network-online.target
+Before=multi-user.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/qc-phonehome.sh
+StandardOutput=journal+console
+StandardError=journal+console
+
+Environment="QC_ENROLL_URL=https://enroll.qc.lan/enroll"
+
+# Run with elevated privileges
+User=root
+Group=root
+
+# Timeout after 5 minutes
+TimeoutStartSec=300
+
+# Retry on failure
+Restart=on-failure
+RestartSec=30s
+
+[Install]
+WantedBy=multi-user.target
