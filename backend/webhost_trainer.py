@@ -396,7 +396,7 @@ class WebHostTrainer:
     def train_epoch(self, epoch: int, batch_size: int = 4) -> TrainingMetrics:
         """Train for one epoch with comprehensive metrics"""
         self.model.train()
-        dataloader = DataLoader(self.dataset, batch_size=batch_size, shuffle=True)
+        dataloader = DataLoader(self.dataset, batch_size=batch_size, shuffle=True, collate_fn=lambda x: x)
         
         total_loss = 0.0
         total_perplexity = 0.0
@@ -404,7 +404,7 @@ class WebHostTrainer:
         gradient_norms = []
         
         for batch_idx, batch_data in enumerate(dataloader):
-            # Prepare batch
+            # Prepare batch (batch_data is already a list of dicts)
             tokens = torch.stack([item['tokens'] for item in batch_data]).to(self.device)
             design_metrics = torch.stack([item['design_metrics'] for item in batch_data]).to(self.device)
             
