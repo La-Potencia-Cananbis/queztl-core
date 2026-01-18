@@ -1,0 +1,151 @@
+{
+  "num_agents": 5,
+  "agents": [
+    {
+      "id": "webhost_agent_001",
+      "region": "us-east",
+      "sites_created": 1,
+      "quality_score": 0.8364503476752658,
+      "spawn_time": 1768774500.406028,
+      "metrics": {
+        "design": 0.7967065826909826,
+        "accessibility": 0.8644548541363491,
+        "performance": 0.8574695889588376,
+        "engagement": 0.8347863104708716
+      }
+    },
+    {
+      "id": "webhost_agent_002",
+      "region": "us-west",
+      "sites_created": 1,
+      "quality_score": 0.8865400028516257,
+      "spawn_time": 1768774500.4060311,
+      "metrics": {
+        "design": 0.9245459352784338,
+        "accessibility": 0.8885783131453527,
+        "performance": 0.878984586160802,
+        "engagement": 0.8364274872077839
+      }
+    },
+    {
+      "id": "webhost_agent_003",
+      "region": "eu",
+      "sites_created": 1,
+      "quality_score": 0.8218500786221434,
+      "spawn_time": 1768774500.4060328,
+      "metrics": {
+        "design": 0.8846193667778717,
+        "accessibility": 0.8271978331125658,
+        "performance": 0.7464824211091488,
+        "engagement": 0.8152210251667671
+      }
+    },
+    {
+      "id": "webhost_agent_004",
+      "region": "asia",
+      "sites_created": 1,
+      "quality_score": 0.8642355550938066,
+      "spawn_time": 1768774500.406035,
+      "metrics": {
+        "design": 0.9227571502776849,
+        "accessibility": 0.7812657039187311,
+        "performance": 0.7860389149093144,
+        "engagement": 0.9779112765174486
+      }
+    },
+    {
+      "id": "webhost_agent_005",
+      "region": "latam",
+      "sites_created": 1,
+      "quality_score": 0.8022982410794679,
+      "spawn_time": 1768774500.406036,
+      "metrics": {
+        "design": 0.7604874316352243,
+        "accessibility": 0.7614537957350662,
+        "performance": 0.8721982826212952,
+        "engagement": 0.828694959999051
+      }
+    }
+  ],
+  "ranked": [
+    {
+      "id": "webhost_agent_002",
+      "region": "us-west",
+      "sites_created": 1,
+      "quality_score": 0.8865400028516257,
+      "spawn_time": 1768774500.4060311,
+      "metrics": {
+        "design": 0.9245459352784338,
+        "accessibility": 0.8885783131453527,
+        "performance": 0.878984586160802,
+        "engagement": 0.8364274872077839
+      }
+    },
+    {
+      "id": "webhost_agent_004",
+      "region": "asia",
+      "sites_created": 1,
+      "quality_score": 0.8642355550938066,
+      "spawn_time": 1768774500.406035,
+      "metrics": {
+        "design": 0.9227571502776849,
+        "accessibility": 0.7812657039187311,
+        "performance": 0.7860389149093144,
+        "engagement": 0.9779112765174486
+      }
+    },
+    {
+      "id": "webhost_agent_001",
+      "region": "us-east",
+      "sites_created": 1,
+      "quality_score": 0.8364503476752658,
+      "spawn_time": 1768774500.406028,
+      "metrics": {
+        "design": 0.7967065826909826,
+        "accessibility": 0.8644548541363491,
+        "performance": 0.8574695889588376,
+        "engagement": 0.8347863104708716
+      }
+    },
+    {
+      "id": "webhost_agent_003",
+      "region": "eu",
+      "sites_created": 1,
+      "quality_score": 0.8218500786221434,
+      "spawn_time": 1768774500.4060328,
+      "metrics": {
+        "design": 0.8846193667778717,
+        "accessibility": 0.8271978331125658,
+        "performance": 0.7464824211091488,
+        "engagement": 0.8152210251667671
+      }
+    },
+    {
+      "id": "webhost_agent_005",
+      "region": "latam",
+      "sites_created": 1,
+      "quality_score": 0.8022982410794679,
+      "spawn_time": 1768774500.406036,
+      "metrics": {
+        "design": 0.7604874316352243,
+        "accessibility": 0.7614537957350662,
+        "performance": 0.8721982826212952,
+        "engagement": 0.828694959999051
+      }
+    }
+  ],
+  "best_agent": {
+    "id": "webhost_agent_002",
+    "region": "us-west",
+    "sites_created": 1,
+    "quality_score": 0.8865400028516257,
+    "spawn_time": 1768774500.4060311,
+    "metrics": {
+      "design": 0.9245459352784338,
+      "accessibility": 0.8885783131453527,
+      "performance": 0.878984586160802,
+      "engagement": 0.8364274872077839
+    }
+  },
+  "avg_quality": 0.8422748450644619
+}

@@ -1,0 +1,79 @@
+{
+  "file_size": {
+    "original": 21495,
+    "modern": 33294,
+    "change_pct": 54.89183531053733
+  },
+  "features": {
+    "original": {
+      "Semantic Elements": 10,
+      "Headings (h1-h3)": 10,
+      "Images": 21,
+      "Links": 35,
+      "Buttons": 42,
+      "Forms": 1,
+      "CSS Animations": 0,
+      "Gradients": 0,
+      "Transitions": 0
+    },
+    "modern": {
+      "Semantic Elements": 8,
+      "Headings (h1-h3)": 7,
+      "Images": 21,
+      "Links": 34,
+      "Buttons": 40,
+      "Forms": 1,
+      "CSS Animations": 6,
+      "Gradients": 9,
+      "Transitions": 12
+    }
+  },
+  "accessibility": {
+    "original": {
+      "score": 1.0,
+      "features": {
+        "alt_text": true,
+        "semantic_html": true,
+        "form_labels": true,
+        "aria_attributes": true,
+        "lang_attribute": true
+      }
+    },
+    "modern": {
+      "score": 0.8,
+      "features": {
+        "alt_text": true,
+        "semantic_html": true,
+        "form_labels": true,
+        "aria_attributes": false,
+        "lang_attribute": true
+      }
+    }
+  },
+  "performance": {
+    "original": {
+      "load_time": "<0.5s",
+      "render_time": "<0.2s",
+      "interactive": "<0.7s"
+    },
+    "modern": {
+      "load_time": "<1.0s",
+      "render_time": "<0.4s",
+      "interactive": "<1.2s"
+    }
+  },
+  "engagement": {
+    "original": {
+      "animations": 0,
+      "hover_effects": 0,
+      "interactive": 0,
+      "smooth_scroll": false
+    },
+    "modern": {
+      "animations": 6,
+      "hover_effects": 11,
+      "interactive": 43,
+      "smooth_scroll": true
+    }
+  }
+}
