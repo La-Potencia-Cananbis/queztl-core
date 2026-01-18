@@ -402,8 +402,11 @@ class WebHostTrainer:
         total_perplexity = 0.0
         total_design_score = 0.0
         gradient_norms = []
+        last_batch_data = []
         
         for batch_idx, batch_data in enumerate(dataloader):
+            last_batch_data = batch_data  # Save for readability calculation
+            
             # Prepare batch (batch_data is already a list of dicts)
             tokens = torch.stack([item['tokens'] for item in batch_data]).to(self.device)
             design_metrics = torch.stack([item['design_metrics'] for item in batch_data]).to(self.device)
@@ -443,7 +446,9 @@ class WebHostTrainer:
             
             # Metrics
             with torch.no_grad():
-                perplexity = self.calculate_perplexity(logits, targets, mask[:, 1:])
+                # Fix mask for perplexity calculation
+                target_mask = mask[:, 1:]  # Match target dimensions
+                perplexity = self.calculate_perplexity(logits, targets, target_mask)
                 design_score = self.calculate_design_score(pred_design, design_metrics)
             
             total_loss += loss.item()
@@ -464,8 +469,8 @@ class WebHostTrainer:
         self.scheduler.step()
         current_lr = self.scheduler.get_last_lr()[0]
         
-        # Calculate readability on generated samples
-        avg_readability = self._evaluate_readability(batch_data)
+        # Calculate readability on last batch
+        avg_readability = self._evaluate_readability(last_batch_data) if last_batch_data else 0.0
         
         metrics = TrainingMetrics(
             epoch=epoch,
