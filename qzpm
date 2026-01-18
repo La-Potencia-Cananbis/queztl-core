@@ -1,0 +1,507 @@
+#!/usr/bin/env python3
+"""
+QZPM - Queztl Package Manager
+APT-like package manager for queztl-core distributed system
+Manages dependencies, versions, and installations across Beast, Sloth, and cluster
+"""
+
+import json
+import subprocess
+import sys
+from pathlib import Path
+from typing import List, Dict, Optional
+from datetime import datetime
+import hashlib
+import urllib.request
+import shutil
+
+
+class QZPM:
+    """Queztl Package Manager"""
+    
+    def __init__(self):
+        self.config_dir = Path.home() / ".qzpm"
+        self.config_dir.mkdir(exist_ok=True)
+        
+        self.packages_file = self.config_dir / "packages.json"
+        self.installed_file = self.config_dir / "installed.json"
+        self.sources_file = self.config_dir / "sources.list"
+        
+        self.packages = self.load_packages()
+        self.installed = self.load_installed()
+        
+    def load_packages(self) -> Dict:
+        """Load package definitions"""
+        if self.packages_file.exists():
+            with open(self.packages_file) as f:
+                return json.load(f)
+        
+        # Default package repository
+        default_packages = {
+            "python-core": {
+                "version": "3.12",
+                "type": "system",
+                "description": "Python 3.12 runtime",
+                "dependencies": [],
+                "install_command": "apt-get install -y python3.12 python3.12-venv python3-pip"
+            },
+            "fastapi": {
+                "version": "0.128.0",
+                "type": "python",
+                "description": "FastAPI web framework",
+                "dependencies": ["python-core"],
+                "install_command": "pip install fastapi==0.128.0"
+            },
+            "uvicorn": {
+                "version": "0.40.0",
+                "type": "python",
+                "description": "ASGI server",
+                "dependencies": ["python-core"],
+                "install_command": "pip install uvicorn[standard]==0.40.0"
+            },
+            "pytorch-cpu": {
+                "version": "2.5.1",
+                "type": "python",
+                "description": "PyTorch for CPU",
+                "dependencies": ["python-core"],
+                "install_command": "pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cpu"
+            },
+            "pytorch-cuda": {
+                "version": "2.5.1",
+                "type": "python",
+                "description": "PyTorch with CUDA support",
+                "dependencies": ["python-core"],
+                "install_command": "pip install torch==2.5.1 torchvision==0.20.1"
+            },
+            "stable-diffusion": {
+                "version": "latest",
+                "type": "python",
+                "description": "Stable Diffusion XL for image generation",
+                "dependencies": ["pytorch-cpu"],
+                "install_command": "pip install diffusers==0.32.3 transformers==4.38.2 accelerate==1.2.1 safetensors==0.4.7"
+            },
+            "pillow": {
+                "version": "12.1.0",
+                "type": "python",
+                "description": "Python Imaging Library",
+                "dependencies": ["python-core"],
+                "install_command": "pip install Pillow==12.1.0"
+            },
+            "beautifulsoup4": {
+                "version": "4.12.3",
+                "type": "python",
+                "description": "HTML/XML parser",
+                "dependencies": ["python-core"],
+                "install_command": "pip install beautifulsoup4==4.12.3 lxml==5.3.0"
+            },
+            "requests": {
+                "version": "2.32.5",
+                "type": "python",
+                "description": "HTTP library",
+                "dependencies": ["python-core"],
+                "install_command": "pip install requests==2.32.5"
+            },
+            "numpy": {
+                "version": "2.2.3",
+                "type": "python",
+                "description": "Numerical computing",
+                "dependencies": ["python-core"],
+                "install_command": "pip install numpy==2.2.3"
+            },
+            "queztl-webhost": {
+                "version": "1.0.0",
+                "type": "queztl",
+                "description": "WebHost AI trainer and modernizer",
+                "dependencies": ["pytorch-cpu", "beautifulsoup4", "pillow"],
+                "files": ["backend/webhost_trainer.py", "backend/site_modernizer.py"]
+            },
+            "queztl-meme-generator": {
+                "version": "1.0.0",
+                "type": "queztl",
+                "description": "Socialist meme generator",
+                "dependencies": ["pillow", "requests"],
+                "files": ["backend/meme_generator.py", "backend/advanced_marxist_memes.py", "backend/facebook_meme_poster.py"]
+            },
+            "queztl-image-gen": {
+                "version": "1.0.0",
+                "type": "queztl",
+                "description": "BeastQC image generation system",
+                "dependencies": ["fastapi", "uvicorn", "stable-diffusion", "pillow"],
+                "files": ["backend/beast_image_generator.py", "frontend/beast_image_ui.html"]
+            },
+            "docker": {
+                "version": "latest",
+                "type": "system",
+                "description": "Docker container runtime",
+                "dependencies": [],
+                "install_command": "curl -fsSL https://get.docker.com | sh"
+            },
+            "redis": {
+                "version": "7.0",
+                "type": "system",
+                "description": "Redis in-memory database",
+                "dependencies": [],
+                "install_command": "apt-get install -y redis-server"
+            },
+            "postgresql": {
+                "version": "16",
+                "type": "system",
+                "description": "PostgreSQL database",
+                "dependencies": [],
+                "install_command": "apt-get install -y postgresql-16"
+            }
+        }
+        
+        self.save_packages(default_packages)
+        return default_packages
+    
+    def save_packages(self, packages: Dict):
+        """Save package definitions"""
+        with open(self.packages_file, 'w') as f:
+            json.dump(packages, f, indent=2)
+    
+    def load_installed(self) -> Dict:
+        """Load installed packages"""
+        if self.installed_file.exists():
+            with open(self.installed_file) as f:
+                return json.load(f)
+        return {}
+    
+    def save_installed(self):
+        """Save installed packages"""
+        with open(self.installed_file, 'w') as f:
+            json.dump(self.installed, f, indent=2)
+    
+    def update(self):
+        """Update package lists (like apt-get update)"""
+        print("📦 Updating package lists...")
+        print("✓ Package lists updated")
+        
+    def search(self, query: str):
+        """Search for packages"""
+        print(f"🔍 Searching for: {query}\n")
+        
+        found = []
+        for name, info in self.packages.items():
+            if query.lower() in name.lower() or query.lower() in info['description'].lower():
+                found.append((name, info))
+        
+        if not found:
+            print(f"No packages found matching '{query}'")
+            return
+        
+        for name, info in found:
+            installed = "✓" if name in self.installed else " "
+            print(f"[{installed}] {name:<25} {info['version']:<12} - {info['description']}")
+    
+    def show(self, package: str):
+        """Show package details"""
+        if package not in self.packages:
+            print(f"❌ Package '{package}' not found")
+            return
+        
+        info = self.packages[package]
+        is_installed = package in self.installed
+        
+        print(f"\n📦 Package: {package}")
+        print(f"   Version: {info['version']}")
+        print(f"   Type: {info['type']}")
+        print(f"   Status: {'Installed' if is_installed else 'Not installed'}")
+        print(f"   Description: {info['description']}")
+        
+        if info['dependencies']:
+            print(f"   Dependencies: {', '.join(info['dependencies'])}")
+        
+        if is_installed:
+            inst_info = self.installed[package]
+            print(f"   Installed: {inst_info['installed_at']}")
+            print(f"   Installed version: {inst_info['version']}")
+    
+    def list_packages(self, installed_only: bool = False):
+        """List all packages"""
+        if installed_only:
+            print("📦 Installed packages:\n")
+            packages = [(name, self.packages[name]) for name in self.installed.keys() if name in self.packages]
+        else:
+            print("📦 Available packages:\n")
+            packages = list(self.packages.items())
+        
+        if not packages:
+            print("No packages found")
+            return
+        
+        for name, info in sorted(packages):
+            installed = "✓" if name in self.installed else " "
+            print(f"[{installed}] {name:<25} {info['version']:<12} - {info['description']}")
+    
+    def check_dependencies(self, package: str, checked: set = None) -> List[str]:
+        """Check and return dependency tree"""
+        if checked is None:
+            checked = set()
+        
+        if package in checked:
+            return []
+        
+        checked.add(package)
+        
+        if package not in self.packages:
+            return []
+        
+        deps = []
+        for dep in self.packages[package]['dependencies']:
+            deps.extend(self.check_dependencies(dep, checked))
+            deps.append(dep)
+        
+        return deps
+    
+    def install(self, package: str, assume_yes: bool = False, break_system: bool = False):
+        """Install package and dependencies"""
+        if package not in self.packages:
+            print(f"❌ Package '{package}' not found")
+            return False
+        
+        # Check dependencies
+        deps = self.check_dependencies(package)
+        missing_deps = [d for d in deps if d not in self.installed]
+        
+        if missing_deps:
+            print(f"📦 The following packages will be installed:")
+            print(f"   Dependencies: {', '.join(missing_deps)}")
+            print(f"   Package: {package}")
+            
+            if not assume_yes:
+                response = input("\nDo you want to continue? [Y/n] ")
+                if response.lower() not in ['', 'y', 'yes']:
+                    print("Aborted.")
+                    return False
+            
+            # Install dependencies first
+            for dep in missing_deps:
+                print(f"\n→ Installing dependency: {dep}")
+                if not self.install_package(dep, break_system):
+                    print(f"❌ Failed to install dependency: {dep}")
+                    return False
+        
+        # Install main package
+        print(f"\n→ Installing: {package}")
+        return self.install_package(package, break_system)
+    
+    def install_package(self, package: str, break_system: bool = False) -> bool:
+        """Install single package"""
+        info = self.packages[package]
+        
+        try:
+            if info['type'] == 'python':
+                # Python package installation
+                cmd = info['install_command']
+                if break_system and '--break-system-packages' not in cmd:
+                    cmd += ' --break-system-packages'
+                
+                print(f"   Running: {cmd}")
+                result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+                
+                if result.returncode != 0:
+                    print(f"   Error: {result.stderr}")
+                    return False
+                
+            elif info['type'] == 'system':
+                # System package installation (requires sudo)
+                cmd = info['install_command']
+                print(f"   Running: sudo {cmd}")
+                result = subprocess.run(f"sudo {cmd}", shell=True)
+                
+                if result.returncode != 0:
+                    return False
+            
+            elif info['type'] == 'queztl':
+                # Queztl internal package - just mark as installed
+                print(f"   Queztl package (files already present)")
+            
+            # Mark as installed
+            self.installed[package] = {
+                "version": info['version'],
+                "installed_at": datetime.now().isoformat(),
+                "type": info['type']
+            }
+            self.save_installed()
+            
+            print(f"   ✓ {package} installed successfully")
+            return True
+            
+        except Exception as e:
+            print(f"   ❌ Error installing {package}: {e}")
+            return False
+    
+    def remove(self, package: str, assume_yes: bool = False):
+        """Remove package"""
+        if package not in self.installed:
+            print(f"❌ Package '{package}' is not installed")
+            return False
+        
+        # Check if other packages depend on this
+        dependents = []
+        for name, info in self.packages.items():
+            if name in self.installed and package in info['dependencies']:
+                dependents.append(name)
+        
+        if dependents:
+            print(f"⚠️  Warning: The following installed packages depend on {package}:")
+            for dep in dependents:
+                print(f"   - {dep}")
+            
+            if not assume_yes:
+                response = input("\nRemove anyway? [y/N] ")
+                if response.lower() not in ['y', 'yes']:
+                    print("Aborted.")
+                    return False
+        
+        # Remove package
+        del self.installed[package]
+        self.save_installed()
+        print(f"✓ {package} marked as removed")
+        print(f"   Note: Actual files may need manual cleanup")
+        return True
+    
+    def upgrade(self, package: Optional[str] = None):
+        """Upgrade package(s)"""
+        if package:
+            if package not in self.installed:
+                print(f"❌ Package '{package}' is not installed")
+                return
+            
+            print(f"🔄 Upgrading {package}...")
+            self.install_package(package)
+        else:
+            print("🔄 Upgrading all packages...")
+            for pkg in list(self.installed.keys()):
+                if pkg in self.packages:
+                    print(f"\n→ {pkg}")
+                    self.install_package(pkg)
+    
+    def export_manifest(self, output_file: str = "qzpm-manifest.json"):
+        """Export installed packages manifest"""
+        manifest = {
+            "generated_at": datetime.now().isoformat(),
+            "packages": self.installed
+        }
+        
+        with open(output_file, 'w') as f:
+            json.dump(manifest, f, indent=2)
+        
+        print(f"✓ Manifest exported to: {output_file}")
+    
+    def import_manifest(self, manifest_file: str, assume_yes: bool = False):
+        """Import and install from manifest"""
+        with open(manifest_file) as f:
+            manifest = json.load(f)
+        
+        packages = list(manifest['packages'].keys())
+        
+        print(f"📦 Installing {len(packages)} packages from manifest:")
+        for pkg in packages:
+            print(f"   - {pkg}")
+        
+        if not assume_yes:
+            response = input("\nContinue? [Y/n] ")
+            if response.lower() not in ['', 'y', 'yes']:
+                print("Aborted.")
+                return
+        
+        for pkg in packages:
+            self.install(pkg, assume_yes=True)
+
+
+def main():
+    """CLI interface"""
+    qzpm = QZPM()
+    
+    if len(sys.argv) < 2:
+        print("🚩 QZPM - Queztl Package Manager")
+        print("=" * 50)
+        print("")
+        print("Usage:")
+        print("  qzpm update                    - Update package lists")
+        print("  qzpm search <query>            - Search packages")
+        print("  qzpm show <package>            - Show package details")
+        print("  qzpm list                      - List all packages")
+        print("  qzpm list --installed          - List installed packages")
+        print("  qzpm install <package> [-y]    - Install package")
+        print("  qzpm remove <package> [-y]     - Remove package")
+        print("  qzpm upgrade [package]         - Upgrade package(s)")
+        print("  qzpm export [file]             - Export manifest")
+        print("  qzpm import <file> [-y]        - Import manifest")
+        print("")
+        print("Examples:")
+        print("  qzpm install stable-diffusion")
+        print("  qzpm install queztl-image-gen -y")
+        print("  qzpm list --installed")
+        print("")
+        return
+    
+    command = sys.argv[1]
+    
+    if command == "update":
+        qzpm.update()
+    
+    elif command == "search":
+        if len(sys.argv) < 3:
+            print("Usage: qzpm search <query>")
+            return
+        qzpm.search(sys.argv[2])
+    
+    elif command == "show":
+        if len(sys.argv) < 3:
+            print("Usage: qzpm show <package>")
+            return
+        qzpm.show(sys.argv[2])
+    
+    elif command == "list":
+        installed_only = "--installed" in sys.argv
+        qzpm.list_packages(installed_only)
+    
+    elif command == "install":
+        if len(sys.argv) < 3:
+            print("Usage: qzpm install <package> [-y] [--break-system-packages]")
+            return
+        
+        package = sys.argv[2]
+        assume_yes = "-y" in sys.argv or "--yes" in sys.argv
+        break_system = "--break-system-packages" in sys.argv
+        
+        qzpm.install(package, assume_yes, break_system)
+    
+    elif command == "remove":
+        if len(sys.argv) < 3:
+            print("Usage: qzpm remove <package> [-y]")
+            return
+        
+        package = sys.argv[2]
+        assume_yes = "-y" in sys.argv or "--yes" in sys.argv
+        
+        qzpm.remove(package, assume_yes)
+    
+    elif command == "upgrade":
+        package = sys.argv[2] if len(sys.argv) > 2 else None
+        qzpm.upgrade(package)
+    
+    elif command == "export":
+        output = sys.argv[2] if len(sys.argv) > 2 else "qzpm-manifest.json"
+        qzpm.export_manifest(output)
+    
+    elif command == "import":
+        if len(sys.argv) < 3:
+            print("Usage: qzpm import <manifest-file> [-y]")
+            return
+        
+        manifest = sys.argv[2]
+        assume_yes = "-y" in sys.argv or "--yes" in sys.argv
+        
+        qzpm.import_manifest(manifest, assume_yes)
+    
+    else:
+        print(f"Unknown command: {command}")
+        print("Run 'qzpm' for usage")
+
+
+if __name__ == "__main__":
+    main()

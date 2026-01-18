@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeastQC Image Generator - Socialist AI Art</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d0000 100%);
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(204, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .beast-status {
+            display: inline-block;
+            background: rgba(0, 255, 0, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .panel {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .panel h2 {
+            color: #ff4444;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #ffaaaa;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1em;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .slider-group {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 15px;
+            align-items: center;
+        }
+
+        input[type="range"] {
+            width: 100%;
+        }
+
+        .slider-value {
+            background: rgba(204, 0, 0, 0.3);
+            padding: 8px 15px;
+            border-radius: 5px;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        button {
+            background: linear-gradient(135deg, #cc0000 0%, #ff0000 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .style-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .style-btn {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .style-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .style-btn.active {
+            background: rgba(204, 0, 0, 0.5);
+            border-color: #cc0000;
+        }
+
+        #preview {
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        #preview img {
+            max-width: 100%;
+            max-height: 800px;
+            border-radius: 5px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .status-message {
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .status-queued {
+            background: rgba(255, 165, 0, 0.2);
+            border: 1px solid rgba(255, 165, 0, 0.5);
+        }
+
+        .status-processing {
+            background: rgba(0, 123, 255, 0.2);
+            border: 1px solid rgba(0, 123, 255, 0.5);
+        }
+
+        .status-complete {
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid rgba(0, 255, 0, 0.5);
+        }
+
+        .status-failed {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.5);
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #cc0000;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .recent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .recent-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .recent-item:hover {
+            transform: scale(1.05);
+        }
+
+        .recent-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .recent-item-info {
+            padding: 10px;
+            font-size: 0.9em;
+        }
+
+        .example-prompts {
+            background: rgba(204, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .example-prompts h3 {
+            color: #ff4444;
+            margin-bottom: 10px;
+        }
+
+        .example-prompts ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .example-prompts li {
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: background 0.2s;
+        }
+
+        .example-prompts li:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🚩 BeastQC Image Generator</h1>
+            <div class="subtitle">Socialist AI Art Generation • Powered by Beast (192.168.1.105)</div>
+            <div class="beast-status" id="beastStatus">⚡ Beast Online</div>
+        </header>
+
+        <div class="main-grid">
+            <div class="panel">
+                <h2>Generate Image</h2>
+
+                <div class="example-prompts">
+                    <h3>Example Prompts:</h3>
+                    <ul>
+                        <li onclick="setPrompt('Karl Marx leading workers with raised fist, revolutionary atmosphere')">
+                            Karl Marx revolutionary portrait</li>
+                        <li onclick="setPrompt('Workers breaking chains, dramatic lighting, powerful composition')">
+                            Workers breaking chains</li>
+                        <li onclick="setPrompt('Unified diverse workers standing together, strength and solidarity')">
+                            United workers solidarity</li>
+                        <li onclick="setPrompt('Factory workers organizing, determined faces, revolutionary spirit')">
+                            Factory organizing scene</li>
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <label>Your Prompt:</label>
+                    <textarea id="prompt" placeholder="Describe the image you want to generate..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Style:</label>
+                    <div class="style-buttons">
+                        <button class="style-btn active" onclick="setStyle('propaganda')">Propaganda</button>
+                        <button class="style-btn" onclick="setStyle('constructivist')">Constructivist</button>
+                        <button class="style-btn" onclick="setStyle('vintage')">Vintage</button>
+                        <button class="style-btn" onclick="setStyle('modern')">Modern</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Quality Steps: <span id="stepsValue">30</span></label>
+                    <input type="range" id="steps" min="20" max="50" value="30" oninput="updateSlider('steps')">
+                </div>
+
+                <div class="form-group">
+                    <label>Guidance Scale: <span id="guidanceValue">7.5</span></label>
+                    <input type="range" id="guidance" min="5" max="15" step="0.5" value="7.5"
+                        oninput="updateSlider('guidance')">
+                </div>
+
+                <div class="form-group">
+                    <label>Size:</label>
+                    <select id="size">
+                        <option value="1024x1024">1024x1024 (Square)</option>
+                        <option value="1024x1536">1024x1536 (Portrait)</option>
+                        <option value="1536x1024">1536x1024 (Landscape)</option>
+                    </select>
+                </div>
+
+                <button onclick="generateImage()" id="generateBtn">🎨 Generate on Beast</button>
+            </div>
+
+            <div class="panel">
+                <h2>Preview</h2>
+                <div id="statusContainer"></div>
+                <div id="preview">
+                    <div style="text-align: center; opacity: 0.5;">
+                        <h3>Enter a prompt to generate your image</h3>
+                        <p style="margin-top: 10px;">Beast will process your request using Stable Diffusion XL</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2>Recent Generations</h2>
+            <div class="recent-grid" id="recentGrid">
+                <div style="grid-column: 1/-1; text-align: center; opacity: 0.5; padding: 40px;">
+                    No images generated yet
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const BEAST_API = 'http://192.168.1.105:8001';
+        let currentStyle = 'propaganda';
+        let currentJobId = null;
+
+        function setPrompt(text) {
+            document.getElementById('prompt').value = text;
+        }
+
+        function setStyle(style) {
+            currentStyle = style;
+            document.querySelectorAll('.style-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function updateSlider(id) {
+            const value = document.getElementById(id).value;
+            document.getElementById(id + 'Value').textContent = value;
+        }
+
+        async function checkBeastStatus() {
+            try {
+                const response = await fetch(`${BEAST_API}/`);
+                if (response.ok) {
+                    document.getElementById('beastStatus').innerHTML = '⚡ Beast Online';
+                    document.getElementById('beastStatus').style.background = 'rgba(0, 255, 0, 0.2)';
+                } else {
+                    throw new Error('Beast offline');
+                }
+            } catch (error) {
+                document.getElementById('beastStatus').innerHTML = '⚠️ Beast Offline';
+                document.getElementById('beastStatus').style.background = 'rgba(255, 0, 0, 0.2)';
+            }
+        }
+
+        async function generateImage() {
+            const prompt = document.getElementById('prompt').value;
+            if (!prompt) {
+                alert('Please enter a prompt');
+                return;
+            }
+
+            const btn = document.getElementById('generateBtn');
+            btn.disabled = true;
+            btn.textContent = '⏳ Generating...';
+
+            const size = document.getElementById('size').value.split('x');
+            const steps = parseInt(document.getElementById('steps').value);
+            const guidance = parseFloat(document.getElementById('guidance').value);
+
+            const payload = {
+                prompt: prompt,
+                style: currentStyle,
+                width: parseInt(size[0]),
+                height: parseInt(size[1]),
+                steps: steps,
+                guidance_scale: guidance
+            };
+
+            try {
+                const response = await fetch(`${BEAST_API}/generate`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to start generation');
+                }
+
+                const result = await response.json();
+                currentJobId = result.job_id;
+
+                showStatus('queued', 'Job queued on Beast...');
+                pollStatus(result.job_id);
+
+            } catch (error) {
+                showStatus('failed', `Error: ${error.message}`);
+                btn.disabled = false;
+                btn.textContent = '🎨 Generate on Beast';
+            }
+        }
+
+        function showStatus(status, message) {
+            const container = document.getElementById('statusContainer');
+            container.innerHTML = `<div class="status-message status-${status}">${message}</div>`;
+        }
+
+        async function pollStatus(jobId) {
+            const maxAttempts = 120; // 2 minutes
+            let attempts = 0;
+
+            const preview = document.getElementById('preview');
+            preview.innerHTML = '<div class="spinner"></div>';
+
+            const interval = setInterval(async () => {
+                attempts++;
+
+                try {
+                    const response = await fetch(`${BEAST_API}/status/${jobId}`);
+                    const result = await response.json();
+
+                    if (result.status === 'complete') {
+                        clearInterval(interval);
+                        showStatus('complete', '✓ Generation complete!');
+
+                        const img = new Image();
+                        img.src = `${BEAST_API}/image/${jobId}?t=${Date.now()}`;
+                        img.onload = () => {
+                            preview.innerHTML = '';
+                            preview.appendChild(img);
+
+                            const btn = document.getElementById('generateBtn');
+                            btn.disabled = false;
+                            btn.textContent = '🎨 Generate on Beast';
+
+                            loadRecent();
+                        };
+                    } else if (result.status === 'failed') {
+                        clearInterval(interval);
+                        showStatus('failed', `✗ Failed: ${result.error}`);
+                        preview.innerHTML = '<div>Generation failed</div>';
+
+                        const btn = document.getElementById('generateBtn');
+                        btn.disabled = false;
+                        btn.textContent = '🎨 Generate on Beast';
+                    } else if (result.status === 'processing') {
+                        showStatus('processing', '🔥 Beast is generating your image...');
+                    }
+
+                    if (attempts >= maxAttempts) {
+                        clearInterval(interval);
+                        showStatus('failed', 'Timeout - check Beast logs');
+                    }
+
+                } catch (error) {
+                    console.error('Poll error:', error);
+                }
+            }, 1000);
+        }
+
+        async function loadRecent() {
+            try {
+                const response = await fetch(`${BEAST_API}/recent?limit=12`);
+                const data = await response.json();
+
+                const grid = document.getElementById('recentGrid');
+
+                if (data.results.length === 0) {
+                    grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; opacity: 0.5; padding: 40px;">No images generated yet</div>';
+                    return;
+                }
+
+                grid.innerHTML = '';
+
+                data.results.forEach(result => {
+                    if (result.status === 'complete') {
+                        const item = document.createElement('div');
+                        item.className = 'recent-item';
+                        item.onclick = () => showImage(result.job_id);
+
+                        item.innerHTML = `
+                            <img src="${BEAST_API}/image/${result.job_id}" alt="${result.prompt}">
+                            <div class="recent-item-info">
+                                ${result.prompt.substring(0, 50)}...
+                            </div>
+                        `;
+
+                        grid.appendChild(item);
+                    }
+                });
+
+            } catch (error) {
+                console.error('Failed to load recent:', error);
+            }
+        }
+
+        function showImage(jobId) {
+            const preview = document.getElementById('preview');
+            const img = new Image();
+            img.src = `${BEAST_API}/image/${jobId}?t=${Date.now()}`;
+            preview.innerHTML = '';
+            preview.appendChild(img);
+        }
+
+        // Initialize
+        checkBeastStatus();
+        loadRecent();
+        setInterval(checkBeastStatus, 30000);
+        setInterval(loadRecent, 10000);
+    </script>
+</body>
+
+</html>
