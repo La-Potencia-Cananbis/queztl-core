@@ -415,11 +415,13 @@ class WebHostTrainer:
             targets = tokens[:, 1:].contiguous()
             inputs = tokens[:, :-1].contiguous()
             
-            # Create mask for padding
-            mask = (inputs == self.dataset.vocab['<PAD>'])
+            # Create mask for padding (for inputs)
+            input_mask = (inputs == self.dataset.vocab['<PAD>'])
+            # Create mask for targets
+            target_mask = (targets == self.dataset.vocab['<PAD>'])
             
             # Forward pass
-            logits, pred_design, quality = self.model(inputs, mask)
+            logits, pred_design, quality = self.model(inputs, input_mask)
             
             # Language modeling loss
             lm_loss = F.cross_entropy(
@@ -446,8 +448,6 @@ class WebHostTrainer:
             
             # Metrics
             with torch.no_grad():
-                # Fix mask for perplexity calculation
-                target_mask = mask[:, 1:]  # Match target dimensions
                 perplexity = self.calculate_perplexity(logits, targets, target_mask)
                 design_score = self.calculate_design_score(pred_design, design_metrics)
             
