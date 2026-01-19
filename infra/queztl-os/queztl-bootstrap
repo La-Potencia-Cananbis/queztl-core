@@ -1,0 +1,361 @@
+#!/bin/bash
+# QueztlOS Bootstrap - Self-updating installer from GitHub
+# Path: /usr/local/bin/queztl-bootstrap
+# Always pulls latest from: https://github.com/La-Potencia-Cananbis/queztl-core
+
+set -e
+
+REPO_URL="https://github.com/La-Potencia-Cananbis/queztl-core.git"
+REPO_BRANCH="main"
+INSTALL_DIR="/opt/queztl-core"
+CACHE_DIR="$HOME/.cache/queztl"
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+log() {
+    echo -e "${GREEN}[QueztlOS]${NC} $1"
+}
+
+warn() {
+    echo -e "${YELLOW}[WARNING]${NC} $1"
+}
+
+error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+    exit 1
+}
+
+banner() {
+    cat << 'EOF'
+╔══════════════════════════════════════════════════════════════╗
+║  🦅 QUEZTLOS BOOTSTRAP INSTALLER                            ║
+║  Self-updating from GitHub                                  ║
+╚══════════════════════════════════════════════════════════════╝
+EOF
+}
+
+detect_mode() {
+    # Detect if running in GUI or headless
+    if [ -n "$DISPLAY" ] && command -v zenity &> /dev/null; then
+        MODE="gui"
+        log "Running in GUI mode (zenity detected)"
+    elif [ -n "$DISPLAY" ] && command -v whiptail &> /dev/null; then
+        MODE="tui"
+        log "Running in TUI mode (whiptail detected)"
+    else
+        MODE="headless"
+        log "Running in headless mode"
+    fi
+}
+
+check_internet() {
+    log "Checking internet connection..."
+    if ! ping -c 1 github.com &> /dev/null; then
+        error "No internet connection. Cannot fetch from GitHub."
+    fi
+    log "✓ Internet connection OK"
+}
+
+update_repo() {
+    log "Fetching latest from GitHub..."
+    
+    mkdir -p "$CACHE_DIR"
+    
+    if [ -d "$INSTALL_DIR/.git" ]; then
+        log "Updating existing repository..."
+        cd "$INSTALL_DIR"
+        sudo git fetch origin
+        sudo git reset --hard origin/$REPO_BRANCH
+        sudo git clean -fd
+    else
+        log "Cloning repository..."
+        sudo rm -rf "$INSTALL_DIR"
+        sudo git clone -b "$REPO_BRANCH" "$REPO_URL" "$INSTALL_DIR"
+    fi
+    
+    log "✓ Repository updated to latest"
+    
+    # Show commit info
+    cd "$INSTALL_DIR"
+    COMMIT=$(git log -1 --format="%h - %s (%ar)")
+    log "Latest commit: $COMMIT"
+}
+
+show_menu_gui() {
+    local choice=$(zenity --list \
+        --title="QueztlOS Installer" \
+        --text="Choose installation type:" \
+        --column="Option" --column="Description" \
+        "full" "Full Stack (Backend + Frontend + Services)" \
+        "backend" "Backend Only (APIs + Services)" \
+        "frontend" "Frontend Only (Dashboard)" \
+        "cluster" "Cluster Node (Beast/Sloth/Optiplex)" \
+        "git" "Git Container (Gitea + Automation)" \
+        "update" "Update Existing Installation" \
+        --width=500 --height=400)
+    
+    echo "$choice"
+}
+
+show_menu_tui() {
+    local choice=$(whiptail --title "QueztlOS Installer" \
+        --menu "Choose installation type:" 20 60 7 \
+        "full" "Full Stack (Backend + Frontend + Services)" \
+        "backend" "Backend Only (APIs + Services)" \
+        "frontend" "Frontend Only (Dashboard)" \
+        "cluster" "Cluster Node (Beast/Sloth/Optiplex)" \
+        "git" "Git Container (Gitea + Automation)" \
+        "update" "Update Existing Installation" \
+        3>&1 1>&2 2>&3)
+    
+    echo "$choice"
+}
+
+show_menu_headless() {
+    echo ""
+    log "Installation Options:"
+    echo "  1) Full Stack (Backend + Frontend + Services)"
+    echo "  2) Backend Only (APIs + Services)"
+    echo "  3) Frontend Only (Dashboard)"
+    echo "  4) Cluster Node (Beast/Sloth/Optiplex)"
+    echo "  5) Git Container (Gitea + Automation)"
+    echo "  6) Update Existing Installation"
+    echo "  q) Quit"
+    echo ""
+    read -p "Select option [1-6, q]: " choice
+    
+    case $choice in
+        1) echo "full" ;;
+        2) echo "backend" ;;
+        3) echo "frontend" ;;
+        4) echo "cluster" ;;
+        5) echo "git" ;;
+        6) echo "update" ;;
+        q|Q) exit 0 ;;
+        *) echo "" ;;
+    esac
+}
+
+get_cluster_role() {
+    if [ "$MODE" = "gui" ]; then
+        zenity --list \
+            --title="Cluster Role" \
+            --text="What role for this node?" \
+            --column="Role" --column="Description" \
+            "beast" "Compute Node (CPU/GPU workloads)" \
+            "sloth" "Orchestrator (Task coordination)" \
+            "optiplex" "Worker Node (General compute)" \
+            "command" "Command Center (Monitoring)" \
+            --width=500 --height=300
+    elif [ "$MODE" = "tui" ]; then
+        whiptail --title "Cluster Role" \
+            --menu "What role for this node?" 15 60 5 \
+            "beast" "Compute Node (CPU/GPU workloads)" \
+            "sloth" "Orchestrator (Task coordination)" \
+            "optiplex" "Worker Node (General compute)" \
+            "command" "Command Center (Monitoring)" \
+            3>&1 1>&2 2>&3
+    else
+        echo ""
+        log "Cluster Roles:"
+        echo "  1) Beast - Compute Node (CPU/GPU)"
+        echo "  2) Sloth - Orchestrator (Coordination)"
+        echo "  3) Optiplex - Worker Node"
+        echo "  4) Command - Command Center"
+        echo ""
+        read -p "Select role [1-4]: " role_choice
+        case $role_choice in
+            1) echo "beast" ;;
+            2) echo "sloth" ;;
+            3) echo "optiplex" ;;
+            4) echo "command" ;;
+            *) echo "optiplex" ;;
+        esac
+    fi
+}
+
+run_installer() {
+    local install_type=$1
+    local script_path=""
+    
+    log "Running $install_type installer..."
+    
+    cd "$INSTALL_DIR"
+    
+    case $install_type in
+        full)
+            script_path="backend/DEPLOY_FULL_STACK.sh"
+            ;;
+        backend)
+            script_path="backend/DEPLOY_BACKEND.sh"
+            ;;
+        frontend)
+            script_path="frontend/deploy.sh"
+            ;;
+        cluster)
+            local role=$(get_cluster_role)
+            if [ -z "$role" ]; then
+                warn "No role selected, aborting"
+                return
+            fi
+            log "Setting up as: $role"
+            script_path="backend/DEPLOY_BEAST_SLOTH.sh"
+            export CLUSTER_ROLE=$role
+            ;;
+        git)
+            script_path="infra/git-container/scripts/setup-git-server.sh"
+            ;;
+        update)
+            log "Repository already updated!"
+            log "Re-run bootstrap to reinstall with new code"
+            return
+            ;;
+        *)
+            error "Unknown install type: $install_type"
+            ;;
+    esac
+    
+    if [ ! -f "$script_path" ]; then
+        error "Installer not found: $script_path"
+    fi
+    
+    chmod +x "$script_path"
+    
+    log "Executing: $script_path"
+    echo ""
+    
+    # Run the installer
+    if [ "$MODE" = "gui" ] || [ "$MODE" = "tui" ]; then
+        sudo bash "$script_path" 2>&1 | tee "$CACHE_DIR/install.log"
+    else
+        sudo bash "$script_path"
+    fi
+    
+    local exit_code=$?
+    
+    if [ $exit_code -eq 0 ]; then
+        log "✅ Installation complete!"
+        
+        if [ "$MODE" = "gui" ]; then
+            zenity --info --title="Success" \
+                --text="Installation completed successfully!\n\nCheck logs: $CACHE_DIR/install.log" \
+                --width=400
+        fi
+    else
+        error "Installation failed with code: $exit_code"
+    fi
+}
+
+show_help() {
+    cat << 'EOF'
+QueztlOS Bootstrap Installer
+
+Usage:
+  queztl-bootstrap [options]
+
+Options:
+  --full          Full stack installation
+  --backend       Backend only
+  --frontend      Frontend only
+  --cluster ROLE  Cluster node (beast|sloth|optiplex|command)
+  --git           Git container
+  --update        Update repo only
+  --help          Show this help
+
+Examples:
+  queztl-bootstrap                    # Interactive menu
+  queztl-bootstrap --full             # Non-interactive full install
+  queztl-bootstrap --cluster beast    # Setup as Beast node
+  queztl-bootstrap --update           # Just update from GitHub
+
+Repository: https://github.com/La-Potencia-Cananbis/queztl-core
+EOF
+}
+
+main() {
+    banner
+    echo ""
+    
+    # Parse arguments
+    if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+        show_help
+        exit 0
+    fi
+    
+    detect_mode
+    check_internet
+    update_repo
+    
+    echo ""
+    
+    # Handle command-line arguments
+    if [ -n "$1" ]; then
+        case $1 in
+            --full)
+                run_installer "full"
+                ;;
+            --backend)
+                run_installer "backend"
+                ;;
+            --frontend)
+                run_installer "frontend"
+                ;;
+            --cluster)
+                if [ -z "$2" ]; then
+                    error "Cluster role required: beast|sloth|optiplex|command"
+                fi
+                export CLUSTER_ROLE=$2
+                run_installer "cluster"
+                ;;
+            --git)
+                run_installer "git"
+                ;;
+            --update)
+                log "✓ Repository updated. Re-run to install."
+                ;;
+            *)
+                error "Unknown option: $1. Use --help for usage."
+                ;;
+        esac
+    else
+        # Interactive mode
+        local choice=""
+        
+        case $MODE in
+            gui)
+                choice=$(show_menu_gui)
+                ;;
+            tui)
+                choice=$(show_menu_tui)
+                ;;
+            headless)
+                choice=$(show_menu_headless)
+                ;;
+        esac
+        
+        if [ -z "$choice" ]; then
+            warn "No option selected"
+            exit 0
+        fi
+        
+        run_installer "$choice"
+    fi
+    
+    echo ""
+    log "═══════════════════════════════════════"
+    log "Bootstrap complete!"
+    log "═══════════════════════════════════════"
+    echo ""
+    log "Next steps:"
+    log "  • Check installation logs: $CACHE_DIR/install.log"
+    log "  • Update anytime: queztl-bootstrap --update"
+    log "  • Documentation: /usr/share/doc/queztl/"
+    echo ""
+}
+
+main "$@"
