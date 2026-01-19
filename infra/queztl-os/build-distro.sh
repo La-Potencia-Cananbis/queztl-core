@@ -217,131 +217,8 @@ useradd -m -s /bin/zsh -G sudo,docker queztl
 echo "queztl:queztl" | chpasswd
 echo "queztl ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-# Install QueztlOS bootstrap installer
-cat > /usr/local/bin/queztl-bootstrap << 'BOOTSTRAP_EOF'
-#!/bin/bash
-# QueztlOS Bootstrap - Self-updating installer from GitHub
-# Always pulls latest from: https://github.com/La-Potencia-Cananbis/queztl-core
-
-set -e
-
-REPO_URL="https://github.com/La-Potencia-Cananbis/queztl-core.git"
-REPO_BRANCH="main"
-INSTALL_DIR="/opt/queztl-core"
-CACHE_DIR="$HOME/.cache/queztl"
-
-# Colors
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-CYAN='\033[0;36m'
-NC='\033[0m'
-
-log() { echo -e "${GREEN}[QueztlOS]${NC} $1"; }
-warn() { echo -e "${YELLOW}[WARNING]${NC} $1"; }
-error() { echo -e "${RED}[ERROR]${NC} $1"; exit 1; }
-
-banner() {
-    cat << 'BANNER_EOF'
-╔══════════════════════════════════════════════════════════════╗
-║  🦅 QUEZTLOS BOOTSTRAP INSTALLER                            ║
-║  Self-updating from GitHub                                  ║
-╚══════════════════════════════════════════════════════════════╝
-BANNER_EOF
-}
-
-detect_mode() {
-    if [ -n "$DISPLAY" ] && command -v zenity &> /dev/null; then
-        MODE="gui"
-    elif [ -n "$DISPLAY" ] && command -v whiptail &> /dev/null; then
-        MODE="tui"
-    else
-        MODE="headless"
-    fi
-}
-
-check_internet() {
-    log "Checking internet connection..."
-    if ! ping -c 1 github.com &> /dev/null; then
-        error "No internet connection. Cannot fetch from GitHub."
-    fi
-}
-
-update_repo() {
-    log "Fetching latest from GitHub..."
-    mkdir -p "$CACHE_DIR"
-    
-    if [ -d "$INSTALL_DIR/.git" ]; then
-        cd "$INSTALL_DIR"
-        sudo git fetch origin
-        sudo git reset --hard origin/$REPO_BRANCH
-        sudo git clean -fd
-    else
-        sudo rm -rf "$INSTALL_DIR"
-        sudo git clone -b "$REPO_BRANCH" "$REPO_URL" "$INSTALL_DIR"
-    fi
-    
-    log "✓ Repository updated"
-}
-
-show_menu() {
-    echo ""
-    log "Installation Options:"
-    echo "  1) Full Stack (Backend + Frontend + Services)"
-    echo "  2) Backend Only (APIs + Services)"
-    echo "  3) Cluster Node (Beast/Sloth/Optiplex)"
-    echo "  4) Git Container (Gitea + Automation)"
-    echo "  5) Update Only"
-    echo "  q) Quit"
-    echo ""
-    read -p "Select [1-5, q]: " choice
-    
-    case $choice in
-        1) echo "full" ;;
-        2) echo "backend" ;;
-        3) echo "cluster" ;;
-        4) echo "git" ;;
-        5) echo "update" ;;
-        q|Q) exit 0 ;;
-        *) echo "" ;;
-    esac
-}
-
-run_installer() {
-    local type=$1
-    cd "$INSTALL_DIR"
-    
-    case $type in
-        full) bash backend/DEPLOY_FULL_STACK.sh || true ;;
-        backend) bash backend/DEPLOY_BACKEND.sh || true ;;
-        cluster) bash backend/DEPLOY_BEAST_SLOTH.sh || true ;;
-        git) bash infra/git-container/scripts/setup-git-server.sh || true ;;
-        update) log "✓ Updated. Re-run to install." ;;
-        *) error "Unknown type: $type" ;;
-    esac
-}
-
-main() {
-    banner
-    detect_mode
-    check_internet
-    update_repo
-    
-    if [ -n "$1" ]; then
-        run_installer "$1"
-    else
-        local choice=$(show_menu)
-        [ -n "$choice" ] && run_installer "$choice"
-    fi
-    
-    log "Bootstrap complete!"
-}
-
-main "$@"
-BOOTSTRAP_EOF
-
-chmod +x /usr/local/bin/queztl-bootstrap
-ln -sf /usr/local/bin/queztl-bootstrap /usr/local/bin/queztl
+# NOTE: Bootstrap installer + GUI/TUI wrappers will be copied from repo after chroot
+# This ensures we always use the latest version from GitHub
 
 # Add to PATH info in MOTD
 cat >> /etc/motd << 'MOTD_ADD'
@@ -485,6 +362,18 @@ CHROOT_EOF
     sudo umount "$BUILD_DIR/chroot/sys"
     
     log "✓ System configured"
+
+    # Copy QueztlOS bootstrap + wrappers from repo into chroot
+    log "Installing bootstrap scripts from repo..."
+    sudo cp "$(pwd)/infra/queztl-os/queztl-bootstrap" "$BUILD_DIR/chroot/usr/local/bin/queztl-bootstrap"
+    sudo cp "$(pwd)/infra/queztl-os/queztl-tui.sh" "$BUILD_DIR/chroot/usr/local/bin/queztl-tui"
+    sudo cp "$(pwd)/infra/queztl-os/queztl-zenity.sh" "$BUILD_DIR/chroot/usr/local/bin/queztl-zenity"
+    sudo chmod +x "$BUILD_DIR/chroot/usr/local/bin/queztl-bootstrap" \
+                  "$BUILD_DIR/chroot/usr/local/bin/queztl-tui" \
+                  "$BUILD_DIR/chroot/usr/local/bin/queztl-zenity"
+    sudo ln -sf /usr/local/bin/queztl-bootstrap "$BUILD_DIR/chroot/usr/local/bin/queztl"
+    log "✓ Bootstrap scripts installed"
+    
 }
 
 create_iso() {
