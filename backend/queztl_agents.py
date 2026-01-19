@@ -223,8 +223,12 @@ class TrainerAgent(BaseAgent):
         self.log(f"Starting training: {epochs} epochs, target {target_accuracy*100}%")
         
         # Use the simple trainer we built
+        # Auto-detect if we're in Docker or standalone
+        script_dir = Path(__file__).parent
+        trainer_path = script_dir / 'simple_trainer.py'
+        
         cmd = [
-            'python', '/code/backend/simple_trainer.py',
+            sys.executable, str(trainer_path),
             '--epochs', str(epochs),
             '--target', str(target_accuracy),
             '--data-root', str(dataset_path)
