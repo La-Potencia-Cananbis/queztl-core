@@ -1,0 +1,15 @@
+
+The Accumulation of Capital
+===========================
+
+Authors: Rosa Luxemburg
+Year: 1913
+Topics: imperialism, capital_accumulation, colonialism
+
+[Full text would be extracted from: https://www.marxists.org/archive/luxemburg/1913/accumulation-capital/]
+
+This is a stub file. In production, use PyPDF2/pdfplumber to extract:
+- Full text content
+- Chapter structure
+- Footnotes and references
+- Index terms

@@ -1,0 +1,15 @@
+
+The German Ideology
+===================
+
+Authors: Karl Marx, Friedrich Engels
+Year: 1845
+Topics: historical_materialism, ideology, philosophy
+
+[Full text would be extracted from: https://www.marxists.org/archive/marx/works/download/Marx_The_German_Ideology.pdf]
+
+This is a stub file. In production, use PyPDF2/pdfplumber to extract:
+- Full text content
+- Chapter structure
+- Footnotes and references
+- Index terms

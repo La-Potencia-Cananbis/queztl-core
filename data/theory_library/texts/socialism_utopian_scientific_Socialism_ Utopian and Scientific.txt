@@ -1,0 +1,15 @@
+
+Socialism: Utopian and Scientific
+=================================
+
+Authors: Friedrich Engels
+Year: 1880
+Topics: scientific_socialism, materialism, dialectics
+
+[Full text would be extracted from: https://www.marxists.org/archive/marx/works/download/Engels_Socialism_Utopian_and_Scientific.pdf]
+
+This is a stub file. In production, use PyPDF2/pdfplumber to extract:
+- Full text content
+- Chapter structure
+- Footnotes and references
+- Index terms

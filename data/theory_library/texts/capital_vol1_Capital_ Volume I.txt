@@ -1,0 +1,15 @@
+
+Capital, Volume I
+=================
+
+Authors: Karl Marx
+Year: 1867
+Topics: political_economy, surplus_value, commodity_fetishism
+
+[Full text would be extracted from: https://www.marxists.org/archive/marx/works/download/pdf/Capital-Volume-I.pdf]
+
+This is a stub file. In production, use PyPDF2/pdfplumber to extract:
+- Full text content
+- Chapter structure
+- Footnotes and references
+- Index terms

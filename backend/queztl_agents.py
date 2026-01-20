@@ -30,6 +30,12 @@ from dataclasses import dataclass, asdict
 from enum import Enum
 import subprocess
 
+# Execution guardrails (no local compute on command-center)
+try:
+    from backend.queztl_exec import CommandExecutor, ExecError
+except ImportError:  # pragma: no cover
+    from queztl_exec import CommandExecutor, ExecError
+
 
 class AgentType(Enum):
     """Types of agents in the Queztl system."""
@@ -136,11 +142,14 @@ class BaseAgent:
     Implements: DNA (knowledge), RNA (behavior), lifecycle
     """
     
-    def __init__(self, dna: AgentDNA, workspace: Path):
+    def __init__(self, dna: AgentDNA, workspace: Path, executor: Optional[CommandExecutor] = None):
         self.dna = dna
         self.rna = AgentRNA()
         self.workspace = workspace / dna.agent_id
         self.workspace.mkdir(parents=True, exist_ok=True)
+
+        # Centralized command runner (enforces command-center policy)
+        self.executor = executor or CommandExecutor()
         
         self.log_file = self.workspace / "agent.log"
         self.is_running = False
@@ -183,7 +192,7 @@ class BaseAgent:
         self.log(f"Spawning child: {child_id} (type: {child_dna.agent_type.value})")
         
         # Create appropriate agent type
-        child_agent = create_agent(child_dna, self.workspace.parent)
+        child_agent = create_agent(child_dna, self.workspace.parent, executor=self.executor)
         child_agent.log(f"Born from parent {self.dna.agent_id} (generation {child_dna.generation})")
         
         return child_agent
@@ -218,53 +227,109 @@ class TrainerAgent(BaseAgent):
         self.rna.register_skill('teach_agent', self.teach_agent)
         self.rna.register_skill('load_model', self.load_model)
     
-    def train_model(self, dataset_path: str, epochs: int = 10, target_accuracy: float = 0.90):
-        """Train a model using simple_trainer.py."""
+    def train_model(self, dataset_path: str, epochs: int = 10, target_accuracy: float = 0.90, samples: int = 1000, hidden: int = 128):
+        """Train a model using backend/simple_trainer.py.
+
+        Notes:
+        - simple_trainer.py currently trains on synthetic data; dataset_path is used as an
+          output/artifacts directory (metrics + checkpoint).
+        - If the command is executed in a remote mode (ssh/ssh_docker), the metrics file
+          may not be available locally. In that case, we fall back to parsing stdout.
+        """
         self.log(f"Starting training: {epochs} epochs, target {target_accuracy*100}%")
-        
-        # Use the simple trainer we built
-        # Auto-detect if we're in Docker or standalone
-        script_dir = Path(__file__).parent
-        trainer_path = script_dir / 'simple_trainer.py'
-        
+
+        out_dir = Path(dataset_path)
+        out_dir.mkdir(parents=True, exist_ok=True)
+
+        checkpoint_path = out_dir / 'checkpoints' / 'best_model.pth'
+        checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
+
+        metrics_path = out_dir / 'training_report.json'
+
+        # Use the simple trainer we built (path resolves correctly in both /code and /workspace containers)
+        trainer_path = Path(__file__).resolve().parent / 'simple_trainer.py'
+
         cmd = [
-            sys.executable, str(trainer_path),
+            'python3', str(trainer_path),
             '--epochs', str(epochs),
-            '--target', str(target_accuracy),
-            '--data-root', str(dataset_path)
+            '--target-acc', str(target_accuracy),
+            '--samples', str(samples),
+            '--hidden', str(hidden),
+            '--output', str(checkpoint_path),
+            '--metrics', str(metrics_path),
         ]
-        
-        result = subprocess.run(cmd, capture_output=True, text=True)
-        
-        if result.returncode == 0:
-            self.log("Training completed successfully")
-            
-            # Load training report
-            report_path = Path(dataset_path) / 'training_report.json'
-            if report_path.exists():
-                with open(report_path) as f:
-                    report = json.load(f)
-                
-                # Store in DNA
-                self.dna.performance_metrics['accuracy'] = report['best_accuracy']
-                self.dna.performance_metrics['epochs'] = report['total_epochs']
-                self.dna.training_history.append(report)
-                
-                # Mark skill as learned
-                if 'image_classification' not in self.dna.learned_skills:
-                    self.dna.learned_skills.append('image_classification')
-                
-                # Store model path
-                model_path = Path(dataset_path) / 'checkpoints' / 'best_model.pth'
-                if model_path.exists():
-                    self.dna.models['image_classifier'] = str(model_path)
-                
-                self.log(f"Achieved {report['best_accuracy']}% accuracy")
-                return True
-        else:
-            self.log(f"Training failed: {result.stderr}", level="ERROR")
+
+        try:
+            result = self.executor.run(cmd, capture_output=True, text=True, timeout=3600)
+        except ExecError as e:
+            self.log(f"Execution blocked: {e}", level='ERROR')
             return False
-    
+
+        if result.returncode != 0:
+            # simple_trainer returns non-zero if it didn't converge; include stdout for context
+            self.log(f"Training failed (rc={result.returncode}). stderr: {result.stderr}", level='ERROR')
+            if result.stdout:
+                self.log(f"Trainer stdout\n{result.stdout}", level='ERROR')
+            return False
+
+        self.log('Training completed successfully')
+
+        report = None
+        if metrics_path.exists():
+            try:
+                report = __import__('json').load(metrics_path.open())
+            except Exception:
+                report = None
+
+        if report is None:
+            # Fallback: parse stdout emitted by simple_trainer.py
+            import re
+            stdout = result.stdout or ''
+            acc = None
+            m_acc = re.search(r"Final accuracy:\s*([0-9]*\.?[0-9]+)", stdout)
+            if m_acc:
+                try:
+                    acc = float(m_acc.group(1))
+                except ValueError:
+                    acc = None
+            m_conv = re.search(r"Converged:\s*(True|False)", stdout)
+            converged = m_conv.group(1) == 'True' if m_conv else True
+            report = {
+                'epochs': epochs,
+                'target_accuracy': target_accuracy,
+                'final_accuracy': acc if acc is not None else 0.0,
+                'converged': converged,
+                'stdout_parsed': True,
+            }
+
+        # Normalize metrics across old/new report formats
+        acc = report.get('best_accuracy')
+        if acc is None:
+            acc = report.get('final_accuracy')
+        epochs_used = report.get('total_epochs')
+        if epochs_used is None:
+            epochs_used = report.get('epochs', epochs)
+
+        try:
+            self.dna.performance_metrics['accuracy'] = float(acc) if acc is not None else 0.0
+        except Exception:
+            self.dna.performance_metrics['accuracy'] = 0.0
+        try:
+            self.dna.performance_metrics['epochs'] = int(epochs_used)
+        except Exception:
+            self.dna.performance_metrics['epochs'] = epochs
+
+        self.dna.training_history.append(report)
+
+        if 'image_classification' not in self.dna.learned_skills:
+            self.dna.learned_skills.append('image_classification')
+
+        if checkpoint_path.exists():
+            self.dna.models['image_classifier'] = str(checkpoint_path)
+
+        self.log(f"Achieved accuracy: {self.dna.performance_metrics['accuracy']}")
+        return True
+
     def teach_agent(self, student_agent: 'TrainerAgent'):
         """
         Teach another agent what this agent learned
@@ -375,7 +440,11 @@ class RunnerAgent(BaseAgent):
     def execute_task(self, command: List[str]):
         """Execute a command."""
         self.log(f"Executing: {' '.join(command)}")
-        result = subprocess.run(command, capture_output=True, text=True)
+        try:
+            result = self.executor.run(command, capture_output=True, text=True, timeout=3600)
+        except ExecError as e:
+            self.log(f'Execution blocked: {e}', level='ERROR')
+            return None
         
         if result.returncode == 0:
             self.log("Task completed successfully")
@@ -416,7 +485,7 @@ class SeederAgent(BaseAgent):
         self.log("Seeder agent ready")
 
 
-def create_agent(dna: AgentDNA, workspace: Path) -> BaseAgent:
+def create_agent(dna: AgentDNA, workspace: Path, executor: Optional[CommandExecutor] = None) -> BaseAgent:
     """Factory function to create appropriate agent type."""
     agent_classes = {
         AgentType.TRAINER: TrainerAgent,
@@ -427,7 +496,7 @@ def create_agent(dna: AgentDNA, workspace: Path) -> BaseAgent:
     }
     
     agent_class = agent_classes.get(dna.agent_type, BaseAgent)
-    return agent_class(dna, workspace)
+    return agent_class(dna, workspace, executor=executor)
 
 
 class AgentNode:
@@ -436,10 +505,13 @@ class AgentNode:
     Each node can run different types of agents
     """
     
-    def __init__(self, node_id: str, workspace: Path):
+    def __init__(self, node_id: str, workspace: Path, executor: Optional[CommandExecutor] = None):
         self.node_id = node_id
         self.workspace = workspace / node_id
         self.workspace.mkdir(parents=True, exist_ok=True)
+
+        # Shared executor for all agents on this node
+        self.executor = executor or CommandExecutor()
         
         self.agents: Dict[str, BaseAgent] = {}
         self.log_file = self.workspace / "node.log"
@@ -465,7 +537,7 @@ class AgentNode:
             created_at=datetime.now().isoformat()
         )
         
-        agent = create_agent(dna, self.workspace)
+        agent = create_agent(dna, self.workspace, executor=self.executor)
         self.agents[agent_id] = agent
         
         self.log(f"Spawned agent: {agent_id} (type: {agent_type.value})")

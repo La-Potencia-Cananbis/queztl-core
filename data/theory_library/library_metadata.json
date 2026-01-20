@@ -1,0 +1,190 @@
+{
+  "library_name": "Communist Theory Library",
+  "created": "2026-01-18T16:19:30.540852",
+  "texts": {
+    "manifesto": {
+      "title": "The Communist Manifesto",
+      "authors": [
+        "Karl Marx",
+        "Friedrich Engels"
+      ],
+      "year": 1848,
+      "url": "https://www.marxists.org/archive/marx/works/download/pdf/Manifesto.pdf",
+      "topics": [
+        "class_struggle",
+        "historical_materialism",
+        "revolution"
+      ],
+      "importance": "foundational"
+    },
+    "capital_vol1": {
+      "title": "Capital, Volume I",
+      "authors": [
+        "Karl Marx"
+      ],
+      "year": 1867,
+      "url": "https://www.marxists.org/archive/marx/works/download/pdf/Capital-Volume-I.pdf",
+      "topics": [
+        "political_economy",
+        "surplus_value",
+        "commodity_fetishism"
+      ],
+      "importance": "foundational"
+    },
+    "state_and_revolution": {
+      "title": "The State and Revolution",
+      "authors": [
+        "Vladimir Lenin"
+      ],
+      "year": 1917,
+      "url": "https://www.marxists.org/ebooks/lenin/state-and-revolution.pdf",
+      "topics": [
+        "state_theory",
+        "dictatorship_proletariat",
+        "revolution"
+      ],
+      "importance": "essential"
+    },
+    "reform_or_revolution": {
+      "title": "Reform or Revolution",
+      "authors": [
+        "Rosa Luxemburg"
+      ],
+      "year": 1900,
+      "url": "https://www.marxists.org/archive/luxemburg/1900/reform-revolution/",
+      "topics": [
+        "reformism",
+        "revolutionary_strategy",
+        "social_democracy"
+      ],
+      "importance": "essential"
+    },
+    "wage_labor_capital": {
+      "title": "Wage Labor and Capital",
+      "authors": [
+        "Karl Marx"
+      ],
+      "year": 1847,
+      "url": "https://www.marxists.org/archive/marx/works/download/pdf/wage-labour-capital.pdf",
+      "topics": [
+        "wages",
+        "exploitation",
+        "capitalism"
+      ],
+      "importance": "introductory"
+    },
+    "socialism_utopian_scientific": {
+      "title": "Socialism: Utopian and Scientific",
+      "authors": [
+        "Friedrich Engels"
+      ],
+      "year": 1880,
+      "url": "https://www.marxists.org/archive/marx/works/download/Engels_Socialism_Utopian_and_Scientific.pdf",
+      "topics": [
+        "scientific_socialism",
+        "materialism",
+        "dialectics"
+      ],
+      "importance": "introductory"
+    },
+    "imperialism": {
+      "title": "Imperialism, the Highest Stage of Capitalism",
+      "authors": [
+        "Vladimir Lenin"
+      ],
+      "year": 1916,
+      "url": "https://www.marxists.org/ebooks/lenin/imperialism-the-highest-stage-of-capitalism.pdf",
+      "topics": [
+        "imperialism",
+        "monopoly_capitalism",
+        "finance_capital"
+      ],
+      "importance": "essential"
+    },
+    "german_ideology": {
+      "title": "The German Ideology",
+      "authors": [
+        "Karl Marx",
+        "Friedrich Engels"
+      ],
+      "year": 1845,
+      "url": "https://www.marxists.org/archive/marx/works/download/Marx_The_German_Ideology.pdf",
+      "topics": [
+        "historical_materialism",
+        "ideology",
+        "philosophy"
+      ],
+      "importance": "foundational"
+    },
+    "origin_family": {
+      "title": "The Origin of the Family, Private Property and the State",
+      "authors": [
+        "Friedrich Engels"
+      ],
+      "year": 1884,
+      "url": "https://www.marxists.org/archive/marx/works/download/pdf/origin_family.pdf",
+      "topics": [
+        "family",
+        "patriarchy",
+        "property",
+        "state_formation"
+      ],
+      "importance": "essential"
+    },
+    "accumulation_capital": {
+      "title": "The Accumulation of Capital",
+      "authors": [
+        "Rosa Luxemburg"
+      ],
+      "year": 1913,
+      "url": "https://www.marxists.org/archive/luxemburg/1913/accumulation-capital/",
+      "topics": [
+        "imperialism",
+        "capital_accumulation",
+        "colonialism"
+      ],
+      "importance": "advanced"
+    }
+  },
+  "stats": {
+    "downloaded": 10,
+    "failed": 0,
+    "total": 10
+  },
+  "topics": [
+    "capital_accumulation",
+    "capitalism",
+    "class_struggle",
+    "colonialism",
+    "commodity_fetishism",
+    "dialectics",
+    "dictatorship_proletariat",
+    "exploitation",
+    "family",
+    "finance_capital",
+    "historical_materialism",
+    "ideology",
+    "imperialism",
+    "materialism",
+    "monopoly_capitalism",
+    "patriarchy",
+    "philosophy",
+    "political_economy",
+    "property",
+    "reformism",
+    "revolution",
+    "revolutionary_strategy",
+    "scientific_socialism",
+    "social_democracy",
+    "state_formation",
+    "state_theory",
+    "surplus_value",
+    "wages"
+  ],
+  "authors": [
+    "Friedrich Engels",
+    "Karl Marx",
+    "Rosa Luxemburg",
+    "Vladimir Lenin"
+  ]
+}

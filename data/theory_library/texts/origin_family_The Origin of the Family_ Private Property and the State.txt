@@ -1,0 +1,15 @@
+
+The Origin of the Family, Private Property and the State
+========================================================
+
+Authors: Friedrich Engels
+Year: 1884
+Topics: family, patriarchy, property, state_formation
+
+[Full text would be extracted from: https://www.marxists.org/archive/marx/works/download/pdf/origin_family.pdf]
+
+This is a stub file. In production, use PyPDF2/pdfplumber to extract:
+- Full text content
+- Chapter structure
+- Footnotes and references
+- Index terms

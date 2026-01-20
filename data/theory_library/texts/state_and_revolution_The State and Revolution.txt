@@ -1,0 +1,15 @@
+
+The State and Revolution
+========================
+
+Authors: Vladimir Lenin
+Year: 1917
+Topics: state_theory, dictatorship_proletariat, revolution
+
+[Full text would be extracted from: https://www.marxists.org/ebooks/lenin/state-and-revolution.pdf]
+
+This is a stub file. In production, use PyPDF2/pdfplumber to extract:
+- Full text content
+- Chapter structure
+- Footnotes and references
+- Index terms

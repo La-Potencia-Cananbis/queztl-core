@@ -1,0 +1,15 @@
+
+The Communist Manifesto
+=======================
+
+Authors: Karl Marx, Friedrich Engels
+Year: 1848
+Topics: class_struggle, historical_materialism, revolution
+
+[Full text would be extracted from: https://www.marxists.org/archive/marx/works/download/pdf/Manifesto.pdf]
+
+This is a stub file. In production, use PyPDF2/pdfplumber to extract:
+- Full text content
+- Chapter structure
+- Footnotes and references
+- Index terms

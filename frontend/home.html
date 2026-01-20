@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sena's AI Tech | Distributed Computing Platform</title>
+    <meta name="description" content="High-performance distributed computing cluster - senasaitech.com">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        <header><h1>🦅 Sena's AI Tech</h1>
+ <p class="subtitle">senasaitech.com | High-Performance Computing Cluster</p></header>margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            font-size: 1.5em;
+        }
+
+        .card p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            background: white;
+            color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .meme-gallery {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .meme-gallery h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .meme-gallery .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        .meme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .meme-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .meme-item:hover {
+            transform: scale(1.05);
+        }
+
+        .meme-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .meme-item .info {
+            padding: 15px;
+        }
+
+        .meme-item .theme {
+            font-size: 0.9em;
+            opacity: 0.7;
+            margin-bottom: 5px;
+        }
+
+        .meme-item .date {
+            font-size: 0.8em;
+            opacity: 0.5;
+        }
+
+        .no-memes {
+            text-align: center;
+            padding: 60px;
+            opacity: 0.7;
+        }
+
+        .status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🦅 Sena's AI Tech</h1>
+            <p class="subtitle">senasaitech.com | High-Performance Computing Cluster</p>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <h2><span class="icon">📊</span> Monitoring Dashboard</h2>
+                <p>Real-time performance metrics, training controls, and stress testing for the distributed cluster.</p>
+                <a href="index.html" class="btn">View Dashboard</a>
+            </div>
+
+            <div class="card">
+                <h2><span class="icon">⚡</span> Stress Testing</h2>
+                <p>CPU, GPU, and network stress tests. Benchmark your cluster performance.</p>
+                <a href="index.html#power-meter" class="btn">Run Tests</a>
+            </div>
+            <div class="card">
+                <h2><span class="icon">📧</span> Contact Us</h2>
+                <p>Get in touch with the team. Messages saved to database and sent via email.</p>
+                <a href="contact.html" class="btn">Send Message</a>
+            </div>
+
+            <div class="card">
+                <h2><span class="icon">🗺️</span> GIS Platform</h2>
+                <p>Professional mapping and geographic information system tools.</p>
+                <a href="gis-pro-platform.html" class="btn">Open GIS</a>
+            </div>
+
+            <div class="card">
+                <h2><span class="icon">🎮</span> 3D Showcase</h2>
+                <p>Immersive 3D graphics and benchmark demonstrations.</p>
+                <a href="3dmark-immersive.html" class="btn">View 3D Demo</a>
+            </div>
+
+            <div class="card">
+                <h2><span class="icon">🌐</span> Web3 Dashboard</h2>
+                <p>Blockchain integration and decentralized features.</p>
+                <a href="web3-premium-dashboard.html" class="btn">Open Web3</a>
+            </div>
+        </div>
+
+        <div class="meme-gallery">
+            <h2>� Cluster Status</h2>
+            <p class="subtitle">Live system information and resource usage</p>
+
+            <div class="status" id="status" style="padding: 40px; background: rgba(0,0,0,0.3);">
+                <p style="font-size: 1.5em; margin-bottom: 20px;">🖥️ Active Nodes</p>
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: left;">
+                    <div>
+                        <strong>Beast</strong><br>
+                        <span style="opacity: 0.8;">192.168.1.105</span><br>
+                        <span style="color: #4ade80;">● Online</span>
+                    </div>
+                    <div>
+                        <strong>Sloth</strong><br>
+                        <span style="opacity: 0.8;">192.168.1.102</span><br>
+                        <span style="color: #4ade80;">● Online</span>
+                    </div>
+                    <div>
+                        <strong>Optiplexes</strong><br>
+                        <span style="opacity: 0.8;">Coming Tuesday</span><br>
+                        <span style="color: #fbbf24;">○ Pending</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>Powered by Beast (192.168.1.105) + Sloth (192.168.1.102)</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Distributed AI • Autonomous Cluster • Revolutionary
+                Technology</p>
+        </footer>
+    </div>
+
+    <script>
+        // Load memes from the generated folder
+        async function loadMemes() {
+            const grid = document.getElementById('memeGrid');
+            const status = document.getElementById('status');
+
+            try {
+                // Try to fetch the list of generated images
+                const response = await fetch('/generated/');
+                const text = await response.text();
+
+                // Parse HTML directory listing
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                const links = Array.from(doc.querySelectorAll('a'))
+                    .map(a => a.getAttribute('href'))
+                    .filter(href => href && href.match(/\.(png|jpg|jpeg|webp)$/i));
+
+                if (links.length > 0) {
+                    grid.innerHTML = '';
+
+                    // Display memes (most recent first)
+                    links.reverse().slice(0, 12).forEach(filename => {
+                        const item = document.createElement('div');
+                        item.className = 'meme-item';
+
+                        // Extract metadata from filename if available
+                        const parts = filename.replace(/\.(png|jpg|jpeg|webp)$/i, '').split('_');
+                        const theme = parts[0] || 'Generated';
+                        const timestamp = parts[parts.length - 1];
+
+                        item.innerHTML = `
+                            <img src="/generated/${filename}" alt="${theme} meme" loading="lazy">
+                            <div class="info">
+                                <div class="theme">${theme.charAt(0).toUpperCase() + theme.slice(1)}</div>
+                                <div class="date">${timestamp || 'Recent'}</div>
+                            </div>
+                        `;
+
+                        grid.appendChild(item);
+                    });
+
+                    status.innerHTML = `<p>✅ ${links.length} memes loaded | Auto-updates weekly</p>`;
+                } else {
+                    status.innerHTML = `<p>⏳ Waiting for content runner to generate memes...</p>`;
+                }
+            } catch (error) {
+                console.log('Generated folder not accessible yet:', error);
+                status.innerHTML = `<p>💡 Start content runner to begin generating memes</p>`;
+            }
+        }
+
+        // Load memes on page load
+        loadMemes();
+
+        // Refresh every 5 minutes
+        setInterval(loadMemes, 5 * 60 * 1000);
+    </script>
+</body>
+
+</html>

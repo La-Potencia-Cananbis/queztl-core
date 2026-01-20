@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>New Mexico Socialists – People over profit • La gente antes que las ganancias</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="New Mexico Socialists is a bilingual, youth-driven socialist organization organizing for land back, workers' rights, and justice across New Mexico." />
+    <link rel="canonical" href="https://newmexicosocialists.com" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="New Mexico Socialists" />
+    <meta property="og:description"
+        content="Join a bilingual, community-rooted socialist movement in New Mexico. People over profit. La gente antes que las ganancias." />
+    <meta property="og:url" content="https://newmexicosocialists.com" />
+    <meta property="og:image" content="/assets/img/meme_1.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="New Mexico Socialists" />
+    <meta name="twitter:description"
+        content="Bilingual socialist organizing in New Mexico – youth, workers, and land back." />
+    <meta name="twitter:image" content="/assets/img/meme_1.png" />
+
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/meme-rotator.css" />
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="logo-title">
+            <div class="logo-circle">
+                <img src="assets/img/meme_1.png" alt="New Mexico Socialists logo" width="60" height="60"
+                    loading="eager" />
+            </div>
+            <div>
+                <h1>New Mexico Socialists</h1>
+                <p class="tagline">People over profit • La gente antes que las ganancias</p>
+            </div>
+        </div>
+        <nav class="site-nav">
+            <a href="#about">About / Acerca</a>
+            <a href="#join">Join / Únete</a>
+            <a href="#featured">Meme of the Week</a>
+            <a href="#memes">Memes Gallery</a>
+            <a href="#resources">Resources</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-text">
+                <h2>Another world is possible.</h2>
+                <p>
+                    We are a bilingual, community-rooted socialist organization in New Mexico,
+                    organizing for living wages, land back, and real democracy in our workplaces and barrios.
+                </p>
+                <p class="hero-es">
+                    Somos una organización socialista bilingüe y comunitaria en Nuevo México,
+                    que lucha por salarios dignos, devolución de la tierra y verdadera democracia
+                    en nuestros trabajos y vecindarios.
+                </p>
+                <div class="hero-actions">
+                    <a href="#join" class="btn primary">Join the movement / Únete</a>
+                    <a href="#featured" class="btn secondary">This Week's Meme</a>
+                </div>
+            </div>
+
+            <div class="hero-art hero-art--text">
+                <div class="hero-art-inner">
+                    <h3>Santa Fe • La lucha sigue</h3>
+                    <p>
+                        From the Río Grande to the Sangre de Cristo, workers, students,
+                        and elders are organizing for a future beyond capitalism.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED MEME OF THE WEEK -->
+        <section id="featured" class="section featured-section">
+            <h2>✨ Meme of the Week</h2>
+            <p class="section-subtitle">
+                Fresh agitprop every Monday. Download, share, and spread the message!
+            </p>
+            <div id="featured-meme" class="featured-meme-container">
+                <!-- Dynamically loaded by meme-rotator.js -->
+            </div>
+        </section>
+
+        <section id="about" class="section two-col">
+            <div>
+                <h3>About New Mexico Socialists</h3>
+                <p>
+                    New Mexico Socialists is a grassroots formation linking socialist politics to local struggles:
+                    land grants, water rights, housing justice, and workers organizing across the state.
+                </p>
+                <p>
+                    We draw from the legacy of Marx, Engels, Indigenous resistance, Land Grant traditions, and
+                    countless organizers who fought for a world beyond exploitation.
+                </p>
+            </div>
+            <div>
+                <h3>Acerca de New Mexico Socialists</h3>
+                <p>
+                    New Mexico Socialists es una organización de base que conecta la política socialista con
+                    las luchas locales: mercedes de tierra, derechos de agua, justicia de vivienda y organización
+                    de l@s trabajador@s en todo el estado.
+                </p>
+                <p>
+                    Nos inspiramos en el legado de Marx, Engels, la resistencia indígena, las mercedes de tierra
+                    y las luchas de innumerables organizador@s por un mundo más allá de la explotación.
+                </p>
+            </div>
+        </section>
+
+        <section id="join" class="section join-section">
+            <h3>Join / Únete</h3>
+            <p>
+                Ready to organize for a better world? Fill out the form below or email us at
+                <a href="mailto:contact@newmexicosocialists.com">contact@newmexicosocialists.com</a>
+            </p>
+            <!-- Add your join form here -->
+        </section>
+
+        <!-- MEMES GALLERY -->
+        <section id="memes" class="section">
+            <h3>🖼️ Memes &amp; Posters Gallery</h3>
+            <p>
+                Browse our complete collection. Click to view, download, or share directly to social media.
+                Use them for online agitation, tabling, or street wheat-pasting.
+            </p>
+            <div class="gallery">
+                <!-- Generate all 19 memes -->
+                <script>
+                    // Generate gallery items dynamically
+                    for (let i = 1; i <= 19; i++) {
+                        document.write(`
+              <figure class="gallery-item" data-index="${i}">
+                <img src="assets/img/meme_${i}.png" alt="Meme ${i}" loading="lazy" width="400" height="400" />
+                <figcaption>
+                  <span class="meme-label">Meme ${i}</span>
+                  <div class="gallery-actions">
+                    <button type="button" class="btn tiny js-view-meme" data-img="assets/img/meme_${i}.png">View</button>
+                    <a href="assets/img/meme_${i}.png" download class="btn tiny secondary">Download</a>
+                    <button type="button" class="btn tiny js-share-meme" data-img="assets/img/meme_${i}.png">Share</button>
+                  </div>
+                </figcaption>
+              </figure>
+            `);
+                    }
+                </script>
+            </div>
+        </section>
+
+        <section id="resources" class="section">
+            <h3>Resources</h3>
+            <p>Essential reading and organizing tools for socialists in New Mexico and beyond.</p>
+            <!-- Add your resources here -->
+        </section>
+
+        <section id="contact" class="section">
+            <h3>Contact</h3>
+            <p>
+                Email: <a href="mailto:contact@newmexicosocialists.com">contact@newmexicosocialists.com</a><br>
+                Follow us on social media for updates and actions.
+            </p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 New Mexico Socialists. People over profit • La gente antes que las ganancias</p>
+    </footer>
+
+    <!-- Load existing JavaScript -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- Load meme rotator -->
+    <script src="assets/js/meme-rotator.js"></script>
+</body>
+
+</html>

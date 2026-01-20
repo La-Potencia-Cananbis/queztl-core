@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Mexico Socialists | Organizing for Liberation</title>
+    <meta name="description"
+        content="Grassroots socialist organizing in New Mexico - land rights, housing justice, workers' power">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #1a0000;
+            color: #FFF;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 5px solid #FFD700;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero .tagline {
+            font-size: 1.8em;
+            color: #FFD700;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .hero .motto {
+            font-size: 1.2em;
+            font-style: italic;
+            opacity: 0.95;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #FFD700;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: #FFF;
+            text-shadow: 0 0 10px #FFD700;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #FFD700;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: rgba(139, 0, 0, 0.3);
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+        }
+
+        .card h3 {
+            color: #FFD700;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .meme-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .meme-item {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            cursor: pointer;
+            border: 2px solid #FFD700;
+        }
+
+        .meme-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .meme-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .meme-actions {
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .meme-btn {
+            padding: 8px 15px;
+            background: #FFD700;
+            color: #8B0000;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .meme-btn:hover {
+            background: #FFF;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 3px solid #FFD700;
+        }
+
+        footer .logo {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        footer .solidarity {
+            font-size: 1.5em;
+            color: #FFD700;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #generateBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 20px 30px;
+            background: #FFD700;
+            color: #8B0000;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+            z-index: 999;
+        }
+
+        #generateBtn:hover {
+            background: #FFF;
+            transform: scale(1.1);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+            margin: 50px auto;
+            padding: 40px;
+            border: 3px solid #FFD700;
+            border-radius: 20px;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .modal-content h2 {
+            color: #FFD700;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-content h3 {
+            color: #FFD700;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .modal-content p,
+        .modal-content ul {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .modal-content ul {
+            margin-left: 30px;
+        }
+
+        .close {
+            color: #FFD700;
+            float: right;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 30px;
+        }
+
+        .close:hover {
+            color: #FFF;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        #memePage {
+            min-height: 100vh;
+            background: #1a0000;
+        }
+
+        #memePage nav {
+            background: rgba(0, 0, 0, 0.9);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HOME PAGE -->
+    <div id="homePage" class="page active">
+        <div class="hero">
+            <h1>⚒️ NEW MEXICO SOCIALISTS</h1>
+            <p class="tagline">Organizing for Liberation</p>
+            <p class="motto">"¡El pueblo unido jamás será vencido!"</p>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showHome(); return false;">🏠 Home</a></li>
+                <li><a href="#" onclick="showModal('aboutModal'); return false;">About</a></li>
+                <li><a href="#" onclick="showMemePage(); return false;">Propaganda</a></li>
+                <li><a href="#" onclick="showModal('resourcesModal'); return false;">Resources</a></li>
+                <li><a href="#" onclick="showModal('joinModal'); return false;">Join</a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <section id="about" class="section">
+                <h2>⭐ Who We Are</h2>
+                <div class="grid">
+                    <div class="card" onclick="showModal('aboutModal');" style="cursor:pointer;">
+                        <h3>🌾 Land & Water</h3>
+                        <p>Fighting for land grant justice and water rights. From the Río Grande to the Sangre de
+                            Cristo.</p>
+                        <p style="color:#FFD700;margin-top:15px">Click to learn more →</p>
+                    </div>
+                    <div class="card" onclick="showModal('aboutModal');" style="cursor:pointer;">
+                        <h3>🏘️ Housing Justice</h3>
+                        <p>Housing is a human right. Organizing against gentrification and for community ownership.</p>
+                        <p style="color:#FFD700;margin-top:15px">Click to learn more →</p>
+                    </div>
+                    <div class="card" onclick="showModal('aboutModal');" style="cursor:pointer;">
+                        <h3>✊ Workers' Power</h3>
+                        <p>Building worker organizing, union solidarity, and democratic workplaces.</p>
+                        <p style="color:#FFD700;margin-top:15px">Click to learn more →</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>🔥 Take Action</h2>
+                <div class="grid">
+                    <div class="card" onclick="showMemePage();" style="cursor:pointer;">
+                        <h3>📣 Get Propaganda</h3>
+                        <p>Download and share revolutionary memes and posters.</p>
+                        <p style="color:#FFD700;margin-top:15px">View gallery →</p>
+                    </div>
+                    <div class="card" onclick="showModal('joinModal');" style="cursor:pointer;">
+                        <h3>✊ Join the Struggle</h3>
+                        <p>Connect with organizers and get involved in actions.</p>
+                        <p style="color:#FFD700;margin-top:15px">Get involved →</p>
+                    </div>
+                    <div class="card" onclick="showModal('resourcesModal');" style="cursor:pointer;">
+                        <h3>📚 Study Theory</h3>
+                        <p>Access revolutionary literature and educational resources.</p>
+                        <p style="color:#FFD700;margin-top:15px">Read more →</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <div class="logo">☭</div>
+            <p style="font-size:1.3em;margin-bottom:15px"><strong>newmexicosocialists.com</strong></p>
+            <p>Santa Fe • Albuquerque • Las Cruces</p>
+            <p class="solidarity">✊ SOLIDARITY FOREVER ✊</p>
+        </footer>
+    </div>
+
+    <!-- MEME PAGE -->
+    <div id="memePage" class="page">
+        <div class="hero">
+            <h1>🔥 REVOLUTIONARY PROPAGANDA</h1>
+            <p class="tagline">AI-Generated by the People's Cluster</p>
+            <p class="motto">Download • Share • Organize</p>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showHome(); return false;">🏠 Home</a></li>
+                <li><a href="#" onclick="showModal('aboutModal'); return false;">About</a></li>
+                <li><a href="#" onclick="showMemePage(); return false;">Propaganda</a></li>
+                <li><a href="#" onclick="showModal('resourcesModal'); return false;">Resources</a></li>
+                <li><a href="#" onclick="showModal('joinModal'); return false;">Join</a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <section class="section">
+                <p style="text-align: center; margin-bottom: 30px; font-size: 1.3em;">
+                    All propaganda generated by our distributed AI cluster<br>
+                    <span style="color:#FFD700">Free to download and share</span>
+                </p>
+                <div class="meme-gallery" id="gallery"></div>
+            </section>
+        </div>
+
+        <footer>
+            <div class="logo">☭</div>
+            <p style="font-size:1.3em;margin-bottom:15px"><strong>newmexicosocialists.com</strong></p>
+            <p>Powered by Queztl Cluster Computing</p>
+            <p class="solidarity">✊ SOLIDARITY FOREVER ✊</p>
+        </footer>
+
+        <button id="generateBtn">🔥 Generate Memes</button>
+    </div>
+
+    <!-- MODALS -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('aboutModal')">&times;</span>
+            <h2>⭐ Who We Are</h2>
+
+            <p>The New Mexico Socialists are a revolutionary organization fighting for workers' power and indigenous
+                liberation in the Land of Enchantment. We stand in solidarity with the working class, indigenous
+                peoples, and all oppressed communities.</p>
+
+            <h3>Our Mission</h3>
+            <p>We organize for:</p>
+            <ul>
+                <li>Economic justice and workers' rights</li>
+                <li>Indigenous sovereignty and land back</li>
+                <li>Housing as a human right</li>
+                <li>Abolition of ICE and police reform</li>
+                <li>Environmental justice and water rights</li>
+                <li>Free education and healthcare for all</li>
+            </ul>
+
+            <h3>Our History</h3>
+            <p>Founded by workers and activists in New Mexico, we carry forward the legacy of labor struggles,
+                indigenous resistance, and revolutionary movements that have shaped our state. From the Santa Fe Ring
+                resistance to the Chicano Movement, from miners' strikes to water protectors - we stand on the shoulders
+                of giants.</p>
+
+            <h3>Our Principles</h3>
+            <ul>
+                <li><strong>Land Back:</strong> Supporting indigenous sovereignty and returning stolen lands</li>
+                <li><strong>Worker Power:</strong> Building unions and worker-owned cooperatives</li>
+                <li><strong>Community Defense:</strong> Protecting our neighborhoods from gentrification</li>
+                <li><strong>Mutual Aid:</strong> Building networks of solidarity and support</li>
+                <li><strong>International Solidarity:</strong> Standing with oppressed people worldwide</li>
+            </ul>
+
+            <p style="margin-top:30px;font-size:1.2em;color:#FFD700;text-align:center"><strong>Join us in building a
+                    better world! ¡La lucha sigue!</strong></p>
+        </div>
+    </div>
+
+    <div id="resourcesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('resourcesModal')">&times;</span>
+            <h2>📚 Study & Resources</h2>
+
+            <h3>Theory & Education</h3>
+            <ul>
+                <li><strong>Communist Manifesto</strong> - Karl Marx & Friedrich Engels</li>
+                <li><strong>Pedagogy of the Oppressed</strong> - Paulo Freire</li>
+                <li><strong>Red Nation Rising</strong> - The Red Nation</li>
+                <li><strong>A People's History of the United States</strong> - Howard Zinn</li>
+                <li><strong>Marxists.org</strong> - Complete archive of revolutionary theory</li>
+            </ul>
+
+            <h3>Organizations & Allies</h3>
+            <ul>
+                <li><a href="https://www.pslweb.org" target="_blank" style="color:#FFD700">Party for Socialism and
+                        Liberation (PSL)</a></li>
+                <li><a href="https://www.liberationnews.org" target="_blank" style="color:#FFD700">Liberation News</a>
+                </li>
+                <li><a href="https://therednation.org" target="_blank" style="color:#FFD700">The Red Nation</a></li>
+                <li><a href="https://www.dsausa.org" target="_blank" style="color:#FFD700">Democratic Socialists of
+                        America</a></li>
+            </ul>
+
+            <h3>Local Resources</h3>
+            <ul>
+                <li>Mutual aid networks and community fridges</li>
+                <li>Food banks and community kitchens</li>
+                <li>Legal defense funds for activists</li>
+                <li>Housing advocacy and tenant unions</li>
+                <li>Worker centers and union organizing</li>
+            </ul>
+
+            <h3>Get Educated</h3>
+            <p>We host regular study groups on Marxist theory, indigenous resistance, and revolutionary history. Contact
+                us to join or start a study group in your area.</p>
+        </div>
+    </div>
+
+    <div id="joinModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('joinModal')">&times;</span>
+            <h2>✊ Get Involved</h2>
+
+            <h3>How to Join</h3>
+            <p>There are many ways to join the struggle for liberation:</p>
+
+            <h3>Attend Meetings</h3>
+            <p>We meet monthly to discuss strategy, plan actions, and build community. Meetings are held in Santa Fe,
+                Albuquerque, and Las Cruces.</p>
+
+            <h3>Join a Working Group</h3>
+            <ul>
+                <li><strong>Labor Organizing:</strong> Support union drives and worker struggles</li>
+                <li><strong>Mutual Aid:</strong> Build networks of community support</li>
+                <li><strong>Political Education:</strong> Lead study groups and workshops</li>
+                <li><strong>Community Defense:</strong> Protect our neighborhoods</li>
+                <li><strong>Media & Propaganda:</strong> Create and distribute revolutionary content</li>
+            </ul>
+
+            <h3>Take Action</h3>
+            <ul>
+                <li>Attend protests and demonstrations</li>
+                <li>Support striking workers</li>
+                <li>Participate in mutual aid distributions</li>
+                <li>Distribute propaganda and educational materials</li>
+                <li>Organize your workplace or community</li>
+            </ul>
+
+            <h3>Contact Us</h3>
+            <p style="font-size:1.2em;margin-top:20px">
+                <strong>Email:</strong> <a href="mailto:NewMexicoSocialists@proton.me"
+                    style="color:#FFD700">NewMexicoSocialists@proton.me</a><br>
+                <strong>Facebook:</strong> <a href="https://www.facebook.com/profile.php?id=61584102062292"
+                    target="_blank" style="color:#FFD700">New Mexico Socialists</a>
+            </p>
+
+            <p style="margin-top:30px;font-size:1.3em;color:#FFD700;text-align:center"><strong>¡Solidarity Forever!
+                    ✊</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // Page Navigation
+        function showHome() {
+            document.getElementById('homePage').classList.add('active');
+            document.getElementById('memePage').classList.remove('active');
+            closeAllModals();
+        }
+
+        function showMemePage() {
+            document.getElementById('homePage').classList.remove('active');
+            document.getElementById('memePage').classList.add('active');
+            closeAllModals();
+            loadMemes();
+        }
+
+        // Modal Functions
+        function showModal(modalId) {
+            closeAllModals();
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function closeAllModals() {
+            document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function (event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Meme Loading
+        async function loadMemes() {
+            const gallery = document.getElementById('gallery');
+            try {
+                const res = await fetch('/generated/');
+                const text = await res.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                const links = Array.from(doc.querySelectorAll('a'))
+                    .map(a => a.getAttribute('href'))
+                    .filter(h => h && h.match(/\.(png|jpg)$/i));
+
+                if (links.length > 0) {
+                    gallery.innerHTML = '';
+                    links.reverse().forEach(f => {
+                        gallery.innerHTML += `
+                            <div class="meme-item">
+                                <img src="/generated/${f}" alt="Revolutionary Propaganda">
+                                <div class="meme-actions">
+                                    <a href="/generated/${f}" download class="meme-btn">⬇ Download</a>
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.origin + '/generated/' + f)}" target="_blank" class="meme-btn">📤 Share</a>
+                                </div>
+                            </div>
+                        `;
+                    });
+                } else {
+                    gallery.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:60px;font-size:1.3em">Click "Generate Memes" to create propaganda!</p>';
+                }
+            } catch (e) {
+                gallery.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:60px">Click "Generate Memes" button!</p>';
+            }
+        }
+
+        // Generate Button
+        const generateBtn = document.getElementById('generateBtn');
+        if (generateBtn) {
+            generateBtn.onclick = async function () {
+                this.textContent = '🔄 Cluster Computing...';
+                this.disabled = true;
+
+                try {
+                    // Submit task to cluster
+                    const res = await fetch('http://localhost:9000/cluster/submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            type: 'generate_image',
+                            theme: 'random',
+                            count: 8
+                        })
+                    });
+
+                    if (res.ok) {
+                        this.textContent = '⚙️  Processing...';
+                        setTimeout(() => {
+                            loadMemes();
+                            this.textContent = '✅ Generated!';
+                            setTimeout(() => {
+                                this.textContent = '🔥 Generate Memes';
+                                this.disabled = false;
+                            }, 2000);
+                        }, 5000);
+                    } else {
+                        throw new Error('Cluster offline');
+                    }
+                } catch (e) {
+                    // Fallback: direct generation
+                    this.textContent = '⚙️  Generating locally...';
+                    setTimeout(() => {
+                        loadMemes();
+                        this.textContent = '✅ Generated!';
+                        setTimeout(() => {
+                            this.textContent = '🔥 Generate Memes';
+                            this.disabled = false;
+                        }, 2000);
+                    }, 2000);
+                }
+            };
+        }
+
+        // Initial load
+        if (document.getElementById('memePage').classList.contains('active')) {
+            loadMemes();
+        }
+
+        // Auto-refresh memes every 5 minutes
+        setInterval(() => {
+            if (document.getElementById('memePage').classList.contains('active')) {
+                loadMemes();
+            }
+        }, 5 * 60 * 1000);
+    </script>
+</body>
+
+</html>

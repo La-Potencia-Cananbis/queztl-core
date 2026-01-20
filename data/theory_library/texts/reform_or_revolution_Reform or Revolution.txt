@@ -1,0 +1,15 @@
+
+Reform or Revolution
+====================
+
+Authors: Rosa Luxemburg
+Year: 1900
+Topics: reformism, revolutionary_strategy, social_democracy
+
+[Full text would be extracted from: https://www.marxists.org/archive/luxemburg/1900/reform-revolution/]
+
+This is a stub file. In production, use PyPDF2/pdfplumber to extract:
+- Full text content
+- Chapter structure
+- Footnotes and references
+- Index terms
