@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Quick cluster status check - runs in <10 seconds"""
+import os
 import sys
 from pathlib import Path
 
@@ -9,17 +10,19 @@ from queztl_exec import ExecConfig, CommandExecutor, ExecMode
 from queztl_config import config
 
 
-def _resolve_host(default_node: str, fallback_ip: str) -> str:
-    """Resolve node host/IP from config with fallback."""
+def _resolve_host(default_node: str, fallback_ip: str, env_var: str = None) -> str:
+    """Resolve node host/IP from env, config, then fallback."""
+    if env_var and env_var in os.environ:
+        return os.environ[env_var]
     resolved = config.get_node_ip(default_node)
     return resolved or fallback_ip
 
 print("🔍 Queztl Cluster Status Check")
 print("=" * 60)
 
-# Resolve hosts
-beast_host = _resolve_host(config.DEFAULT_GPU_NODE, '192.168.1.105')
-head_host = _resolve_host(config.DEFAULT_COORDINATOR, '192.168.1.102')
+# Resolve hosts (env override > config > fallback)
+beast_host = _resolve_host(config.DEFAULT_GPU_NODE, '192.168.1.105', 'QUEZTL_BEAST_IP')
+head_host = _resolve_host(config.DEFAULT_COORDINATOR, '192.168.1.102', 'QUEZTL_SLOTH_IP')
 
 # Check Beast
 try:

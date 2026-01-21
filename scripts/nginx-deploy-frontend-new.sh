@@ -24,6 +24,10 @@ rsync -avz --delete \
   --exclude 'node_modules' \
   $(pwd)/frontend-new/ ${TARGET}:${REMOTE_ROOT}/
 
+# 1b) Copy GIS canonical (gis-studio-pro.html) under /gis
+ssh -o BatchMode=yes ${TARGET} "sudo mkdir -p ${REMOTE_ROOT}/gis"
+scp frontend/gis-studio-pro.html ${TARGET}:${REMOTE_ROOT}/gis/index.html
+
 # 2) Install nginx and enable site
 ssh -o BatchMode=yes ${TARGET} << 'EOF'
 set -euo pipefail
@@ -43,6 +47,11 @@ server {
     location / {
         try_files $uri $uri/ /index.html;
     }
+
+  location /gis/ {
+    alias /var/www/frontend-new/gis/;
+    try_files $uri $uri/ /gis/index.html;
+  }
 
     # Basic security headers
     add_header X-Frame-Options "SAMEORIGIN";
