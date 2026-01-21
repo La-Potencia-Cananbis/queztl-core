@@ -160,7 +160,7 @@ class CommandExecutor:
                     "-o",
                     "BatchMode=yes",
                     "-o",
-                    "ConnectTimeout=5",
+                    "ConnectTimeout=10",
                     f"{user}@{host}",
                     docker_shell_cmd  # Single string argument with full docker command
                 ]
@@ -175,7 +175,7 @@ class CommandExecutor:
                     "-o",
                     "BatchMode=yes",
                     "-o",
-                    "ConnectTimeout=5",
+                    "ConnectTimeout=10",
                     f"{user}@{host}",
                     "bash",
                     "-lc",
