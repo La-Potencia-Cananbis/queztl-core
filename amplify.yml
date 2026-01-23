@@ -4,10 +4,10 @@ frontend:
     preBuild:
       commands:
         - corepack enable
-        - cd mobile-app && pnpm install
+        - cd "$CODEBUILD_SRC_DIR/mobile-app" && pnpm install
     build:
       commands:
-        - cd mobile-app && pnpm --filter web build
+        - cd "$CODEBUILD_SRC_DIR/mobile-app" && pnpm --filter web build
   artifacts:
     baseDirectory: mobile-app/apps/web/dist
     files:
