@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grant Chat Assistant</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0b1220;
+            --panel: #111a2e;
+            --accent: #00d9ff;
+            --muted: #8aa0c2;
+            --text: #e8f0ff;
+            --error: #f87171;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+            background: radial-gradient(circle at 20% 20%, rgba(0, 217, 255, 0.08), transparent 30%),
+                radial-gradient(circle at 80% 0%, rgba(139, 92, 246, 0.08), transparent 28%),
+                var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .app {
+            width: min(1100px, 100%);
+            background: #0f182cdd;
+            border: 1px solid rgba(0, 217, 255, 0.15);
+            border-radius: 16px;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.35);
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            overflow: hidden;
+        }
+
+        header {
+            padding: 16px 18px;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.08), rgba(139, 92, 246, 0.08));
+        }
+
+        header .title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        header small {
+            color: var(--muted);
+        }
+
+        .status {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        main {
+            padding: 16px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 16px;
+            min-height: 0;
+        }
+
+        @media (max-width: 900px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid rgba(0, 217, 255, 0.08);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            gap: 12px;
+        }
+
+        .panel h3 {
+            margin: 0;
+            font-size: 14px;
+            letter-spacing: 0.2px;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .messages {
+            flex: 1;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-right: 6px;
+        }
+
+        .msg {
+            padding: 10px 12px;
+            border-radius: 10px;
+            background: #0d1527;
+            border: 1px solid rgba(0, 217, 255, 0.06);
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+
+        .msg.user {
+            border-color: rgba(0, 217, 255, 0.18);
+            background: rgba(0, 217, 255, 0.05);
+        }
+
+        .msg.assistant {
+            border-color: rgba(139, 92, 246, 0.18);
+        }
+
+        .input-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        textarea {
+            flex: 1;
+            resize: vertical;
+            min-height: 70px;
+            max-height: 200px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 217, 255, 0.18);
+            background: #0c1425;
+            color: var(--text);
+            font: inherit;
+        }
+
+        button {
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #00d9ff, #8b5cf6);
+            color: #0b1220;
+            font-weight: 700;
+            padding: 10px 14px;
+            cursor: pointer;
+            min-width: 90px;
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.25);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .field input {
+            padding: 9px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 217, 255, 0.15);
+            background: #0c1425;
+            color: var(--text);
+        }
+
+        .note {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .error {
+            color: var(--error);
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <header>
+            <div>
+                <div class="title">Grant Chat Assistant</div>
+                <small>Drop-in static page for S3 / CloudFront</small>
+            </div>
+            <div class="status"><span class="dot"></span><small id="status">Ready</small></div>
+        </header>
+        <main>
+            <section class="panel">
+                <h3>Conversation</h3>
+                <div class="messages" id="messages"></div>
+            </section>
+            <section class="panel" style="gap:10px">
+                <h3>Prompt</h3>
+                <div class="input-row">
+                    <textarea id="input" placeholder="Ask about grant readiness, budgets, milestones..."></textarea>
+                    <button id="send">Send</button>
+                </div>
+                <div class="field">
+                    <label for="apiBase">API Base URL</label>
+                    <input id="apiBase" placeholder="https://your-api.example.com" />
+                    <div class="note">We call POST {API_BASE}/chat with JSON { message }. Adjust below if different.
+                    </div>
+                </div>
+                <div class="note">Tip: host behind CloudFront with HTTPS; set CORS to allow this origin.</div>
+                <div class="error" id="error"></div>
+            </section>
+        </main>
+    </div>
+    <script>
+        // --- CONFIG ---
+        const DEFAULT_API_BASE = window.API_BASE || 'https://your-api.example.com';
+        // ---------------
+
+        const messagesEl = document.getElementById('messages');
+        const inputEl = document.getElementById('input');
+        const sendBtn = document.getElementById('send');
+        const apiBaseEl = document.getElementById('apiBase');
+        const statusEl = document.getElementById('status');
+        const errorEl = document.getElementById('error');
+
+        apiBaseEl.value = DEFAULT_API_BASE;
+
+        const append = (role, text) => {
+            const div = document.createElement('div');
+            div.className = 'msg ' + role;
+            div.textContent = text;
+            messagesEl.appendChild(div);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        };
+
+        const setStatus = (text) => statusEl.textContent = text;
+        const setError = (text) => errorEl.textContent = text || '';
+
+        async function sendMessage() {
+            const message = inputEl.value.trim();
+            if (!message) return;
+            const apiBase = apiBaseEl.value.trim() || DEFAULT_API_BASE;
+            const url = apiBase.replace(/\/$/, '') + '/chat';
+
+            append('user', message);
+            inputEl.value = '';
+            setStatus('Sending...');
+            setError('');
+            sendBtn.disabled = true;
+
+            try {
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+                if (!res.ok) {
+                    const text = await res.text();
+                    throw new Error(text || ('HTTP ' + res.status));
+                }
+                const data = await res.json();
+                const reply = data.reply || data.message || JSON.stringify(data);
+                append('assistant', reply);
+            } catch (err) {
+                console.error(err);
+                setError(err.message || 'Request failed');
+            } finally {
+                setStatus('Ready');
+                sendBtn.disabled = false;
+            }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        inputEl.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+
+</html>
