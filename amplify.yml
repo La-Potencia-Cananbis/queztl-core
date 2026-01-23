@@ -4,15 +4,17 @@ frontend:
     preBuild:
       commands:
         - corepack enable
-        - cd mobile-app && pnpm install
+        - cd mobile-app && pnpm install --no-frozen-lockfile
+        - echo "Listing installed packages:"
+        - cd mobile-app && pnpm list --depth=0
     build:
       commands:
-        - cd mobile-app && pnpm --filter web build
+        - cd mobile-app/apps/web && pnpm build
   artifacts:
     baseDirectory: mobile-app/apps/web/dist
     files:
       - "**/*"
   cache:
     paths:
-      - "node_modules/**/*"
-      - "**/node_modules/**/*"
+      - "mobile-app/node_modules/**/*"
+      - "mobile-app/apps/web/node_modules/**/*"
