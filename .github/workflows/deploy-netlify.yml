@@ -1,14 +1,7 @@
 name: Deploy dashboard to Netlify
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "frontend/dashboard/**"
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
