@@ -5,8 +5,8 @@ Investor-focused landing page showcasing Quetzal-Core's quantum-inspired geospat
 
 ## Location
 - **File:** `index.html` (repository root)
-- **Deployment:** Netlify-ready static site
-- **Configuration:** `netlify.toml`
+- **Deployment:** AWS Amplify
+- **Configuration:** `amplify.yml`
 
 ## Features
 - **Hero Section:** Animated agent network visualization with "Quantum AI for Earth" headline
@@ -34,9 +34,9 @@ Investor-focused landing page showcasing Quetzal-Core's quantum-inspired geospat
 
 ## Deployment
 1. Push to main branch
-2. Netlify auto-deploys from root `index.html`
-3. No build process required
-4. Security headers included via `netlify.toml`
+2. AWS Amplify auto-deploys using `amplify.yml` configuration
+3. Mobile app builds from `mobile-app/apps/web/dist`
+4. Uses pnpm for dependency management
 
 ## Technical Details
 - Pure HTML/CSS/JavaScript
