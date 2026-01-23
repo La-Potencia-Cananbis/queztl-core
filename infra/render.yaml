@@ -6,6 +6,7 @@ services:
     region: oregon
     plan: free
     branch: main
+    autoDeploy: false
     dockerfilePath: ./Dockerfile
     dockerContext: .
     envVars:
