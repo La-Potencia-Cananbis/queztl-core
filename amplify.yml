@@ -11,8 +11,8 @@ frontend:
   artifacts:
     baseDirectory: mobile-app/apps/web/dist
     files:
-      - '**/*'
+      - "**/*"
   cache:
     paths:
-      - node_modules/**/*
-      - **/node_modules/**/*
+      - "node_modules/**/*"
+      - "**/node_modules/**/*"
