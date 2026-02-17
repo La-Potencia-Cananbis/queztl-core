@@ -10,6 +10,10 @@ frontend:
     build:
       commands:
         - cd mobile-app/apps/web && pnpm build
+        - cd "${CODEBUILD_SRC_DIR:-.}/mobile-app" && pnpm install
+    build:
+      commands:
+        - cd "${CODEBUILD_SRC_DIR:-.}/mobile-app" && pnpm --filter web build
   artifacts:
     baseDirectory: mobile-app/apps/web/dist
     files:
