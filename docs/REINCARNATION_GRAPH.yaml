@@ -76,7 +76,7 @@ nodes:
   - id: task_m2
     type: task
     name: replace_absolute_paths
-    status: todo
+    status: in_progress
     child_graph: docs/node-graphs/task_m2.yaml
     acceptance_ref: acc_task_m2
     rollup_rule: all_child_tasks_complete_and_tests_green

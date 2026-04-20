@@ -3,9 +3,11 @@
 # Handles all testing, licensing, and deployment tasks
 # Runs continuously with configurable intervals
 
-set -e
+set -euo pipefail
 
-WORKSPACE="/Users/xavasena/hive"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+WORKSPACE="$REPO_ROOT"
 DEPLOY_DIR="$WORKSPACE/gis-deploy"
 FRONTEND_DIR="$WORKSPACE/frontend"
 LOG_FILE="$WORKSPACE/runner.log"
@@ -17,9 +19,11 @@ log() {
 # Task 1: Create test data
 create_test_data() {
     log "📊 TASK 1: Creating test data..."
-    python3 << 'EOF'
+    TEST_DATA_FILE="$WORKSPACE/test-data.json" python3 << 'EOF_PY'
 import json
-from pathlib import Path
+import os
+
+output = os.environ["TEST_DATA_FILE"]
 
 test_data = {
     "cities": [
@@ -31,17 +35,20 @@ test_data = {
     "timestamp": __import__('datetime').datetime.now().isoformat()
 }
 
-with open('/Users/xavasena/hive/test-data.json', 'w') as f:
+with open(output, 'w', encoding='utf-8') as f:
     json.dump(test_data, f, indent=2)
-EOF
+EOF_PY
     log "✅ Test data created"
 }
 
 # Task 2: License config
 create_license_config() {
     log "📜 TASK 2: Creating license config..."
-    python3 << 'EOF'
+    LICENSE_FILE="$WORKSPACE/licensing.json" python3 << 'EOF_PY'
 import json
+import os
+
+output = os.environ["LICENSE_FILE"]
 
 licenses = {
     "free": {"name": "Educational", "price": 0, "features": 30},
@@ -49,17 +56,22 @@ licenses = {
     "enterprise": {"name": "Enterprise", "price": "custom", "features": 999}
 }
 
-with open('/Users/xavasena/hive/licensing.json', 'w') as f:
+with open(output, 'w', encoding='utf-8') as f:
     json.dump(licenses, f, indent=2)
-EOF
+EOF_PY
     log "✅ License config created"
 }
 
 # Task 3: Deploy to Netlify
 deploy_to_netlify() {
     log "🚀 TASK 3: Deploying to Netlify..."
+    if [ ! -d "$DEPLOY_DIR" ]; then
+        log "⚠️ Deploy directory not found: $DEPLOY_DIR (skipping deploy)"
+        return
+    fi
+
     cd "$DEPLOY_DIR"
-    netlify deploy --prod --dir=. > /tmp/deploy.log 2>&1
+    netlify deploy --prod --dir=. > /tmp/deploy.log 2>&1 || true
     if grep -q "Production deploy is live" /tmp/deploy.log; then
         log "✅ Deployment successful"
     else
@@ -70,9 +82,12 @@ deploy_to_netlify() {
 # Task 4: Run tests
 run_tests() {
     log "🧪 TASK 4: Running tests..."
-    python3 << 'EOF'
+    TEST_RESULTS_FILE="$WORKSPACE/test-results.json" python3 << 'EOF_PY'
 import json
+import os
 from datetime import datetime
+
+output = os.environ["TEST_RESULTS_FILE"]
 
 results = {
     "timestamp": datetime.now().isoformat(),
@@ -82,16 +97,16 @@ results = {
     "coverage": 96
 }
 
-with open('/Users/xavasena/hive/test-results.json', 'w') as f:
+with open(output, 'w', encoding='utf-8') as f:
     json.dump(results, f, indent=2)
-EOF
+EOF_PY
     log "✅ Tests completed"
 }
 
 # Task 5: Generate report
 generate_report() {
     log "📋 TASK 5: Generating report..."
-    cat > "$WORKSPACE/automation-status.txt" << 'EOF'
+    cat > "$WORKSPACE/automation-status.txt" << 'EOF_STATUS'
 =====================================
 QUETZAL GIS PRO - AUTOMATION STATUS
 =====================================
@@ -113,7 +128,7 @@ Features:
 - 3 license tiers
 
 Status: 🟢 OPERATIONAL
-EOF
+EOF_STATUS
     log "✅ Report generated"
 }
 

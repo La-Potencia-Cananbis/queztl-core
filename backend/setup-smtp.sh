@@ -1,6 +1,11 @@
 #!/bin/bash
 # Quick setup script for real email sending
 
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
 echo "🚀 Queztl Email - Real SMTP Setup"
 echo "===================================="
 echo ""
@@ -12,7 +17,7 @@ echo "2. Click 'Create a new app password'"
 echo "3. Copy the password"
 echo "4. Paste it below"
 echo ""
-read -sp "Enter your Microsoft App Password (or press Enter to skip): " SMTP_PASS
+read -r -s -p "Enter your Microsoft App Password (or press Enter to skip): " SMTP_PASS
 echo ""
 
 if [ -z "$SMTP_PASS" ]; then
@@ -35,11 +40,11 @@ fi
 
 # Kill existing backend
 echo "🔄 Restarting backend..."
-lsof -ti:8001 | xargs kill -9 2>/dev/null
+lsof -ti:8001 | xargs kill -9 2>/dev/null || true
 sleep 1
 
 # Start backend
-cd /Users/xavasena/hive
+cd "$REPO_ROOT"
 python3 backend/email_service.py &
 
 sleep 2
@@ -51,7 +56,7 @@ echo ""
 # Test connection
 if curl -s http://localhost:8001/ > /dev/null 2>&1; then
     echo "✅ Backend is responding on port 8001"
-    
+
     if [ "$USE_REAL_SMTP" = "true" ]; then
         echo "✅ SMTP enabled - emails will be sent for real!"
     else
@@ -67,5 +72,5 @@ else
 fi
 
 echo ""
-echo "🌐 Open your email UI: open /Users/xavasena/hive/my-email.html"
+echo "🌐 Open your email UI: open $REPO_ROOT/my-email.html"
 echo ""
