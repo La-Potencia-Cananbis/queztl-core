@@ -1,0 +1,23 @@
+version: 1
+node_id: task_m1
+scope: "Containerize host-coupled scripts used by quickstarts"
+status: todo
+
+tasks:
+  - id: m1_1
+    name: inventory_host_coupled_scripts
+    status: todo
+  - id: m1_2
+    name: create_container_safe_wrappers
+    status: todo
+  - id: m1_3
+    name: validate_compose_entrypoint_flow
+    status: todo
+
+tests:
+  - id: t_m1_1
+    command: "docker compose -f infra/docker-compose.yml config"
+    expect: pass
+
+exit_criteria:
+  - t_m1_1

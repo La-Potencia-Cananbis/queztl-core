@@ -1,0 +1,26 @@
+version: 1
+node_id: task_mcp_lite
+scope: "Implement local MCP Lite server tools"
+status: todo
+
+tasks:
+  - id: mcp_1
+    name: define_mcp_tool_contract
+    status: todo
+  - id: mcp_2
+    name: implement_health_check_tool
+    status: todo
+  - id: mcp_3
+    name: implement_content_and_contact_tools
+    status: todo
+  - id: mcp_4
+    name: add_local_smoke_validation
+    status: todo
+
+tests:
+  - id: t_mcp_1
+    command: "python3 backend/mcp_server.py --help"
+    expect: pass_or_usage_output
+
+exit_criteria:
+  - t_mcp_1
