@@ -1,21 +1,24 @@
 #!/bin/bash
 # Train Advanced Marxist Meme Generator on Beast with 4-pass training
 
-set -e
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 echo "🚩 ADVANCED MARXIST MEME GENERATOR - BEAST TRAINING"
 echo "=================================================="
 echo ""
 
-BEAST_IP="192.168.1.105"
-BEAST_USER="xava"
-REMOTE_DIR="~/queztl-core"
+BEAST_IP="${BEAST_IP:-192.168.1.105}"
+BEAST_USER="${BEAST_USER:-xava}"
+REMOTE_DIR="${REMOTE_DIR:-~/queztl-core}"
 
 echo "📡 Connecting to Beast (${BEAST_IP})..."
 echo ""
 
 # Check if Beast is online
-if ! ping -c 1 ${BEAST_IP} &> /dev/null; then
+if ! ping -c 1 "$BEAST_IP" &> /dev/null; then
     echo "❌ Beast is not reachable at ${BEAST_IP}"
     exit 1
 fi
@@ -25,7 +28,7 @@ echo ""
 
 # Transfer files to Beast
 echo "📤 Transferring advanced meme generator to Beast..."
-scp backend/advanced_marxist_memes.py ${BEAST_USER}@${BEAST_IP}:${REMOTE_DIR}/backend/
+scp "$SCRIPT_DIR/advanced_marxist_memes.py" "${BEAST_USER}@${BEAST_IP}:${REMOTE_DIR}/backend/"
 echo "✓ Files transferred"
 echo ""
 
@@ -33,8 +36,8 @@ echo ""
 echo "🔥 Starting 4-pass training on Beast..."
 echo ""
 
-ssh ${BEAST_USER}@${BEAST_IP} << 'ENDSSH'
-cd ~/queztl-core
+ssh "${BEAST_USER}@${BEAST_IP}" "REMOTE_DIR='$REMOTE_DIR' bash -s" << 'ENDSSH'
+cd "$REMOTE_DIR"
 source venv/bin/activate
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -96,7 +99,6 @@ echo ""
 ls -lh output/marxist_memes/ | grep -E "pass[1-4]" | wc -l | xargs echo "Total memes generated:"
 du -sh output/marxist_memes/
 echo ""
-
 ENDSSH
 
 echo ""
@@ -104,10 +106,10 @@ echo "📥 Downloading results from Beast..."
 echo ""
 
 # Create local directory
-mkdir -p output/marxist_memes_beast
+mkdir -p "$REPO_ROOT/output/marxist_memes_beast"
 
 # Download all memes
-scp ${BEAST_USER}@${BEAST_IP}:${REMOTE_DIR}/output/marxist_memes/pass*.png output/marxist_memes_beast/ 2>/dev/null || true
+scp "${BEAST_USER}@${BEAST_IP}:${REMOTE_DIR}/output/marxist_memes/pass*.png" "$REPO_ROOT/output/marxist_memes_beast/" 2>/dev/null || true
 
 echo ""
 echo "✓ Download complete"
@@ -122,9 +124,9 @@ echo "  - 4 distinct styles (10 each)"
 echo "  - 30 advanced Marxist slogans"
 echo "  - 10 radical statistics"
 echo ""
-echo "📂 Local output: output/marxist_memes_beast/"
+echo "📂 Local output: $REPO_ROOT/output/marxist_memes_beast/"
 echo "📂 Beast output: ${BEAST_USER}@${BEAST_IP}:${REMOTE_DIR}/output/marxist_memes/"
 echo ""
 echo "🎨 Open folder:"
-echo "  open output/marxist_memes_beast/"
+echo "  open $REPO_ROOT/output/marxist_memes_beast/"
 echo ""

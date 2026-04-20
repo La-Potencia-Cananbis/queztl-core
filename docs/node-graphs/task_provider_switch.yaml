@@ -1,0 +1,23 @@
+version: 1
+node_id: task_provider_switch
+scope: "Support execution provider switching local/cloud/cluster"
+status: todo
+
+tasks:
+  - id: p_1
+    name: define_provider_interface
+    status: todo
+  - id: p_2
+    name: add_provider_env_flag
+    status: todo
+  - id: p_3
+    name: implement_fallback_policy
+    status: todo
+
+tests:
+  - id: t_p_1
+    command: "python3 -c 'import os; print(os.getenv(""EXECUTION_PROVIDER"", ""local""))'"
+    expect: pass
+
+exit_criteria:
+  - t_p_1
