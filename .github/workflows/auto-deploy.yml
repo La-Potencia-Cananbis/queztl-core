@@ -1,2 +1,10 @@
+# DISABLED - All deployment steps removed to stop Render failures
+# This workflow has been disabled pending cost review
+name: Disabled
 on:
   workflow_dispatch:
+jobs:
+  disabled:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deployment disabled"
