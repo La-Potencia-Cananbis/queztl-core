@@ -68,7 +68,7 @@ nodes:
   - id: task_m1
     type: task
     name: containerize_host_coupled_scripts
-    status: in_progress
+    status: todo
     child_graph: docs/node-graphs/task_m1.yaml
     acceptance_ref: acc_task_m1
     rollup_rule: all_child_tasks_complete_and_tests_green

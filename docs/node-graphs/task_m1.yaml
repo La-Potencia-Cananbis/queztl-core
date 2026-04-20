@@ -1,42 +1,23 @@
 version: 1
 node_id: task_m1
 scope: "Containerize host-coupled scripts used by quickstarts"
-status: in_progress
-
-progress_notes:
-  - "Validated shell syntax for core quickstart and deploy scripts used in local/container workflows."
-  - "Compose config test is currently blocked in this environment due missing docker binary."
-  - "MCP-lite health tool returns healthy local repo/backend/frontend status."
+status: todo
 
 tasks:
   - id: m1_1
     name: inventory_host_coupled_scripts
-    status: in_progress
+    status: todo
   - id: m1_2
     name: create_container_safe_wrappers
-    status: in_progress
+    status: todo
   - id: m1_3
     name: validate_compose_entrypoint_flow
-    status: blocked
-
-blocked_by:
-  - "docker binary unavailable in current execution environment"
+    status: todo
 
 tests:
   - id: t_m1_1
     command: "docker compose -f infra/docker-compose.yml config"
     expect: pass
-    last_result: blocked_environment
-  - id: t_m1_2
-    command: "bash -n start-services.sh stop-services.sh setup-website.sh quick-setup.sh backend/deploy-aiosc.sh"
-    expect: pass
-    last_result: pass
-  - id: t_m1_3
-    command: "python3 backend/mcp_server.py --tool health_check --repo-root . --json"
-    expect: ok_true
-    last_result: pass
 
 exit_criteria:
   - t_m1_1
-  - t_m1_2
-  - t_m1_3
