@@ -1,0 +1,151 @@
+version: 2
+generated_on: 2026-04-20
+purpose: >-
+  Seed graph for Queztl reincarnation planning. Extend this as cleanup progresses.
+workflow_doc: docs/NODE_GRAPH_WORKFLOW.md
+
+nodes:
+  - id: svc_contact_api
+    type: service
+    path: backend/contact_form_api.py
+    status: candidate
+
+  - id: svc_content_runner
+    type: service
+    path: backend/content_runner.py
+    status: candidate
+
+  - id: svc_mcp
+    type: service
+    path: backend/mcp_server.py
+    status: blocked
+
+  - id: script_start_services
+    type: script
+    path: start-services.sh
+    status: active
+
+  - id: script_stop_services
+    type: script
+    path: stop-services.sh
+    status: active
+
+  - id: script_deploy_aiosc
+    type: script
+    path: backend/deploy-aiosc.sh
+    status: blocked
+
+  - id: doc_aiosc_arch
+    type: doc
+    path: backend/AIOSC_ARCHITECTURE.md
+    status: active
+
+  - id: target_mac_container
+    type: deployment_target
+    name: mac_container
+    status: priority
+
+  - id: target_cloud
+    type: deployment_target
+    name: cloud
+    status: priority
+
+  - id: target_cluster
+    type: deployment_target
+    name: local_cluster_hardware
+    status: planned
+
+  - id: risk_host_paths
+    type: risk
+    name: hardcoded_host_paths
+    severity: high
+
+  - id: risk_doc_drift
+    type: risk
+    name: documentation_drift
+    severity: high
+
+  - id: task_m1
+    type: task
+    name: containerize_host_coupled_scripts
+    status: in_progress
+    child_graph: docs/node-graphs/task_m1.yaml
+    acceptance_ref: acc_task_m1
+    rollup_rule: all_child_tasks_complete_and_tests_green
+
+  - id: task_m2
+    type: task
+    name: replace_absolute_paths
+    status: in_progress
+    child_graph: docs/node-graphs/task_m2.yaml
+    acceptance_ref: acc_task_m2
+    rollup_rule: all_child_tasks_complete_and_tests_green
+
+  - id: task_mcp_lite
+    type: task
+    name: implement_local_mcp_tools
+    status: todo
+    child_graph: docs/node-graphs/task_mcp_lite.yaml
+    acceptance_ref: acc_task_mcp_lite
+    rollup_rule: all_child_tasks_complete_and_tests_green
+
+  - id: task_provider_switch
+    type: task
+    name: add_execution_provider_switch
+    status: todo
+    child_graph: docs/node-graphs/task_provider_switch.yaml
+    acceptance_ref: acc_task_provider_switch
+    rollup_rule: all_child_tasks_complete_and_tests_green
+
+edges:
+  - from: svc_mcp
+    to: task_mcp_lite
+    type: blocked_by
+
+  - from: script_deploy_aiosc
+    to: risk_host_paths
+    type: blocked_by
+
+  - from: task_m2
+    to: risk_host_paths
+    type: implements
+
+  - from: task_m1
+    to: target_mac_container
+    type: deploys_to
+
+  - from: task_provider_switch
+    to: target_cloud
+    type: deploys_to
+
+  - from: task_provider_switch
+    to: target_cluster
+    type: deploys_to
+
+  - from: svc_contact_api
+    to: target_mac_container
+    type: deploys_to
+
+  - from: svc_contact_api
+    to: target_cloud
+    type: deploys_to
+
+  - from: svc_content_runner
+    to: target_mac_container
+    type: deploys_to
+
+  - from: svc_content_runner
+    to: target_cloud
+    type: deploys_to
+
+  - from: doc_aiosc_arch
+    to: svc_mcp
+    type: depends_on
+
+  - from: risk_doc_drift
+    to: script_start_services
+    type: blocked_by
+
+  - from: risk_doc_drift
+    to: script_stop_services
+    type: blocked_by

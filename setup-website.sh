@@ -1,10 +1,20 @@
 #!/bin/bash
 # Quick Setup Wizard for Queztl Dynamic Website
 
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$SCRIPT_DIR"
+CONFIG_DIR="$REPO_ROOT/.config"
+DATA_DIR="$REPO_ROOT/data"
+LOG_DIR="$REPO_ROOT/logs"
+GENERATED_DIR="$REPO_ROOT/frontend/generated"
+
 echo "╔═══════════════════════════════════════════════════════╗"
 echo "║  🦅 QUEZTL WEBSITE SETUP WIZARD                      ║"
 echo "╚═══════════════════════════════════════════════════════╝"
 echo ""
+echo "📂 Repo root: $REPO_ROOT"
 
 # Colors
 RED='\033[0;31m'
@@ -14,10 +24,7 @@ NC='\033[0m' # No Color
 
 # Create directories
 echo "📁 Creating directories..."
-mkdir -p ~/queztl-core/data
-mkdir -p ~/queztl-core/frontend/generated
-mkdir -p ~/queztl-core/logs
-mkdir -p ~/queztl-core/.config
+mkdir -p "$DATA_DIR" "$GENERATED_DIR" "$LOG_DIR" "$CONFIG_DIR"
 echo "✅ Directories created"
 echo ""
 
@@ -79,32 +86,32 @@ echo "For contact form to send emails, you need SMTP credentials."
 echo "Gmail App Password recommended: https://support.google.com/accounts/answer/185833"
 echo ""
 
-read -p "Configure email now? (y/n): " CONFIGURE_EMAIL
+read -r -p "Configure email now? (y/n): " CONFIGURE_EMAIL
 
 if [ "$CONFIGURE_EMAIL" = "y" ]; then
-    read -p "SMTP Server [smtp.gmail.com]: " SMTP_SERVER
+    read -r -p "SMTP Server [smtp.gmail.com]: " SMTP_SERVER
     SMTP_SERVER=${SMTP_SERVER:-smtp.gmail.com}
-    
-    read -p "SMTP Port [587]: " SMTP_PORT
+
+    read -r -p "SMTP Port [587]: " SMTP_PORT
     SMTP_PORT=${SMTP_PORT:-587}
-    
-    read -p "Sender Email: " SENDER_EMAIL
-    
-    read -s -p "Sender Password (hidden): " SENDER_PASSWORD
+
+    read -r -p "Sender Email: " SENDER_EMAIL
+
+    read -r -s -p "Sender Password (hidden): " SENDER_PASSWORD
     echo ""
-    
-    read -p "Recipient Email (for notifications): " RECIPIENT_EMAIL
-    
+
+    read -r -p "Recipient Email (for notifications): " RECIPIENT_EMAIL
+
     # Save to config file
-    cat > ~/queztl-core/.config/email.env <<EOF
+    cat > "$CONFIG_DIR/email.env" <<EOF_EMAIL
 export SMTP_SERVER="$SMTP_SERVER"
 export SMTP_PORT="$SMTP_PORT"
 export SENDER_EMAIL="$SENDER_EMAIL"
 export SENDER_PASSWORD="$SENDER_PASSWORD"
 export RECIPIENT_EMAIL="$RECIPIENT_EMAIL"
-EOF
-    
-    chmod 600 ~/queztl-core/.config/email.env
+EOF_EMAIL
+
+    chmod 600 "$CONFIG_DIR/email.env"
     echo -e "${GREEN}✅ Email configuration saved${NC}"
 else
     echo -e "${YELLOW}⚠️  Skipping email configuration (can configure later)${NC}"
@@ -118,15 +125,15 @@ echo "For public access, configure DynDNS."
 echo "Popular providers: DuckDNS, No-IP, Dynu"
 echo ""
 
-read -p "Do you have a DynDNS domain? (y/n): " HAS_DYNDNS
+read -r -p "Do you have a DynDNS domain? (y/n): " HAS_DYNDNS
 
 if [ "$HAS_DYNDNS" = "y" ]; then
-    read -p "Enter your DynDNS domain: " DYNDNS_DOMAIN
-    
-    cat > ~/queztl-core/.config/dyndns.env <<EOF
+    read -r -p "Enter your DynDNS domain: " DYNDNS_DOMAIN
+
+    cat > "$CONFIG_DIR/dyndns.env" <<EOF_DYNDNS
 export DYNDNS_DOMAIN="$DYNDNS_DOMAIN"
-EOF
-    
+EOF_DYNDNS
+
     echo -e "${GREEN}✅ DynDNS domain saved: $DYNDNS_DOMAIN${NC}"
     echo ""
     echo "📝 Next steps for DynDNS:"
@@ -144,16 +151,16 @@ echo "────────────────────────�
 echo "For auto-posting to Facebook, you need Meta API approval."
 echo ""
 
-read -p "Do you have a Meta API key? (y/n): " HAS_META_KEY
+read -r -p "Do you have a Meta API key? (y/n): " HAS_META_KEY
 
 if [ "$HAS_META_KEY" = "y" ]; then
-    read -p "Enter Meta API key: " META_API_KEY
-    
-    cat > ~/queztl-core/.config/meta.env <<EOF
+    read -r -p "Enter Meta API key: " META_API_KEY
+
+    cat > "$CONFIG_DIR/meta.env" <<EOF_META
 export META_API_KEY="$META_API_KEY"
-EOF
-    
-    chmod 600 ~/queztl-core/.config/meta.env
+EOF_META
+
+    chmod 600 "$CONFIG_DIR/meta.env"
     echo -e "${GREEN}✅ Meta API key saved${NC}"
 else
     echo -e "${YELLOW}⚠️  No Meta API key (Facebook posting disabled)${NC}"
@@ -163,23 +170,27 @@ echo ""
 # Generate startup script with configs
 echo "🔧 Generating startup script..."
 
-cat > ~/queztl-core/start.sh <<'EOFSTART'
+cat > "$REPO_ROOT/start.sh" <<'EOFSTART'
 #!/bin/bash
 # Auto-generated startup script
 
-# Load configurations
-[ -f ~/.config/email.env ] && source ~/.config/email.env
-[ -f ~/.config/dyndns.env ] && source ~/.config/dyndns.env
-[ -f ~/.config/meta.env ] && source ~/.config/meta.env
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Load repository configurations
+[ -f "$SCRIPT_DIR/.config/email.env" ] && source "$SCRIPT_DIR/.config/email.env"
+[ -f "$SCRIPT_DIR/.config/dyndns.env" ] && source "$SCRIPT_DIR/.config/dyndns.env"
+[ -f "$SCRIPT_DIR/.config/meta.env" ] && source "$SCRIPT_DIR/.config/meta.env"
 
 # Start services
-cd ~/queztl-core
+cd "$SCRIPT_DIR"
 ./start-services.sh
 EOFSTART
 
-chmod +x ~/queztl-core/start.sh
+chmod +x "$REPO_ROOT/start.sh"
 
-echo -e "${GREEN}✅ Startup script created: ~/queztl-core/start.sh${NC}"
+echo -e "${GREEN}✅ Startup script created: $REPO_ROOT/start.sh${NC}"
 echo ""
 
 # Summary
@@ -190,21 +201,23 @@ echo ""
 echo "📊 Configuration Summary:"
 echo "─────────────────────────────────────────────────────────"
 
-if [ -f ~/queztl-core/.config/email.env ]; then
-    source ~/queztl-core/.config/email.env
+if [ -f "$CONFIG_DIR/email.env" ]; then
+    # shellcheck disable=SC1090
+    source "$CONFIG_DIR/email.env"
     echo -e "${GREEN}✅ Email configured: $SENDER_EMAIL${NC}"
 else
     echo -e "${YELLOW}⚠️  Email not configured${NC}"
 fi
 
-if [ -f ~/queztl-core/.config/dyndns.env ]; then
-    source ~/queztl-core/.config/dyndns.env
+if [ -f "$CONFIG_DIR/dyndns.env" ]; then
+    # shellcheck disable=SC1090
+    source "$CONFIG_DIR/dyndns.env"
     echo -e "${GREEN}✅ DynDNS: $DYNDNS_DOMAIN${NC}"
 else
     echo -e "${YELLOW}⚠️  DynDNS not configured${NC}"
 fi
 
-if [ -f ~/queztl-core/.config/meta.env ]; then
+if [ -f "$CONFIG_DIR/meta.env" ]; then
     echo -e "${GREEN}✅ Meta API configured${NC}"
 else
     echo -e "${YELLOW}⚠️  Meta API not configured${NC}"
@@ -224,12 +237,12 @@ fi
 
 echo ""
 echo "🚀 To start all services:"
-echo "   cd ~/queztl-core && ./start.sh"
+echo "   cd $REPO_ROOT && ./start.sh"
 echo ""
 echo "🌐 Access points (after starting):"
 echo "   • Web:     http://localhost:8080"
 echo "   • Contact: http://localhost:8080/contact.html"
 echo "   • API:     http://localhost:8003/health"
 echo ""
-echo "📖 For more info: cat ~/queztl-core/WEBSITE_SETUP.md"
+echo "📖 For more info: cat $REPO_ROOT/WEBSITE_SETUP.md"
 echo ""

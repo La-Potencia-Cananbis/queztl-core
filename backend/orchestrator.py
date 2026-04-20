@@ -14,6 +14,7 @@ Beast = Fast compute / real-time processing / generation
 """
 
 import json
+import os
 import subprocess
 import socket
 from datetime import datetime
@@ -54,6 +55,10 @@ def build_nodes():
 # Resolved at runtime
 NODES = build_nodes()
 
+# Remote workspace used for SSH/SCP operations
+REMOTE_BASE_DIR = os.getenv("QUEZTL_REMOTE_BASE_DIR", "~/queztl-core")
+
+
 class Neurotransmitter:
     """Message passing between cluster nodes (like neural signals)"""
     
@@ -84,7 +89,7 @@ class Neurotransmitter:
         
         # Send via SSH
         try:
-            cmd = f"scp {msg_file} {target['ssh_user']}@{target['host']}:~/queztl-core/messages/"
+            cmd = f"scp {msg_file} {target['ssh_user']}@{target['host']}:{REMOTE_BASE_DIR}/messages/"
             subprocess.run(cmd.split(), check=True, capture_output=True)
             print(f"📡 Signal sent: {self.sender} → {target_node} [{self.task_type}]")
             return True
@@ -102,7 +107,7 @@ class Orchestrator:
         self.task_queue = []
         
         # Create message directory
-        Path("~/queztl-core/messages").expanduser().mkdir(parents=True, exist_ok=True)
+        Path(f"{REMOTE_BASE_DIR}/messages").expanduser().mkdir(parents=True, exist_ok=True)
     
     def detect_node(self) -> Optional[str]:
         """Detect which node we're running on.
@@ -182,13 +187,13 @@ class Orchestrator:
         try:
             subprocess.run([
                 "scp", __file__, 
-                f"{sloth['ssh_user']}@{sloth['host']}:~/queztl-core/backend/"
+                f"{sloth['ssh_user']}@{sloth['host']}:{REMOTE_BASE_DIR}/backend/"
             ], check=True)
             
             # Start on Sloth
             subprocess.run([
                 "ssh", f"{sloth['ssh_user']}@{sloth['host']}",
-                "cd ~/queztl-core && nohup python3 backend/orchestrator.py > logs/orchestrator.log 2>&1 &"
+                f"cd {REMOTE_BASE_DIR} && nohup python3 backend/orchestrator.py > logs/orchestrator.log 2>&1 &"
             ], check=True)
             
             print("✅ Orchestrator migrated to Sloth")
