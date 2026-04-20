@@ -1,11 +1,18 @@
 #!/bin/bash
 # Master automation script for Queztl-Core cloud deployment
-# Uses project venv Python for all steps
+# Uses project venv Python for all steps (fallback to python3)
 
-set -e
+set -euo pipefail
 
-PYTHON="/Users/xavasena/hive/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/backup_before_rename_20251207_171939/.venv/bin/python"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+VENV_PYTHON="$REPO_ROOT/.venv/bin/python"
 
+if [ -x "$VENV_PYTHON" ]; then
+  PYTHON="$VENV_PYTHON"
+else
+  PYTHON="${PYTHON:-python3}"
+fi
 
 # Progress bar function
 progress_bar() {
@@ -23,20 +30,22 @@ progress_bar() {
 	if [ "$progress" -eq "$total" ]; then printf "\n"; fi
 }
 
+cd "$SCRIPT_DIR"
+
 step=1; total=4
 progress_bar $step $total "Running deep code and config audit..."
-$PYTHON audit_and_reorganize.py
+"$PYTHON" audit_and_reorganize.py
 ((step++))
 progress_bar $step $total "Running automated tests and deploy verification..."
-$PYTHON test-api-routes.py
-$PYTHON test-gis-quick.py
+"$PYTHON" test-api-routes.py
+"$PYTHON" test-gis-quick.py
 ((step++))
 progress_bar $step $total "Refactoring GUIs and APIs for production..."
-$PYTHON infrastructure_monitor.py
-$PYTHON infrastructure_monitor_web.py
+"$PYTHON" infrastructure_monitor.py
+"$PYTHON" infrastructure_monitor_web.py
 ((step++))
 progress_bar $step $total "Deploying to cloud and scaling agents..."
-docker compose -f docker-compose.hive.yml up -d --scale agent=50 dashboard
+docker compose -f "$REPO_ROOT/docker-compose.hive.yml" up -d --scale agent=50 dashboard
 ((step++))
 progress_bar $step $total "All checks and productionization steps finished."
 echo "\nDeployment complete."
