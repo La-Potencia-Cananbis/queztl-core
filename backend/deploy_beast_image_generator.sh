@@ -1,21 +1,24 @@
 #!/bin/bash
 # Deploy BeastQC Image Generator with Stable Diffusion XL
 
-set -e
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 echo "🚩 BEASTQC IMAGE GENERATOR DEPLOYMENT"
 echo "=================================================="
 echo ""
 
-BEAST_IP="192.168.1.105"
-BEAST_USER="xava"
-REMOTE_DIR="~/queztl-core"
+BEAST_IP="${BEAST_IP:-192.168.1.105}"
+BEAST_USER="${BEAST_USER:-xava}"
+REMOTE_DIR="${REMOTE_DIR:-~/queztl-core}"
 
 echo "📡 Connecting to Beast (${BEAST_IP})..."
 echo ""
 
 # Check if Beast is online
-if ! ping -c 1 ${BEAST_IP} &> /dev/null; then
+if ! ping -c 1 "$BEAST_IP" &> /dev/null; then
     echo "❌ Beast is not reachable at ${BEAST_IP}"
     exit 1
 fi
@@ -25,7 +28,7 @@ echo ""
 
 # Transfer files
 echo "📤 Transferring files to Beast..."
-scp backend/beast_image_generator.py ${BEAST_USER}@${BEAST_IP}:${REMOTE_DIR}/backend/
+scp "$SCRIPT_DIR/beast_image_generator.py" "${BEAST_USER}@${BEAST_IP}:${REMOTE_DIR}/backend/"
 echo "✓ Files transferred"
 echo ""
 
@@ -33,8 +36,8 @@ echo ""
 echo "🔧 Installing dependencies on Beast..."
 echo ""
 
-ssh ${BEAST_USER}@${BEAST_IP} << 'ENDSSH'
-cd ~/queztl-core
+ssh "${BEAST_USER}@${BEAST_IP}" "REMOTE_DIR='$REMOTE_DIR' bash -s" << 'ENDSSH'
+cd "$REMOTE_DIR"
 source venv/bin/activate
 
 echo "Installing Python packages..."
@@ -55,7 +58,7 @@ echo ""
 echo "Without Stable Diffusion, the system will create text placeholders."
 echo ""
 
-read -p "Install Stable Diffusion now? (y/N): " -n 1 -r
+read -r -p "Install Stable Diffusion now? (y/N): " -n 1 REPLY
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "Installing Stable Diffusion packages..."
@@ -82,15 +85,15 @@ echo ""
 echo "🚀 START THE SERVER:"
 echo ""
 echo "  ssh ${BEAST_USER}@${BEAST_IP}"
-echo "  cd queztl-core"
+echo "  cd $REMOTE_DIR"
 echo "  source venv/bin/activate"
 echo "  python3 backend/beast_image_generator.py"
 echo ""
 echo "🌐 ACCESS THE UI:"
 echo ""
-echo "  open frontend/beast_image_ui.html"
+echo "  open $REPO_ROOT/frontend/beast_image_ui.html"
 echo ""
-echo "  Or visit: file://$(pwd)/frontend/beast_image_ui.html"
+echo "  Or visit: file://$REPO_ROOT/frontend/beast_image_ui.html"
 echo ""
 echo "📝 NOTES:"
 echo ""

@@ -1,0 +1,42 @@
+version: 1
+node_id: task_mcp_lite
+scope: "Implement local MCP Lite server tools"
+status: in_progress
+
+progress_notes:
+  - "MCP-lite scaffold now supports health_check and list_memes with stable JSON output."
+  - "Added run_content_once tool with preview mode by default and optional execution via --execute."
+  - "Added submit_contact_test tool to exercise local contact API integration path."
+
+tasks:
+  - id: mcp_1
+    name: define_mcp_tool_contract
+    status: done
+  - id: mcp_2
+    name: implement_health_check_tool
+    status: done
+  - id: mcp_3
+    name: implement_content_and_contact_tools
+    status: in_progress
+  - id: mcp_4
+    name: add_local_smoke_validation
+    status: in_progress
+
+tests:
+  - id: t_mcp_1
+    command: "python3 backend/mcp_server.py --help"
+    expect: pass_or_usage_output
+    last_result: pass
+  - id: t_mcp_2
+    command: "python3 backend/mcp_server.py --tool run_content_once --param theme=revolutionary --json"
+    expect: preview_mode_or_execute_success
+    last_result: pass
+  - id: t_mcp_3
+    command: "python3 backend/mcp_server.py --tool submit_contact_test --json"
+    expect: api_reachable_or_clean_error
+    last_result: pass_clean_error
+
+exit_criteria:
+  - t_mcp_1
+  - t_mcp_2
+  - t_mcp_3
