@@ -6,6 +6,7 @@ status: in_progress
 progress_notes:
   - "Updated start-services.sh, stop-services.sh, setup-website.sh, quick-setup.sh, backend/deploy-aiosc.sh to remove host-bound local paths."
   - "Expanded cleanup to additional operational backend scripts (email setup/start, secrets bootstrap, cron setup, runner, and autonomous runner launcher)."
+  - "Extended cleanup to orchestrator and Beast automation scripts with configurable remote base dirs and repo-relative startup paths."
   - "Remaining repo-wide path cleanup still needed in legacy docs and older experiment scripts."
 
 tasks:
