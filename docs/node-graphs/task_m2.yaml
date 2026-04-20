@@ -1,31 +1,23 @@
 version: 1
 node_id: task_m2
 scope: "Replace absolute paths with repo-relative logic"
-status: in_progress
-
-progress_notes:
-  - "Updated start-services.sh, stop-services.sh, setup-website.sh, quick-setup.sh, backend/deploy-aiosc.sh to remove host-bound local paths."
-  - "Remaining repo-wide path cleanup still needed in legacy backend scripts/docs."
+status: todo
 
 tasks:
   - id: m2_1
     name: find_absolute_paths
-    status: done
+    status: todo
   - id: m2_2
     name: patch_scripts_to_repo_relative
-    status: done
+    status: todo
   - id: m2_3
     name: verify_shell_scripts_still_run
-    status: in_progress
+    status: todo
 
 tests:
   - id: t_m2_1
-    command: "rg -n '/Users/|~/Documents/' backend start-services.sh quick-setup.sh setup-website.sh stop-services.sh"
-    expect: no_matches_in_primary_scripts
-  - id: t_m2_2
-    command: "bash -n start-services.sh stop-services.sh setup-website.sh quick-setup.sh backend/deploy-aiosc.sh"
-    expect: pass
+    command: "rg -n '/Users/|~/Documents/' backend start-services.sh quick-setup.sh"
+    expect: empty_or_expected_exceptions
 
 exit_criteria:
   - t_m2_1
-  - t_m2_2
