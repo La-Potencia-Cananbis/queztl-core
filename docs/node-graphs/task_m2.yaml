@@ -1,0 +1,23 @@
+version: 1
+node_id: task_m2
+scope: "Replace absolute paths with repo-relative logic"
+status: todo
+
+tasks:
+  - id: m2_1
+    name: find_absolute_paths
+    status: todo
+  - id: m2_2
+    name: patch_scripts_to_repo_relative
+    status: todo
+  - id: m2_3
+    name: verify_shell_scripts_still_run
+    status: todo
+
+tests:
+  - id: t_m2_1
+    command: "rg -n '/Users/|~/Documents/' backend start-services.sh quick-setup.sh"
+    expect: empty_or_expected_exceptions
+
+exit_criteria:
+  - t_m2_1
