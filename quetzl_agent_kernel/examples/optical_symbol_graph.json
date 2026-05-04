@@ -1,0 +1,42 @@
+{
+  "name": "optical-symbolic-compressor-demo",
+  "nodes": [
+    {
+      "id": "camera_tick",
+      "packet_type": "echo.say",
+      "payload": {
+        "text": "P0 optical source: camera luma/motion tick"
+      },
+      "depends_on": [],
+      "metadata": {
+        "future_backend": "android.camerax"
+      }
+    },
+    {
+      "id": "symbolize",
+      "packet_type": "echo.say",
+      "payload": {
+        "text": "P1/P2 symbolic extraction: edge density, motion vector, region count"
+      },
+      "depends_on": ["camera_tick"],
+      "metadata": {
+        "future_backend": "vulkan-or-cpu-reducer"
+      }
+    },
+    {
+      "id": "route",
+      "packet_type": "echo.say",
+      "payload": {
+        "text": "P4 signal lock: route only if symbolic state changed"
+      },
+      "depends_on": ["symbolize"],
+      "metadata": {
+        "future_backend": "local-model-or-cloud-router"
+      }
+    }
+  ],
+  "metadata": {
+    "purpose": "Scaffold for S23 CameraX -> Quetzl symbolic graph runtime",
+    "notes": "Currently uses echo.say so the kernel can run immediately. Replace packet_type values with real capabilities as agents are implemented."
+  }
+}
