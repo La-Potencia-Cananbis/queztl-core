@@ -1,0 +1,62 @@
+{
+  "graph": "NUMARA_SEED_V1_CHIMAYO",
+  "nodes": [
+    "C0",
+    "S0",
+    "R0",
+    "T0",
+    "M0",
+    "G0",
+    "D0",
+    "A0",
+    "J0"
+  ],
+  "roles": {
+    "C0": "creativity_seed",
+    "S0": "signal_ingress",
+    "R0": "recurrence_field",
+    "T0": "rupture_threshold",
+    "M0": "memory_projection",
+    "G0": "visual_resolver",
+    "D0": "delta_compressor",
+    "A0": "audio_resolver_60hz",
+    "J0": "join_export"
+  },
+  "edges": [
+    {"src":"C0","dst":"S0","w":0.35},
+    {"src":"C0","dst":"R0","w":0.73},
+    {"src":"C0","dst":"T0","w":0.32},
+    {"src":"C0","dst":"M0","w":0.41},
+    {"src":"S0","dst":"M0","w":0.81},
+    {"src":"S0","dst":"G0","w":0.47},
+    {"src":"S0","dst":"D0","w":0.35},
+    {"src":"R0","dst":"G0","w":0.92},
+    {"src":"T0","dst":"D0","w":0.54},
+    {"src":"M0","dst":"J0","w":0.65},
+    {"src":"G0","dst":"J0","w":0.50},
+    {"src":"D0","dst":"J0","w":0.24},
+    {"src":"G0","dst":"A0","w":0.50},
+    {"src":"A0","dst":"J0","w":0.62}
+  ],
+  "join": "J0",
+  "delta_emit": {
+    "topic": "Santuario de Chimayo",
+    "anchors": ["el pocito", "1816 adobe shrine", "Holy Week pilgrimage"],
+    "visual_keys": ["courtyard acequia", "reredos", "ex-votos", "La Vang statue"]
+  },
+  "audio_spine": {
+    "oscillator": {"type": "sine", "frequency": 60},
+    "graph_modulation": {
+      "R0": {"gain_feedback": 0.72},
+      "T0": {"rupture_threshold": 0.81, "phase_reset": true},
+      "C0": {"freq_drift": 0.35}
+    }
+  },
+  "rules": {
+    "stateless": true,
+    "edge_memory": true,
+    "creativity_seed": true,
+    "node_storage": false,
+    "emit_on_join": true
+  }
+}
