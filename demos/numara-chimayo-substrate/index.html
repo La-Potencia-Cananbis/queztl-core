@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NUMARA Chimayo Interactive Substrate</title>
+  <style>
+    :root {
+      --bg: #020617;
+      --panel: rgba(15, 23, 42, 0.82);
+      --line: #334155;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --cyan: #48f2ff;
+      --green: #57ff71;
+      --orange: #ff8a2a;
+      --pink: #ff62c7;
+      --purple: #c86bff;
+      --yellow: #ffe35b;
+      --blue: #56a7ff;
+      --violet: #9b72ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 35% 20%, rgba(72,242,255,.08), transparent 30%),
+        radial-gradient(circle at 70% 35%, rgba(200,107,255,.07), transparent 32%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .wrap { max-width: 1440px; margin: 0 auto; padding: 24px; }
+    header { display: flex; justify-content: space-between; gap: 18px; align-items: end; margin-bottom: 18px; }
+    h1 { margin: 6px 0 8px; font-size: clamp(28px, 5vw, 58px); letter-spacing: -0.045em; }
+    .kicker { color: var(--cyan); letter-spacing: .26em; text-transform: uppercase; font-size: 12px; }
+    .subtitle { color: var(--muted); max-width: 860px; line-height: 1.5; }
+    button {
+      border: 1px solid #475569;
+      background: #0f172a;
+      color: var(--text);
+      padding: 11px 15px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    button:hover { border-color: var(--cyan); }
+    .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; }
+    .panel {
+      border: 1px solid #263244;
+      background: var(--panel);
+      border-radius: 22px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.35);
+      overflow: hidden;
+    }
+    .panel h2 { margin: 0; padding: 16px 18px; border-bottom: 1px solid #263244; font-size: 19px; }
+    .graphbox { padding: 14px; }
+    svg { width: 100%; height: auto; display: block; border-radius: 18px; background: radial-gradient(circle at center, #0f172a, #020617 65%); }
+    .side { display: grid; gap: 18px; }
+    .content { padding: 18px; }
+    pre { margin: 0; background: #020617; border: 1px solid #1e293b; border-radius: 16px; padding: 14px; overflow: auto; font-size: 12px; line-height: 1.45; color: #cbd5e1; }
+    .node-card { display: flex; gap: 14px; align-items: center; }
+    .badge { width: 58px; height: 58px; border-radius: 999px; display: grid; place-items: center; font-size: 20px; font-weight: 900; border: 3px solid currentColor; background: #020617; }
+    .muted { color: var(--muted); font-size: 14px; }
+    .timeline { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; padding: 16px; }
+    .step { text-align: left; min-height: 90px; }
+    .step.active { border-color: var(--cyan); background: rgba(72,242,255,.09); }
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px; }
+    .principle { padding: 18px; }
+    .wave { width: 100%; height: 120px; background: #020617; border: 1px solid #1e293b; border-radius: 16px; }
+    .legend { display: flex; flex-wrap: wrap; gap: 10px; padding: 0 18px 18px; color: var(--muted); font-size: 13px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+    @media (max-width: 980px) { header, .grid { grid-template-columns: 1fr; display: block; } .side { margin-top: 18px; } .timeline, .cards { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="kicker">NUMARA Interactive Substrate</div>
+        <h1>Graph → Traversal → Media Packet</h1>
+        <div class="subtitle">One agent walks the Chimayo topology. Nodes store no memory. Weighted edges create pressure. Active clusters resolve visual state, 60Hz audio modulation, rupture events, and join/export packets.</div>
+      </div>
+      <div>
+        <button id="play">▶ Play</button>
+        <button id="reset">↻ Reset</button>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="panel">
+        <h2>Interactive Graph Substrate</h2>
+        <div class="graphbox">
+          <svg id="graph" viewBox="0 0 700 650" role="img" aria-label="NUMARA graph substrate"></svg>
+        </div>
+        <div class="legend" id="legend"></div>
+      </section>
+
+      <aside class="side">
+        <section class="panel">
+          <h2>Selected Node</h2>
+          <div class="content node-card">
+            <div class="badge" id="nodeBadge">R0</div>
+            <div><strong id="nodeLabel">Recurrence Field</strong><div class="muted" id="nodeRole">edge-memory persistence</div></div>
+          </div>
+        </section>
+        <section class="panel">
+          <h2>Traversal Packet</h2>
+          <div class="content"><pre id="packet"></pre></div>
+        </section>
+        <section class="panel">
+          <h2>Audio Output — 60Hz Spine</h2>
+          <div class="content"><canvas id="wave" class="wave" width="600" height="140"></canvas></div>
+        </section>
+      </aside>
+    </main>
+
+    <section class="panel" style="margin-top:18px">
+      <h2>Traversal Timeline</h2>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <section class="cards">
+      <div class="panel principle"><strong>Substrate</strong><p class="muted">The graph is the control surface, not the media itself.</p></div>
+      <div class="panel principle"><strong>Edge Memory</strong><p class="muted">Weights plus traversal frequency create memory pressure.</p></div>
+      <div class="panel principle"><strong>Rupture</strong><p class="muted">Threshold crossings trigger visual cuts and audio phase resets.</p></div>
+      <div class="panel principle"><strong>Join</strong><p class="muted">J0 emits synchronized multimodal deltas.</p></div>
+    </section>
+  </div>
+
+  <script>
+    const graph = {
+      nodes: {
+        C0:{label:'Creativity Seed',role:'mutation + novelty',color:'#c86bff'},
+        S0:{label:'Signal Ingress',role:'input + scene entry',color:'#56a7ff'},
+        R0:{label:'Recurrence Field',role:'edge-memory persistence',color:'#57ff71'},
+        T0:{label:'Rupture Threshold',role:'cut + phase reset',color:'#ff8a2a'},
+        M0:{label:'Memory Projection',role:'motif continuity',color:'#ffe35b'},
+        G0:{label:'Visual Resolver',role:'scene state',color:'#48f2ff'},
+        D0:{label:'Delta Compressor',role:'change extraction',color:'#9b72ff'},
+        A0:{label:'Audio Resolver',role:'60Hz modulation',color:'#ff62c7'},
+        J0:{label:'Join Export',role:'packet emission',color:'#f5f5f5'}
+      },
+      edges:[
+        ['C0','S0',0.35],['C0','R0',0.73],['C0','T0',0.32],['C0','M0',0.41],
+        ['S0','M0',0.81],['S0','G0',0.47],['S0','D0',0.35],['R0','G0',0.92],
+        ['T0','D0',0.54],['M0','J0',0.65],['G0','J0',0.50],['D0','J0',0.24],
+        ['G0','A0',0.50],['A0','J0',0.62]
+      ]
+    };
+    const pos = { C0:[345,75], S0:[120,185], R0:[345,195], T0:[570,185], M0:[130,355], G0:[345,355], D0:[570,355], A0:[470,510], J0:[345,575] };
+    const sequence = [
+      {tick:0,active:['S0'],event:'Ingress',visual:'courtyard acequia / adobe exterior',audio:'start 60Hz sine',pressure:.31},
+      {tick:12,active:['S0','M0'],event:'Memory projection',visual:'candles + adobe wall texture',audio:'gain recurrence rising',pressure:.62},
+      {tick:18,active:['R0','M0','G0'],event:'Recurrence build',visual:'ex-votos / reredos / slow drift',audio:'60.1Hz pulse persistence',pressure:.81},
+      {tick:27,active:['T0','D0'],event:'RUPTURE',visual:'hard cut to night pilgrimage',audio:'phase reset + transient spike',pressure:.94},
+      {tick:33,active:['M0','G0','A0'],event:'New state',visual:'La Vang statue / dusk blue',audio:'frequency settles',pressure:.67},
+      {tick:42,active:['R0','A0'],event:'Recurrence returns',visual:'candle motif returns',audio:'60Hz hum stabilizes',pressure:.72},
+      {tick:54,active:['J0'],event:'Join export',visual:'emit final packet',audio:'sync packet export',pressure:.50}
+    ];
+    let step = 0, selected = 'R0', timer = null;
+    const svg = document.getElementById('graph');
+    const packet = document.getElementById('packet');
+    const play = document.getElementById('play');
+    const reset = document.getElementById('reset');
+
+    function el(name, attrs = {}) { const e = document.createElementNS('http://www.w3.org/2000/svg', name); Object.entries(attrs).forEach(([k,v]) => e.setAttribute(k,v)); return e; }
+    function renderGraph(){
+      svg.innerHTML = '';
+      const active = sequence[step].active;
+      graph.edges.forEach(([s,d,w]) => {
+        const [x1,y1]=pos[s], [x2,y2]=pos[d];
+        const isActive = active.includes(s)||active.includes(d);
+        const line = el('line',{x1,y1,x2,y2,stroke:isActive?graph.nodes[s].color:'#334155','stroke-width':isActive?String(2+w*5):String(1+w*3),opacity:isActive?.95:.35});
+        svg.appendChild(line);
+        const text = el('text',{x:(x1+x2)/2,y:(y1+y2)/2-7,fill:isActive?graph.nodes[s].color:'#64748b','font-size':'11','text-anchor':'middle'});
+        text.textContent = w.toFixed(2); svg.appendChild(text);
+      });
+      Object.keys(graph.nodes).forEach(id => {
+        const n=graph.nodes[id], [x,y]=pos[id], isActive=active.includes(id);
+        const g = el('g',{style:'cursor:pointer'}); g.addEventListener('click',()=>{selected=id; render();});
+        if(isActive){ g.appendChild(el('circle',{cx:x,cy:y,r:43,fill:'none',stroke:n.color,'stroke-width':2,opacity:.35})); }
+        g.appendChild(el('circle',{cx:x,cy:y,r:id===selected?32:isActive?30:25,fill:'#020617',stroke:n.color,'stroke-width':isActive||id===selected?4:2}));
+        const t=el('text',{x,y:y+6,fill:n.color,'font-size':22,'font-weight':800,'text-anchor':'middle'}); t.textContent=id; g.appendChild(t);
+        const l=el('text',{x,y:y+43,fill:'#cbd5e1','font-size':11,'text-anchor':'middle'}); l.textContent=n.label; g.appendChild(l);
+        svg.appendChild(g);
+      });
+    }
+    function renderTimeline(){
+      const box=document.getElementById('timeline'); box.innerHTML='';
+      sequence.forEach((s,i)=>{ const b=document.createElement('button'); b.className='step'+(i===step?' active':''); b.innerHTML=`<div class="muted">Tick ${s.tick}</div><strong style="color:${s.event==='RUPTURE'?'var(--orange)':'var(--text)'}">${s.event}</strong><div class="muted">p=${s.pressure.toFixed(2)}</div>`; b.onclick=()=>{step=i;render();}; box.appendChild(b); });
+    }
+    function renderNode(){ const n=graph.nodes[selected], b=document.getElementById('nodeBadge'); b.textContent=selected; b.style.color=n.color; document.getElementById('nodeLabel').textContent=n.label; document.getElementById('nodeRole').textContent=n.role; }
+    function renderPacket(){ const s=sequence[step]; packet.textContent=JSON.stringify({tick:s.tick,active_nodes:s.active,event:s.event,visual:s.visual,audio:s.audio,pressure:s.pressure,join:s.active.includes('J0')?'emit multimodal delta':'pending'},null,2); }
+    function renderLegend(){ const l=document.getElementById('legend'); l.innerHTML=Object.entries(graph.nodes).map(([id,n])=>`<span><i class="dot" style="background:${n.color}"></i>${id} ${n.label}</span>`).join(''); }
+    function renderWave(){
+      const c=document.getElementById('wave'), ctx=c.getContext('2d'), rupture=sequence[step].active.includes('T0')||sequence[step].active.includes('D0');
+      ctx.clearRect(0,0,c.width,c.height); ctx.fillStyle='#020617'; ctx.fillRect(0,0,c.width,c.height); ctx.strokeStyle='#334155'; ctx.setLineDash([4,4]); ctx.beginPath(); ctx.moveTo(0,70); ctx.lineTo(c.width,70); ctx.stroke(); ctx.setLineDash([]); ctx.strokeStyle='#ff62c7'; ctx.lineWidth=2; ctx.beginPath();
+      for(let i=0;i<c.width;i++){ const base=Math.sin(i*.19)*14; const mod=Math.sin(i*.035)*9; const spike=rupture&&i>290&&i<315?(i%2?45:-45):0; const y=70+base+mod+spike; if(i===0) ctx.moveTo(i,y); else ctx.lineTo(i,y); }
+      ctx.stroke(); ctx.fillStyle='#f9a8d4'; ctx.font='14px ui-sans-serif'; ctx.fillText('60Hz audio spine'+(rupture?' — rupture phase reset':''),16,25);
+    }
+    function render(){ renderGraph(); renderTimeline(); renderNode(); renderPacket(); renderLegend(); renderWave(); }
+    play.onclick=()=>{ if(timer){ clearInterval(timer); timer=null; play.textContent='▶ Play'; } else { timer=setInterval(()=>{ step=(step+1)%sequence.length; render(); },1200); play.textContent='Ⅱ Pause'; } };
+    reset.onclick=()=>{ if(timer){clearInterval(timer);timer=null;play.textContent='▶ Play';} step=0; render(); };
+    render();
+  </script>
+</body>
+</html>
